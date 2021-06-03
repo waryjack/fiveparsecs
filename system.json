@@ -24,8 +24,8 @@
     "gridUnits": "in",
     "primaryTokenAttribute": null,
     "secondaryTokenAttribute":null,
-    "minimumCoreVersion": "0.8.6",
-    "compatibleCoreVersion": "0.8.6",
+    "minimumCoreVersion": "0.8.5",
+    "compatibleCoreVersion": "0.8.5",
     "url": "https://github.com/waryjack/fiveparsecs",
     "manifest": "https://github.com/waryjack/fiveparsecs/releases/latest/download/system.json",
     "download": "https://github.com/waryjack/fiveparsecs/releases/latest/download/fiveparsecs-master.zip"

@@ -1,1 +1,10 @@
 /* CSS, my old enemy. We meet again. */
+
+.fp .window-content {
+    background:white;
+}
+.fp .value-input {
+    width:3ch;
+    text-align:center;
+    background:white;
+}

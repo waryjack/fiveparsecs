@@ -2,6 +2,10 @@
 
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { registerSettings } from "./settings.js";
+import { FP } from "./config.js";
+import { FPActor } from "./actor/FPActor.js";
+import { FPActorSheet } from "./sheets/actor/FPActorSheet.js";
+import { FPItemSheet } from "./sheets/item/FPItemSheet.js";
 
 Hooks.once("init", () => {
     console.log("fiveparsecs | Initializing Five Parsecs System");
@@ -14,7 +18,7 @@ Hooks.once("init", () => {
         FPActor,
         FPActorSheet,
         FPItemSheet,
-        FPCombat,
+        // FPCombat,
         registerSettings
     };
 
@@ -139,7 +143,7 @@ Hooks.on('deleteItem', function(actor, item){
 
 Hooks.on('renderChatMessage', (app, html) => {
 
-    html.on('click', '.taskroll-msg', event => {
+   /* html.on('click', '.taskroll-msg', event => {
         event.preventDefault();
         // NOTE: This depends on the exact card template HTML structure.
         $(event.currentTarget).siblings('.taskroll-tt').slideToggle("fast");
@@ -150,22 +154,8 @@ Hooks.on('renderChatMessage', (app, html) => {
         // NOTE: This depends on the exact card template HTML structure.
         $(event.currentTarget).siblings('.taskroll-tt').slideToggle("fast");
      });
-
-     html.on('click', '#legendize', event => {
-        event.preventDefault();
-
-        let element = event.currentTarget;
-
-        let actorId = element.dataset.actorId;
-
-        let actor = game.actors.get(actorId);
-
-
-        if(!actor.data.data.isRival && !actor.data.data.isRabble && !actor.data.data.isTough) {
-            actor.spendHeroPoint();
-        }
-     });
-
+     */
+    
 });
 
 /**
