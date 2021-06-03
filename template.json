@@ -1,6 +1,6 @@
 {
     "Actor":{
-        "types":["crew","character","enemy"],
+        "types":["character","enemy","crew"],
         "templates":{
             "common":{
                 "name":"",
