@@ -1,3 +1,45 @@
 {
-    "FP.attribute.character.reactions": "Reactions"
+    "FP.stat.reactions": "Reactions",
+    "FP.stat.speed": "Speed",
+    "FP.stat.combat": "Combat",
+    "FP.stat.toughness": "Toughness",
+    "FP.stat.savvy": "Savvy",
+    "FP.stat.luck": "Luck",
+    "FP.stat.xp": "XP",
+
+    "FP.crew.stat.storypoints": "Story Points",
+    "FP.crew.stat.credits": "Credits",
+    "FP.crew.stat.patrons": "Patrons",
+    "FP.crew.stat.rivals": "Rivals",
+    "FP.crew.stat.event": "Event",
+    "FP.crew.stat.clock": "Clock",
+    "FP.crew.stat.questrumors": "Quest Rumors",
+
+    "FP.ship.stat.hull": "Hull Points",
+    "FP.ship.stat.debt": "Debt",
+
+    "FP.gameterm.storytrack": "Story Track",
+    "FP.gameterm.ship": "Ship",
+    "FP.gameterm.crew": "Crew",
+    "FP.gameterm.crewlog": "Crew Log",
+    "FP.gameterm.weapon": "Weapon",
+    "FP.gameterm.upgrades": "Upgrades",
+    "FP.gameterm.gear": "Gear",
+    "FP.gameterm.gadget": "Gadget",
+    "FP.gameterm.species": "Species/Type",
+    "FP.gameterm.name": "Name",
+    "FP.gameterm.notes": "Notes",
+    "FP.gameterm.rules": "Rules",
+    "FP.gameterm.cost": "Cost",
+
+    "FP.gear.stat.type": "Gear Type",
+    "FP.gear.stat.uses": "Uses",
+    "FP.gear.stat.affects": "Affects",
+    
+    "FP.weapon.stat.range": "Range",
+    "FP.weapon.stat.shots": "Shots",
+    "FP.weapon.stat.damage": "Damage",
+    
+    "FP.item.stat.traits": "Traits"
+   
 }

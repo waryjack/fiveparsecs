@@ -1,5 +1,10 @@
 /* CSS, my old enemy. We meet again. */
 
+table tr:nth-child(even) {
+    background:none !important;
+}
+
+
 .fp .window-content {
     background:white;
 }
@@ -7,4 +12,67 @@
     width:3ch;
     text-align:center;
     background:white;
+}
+
+.fp .text-input {
+    width:100%;
+    text-align:left;
+    background:white;
+}
+
+.fp .item-table {
+    border: 1px solid blue; 
+    border-spacing:6px; 
+    border-collapse:separate;
+    background:none;
+}
+
+.fp .item-table td {
+    padding: 6px;
+    text-align:center;
+}
+
+.fp .charsheet-weapons {
+    border-collapse:collapse;
+}
+
+.fp .crew-roster {
+    padding:0 12px 12px 12px;
+    background:none;
+
+}
+
+.fp .sheet-label {
+    text-transform:uppercase;
+    font-size:0.75em;
+    font-weight:bold;
+    text-align:left;
+}
+
+.fp .sheet-label-center {
+    text-transform:uppercase;
+    font-size:0.75em;
+    font-weight:bold;
+    text-align:center;
+}
+
+.fp .flexcol {
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content:stretch;
+  
+  }
+  .fp .flexrow {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-between;
+}
+
+.fp .flex-item {
+    background: white;
+    height:auto;
+    flex:1;
+    align-items:center;
+    margin:3px 12px 3px 3px;
+
 }
