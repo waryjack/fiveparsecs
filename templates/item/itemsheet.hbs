@@ -42,7 +42,28 @@
         </div>
         {{/if}}
 
+        {{#if (eq item.data.type "crew_assignment")}}
+        <div class="fp flexrow">
+            <table class="fp crew-roster">
+                <tr>
+                    <th>Crew Member Name</th>
+                    <th>Crew Member ID</th>
+            
+                </tr>
+                <tr>
+                    <td><input class="fp text-input" type="text" name="data.assigned_crew_name" value="{{data.assigned_crew_name}}" data-dtype="String"/></td>
+                    <td><input class="fp text-input" type="text" name="data.assigned_crew_actorId" value="{{data.assigned_crew_actorId}}" data-dtype="String"/></td>
+                  
+                </tr>
+            </table>
+        </div>
+
+
+
+        {{/if}}
+
         {{!--Common Item Traits Area--}}
+        {{#unless (ne item.data.type "crew_assignment")}}
         <div class="fp flexrow">
             <table class="fp crew-roster">
                 <tr>
@@ -57,5 +78,6 @@
                 </tr>
             </table>
         </div>
+        {{/unless}}
     </section>
 </form>

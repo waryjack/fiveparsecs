@@ -28,6 +28,7 @@ export class FPItemSheet extends ItemSheet {
         data.myName = data.myName
         
         data.config = CONFIG.fiveparsecs;
+        data.gameActors = game.actors; 
 
         return data;
 

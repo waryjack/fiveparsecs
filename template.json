@@ -39,7 +39,7 @@
         }
     },
     "Item":{
-        "types":["weapon","gear","ship","ship_upgrade"],
+        "types":["weapon","gear","ship","ship_upgrade","crew_assignment"],
         "templates":{
             "common":{
                 "name":"",
@@ -70,6 +70,10 @@
         },
         "ship_upgrade":{
             "templates":["common"]
+        },
+        "crew_assignment":{
+            "assigned_crew_name":"",
+            "assigned_crew_actorId":""
         }
 
     }

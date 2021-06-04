@@ -13,20 +13,24 @@
                 <div class="fp flexrow">
                     <div style="border:1px solid blue; padding:3px; margin-right:6px;">
                         <input class="fp charname" style="width:48%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-                        <input class="fp charname" style="width:48%; vertical-align:top; background:rgb(255, 255, 255);" name="data.data.species" type="text" value="{{data.data.species}}" data-dtype="String"/>
                     </div>
-                    <div style="border: 1px solid blue; padding:3px; margin-right:6px;">
-                        <input class="fp value-input" type="text" name="data.data.combat" value="{{data.data.combat}}" data-dtype="Number"/>
-                        <input class="fp value-input" type="text" name="data.data.toughness" value="{{data.data.toughness}}" data-dtype="Number"/>
-                        <input class="fp value-input" type="text" name="data.data.savvy" value="{{data.data.savvy}}" data-dtype="Number"/>
-                    </div>
-                    <div style="border: 1px solid blue; padding:3px;">
-                        <input class="fp value-input" type="text" name="data.data.luck" value="{{data.data.luck}}" data-dtype="Number"/>
-                    </div>
-                    {{!--name and stats row--}}
                 </div>
                 <div class="fp flexrow">
-                    {{!--weapon 1 / gear / xp row--}}
+                    {{!--crew list--}}
+                    {{log "HBS Assigned Crew: " assignedCrew}}
+                    {{#each assignedCrew as |crew id|}}
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Species</th>
+                        </tr>
+                        <tr>
+                            <td>{{crew.mbr_name}}</td>
+                            <td>{{crew.mbr_species}}</td>
+                        </tr>
+                    </table>
+                    {{/each}}
+
                 </div>
                 <div class="fp flexrow">
                     {{!--weapon 2 / notes row --}}
