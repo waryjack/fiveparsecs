@@ -62,13 +62,14 @@ export class FPActorSheet extends ActorSheet {
             // Build object with basic crewmember info  
             let crewMemberData = {
                 mbr_name: crewActor.name,
-                mbr_species: crewActor.data.data.species,
-                mbr_reactions: crewActor.data.data.reactions,
-                mbr_speed: crewActor.data.data.speed,
-                mbr_combat: crewActor.data.data.combat,
-                mbr_toughness: crewActor.data.data.toughness,
-                mbr_savvy: crewActor.data.data.savvy,
-                mbr_notes: crewActor.data.data.notes
+                mbr_species: crewActor.data.data.data.species,
+                mbr_reactions: crewActor.data.data.data.reactions,
+                mbr_speed: crewActor.data.data.data.speed,
+                mbr_combat: crewActor.data.data.data.combat,
+                mbr_toughness: crewActor.data.data.data.toughness,
+                mbr_savvy: crewActor.data.data.data.savvy,
+                mbr_notes: crewActor.data.data.data.notes,
+                mbr_luck: crewActor.data.data.data.luck
 
             };
             let crewMemberWeps = crewActor.items.filter(function(item) {return item.type == "weapon"});

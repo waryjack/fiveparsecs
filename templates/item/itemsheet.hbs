@@ -44,21 +44,26 @@
 
         {{#if (eq item.data.type "crew_assignment")}}
         <div class="fp flexrow">
+            <p>This creates an item to allow Crew members to be linked to Crews. Select the crew member associated with this, then drag and drop this <em>item</em> onto your Crew Sheet.</p>
             <table class="fp crew-roster">
                 <tr>
-                    <th>Crew Member Name</th>
-                    <th>Crew Member ID</th>
-            
+                    <th>Select Associated Crew Member</th>
                 </tr>
                 <tr>
-                    <td><input class="fp text-input" type="text" name="data.assigned_crew_name" value="{{data.assigned_crew_name}}" data-dtype="String"/></td>
-                    <td><input class="fp text-input" type="text" name="data.assigned_crew_actorId" value="{{data.assigned_crew_actorId}}" data-dtype="String"/></td>
-                  
+                    <td>
+                        <select name="data.assigned_crew_actorId" id="data.assigned_crew_actorId">
+                            {{#select data.assigned_crew_actorId}}
+                            {{#each eligibleCrew as |ecrew id|}}
+                            {{log "ecrew" ecrew}}
+                            {{log "id" id}}
+                            <option value="{{ecrew.eligibleId}}" {{#if (eq ecrew.eligibleId data.assigned_crew_actorId)}}selected{{/if}}>{{ecrew.eligibleName}}</option>
+                            {{/each}}
+                            {{/select}}    
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
-
-
 
         {{/if}}
 

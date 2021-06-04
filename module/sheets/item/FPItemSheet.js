@@ -30,7 +30,26 @@ export class FPItemSheet extends ItemSheet {
         data.config = CONFIG.fiveparsecs;
         data.gameActors = game.actors; 
 
+        if (this.item.type == "crew_assignment") {
+            data.eligibleCrew = this._getEligibleActors();
+        }
+
         return data;
 
+    }
+
+    _getEligibleActors() {
+        let characters = game.actors.filter(function(actor) { return actor.type == "character"});
+        let eligibleCrew = [];
+
+        characters.forEach(char => {
+            let charData = {
+                eligibleName: char.name,
+                eligibleId: char.data._id,
+            }
+            eligibleCrew.push(charData);
+        }); 
+
+        return eligibleCrew;
     }
 }
