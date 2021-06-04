@@ -28,14 +28,13 @@
         {{!--gear has Geartype, Uses, Affects--}}
          <div class="fp flexrow">
             <table class="fp crew-roster">
-                <tr>
-                    <th>{{localize "FP.gear.stat.uses"}}</th>
+                <tr class="fp sheet-label">
+                    <th>{{localize "FP.gear.stat.uses"}} (enter 0 for unlimited uses)</th>
                     <th>{{localize "FP.gear.stat.affects"}}</th>
-            
                 </tr>
                 <tr>
                     <td><input class="fp value-input" type="text" name="data.uses" value="{{data.uses}}" data-dtype="Number"/></td>
-                    <td><input class="fp value-input" type="text" name="data.affects" value="{{data.affects}}" data-dtype="Number"/></td>
+                    <td><input class="fp text-input" type="text" name="data.affects" value="{{data.affects}}" data-dtype="String"/></td>
                   
                 </tr>
             </table>
@@ -68,18 +67,16 @@
         {{/if}}
 
         {{!--Common Item Traits Area--}}
-        {{#unless (ne item.data.type "crew_assignment")}}
+        {{#unless (eq item.data.type "crew_assignment")}}
         <div class="fp flexrow">
             <table class="fp crew-roster">
-                <tr>
-                    <th>{{localize "FP.gameterm.notes"}}</th>
-                    <th>{{localize "FP.gameterm.rules"}}</th>
+                <tr class="fp sheet-label">
+                    <th>{{localize "FP.gameterm.notes"}}/{{localize "FP.gameterm.rules"}}</th>
                     <th>{{localize "FP.gameterm.cost"}}</th>
                 </tr>
                 <tr>
-                    <td><input class="fp value-input" type="text" name="data.notes" value="{{data.notes}}" data-dtype="Number"/></td>
-                    <td><input class="fp value-input" type="text" name="data.rules" value="{{data.rules}}" data-dtype="Number"/></td>
-                    <td><input class="fp value-input" type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number"/></td>
+                    <td><input class="fp text-input" type="text" name="data.notes" value="{{data.notes}}" data-dtype="String"/></td>
+                    <td style="width:15%"><input class="fp value-input" type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number"/></td>
                 </tr>
             </table>
         </div>

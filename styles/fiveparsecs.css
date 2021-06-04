@@ -10,7 +10,7 @@ table tr:nth-child(even) {
     background:white;
 }
 .fp .value-input {
-    width:5ch;
+    width:4ch;
     text-align:center;
     background:white;
 }

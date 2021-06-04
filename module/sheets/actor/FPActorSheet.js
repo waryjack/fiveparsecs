@@ -12,7 +12,7 @@ export class FPActorSheet extends ActorSheet {
 
             return mergeObject(super.defaultOptions, {
                 classes: ['fp', 'sheet', 'actor', 'actor-sheet'],
-                width: 740,
+                width: 800,
                 height: 400,
                 left:75,
                 tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
@@ -31,11 +31,13 @@ export class FPActorSheet extends ActorSheet {
          data.config = CONFIG.fiveparsecs; 
          let ownedItems = this.actor.items;
          data.actor = this.actor; 
-        
+         
 
          if(this.actor.type === "character") {
+            let gl = new Array();
             data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
             data.gear = ownedItems.filter(function(item) {return item.type == "gear"});
+            data.gearCount = data.gear.length - 1;
          } 
          
          if (this.actor.type === "crew") {
@@ -54,6 +56,7 @@ export class FPActorSheet extends ActorSheet {
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
 
+        html.find('.inline-edit-notes').blur(this._inlineEditNotes.bind(this));
         html.find('.item-create').click(this._addItem.bind(this));
 
         html.find('.item-edit').click(this._editItem.bind(this));
@@ -79,6 +82,14 @@ export class FPActorSheet extends ActorSheet {
 
     }
 
+    _inlineEditNotes(event){
+
+        event.preventDefault();
+        let element = event.currentTarget;
+
+        return this.actor.update({"data.data.notes": element.innerText});
+
+    }
     _editItem(event) {
         event.preventDefault();
         let element = event.currentTarget;
