@@ -5,11 +5,12 @@ table tr:nth-child(even) {
 }
 
 
+
 .fp .window-content {
     background:white;
 }
 .fp .value-input {
-    width:3ch;
+    width:5ch;
     text-align:center;
     background:white;
 }
@@ -21,7 +22,7 @@ table tr:nth-child(even) {
 }
 
 .fp .item-table {
-    border: 1px solid blue; 
+    /* border: 1px solid blue;  */
     border-spacing:6px; 
     border-collapse:separate;
     background:none;
@@ -36,13 +37,19 @@ table tr:nth-child(even) {
     border-collapse:collapse;
 }
 
+.fp .crewsheet-stats {
+    background:none;
+    border-top:0;
+    border-bottom:0;
+}
+
 .fp .crew-roster {
     border-collapse:collapse;
     padding:0 12px 12px 12px;
     background:none;
 }
 
-.fp .crew-roster td, th {
+.fp .crew-roster th, td {
     border:1px solid rgb(111, 188, 252);
 }
 
@@ -61,10 +68,6 @@ table tr:nth-child(even) {
 .fp .crew-roster tr th:last-child {
     border-right:0
 }
-
-/* .fp .crew-roster tr {
-    border-bottom:1px solid black;
-}*/
 
 .fp .sheet-label {
     text-transform:uppercase;

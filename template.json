@@ -35,7 +35,13 @@
             "storytrack":"",
             "event":"",
             "clock":"",
-            "rumors":""
+            "rumors":"",
+            "ship":"",
+            "hull":0,
+            "debt":0,
+            "ship_traits":"",
+            "ship_upgrades":"",
+            "stashed_gear":""
         }
     },
     "Item":{

@@ -7,15 +7,18 @@ export class FPActorSheet extends ActorSheet {
     /**
      * @override
      */
-     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
-        classes: ['fp', 'sheet', 'actor', 'actor-sheet'],
-        width: 775,
-        height: 200,
-        left:120,
-        tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
-        dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
-        });
+    static get defaultOptions() {
+        console.warn("defaultOptions actor: ", this.actor);
+
+            return mergeObject(super.defaultOptions, {
+                classes: ['fp', 'sheet', 'actor', 'actor-sheet'],
+                width: 740,
+                height: 400,
+                left:75,
+                tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
+                dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
+            });
+  
     }
     
     /**
@@ -30,12 +33,12 @@ export class FPActorSheet extends ActorSheet {
          data.actor = this.actor; 
         
 
-         if(this.actor.type == "character") {
+         if(this.actor.type === "character") {
             data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
             data.gear = ownedItems.filter(function(item) {return item.type == "gear"});
          } 
          
-         if (this.actor.type == "crew") {
+         if (this.actor.type === "crew") {
             data.assignedCrew = this._buildCrewData(ownedItems);
             console.warn("Assigned Crew: ", data.assignedCrew);
          }
@@ -43,8 +46,114 @@ export class FPActorSheet extends ActorSheet {
          return data;
     }
 
-    _buildCrewData(ownedItems) {
+    /**
+     * @override
+     */
+     activateListeners(html) {
+        super.activateListeners(html);
+        // Everything below here is only needed if the sheet is editable
+        if (!this.options.editable) return;
 
+        html.find('.item-create').click(this._addItem.bind(this));
+
+        html.find('.item-edit').click(this._editItem.bind(this));
+
+        html.find('.item-delete').click(this._deleteItem.bind(this));
+
+        html.find('.dice-roll').click(this._diceRoll.bind(this));
+
+        /* Allows drag-drop to sidebar
+        let handler = (ev) => this._onDragStart(ev);
+        html.find('.item-name').each((i, item) => {
+            if (item.dataset && item.dataset.itemId) {
+                item.setAttribute('draggable', true);
+                item.addEventListener('dragstart', handler, false);
+            }
+        }); */
+
+    }
+
+    _diceRoll(event) {
+
+        // stub
+
+    }
+
+    _editItem(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let crewId = element.closest(".item").dataset.crewId;
+
+        console.warn("crewId, itemId: ", crewId, itemId);
+
+        let item = this.actor.items.get(itemId);
+
+        if(element.dataset.type === "crew_actor"){
+
+            const actorToEdit = game.actors.filter(function(actor) { return actor.data._id == crewId; });
+
+            console.warn("Actor to edit: ", actorToEdit);
+
+            actorToEdit[0].sheet.render(true);
+
+        } else {
+
+            item.sheet.render(true);
+
+        }
+
+    }
+
+    _addItem(event) {
+        
+        event.preventDefault();
+        console.warn("_addItem fired: ");
+        
+        var locString = "FP.ui.item.new";
+
+        let element = event.currentTarget;
+
+        let itemData  = {
+            name: game.i18n.localize(locString),
+            type: element.dataset.type,
+        }
+
+        return Item.create(itemData, {parent: this.actor, renderSheet:true});
+    }
+
+    _deleteItem(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+
+        console.warn("triggered delete for item id: ", itemId);
+
+        let d = new Dialog({
+          title: "Delete This Item?",
+          content: "<p>Are you sure you want to delete this item?</p>",
+          buttons: {
+           one: {
+            icon: '<i class="fas fa-check"></i>',
+            label: "Yes",
+            callback: () => { this.actor.deleteEmbeddedDocuments("Item", itemId); }
+           },
+           two: {
+            icon: '<i class="fas fa-times"></i>',
+            label: "Cancel",
+            callback: () => { return; }
+           }
+          },
+          default: "two",
+          render: html => console.log("Register interactivity in the rendered dialog"),
+          close: html => console.log("This always is logged no matter which option is chosen")
+         });
+         d.render(true);
+
+    }
+
+    _buildCrewData(ownedItems) {
+        console.warn("Crew Owned Items: ", ownedItems);
         let crewRoster = [];
         let gList = [];
         let assignedCrew = ownedItems.filter(function(item) {return item.type == "crew_assignment"});
@@ -61,7 +170,9 @@ export class FPActorSheet extends ActorSheet {
 
             // Build object with basic crewmember info  
             let crewMemberData = {
+                mbr_item_id: crew.data._id,
                 mbr_name: crewActor.name,
+                mbr_id: crewActor.data._id,
                 mbr_species: crewActor.data.data.data.species,
                 mbr_reactions: crewActor.data.data.data.reactions,
                 mbr_speed: crewActor.data.data.data.speed,

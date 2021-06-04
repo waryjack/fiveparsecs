@@ -32,6 +32,8 @@
     "FP.gameterm.rules": "Rules",
     "FP.gameterm.cost": "Cost",
 
+    "FP.ui.item.new": "New Item",
+
     "FP.gear.stat.type": "Gear Type",
     "FP.gear.stat.uses": "Uses",
     "FP.gear.stat.affects": "Affects",
