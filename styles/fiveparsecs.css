@@ -103,3 +103,21 @@ table tr:nth-child(even) {
     margin:3px 6px 3px 3px;
 
 }
+
+.fp .dice-d6 {
+    background-image:url("../assets/d6s.png");
+    height:32px;
+    width:32px;
+    background-repeat:no-repeat;
+}
+
+.fp .dice-icon {
+    margin-right:12px;
+    width:32px;
+    height:32px;
+    max-width:32px;
+}
+
+.dice-img {
+    border-radius:6px;
+}

@@ -1,3 +1,5 @@
+import { FPRollHelper } from "../../utility/FPRollHelper.js";
+
 export class FPActorSheet extends ActorSheet {
     get template() {
         const path = 'systems/fiveparsecs/templates/actor/';
@@ -77,6 +79,28 @@ export class FPActorSheet extends ActorSheet {
     }
 
     _diceRoll(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let expr = element.dataset.diceBase;
+
+        if (expr != "Reaction Roll") {
+            const template = "systems/fiveparsecs/templates/roll/basicroll.hbs";
+
+            let data = {
+                actor:this.actor,
+                expr:expr
+            }
+            
+
+            FPRollHelper.roll(template, data);
+        } else {
+            const template = "systems/fiveparsecs/templates/roll/reactionroll.hbs";
+            let data = {
+                actor:this.actor,
+            }
+            FPRollHelper.reactionRoll(template, data);
+
+        }
 
         // stub
 

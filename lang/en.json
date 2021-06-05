@@ -31,7 +31,12 @@
     "FP.gameterm.notes": "Notes",
     "FP.gameterm.rules": "Rules",
     "FP.gameterm.cost": "Cost",
+    "FP.gameterm.bonuses": "Bonuses",
+    "FP.gameterm.penalties": "Penalties",
 
+    "FP.rolltype.basicRoll": "Basic Roll",
+    
+    "FP.ui.rolling": "Rolling",
     "FP.ui.item.new": "New Item",
 
     "FP.gear.stat.type": "Gear Type",
