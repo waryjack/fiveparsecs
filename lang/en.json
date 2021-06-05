@@ -38,6 +38,7 @@
     
     "FP.ui.rolling": "Rolling",
     "FP.ui.item.new": "New Item",
+    "FP.ui.rolling.customroll": "Custom Roll",
 
     "FP.gear.stat.type": "Gear Type",
     "FP.gear.stat.uses": "Uses",

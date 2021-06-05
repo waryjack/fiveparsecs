@@ -52,5 +52,50 @@ export class FPRollHelper {
 
     }
 
+    static customRoll(template, data) {
+
+        renderTemplate(template, data).then((dlg) => {
+            new Dialog({
+                title:"Custom Roll",
+                content: dlg,
+                buttons: {
+                    roll: {
+                     icon: '<i class="fas fa-check"></i>',
+                     label: "Roll!",
+                     callback: (html) => {
+                      //  console.log("passed html: ", html); 
+                      let numDice = html.find('#cr-num-dice').val();
+
+                      if (numDice < 1) {
+                          console.warn("Can't roll fewer than 1 die");
+                      }
+
+                      let baseDice = html.find('#cr-die-type').val();
+                      let bonus = html.find('#bonus').val();
+                      let malus = html.find('#penalty').val();
+
+                      let finalExpr = numDice + baseDice + "+" + bonus + "+" + malus;
+
+                      let r = new Roll(finalExpr);
+                      r.evaluate({async:false});
+                      r.toMessage();
+                     }
+                    },
+                    close: {
+                     icon: '<i class="fas fa-times"></i>',
+                     label: "Cancel",
+                     callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                   },
+                default: "close"
+            }).render(true);
+
+        });
+
+
+
+
+    }
+
 
 }

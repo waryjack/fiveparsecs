@@ -1,0 +1,48 @@
+<form class="fp roll-dialog">
+ <header class="roll-header">
+        <h1 class="fp roll-name">{{localize "FP.ui.rolling.customroll"}}</h1>
+    </header>
+
+ <div class="fp roll-dialog">
+    
+     <div class="form-group">
+         <table class="fp crew-roster">
+             <tr>
+                 <th>Die Type</th>
+                 <td>
+                     <select name="cr-die-type" id="cr-die-type">
+                         <option value="d4">D4</option>
+                         <option value="d6" selected>D6</option>
+                         <option value="d8">D8</option>
+                         <option value="d10">D10</option>
+                         <option value="d12">D12</option>
+                         <option value="d20">D20</option>
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th>Number to Roll</th>
+                 <td><input class="fp value-input" type="text" name="cr-num-dice" id="cr-num-dice" value="1" data-dtype="Number"/></td>
+             </tr>
+         </table>
+     </div>
+     <div class="form-group">
+         <table class="fp crew-roster">
+             <tr>
+                 <th>{{localize "FP.gameterm.bonuses"}}</th>
+                 <td>
+                    <input class="fp value-input" id="bonus" type="text" value="0" data-dtype="Number"/>
+                 </td>
+            </tr><tr>
+                <th>{{localize "FP.gameterm.penalties"}}</th>
+                 <td>
+                     <input class="fp value-input" id="penalty" type="text" value="0" data-dtype="Number"/>
+                 </td>
+             </tr>
+             <tr>
+         </table>         
+     </div>
+ </div>
+
+
+</form>
