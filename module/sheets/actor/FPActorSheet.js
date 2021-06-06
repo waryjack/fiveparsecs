@@ -14,7 +14,7 @@ export class FPActorSheet extends ActorSheet {
 
             return mergeObject(super.defaultOptions, {
                 classes: ['fp', 'sheet', 'actor', 'actor-sheet'],
-                width: 800,
+                width: 480,
                 height: 400,
                 left:75,
                 tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
@@ -182,7 +182,7 @@ export class FPActorSheet extends ActorSheet {
            one: {
             icon: '<i class="fas fa-check"></i>',
             label: "Yes",
-            callback: () => { this.actor.deleteEmbeddedDocuments("Item", itemId); }
+            callback: () => { this.actor.deleteOwnedItem(itemId); }
            },
            two: {
             icon: '<i class="fas fa-times"></i>',

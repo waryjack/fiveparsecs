@@ -1,6 +1,6 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">{{localize "FP.ui.rolling.customroll"}}</h1>
+        <h1 class="fp roll-name">{{localize "FP.roll.custom"}}</h1>
     </header>
 
  <div class="fp roll-dialog">
@@ -8,7 +8,7 @@
      <div class="form-group">
          <table class="fp crew-roster">
              <tr>
-                 <th>Die Type</th>
+                 <th>{{localize "FP.ui.instructions.select_die"}}</th>
                  <td>
                      <select name="cr-die-type" id="cr-die-type">
                          <option value="d4">D4</option>
@@ -21,7 +21,7 @@
                  </td>
              </tr>
              <tr>
-                 <th>Number to Roll</th>
+                 <th>{{localize "FP.ui.instructions.numdice"}}</th>
                  <td><input class="fp value-input" type="text" name="cr-num-dice" id="cr-num-dice" value="1" data-dtype="Number"/></td>
              </tr>
          </table>

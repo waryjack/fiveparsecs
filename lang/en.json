@@ -102,8 +102,12 @@
             "instructions":{
                 "select_linked_character":"Select character linked to this assignment.",
                 "assign_crew_basics":"Select the crew member associated with this item, then drag and drop this Crew Assignment item onto your Crew Sheet.",
-                "unlim_uses":"(enter 0 for unlimited uses)"
+                "unlim_uses":"(enter 0 for unlimited uses)",
+                "rolling":"Rolling",
+                "select_die":"Select Die Type",
+                "numdice":"Number of Dice"
             }
+            
         }
 
     }
