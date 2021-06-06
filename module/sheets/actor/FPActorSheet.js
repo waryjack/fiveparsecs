@@ -1,4 +1,5 @@
 import { FPRollHelper } from "../../utility/FPRollHelper.js";
+import { FPProcGen } from "../../utility/FPProcGen.js";
 
 export class FPActorSheet extends ActorSheet {
     get template() {
@@ -72,6 +73,8 @@ export class FPActorSheet extends ActorSheet {
         html.find('.item-delete').click(this._deleteItem.bind(this));
 
         html.find('.dice-roll').click(this._diceRoll.bind(this));
+
+        html.find('.gen-bmc').click(this._generateBmc.bind(this));
 
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
@@ -212,6 +215,15 @@ export class FPActorSheet extends ActorSheet {
          });
          d.render(true);
 
+    }
+
+    _generateBmc(event) {
+        event.preventDefault();
+        console.warn("Trying to generate random traits");
+        
+       return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject())));
+
+       // FPProcGen.generateBMC(this.actor).then(bmc => Item.create(bmc, {parent: this.actor, renderSheet:true}));
     }
 
     _buildCrewData(ownedItems) {
