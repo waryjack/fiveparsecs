@@ -10,12 +10,12 @@
             </div>
             <div class="fp flexcol" style="border:2px solid rgb(111, 188, 252); border-radius:8px; margin:6px;">
                 {{!--character stats/name/etc column--}}
-                <div class="fp flexrow">
+                
                     <div class="flex-item" style="min-width:50%;">
                         <table class="fp crew-roster">
                             <tr class="fp sheet-label">
-                                <th style="border-right:1px solid gray">Name</th>
-                                <th>Species/Type</th>
+                                <th style="border-right:1px solid gray">{{localize "FP.gameterm.name"}}</th>
+                                <th>{{localize "FP.gameterm.species"}}</th>
                             </tr>
                             <tr>
                                 <td style="padding-right:3px; border-right:1px solid gray;"><input class="fp charname" style="text-align:left; width:100%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/></td>
@@ -25,48 +25,50 @@
                         
                         
                     </div>
-                    <div class="fp flex-item" style="text-align:center; max-width:35%;">
-                        <table class="fp crew-roster">
-                            <tr class="fp sheet-label-center">
-                                <th>Rea</th>
-                                <th>Spd</th>
-                                <th>Cbt</th>
-                                <th>Tou</th>
-                                <th>Sav</th>
-                            </tr>
-                                
-                            </tr>
-                            <td><input class="fp value-input" type="text" name="data.data.reactions" value="{{data.data.reactions}}" data-dtype="Number"/></td>
-                        <td><input class="fp value-input" type="text" name="data.data.speed" value="{{data.data.speed}}" data-dtype="Number"/></td>
-                        <td><input class="fp value-input" type="text" name="data.data.combat" value="{{data.data.combat}}" data-dtype="Number"/></td>
-                        <td><input class="fp value-input" type="text" name="data.data.toughness" value="{{data.data.toughness}}" data-dtype="Number"/></td>
-                        <td><input class="fp value-input" type="text" name="data.data.savvy" value="{{data.data.savvy}}" data-dtype="Number"/></td>
-                        </table>
-                    </div>
-                    <div class="fp flex-item" style="text-align:center; max-width:10%;">
-                        <table class="fp crew-roster">
-                            <tr class="fp sheet-label-center">
-                                <th>Luck</th>
-                                <th>XP</th>
-                            </tr>
-                            <tr><td><input class="fp value-input" type="text" name="data.data.luck" value="{{data.data.luck}}" data-dtype="Number"/></td>
-                            <td><input class="fp value-input" type="text" name="data.data.xp" value="{{data.data.xp}}" data-dtype="Number"/></td></tr>
-                        
-                        </table>
+                    <div class="fp flexrow">
+                        <div class="fp flex-item" style="text-align:center; max-width:70%;">
+                            <table class="fp crew-roster">
+                                <tr class="fp sheet-label-center">
+                                    <th>{{localize "FP.character.stat_abbrev.reactions"}}</th>
+                                    <th>{{localize "FP.character.stat_abbrev.speed"}}</th>
+                                    <th>{{localize "FP.character.stat_abbrev.combat"}}</th>
+                                    <th>{{localize "FP.character.stat_abbrev.toughness"}}</th>
+                                    <th>{{localize "FP.character.stat_abbrev.savvy"}}</th>
+                                </tr>
+                                    
+                                </tr>
+                                <td><input class="fp value-input" type="text" name="data.data.reactions" value="{{data.data.reactions}}" data-dtype="Number"/></td>
+                            <td><input class="fp value-input" type="text" name="data.data.speed" value="{{data.data.speed}}" data-dtype="Number"/></td>
+                            <td><input class="fp value-input" type="text" name="data.data.combat" value="{{data.data.combat}}" data-dtype="Number"/></td>
+                            <td><input class="fp value-input" type="text" name="data.data.toughness" value="{{data.data.toughness}}" data-dtype="Number"/></td>
+                            <td><input class="fp value-input" type="text" name="data.data.savvy" value="{{data.data.savvy}}" data-dtype="Number"/></td>
+                            </table>
+                        </div>
+                        <div class="fp flex-item" style="text-align:center; max-width:28%;">
+                            <table class="fp crew-roster">
+                                <tr class="fp sheet-label-center">
+                                    <th>{{localize "FP.character.stat.luck"}}</th>
+                                    <th>{{localize "FP.character.stat.xp"}}</th>
+                                </tr>
+                                <tr><td><input class="fp value-input" type="text" name="data.data.luck" value="{{data.data.luck}}" data-dtype="Number"/></td>
+                                <td><input class="fp value-input" type="text" name="data.data.xp" value="{{data.data.xp}}" data-dtype="Number"/></td></tr>
+                            
+                            </table>
+                        </div>
                     </div>
                     {{!--name and stats row--}}
-                </div>
-                <div class="fp flexrow">
+                
+                
                    <div class="fp flexcol" style="min-width:50%">
                        
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp crew-roster" style="border-collapse:collapse;">
                                 <tr class="fp sheet-label">
-                                    <th>Weapon</th>
-                                    <th>Range</th>
-                                    <th>Shots</th>
-                                    <th>Damage</th>
-                                    <th>Traits</th>
+                                    <th>{{localize "FP.gameterm.weapon"}}</th>
+                                    <th>{{localize "FP.weapon.stat.range"}}</th>
+                                    <th>{{localize "FP.weapon.stat.shots"}}</th>
+                                    <th>{{localize "FP.weapon.stat.damage"}}</th>
+                                    <th>{{localize "FP.gear.stat.traits"}}</th>
                                 </tr>
                                 {{#each weapons as |weapon id|}}
                                 <tr>
@@ -108,7 +110,7 @@
                             </table>
                         </div>
                    </div>
-                </div>
+                
                 <div class="fp flexrow" style="justify-content:flex-start; align-items:flex-start;">
                     <div class="fp flex-item dice-icon">
                         <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">

@@ -6,17 +6,17 @@
     <section class="sheetbody">
         {{#if (eq item.data.type "weapon")}}
         <div class="fp flexrow">
-            <table class="fp crew-roster">
-                <tr>
+            <table class="fp item-roster">
+                <tr class="fp sheet-label">
                     <th>{{localize "FP.weapon.stat.range"}}</th>
                     <th>{{localize "FP.weapon.stat.shots"}}</th>
                     <th>{{localize "FP.weapon.stat.damage"}}</th>
-                    <th>{{localize "FP.item.stat.traits"}}</th>
+                    <th>{{localize "FP.gear.stat.traits"}}</th>
                 </tr>
                 <tr>
-                    <td><input class="fp value-input" type="text" name="data.range" value="{{data.range}}" data-dtype="Number"/></td>
-                    <td><input class="fp value-input" type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/></td>
-                    <td><input class="fp value-input" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/></td>
+                    <td class="center"><input class="fp value-input" type="text" name="data.range" value="{{data.range}}" data-dtype="Number"/></td>
+                    <td class="center"><input class="fp value-input" type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/></td>
+                    <td class="center"><input class="fp value-input" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/></td>
                     <td><input class="fp text-input" type="text" name="data.traits" value="{{data.traits}}" data-dtype="String"/></td>                
                 </tr>
             </table>
@@ -27,9 +27,9 @@
         {{#if (eq item.data.type "gear")}}
         {{!--gear has Geartype, Uses, Affects--}}
          <div class="fp flexrow">
-            <table class="fp crew-roster">
+            <table class="fp item-roster">
                 <tr class="fp sheet-label">
-                    <th>{{localize "FP.gear.stat.uses"}} (enter 0 for unlimited uses)</th>
+                    <th>{{localize "FP.gear.stat.uses"}} {{localize "FP.ui.instructions.unlim_uses"}}</th>
                     <th>{{localize "FP.gear.stat.affects"}}</th>
                 </tr>
                 <tr>
@@ -43,10 +43,10 @@
 
         {{#if (eq item.data.type "crew_assignment")}}
         <div class="fp flexrow">
-            <p>This creates an item to allow Crew members to be linked to Crews. Select the crew member associated with this, then drag and drop this <em>item</em> onto your Crew Sheet.</p>
-            <table class="fp crew-roster">
+            <p>{{localize "FP.ui.instructions.assign_crew_basics"}}</p>
+            <table class="fp item-roster">
                 <tr>
-                    <th>Select Associated Crew Member</th>
+                    <th>{{localize "FP.ui.instructions.select_linked_character"}}</th>
                 </tr>
                 <tr>
                     <td>
@@ -66,17 +66,37 @@
 
         {{/if}}
 
+        {{#if (contains "background, motivation, class" item.data.type)}}
+
+        <div class="fp flexcol">
+            <table class="fp item-roster">
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.effect"}}</th>
+                    <td><input type="text" class="fp text-input" name="data.effect" value="{{data.effect}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.resources"}}</th>
+                    <td><input class="fp text-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.startingRolls"}}</th>
+                    <td><input class="fp text-input" type="text" name="data.starting_rolls" value="{{data.starting_rolls}}" data-dtype="String"/></td>
+                </tr>
+            </table>
+        </div>
+
+        {{/if}}
         {{!--Common Item Traits Area--}}
-        {{#unless (eq item.data.type "crew_assignment")}}
+        {{#unless (or (eq item.data.type "crew_assignment") (contains "background,motivation,class" item.data.type))}}
         <div class="fp flexrow">
-            <table class="fp crew-roster">
+            <table class="fp item-roster">
                 <tr class="fp sheet-label">
                     <th>{{localize "FP.gameterm.notes"}}/{{localize "FP.gameterm.rules"}}</th>
                     <th>{{localize "FP.gameterm.cost"}}</th>
                 </tr>
                 <tr>
                     <td><input class="fp text-input" type="text" name="data.notes" value="{{data.notes}}" data-dtype="String"/></td>
-                    <td style="width:15%"><input class="fp value-input" type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number"/></td>
+                    <td style="width:15%; text-align:center;"><input class="fp value-input" type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number"/></td>
                 </tr>
             </table>
         </div>

@@ -1,53 +1,110 @@
 {
-    "FP.stat.reactions": "Reactions",
-    "FP.stat.speed": "Speed",
-    "FP.stat.combat": "Combat",
-    "FP.stat.toughness": "Toughness",
-    "FP.stat.savvy": "Savvy",
-    "FP.stat.luck": "Luck",
-    "FP.stat.xp": "XP",
+    "FP":{
+        "character":{
+            "stat":{
+                "reactions":"Reactions",
+                "speed":"Speed",
+                "combat":"Combat",
+                "toughness":"Toughness",
+                "savvy":"Savvy",
+                "luck":"Luck",
+                "xp":"XP"
+            },
+            "stat_abbrev":{
+                "reactions":"Rea",
+                "speed":"Spd",
+                "combat":"Cbt",
+                "toughness":"Tou",
+                "savvy":"Sav",
+                "luck":"Lck"
+            }
+        },
+        "enemy":{
+            "stat":{
+                "description":"Description",
+                "panic":"Panic",
+                "speed":"Spd",
+                "combat":"Cbt",
+                "toughness":"Tou"
+            },
+            "setup_info":{
+                "numbers":"Num",
+                "ai":"AI",
+                "weapons":"Wpns"
+            }
+        },
+        "crew":{
+            "stat":{
+                "sp":"Story Points",
+                "credits":"Credits",
+                "patrons":"Patrons",
+                "rivals":"Rivals",
+                "event":"Event",
+                "clock":"Clock",
+                "questrumors":"Quest Rumors"
+            }
+        },
+        "ship":{
+            "stat":{
+                "hull":"Hull",
+                "debt":"Debt",
+                "traits":"Traits",
+                "upgrades":"Ship Upgrades"
+            }
+        },
+        "weapon":{
+            "stat":{
+                "range":"Range",
+                "shots":"Shots",
+                "damage":"Damage"
+            }
+        },
+        "trait":{
+            "stat":{
+                "effect":"Effect",
+                "resources":"Resources",
+                "startingRolls":"Starting Rolls"
+            }
+        },
+        "gear":{
+            "stat":{
+                "type":"Gear Type",
+                "uses":"Uses",
+                "affects":"Applies To",
+                "traits":"Traits"
+            }
+        },
+        "gameterm":{
+            "storytrack": "Story Track",
+            "ship": "Ship",
+            "crew": "Crew",
+            "crewlog": "Crew Log",
+            "weapon": "Weapon",
+            "upgrades": "Upgrades",
+            "gear": "Gear",
+            "gadget": "Gadget",
+            "species": "Species/Type",
+            "name": "Name",
+            "notes": "Notes",
+            "rules": "Rules",
+            "cost": "Cost",
+            "bonuses": "Bonuses",
+            "penalties": "Penalties"
+        },
+        "roll":{
+            "basic":"Basic Roll",
+            "custom":"Custom Roll"
+        },
+        "ui":{
+            "item":{
+                "new":"New Item"
+            },
+            "instructions":{
+                "select_linked_character":"Select character linked to this assignment.",
+                "assign_crew_basics":"Select the crew member associated with this item, then drag and drop this Crew Assignment item onto your Crew Sheet.",
+                "unlim_uses":"(enter 0 for unlimited uses)"
+            }
+        }
 
-    "FP.crew.stat.storypoints": "Story Points",
-    "FP.crew.stat.credits": "Credits",
-    "FP.crew.stat.patrons": "Patrons",
-    "FP.crew.stat.rivals": "Rivals",
-    "FP.crew.stat.event": "Event",
-    "FP.crew.stat.clock": "Clock",
-    "FP.crew.stat.questrumors": "Quest Rumors",
-
-    "FP.ship.stat.hull": "Hull Points",
-    "FP.ship.stat.debt": "Debt",
-
-    "FP.gameterm.storytrack": "Story Track",
-    "FP.gameterm.ship": "Ship",
-    "FP.gameterm.crew": "Crew",
-    "FP.gameterm.crewlog": "Crew Log",
-    "FP.gameterm.weapon": "Weapon",
-    "FP.gameterm.upgrades": "Upgrades",
-    "FP.gameterm.gear": "Gear",
-    "FP.gameterm.gadget": "Gadget",
-    "FP.gameterm.species": "Species/Type",
-    "FP.gameterm.name": "Name",
-    "FP.gameterm.notes": "Notes",
-    "FP.gameterm.rules": "Rules",
-    "FP.gameterm.cost": "Cost",
-    "FP.gameterm.bonuses": "Bonuses",
-    "FP.gameterm.penalties": "Penalties",
-
-    "FP.rolltype.basicRoll": "Basic Roll",
-    
-    "FP.ui.rolling": "Rolling",
-    "FP.ui.item.new": "New Item",
-    "FP.ui.rolling.customroll": "Custom Roll",
-
-    "FP.gear.stat.type": "Gear Type",
-    "FP.gear.stat.uses": "Uses",
-    "FP.gear.stat.affects": "Affects",
-    
-    "FP.weapon.stat.range": "Range",
-    "FP.weapon.stat.shots": "Shots",
-    "FP.weapon.stat.damage": "Damage",
-    
-    "FP.item.stat.traits": "Traits"
-   
+    }
 }

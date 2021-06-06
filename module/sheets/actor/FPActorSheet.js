@@ -35,7 +35,7 @@ export class FPActorSheet extends ActorSheet {
          data.actor = this.actor; 
          
 
-         if(this.actor.type === "character") {
+         if(this.actor.type === "character" || this.actor.type === "enemy") {
             let gl = new Array();
             data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
             data.gear = ownedItems.filter(function(item) {return item.type == "gear"});

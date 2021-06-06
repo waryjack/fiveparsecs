@@ -12,12 +12,12 @@
         "styles/fiveparsecs.css"
     ],
     "languages": [
-        {
-          "lang": "en",
-          "name": "English",
-          "path": "lang/en.json"
-        }
-      ],
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
     
     "initiative":"1d20",
     "gridDistance": 1,

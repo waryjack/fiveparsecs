@@ -1,9 +1,33 @@
 /* CSS, my old enemy. We meet again. */
 
-table tr:nth-child(even) {
-    background:none !important;
-}
+/* 
+CSS Colors from FP Book
 
+Character Table Header: ec6260
+Character Table Odd Row: fdeeeb
+Character Table Even Row:f9cbc2
+border - e72d41
+
+Blues:
+header:7dc8e6
+odd: f1f9fd
+even: d5ebf7
+border - 44b9de
+
+Greens
+table background - #eff6f0
+header background - #61b07c
+even row - #cee2cf
+border - #039e5d
+*/
+
+/* table tr:nth-child(even) {
+    background:none !important;
+} */
+
+.center {
+    text-align:center;
+}
 
 
 .fp .window-content {
@@ -13,6 +37,7 @@ table tr:nth-child(even) {
     width:4ch;
     text-align:center;
     background:white;
+    align-self:center;
 }
 
 .fp .text-input {
@@ -43,31 +68,85 @@ table tr:nth-child(even) {
     border-bottom:0;
 }
 
+/* Enemy Sheet Tables */
+.fp .enemy-roster {
+    border-collapse:collapse;
+    padding:0 12px 12px 12px;
+    background:#fdeeeb;
+    border:0;
+    /* border:1px solid rgb(218, 55, 68); */
+}
+
+.fp .enemy-roster th {
+    background-color:#ec6260;
+    border:1px solid #e72d41;
+    color:white;
+}
+
+.fp .enemy-roster td {
+    border:1px solid #e72d41;
+}
+
+.fp .enemy-roster tr:nth-child(odd) {
+    background:#f9cbc2;
+}
+
+/* Crew Sheet Table */
+
 .fp .crew-roster {
     border-collapse:collapse;
     padding:0 12px 12px 12px;
-    background:none;
+    background:#f1f9fd;
 }
 
-.fp .crew-roster th, td {
-    border:1px solid rgb(111, 188, 252);
+.fp .crew-roster th {
+    background-color:#7dc8e6;
+    border:1px solid #44b9de;
+    color:white;
 }
 
-.fp .crew-roster tr td:first-child {
-    border-left:0;
+.fp .crew-roster td {
+    border:1px solid #44b9de;
 }
 
-.fp .crew-roster tr th:first-child {
-    border-left:0;
+.fp .crew-roster tr:nth-child(odd) {
+    background:#c0e4f8;
 }
 
-.fp .crew-roster tr td:last-child {
-    border-right:0;
+/* Item Sheet Table Styling */
+/*
+Greens
+table background - #eff6f0
+header background - #61b07c
+even row - #cee2cf
+border - #039e5d
+*/
+
+.fp .item-roster {
+    border-collapse:collapse;
+    padding:0 12px 12px 12px;
+    background:#eff6f0;
 }
 
-.fp .crew-roster tr th:last-child {
-    border-right:0
+.fp .item-roster th {
+    background-color:#61b07c;
+    border:1px solid #039e5d;
+    color:white;
 }
+
+.fp .item-roster td {
+    border:1px solid #039e5d;
+}
+
+.fp .item-roster tr:nth-child(odd){
+    background:#cee2cf;
+}
+
+
+
+
+
+/* End Item Sheet Table Styling */
 
 .fp .sheet-label {
     text-transform:uppercase;

@@ -114,6 +114,14 @@ Hooks.once("init", () => {
     Handlebars.registerHelper("or", function(a, b){
         return (a || b);
     });
+
+    Handlebars.registerHelper("contains", function(a, b){
+        if (a.indexOf(b) !== -1) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 });
 
 /**
