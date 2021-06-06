@@ -25,10 +25,17 @@ border - #039e5d
     background:none !important;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Sedgwick+Ave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&family=Zen+Dots&display=swap');
+
 .center {
     text-align:center;
 }
 
+.enemy {
+    background:#ec6260;
+}
 
 .fp .window-content {
     background:white;
@@ -149,15 +156,26 @@ border - #039e5d
 /* End Item Sheet Table Styling */
 
 .fp .sheet-label {
+    font-family:"Wallpoet", sans-serif;
     text-transform:uppercase;
-    font-size:0.75em;
+    font-size:0.8em; 
     font-weight:bold;
     text-align:left;
 }
 
-.fp .sheet-label-center {
+.fp .sheet-label-white {
+    font-family:"Wallpoet", sans-serif;
     text-transform:uppercase;
-    font-size:0.75em;
+    font-size:0.8em; 
+    font-weight:bold;
+    text-align:left;
+    color:white;
+}
+
+.fp .sheet-label-center {
+    font-family:"Wallpoet", sans-serif;
+    text-transform:uppercase;
+    font-size:0.8em;
     font-weight:bold;
     text-align:center;
 }
@@ -168,6 +186,7 @@ border - #039e5d
     justify-content:stretch;
   
   }
+
   .fp .flexrow {
     display:flex;
     flex-flow:row nowrap;
@@ -175,7 +194,7 @@ border - #039e5d
 }
 
 .fp .flex-item {
-    background: white;
+    /* background: white; */
     height:auto;
     flex:1;
     align-items:center;
@@ -192,10 +211,44 @@ border - #039e5d
 
 .fp .dice-icon {
     margin-right:12px;
- 
+    background:none;
     max-width:32px;
+    min-width:32px;
+}
+
+.fp .dice-icon-compact {
+    background:none;
+    max-width:32px;
+    min-width:32px;
 }
 
 .dice-img {
     border-radius:6px;
 }
+
+.val-box {
+    display:block; 
+    border-radius:2px;
+    background:white; 
+    width:100%; 
+    padding-left:3px; 
+    padding-right:3px;
+}
+
+/* Font Fiddling */
+.hw {
+    /* font-family: 'Nothing You Could Do', sans-serif; */
+    /* font-size:1.15em; */ 
+    font-family: 'Sedgwick Ave', sans-serif;
+    font-size: 1em;
+}
+
+.labels {
+    font-family: 'Wallpoet', sans-serif;
+}
+
+.fp .text-input .hw, .fp .value-input .hw {
+    font-family: 'Sedgwick Ave', sans-serif;
+    font-size: 1em;
+}
+

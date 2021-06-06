@@ -4,217 +4,240 @@
 
     <section class="sheetbody">
         <div class="fp flexrow"> {{!--main row - image, and crewsheet body--}}
-            
-            <div class="fp flexcol"> {{!--body flexcolumn--}}
-                
-                 {{!--crew name flexrow--}}
+            <div class="fp flexcol" style="max-width:200px; background:#7dc8e6; margin-right:6px;"> {{!--dice and image column--}}
+                <div class="fp flex-item" style="text-align:center;">
+                    <span class="fp sheet-label labels" style="color:white; font-size:2em;">CREW LOG</span>
+                </div>
+                <div class="fp flex-item" style="flex-grow:0; text-align:center"> {{!--image flex column--}}
+                        <img class="profile-img" style=" border:1px solid #44b9de; margin-right:auto; margin-left:auto; min-width:128px !important; min-height:128px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="128" width="128"/>
+                    
+                </div>
                 <div class="fp flexrow">
-                    <div class="fp flex-item" style="flex-grow:0;"> {{!--image flex column--}}
-                        <img class="profile-img" style="border:1px solid #44b9de; margin-right:6px; min-width:128px !important; min-height:128px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="128" width="128"/>
-                        {{!--character image column--}}
-                    </div>
-                    <div class="fp flexcol" style="max-width:30%; align-items:flex-start">
-                       
-                         <div class="fp flex-item" style="padding-left:6px; padding-right:6px; background:rgb(212, 212, 212); border:1px solid rgb(111, 188, 252); border-radius:8px;">
-                             <span class="fp sheet-label" style="font-size:0.9em">Crew Log</span>
-                            <table class="fp crewsheet-stats">
-                                <tr class="fp sheet-label">
-                                    <th>Crew Name</th>
-                                    <th style="text-align:center;">Story Points</th>
-                                </tr>
-                                <tr>
-                                    <td style="border:0"> <input class="fp charname" style="width:100%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/></td>
-                                    <td style="border:0; text-align:center"> <input class="fp value-input" name="data.data.sp" value="{{data.data.sp}}" type="text" data-dtype="Number"/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan=2 style="border:0">
-                                        <span class="fp sheet-label">Crew Notes</span>
-                                         <textarea style="height:98%; width:98%; padding:1%; background:white; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" name="data.data.notes">{{data.data.notes}}</textarea>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="fp flexcol" style="max-width:30%;">
-                        <div class="fp flex-item" style="padding-left:6px; padding-right:6px; background:rgb(212,212,212); border:1px solid rgb(111, 188, 252); border-radius:8px">
-                            <span class="fp sheet-label" style="font-size:0.9em">Stash</span>
-                            <table class="fp crewsheet-stats">
-                                <tr class="fp sheet-label">
-                                    <th>Stashed Equipment</th>
-                                    <th style="text-align:center">Credits</th>
-                                </tr>
-                                <tr>
-                                    <td rowspan=5 style="border:0; vertical-align:top">
-                                       <textarea style="height:98%; width:98%; padding:1%; box-sizing: border-box; background:white;" name="data.data.stashed_gear">{{data.data.stashed_gear}}</textarea>
-                                    </td>
-                                    <td style="border:0; text-align:center"><input type="text" class="fp value-input" name="data.data.credits" value="{{data.data.credits}}" data-dtype="Number"/></td>
-                                </tr>
-                                <tr class="fp sheet-label">
-                                    <th style="text-align:center">Patrons</th>
-                                </tr>
-                                <tr>
-                                    <td style="border:0; text-align:center;"><input type="text" class="fp value-input" name="data.data.patrons" value="{{data.data.patrons}}" data-dtype="Number"/></td>
-                                </tr>
-                                <tr class="fp sheet-label">
-                                    <th style="text-align:center">Rivals</th>
-                                </tr>
-                                <tr>
-                                    <td style="border:0; text-align:center"><input type="text" class="fp value-input" name="data.data.rivals" value="{{data.data.rivals}}" data-dtype="Number"/></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="fp flexcol" style="max-width:30%">
-                        <div class="fp flex-item" style="padding-left:6px; padding-right:6px; background:rgb(212,212,212); border:1px solid rgb(111, 188, 252); border-radius:8px;">
-                            <span class="fp sheet-label" style="font-size:0.9em">Ship Details</span>
-                            <table class="fp crewsheet-stats">
-                                <tr class="fp sheet-label">
-                                    <th>Ship Name</th>
-                                    <th style="text-align:center;">Hull</th>
-                                    <th style="text-align:center;">Debt</th>
-                                </tr>
-                                <tr>
-                                    <td style="border:0; text-align:center;"><input type="text" class="fp text-input" name="data.data.ship" value="{{data.data.ship}}" data-dtype="String"/></td>
-                                    <td style="border:0; text-align:center;"><input type="text" class="fp value-input" name="data.data.hull" value="{{data.data.hull}}" data-dtype="Number"/></td>
-                                    <td style="border:0; text-align:center;"><input type="text" class="fp value-input" name="data.data.debt" value="{{data.data.debt}}" data-dtype="Number"/></td>
-                                </tr>
-                                <tr class="fp sheet-label">
-                                    <th colspan=3>Traits</th>
-                                </tr>
-                                <tr>
-                                    <td colspan=3 style="border:0"><input type="text" class="fp text-input" name="data.data.ship_traits" value="{{data.data.ship_traits}}" data-dtype="String"/></td>
-                                </tr>
-                                <tr class="fp sheet-label">
-                                    <th colspan=3>Upgrades</th>
-                                </tr>
-                                <tr>
-                                    <td colspan=3 style="border:0"><input type="text" style="width:100%;" class="fp text-input" name="data.data.ship_upgrades" value="{{data.data.ship_upgrades}}" data-dtype="String"/></td>
-                                </tr>
-                            
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-                
-                {{!--crew roster container flex column--}}
-                <div>
-                    <h1>
-                        Crew Roster
-                        <a class="item-create" title="Add Crew Member" data-type="crew_assignment">
-                            <i class="fas fa-plus-square"></i>
+                    <div class="fp flex-item dice-icon-compact">
+                        <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
                         </a>
-                    </h1>
+                    </div>
+                    <div class="fp flex-item dice-icon-compact">
+                        <a title="Roll 2d6" class="dice-roll" data-dice-base="2d6">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d6.png" height="32" width="32" style="border:0"/>
+                        </a>
+                    </div>
+                     <div class="fp flex-item dice-icon-compact">
+                        <a title="Roll 1d10" class="dice-roll" data-dice-base="1d10">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d10.png" height="32" width="32" style="border:0"/>
+                        </a>
+                    </div>
+                     <div class="fp flex-item dice-icon-compact">
+                        <a title="Roll Percentile" class="dice-roll" data-dice-base="1d100">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d100.png" height="32" width="32" style="border:0"/>
+                        </a>
+                    </div>
+                    <div class="fp flex-item dice-icon-compact">
+                        <a title="Roll Custom" class="dice-roll" data-dice-base="custom">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/>
+                        </a>
+                    </div>
                 </div>
-                <div class="fp flexcol"  >
-                    {{log "assignedCrew object: " assignedCrew}}
-                    {{#each assignedCrew as |crew id|}}
-                    {{log "crew object: " crew}}
-                    <div class="fp flex-item" style="border:2px solid rgb(111, 188, 252); border-radius:8px; margin:3px;">
+            </div> {{!--end dice and image column--}}
+            
+            <div class="fp flexcol" style="min-width:70%; margin-left:6px;"> {{!--crew information column--}}
+                
+                <div class="fp flexrow" style="background:#7dc8e6;">
+                    <div class="fp flex-item" style="max-width:25%">
+                        <span class="fp sheet-label-white">Crew Name</span><br/>
+                        <span data-field="name" class="inline-edit hw val-box" contenteditable>{{actor.name}}</span>
+                        <!--input type="text" class="fp text-input hw" name="name" value="{{actor.name}}" data-dtype="String"/-->
+                    </div>
+                    <div class="fp flex-item" style="max-width:59%">
+                        <span class="fp sheet-label-white">Notes</span><br/>
+                         <span data-field="data.data.notes" class="inline-edit hw val-box"  contenteditable>{{data.data.notes}}</span>
+                        <!--input type="text" class="fp text-input" name="data.data.notes" value="{{data.data.notes}}" data-dtype="String"/-->
+                    </div>
+                     <div class="fp flex-item" style="max-width:15%; text-align:center">
+                        <span class="fp sheet-label-white">SP</span><br/>
+                        <span data-field="data.data.sp" class="inline-edit hw val-box"  contenteditable>{{data.data.sp}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.sp" value="{{data.data.sp}}" data-dtype="Number"/-->
+                    </div>
+                </div>
+
+                <div class="fp flexrow" style="background:#7dc8e6;">
+                    <div class="fp flex-item">
+                        <span class="fp sheet-label-white">Stash</span><br/>
+                        <span data-field="data.data.stash" class="inline-edit hw val-box"  contenteditable>{{data.data.stash}}</span>
+                        <!--input type="text" class="fp text-input" name="data.data.stash" value="{{data.data.stash}}" data-dtype="String"/-->
+                    </div>
+                    <div class="fp flex-item" style="max-width:10%; text-align:center">
+                        <span class="fp sheet-label-white">Credits</span><br/>
+                        <span data-field="data.data.credits" class="inline-edit hw val-box"  contenteditable>{{data.data.credits}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.credits" value="{{data.data.credits}}" data-dtype="Number"/-->
+                    </div>
+                     <div class="fp flex-item" style="max-width:10%; text-align:center">
+                        <span class="fp sheet-label-white">Patrons</span><br/>
+                        <span data-field="data.data.patrons" class="inline-edit hw val-box"  contenteditable>{{data.data.patrons}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.patrons" value="{{data.data.patrons}}" data-dtype="Number"/-->
+                    </div>
+                    <div class="fp flex-item" style="max-width:10%; text-align:center">
+                        <span class="fp sheet-label-white">Rivals</span><br/>
+                        <span data-field="data.data.rivals" class="inline-edit hw val-box"  contenteditable>{{data.data.rivals}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.rivals" value="{{data.data.rivals}}" data-dtype="Number"/-->
+                    </div>
+                </div>
+
+                <div class="fp flexrow" style="background:#7dc8e6;">
+                    <div class="fp flex-item" style="max-width:25%;">
+                        <span class="fp sheet-label-white">Ship Name</span><br/>
+                        <span data-field="data.data.ship" class="inline-edit hw val-box"  contenteditable>{{data.data.ship}}</span>
+                        <!--input type="text" class="fp text-input" name="data.data.ship" value="{{data.data.ship}}" data-dtype="String"/-->
+                    </div>
+                    
+                     <div class="fp flex-item">
+                        <span class="fp sheet-label-white">Ship Traits</span><br/>
+                        <span data-field="data.data.ship_traits" class="inline-edit hw val-box"  contenteditable>{{data.data.ship_traits}}</span>
+                        <!--input type="text" class="fp text-input" name="data.data.ship_traits" value="{{data.data.ship_traits}}" data-dtype="String"/-->
+                    </div>
+                    <div class="fp flex-item">
+                        <span class="fp sheet-label-white">Ship Upgrades</span><br/>
+                        <span data-field="data.data.ship_upgrades" class="inline-edit hw val-box"  contenteditable>{{data.data.ship_upgrades}}</span>
+                        <!--input type="text" class="fp text-input" name="data.data.ship_upgrades" value="{{data.data.ship_upgrades}}" data-dtype="String"/-->
+                    </div>
+                    <div class="fp flex-item" style="max-width:7%; text-align:center">
+                        <span class="fp sheet-label-white">Hull</span><br/>
+                        <span data-field="data.data.hull" class="inline-edit hw val-box"  contenteditable>{{data.data.hull}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.hull" value="{{data.data.hull}}" data-dtype="Number"/-->
+                    </div>
+                     <div class="fp flex-item" style="max-width:7%; text-align:center">
+                        <span class="fp sheet-label-white">Debt</span><br/>
+                        <span data-field="data.data.debt" class="inline-edit hw val-box"  contenteditable>{{data.data.debt}}</span>
+                        <!--input type="text" class="fp value-input" name="data.data.debt" value="{{data.data.debt}}" data-dtype="Number"/-->
+                    </div>
+                </div>
+            </div> {{!--end crew information column--}}
+
+        </div>
+                
+               
+        <div>
+            <h1>
+                Crew Roster
+                <a class="item-create" title="Add Crew Member" data-type="crew_assignment">
+                    <i class="fas fa-plus-square"></i>
+                </a>
+            </h1>
+        </div>
+
+        <div class="fp flexcol"  > {{!--crew roster container flex column--}}
+            {{log "assignedCrew object: " assignedCrew}}
+            {{#each assignedCrew as |crew id|}}
+            {{log "crew object: " crew}}
+            <div class="fp flex-item" style="border:2px solid #7dc8e6; border-radius:8px; margin:3px;">
+                
+                <div class="fp flexrow">
+                    
+                    <div class="flex-item" style="min-width:50%;">
+                        <table class="fp crew-roster">
+                            <tr class="fp sheet-label">
+                                <th style="border-right:1px solid gray">Name</th>
+                                <th>Species/Type</th>
+                            </tr>
+                            <tr class="hw">
+                                <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}}</td>
+                                <td style="padding-left:3px;">{{crew.mbr_species}}</td>
+                            </tr>
+                        </table>  
+                    </div>
+                    <div class="fp flex-item" style="text-align:center; max-width:35%;">
+                        <table class="fp crew-roster">
+                            <tr class="fp sheet-label-center">
+                                <th>Rea</th>
+                                <th>Spd</th>
+                                <th>Cbt</th>
+                                <th>Tou</th>
+                                <th>Sav</th>
+                            </tr>
+                                
+                            <tr class="hw">
+                            <td>{{crew.mbr_reactions}}</td>
+                        <td>{{crew.mbr_speed}}</td>
+                        <td>{{crew.mbr_combat}}</td>
+                        <td>{{crew.mbr_toughness}}</td>
+                        <td>{{crew.mbr_savvy}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="fp flex-item" style="text-align:center; max-width:10%;">
+                        <table class="fp crew-roster">
+                            <tr class="fp sheet-label-center">
+                                <th>Luck</th>
+                                <th>XP</th>
+                            </tr>
+                            <tr class="hw">
+                                <td>{{crew.mbr_luck}}</td>
+                                <td>{{crew.mbr_xp}}
+
+                            </tr>
                         
-                        <div class="fp flexrow">
-                            
-                            <div class="flex-item" style="min-width:50%;">
-                                <table class="fp crew-roster">
+                        </table>
+                    </div>
+                    <div class="fp flexcol item-name item" data-crew-id="{{crew.mbr_id}}" data-item-id="{{crew.mbr_item_id}}" style="max-width:48px; background:#7dc8e6; color:white; text-align:center;">
+                        <a class="item-delete" title="Remove Crew Member" data-type="crew_assignment">
+                            <span style="font-size:2em"><i class="fas fa-minus-square"></i></span>
+                        </a>
+                        <a class="item-edit" title="Edit Crew Member" data-type="crew_actor">
+                            <span style="font-size:2em"><i class="fas fa-edit"></i></span>
+                        </a>
+                    </div>
+                    {{!--name and stats row--}}
+                </div>
+                <div class="fp flexrow"> {{!--weapons and gear/notes line--}}
+                    <div class="fp flexcol" style="min-width:50%">
+                        
+                            <div style="padding:3px; margin-right:12px;">
+                                <table class="fp crew-roster" style="border-collapse:collapse;">
                                     <tr class="fp sheet-label">
-                                        <th style="border-right:1px solid gray">Name</th>
-                                        <th>Species/Type</th>
+                                        <th>Weapon</th>
+                                        <th>Range</th>
+                                        <th>Shots</th>
+                                        <th>Damage</th>
+                                        <th>Traits</th>
+                                    </tr>
+                                    {{#each mbr_weapons as |weapon id|}}
+                                    <tr>
+                                        <td class="hw">{{weapon.name}}</td>
+                                        <td class="hw" style="text-align:center">{{weapon.range}}</td>
+                                        <td class="hw" style="text-align:center">{{weapon.shots}}</td>
+                                        <td class="hw" style="text-align:center">{{weapon.dmg}}</td>
+                                        <td class="hw" style="text-align:center">{{weapon.traits}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </table>
+                            </div>
+                            
+                    </div>
+            
+                    <div class="fp flexcol">  
+                            <div style="padding:3px; margin-right:12px;">
+                                <table class="fp crew-roster">
+                                    <tr>
+                                        <th><span class="fp sheet-label" style="vertical-align:top;">Gear</span></th>
+                                        <td class="hw">{{crew.mbr_gear}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}}</td>
-                                        <td style="padding-left:3px;">{{crew.mbr_species}}</td>
+                                        <th><span class="fp sheet-label" style="vertical-align:top;">Notes</span></th><td class="hw">{{crew.mbr_notes}}</td>
                                     </tr>
-                                </table>  
-                            </div>
-                            <div class="fp flex-item" style="text-align:center; max-width:35%;">
-                                <table class="fp crew-roster">
-                                    <tr class="fp sheet-label-center">
-                                        <th>Rea</th>
-                                        <th>Spd</th>
-                                        <th>Cbt</th>
-                                        <th>Tou</th>
-                                        <th>Sav</th>
-                                    </tr>
-                                        
-                                    </tr>
-                                    <td>{{crew.mbr_reactions}}</td>
-                                <td>{{crew.mbr_speed}}</td>
-                                <td>{{crew.mbr_combat}}</td>
-                                <td>{{crew.mbr_toughness}}</td>
-                                <td>{{crew.mbr_savvy}}</td>
                                 </table>
                             </div>
-                            <div class="fp flex-item" style="text-align:center; max-width:10%;">
-                                <table class="fp crew-roster">
-                                    <tr class="fp sheet-label-center">
-                                        <th>Luck</th>
-                                        <th>XP</th>
-                                    </tr>
-                                    <tr><td>{{crew.mbr_luck}}</td>
-                                    <td>{{crew.mbr_savvy}}</tr>
-                                
-                                </table>
-                            </div>
-                            <div class="fp flexcol item-name item" data-crew-id="{{crew.mbr_id}}" data-item-id="{{crew.mbr_item_id}}" style="max-width:48px; background:#7dc8e6; color:white; text-align:center;">
-                                <a class="item-delete" title="Remove Crew Member" data-type="crew_assignment">
-                                    <span style="font-size:2em"><i class="fas fa-minus-square"></i></span>
-                                </a>
-                                <a class="item-edit" title="Edit Crew Member" data-type="crew_actor">
-                                    <span style="font-size:2em"><i class="fas fa-edit"></i></span>
-                                </a>
-                            </div>
-                            {{!--name and stats row--}}
-                        </div>
-                        <div class="fp flexrow"> {{!--weapons and gear/notes line--}}
-                            <div class="fp flexcol" style="min-width:50%">
-                                
-                                    <div style="padding:3px; margin-right:12px;">
-                                        <table class="fp crew-roster" style="border-collapse:collapse;">
-                                            <tr class="fp sheet-label">
-                                                <th>Weapon</th>
-                                                <th>Range</th>
-                                                <th>Shots</th>
-                                                <th>Damage</th>
-                                                <th>Traits</th>
-                                            </tr>
-                                            {{#each mbr_weapons as |weapon id|}}
-                                            <tr>
-                                                <td>{{weapon.name}}</td>
-                                                <td style="text-align:center">{{weapon.range}}</td>
-                                                <td style="text-align:center">{{weapon.shots}}</td>
-                                                <td style="text-align:center">{{weapon.damage}}</td>
-                                                <td style="text-align:center">{{weapon.traits}}</td>
-                                            </tr>
-                                            {{/each}}
-                                        </table>
-                                    </div>
-                                    
-                            </div>
-                    
-                            <div class="fp flexcol">  
-                                    <div style="padding:3px; margin-right:12px;">
-                                        <table class="fp crew-roster">
-                                            <tr>
-                                                <td><span class="fp sheet-label" style="vertical-align:top">Gear</span></td>
-                                                <td>{{crew.mbr_gear}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="fp sheet-label" style="vertical-align:top">Notes</span></td><td>{{crew.mbr_notes}}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                            </div>
-                            
-                        </div>
-                        
                     </div>
                     
-                  {{/each}}
+                </div>
                 
             </div>
+            
+            {{/each}}
+        
+    </div>
           
-        </div>
+    </div>
 
     </section>
 </form>

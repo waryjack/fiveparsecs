@@ -10,6 +10,7 @@
                         <img class="profile-img" style="border:1px solid #e72d41; min-width:64px !important; min-height:64px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
                     {{!--character image column--}}
                     </div>
+                    <div class="fp flexrow" style="background:#ec6260; max-height:42px; margin-right:0 !important;">
                     <div class="fp flex-item dice-icon">
                         <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
@@ -35,15 +36,16 @@
                             <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
+                    </div>
                 </div>
              
                     <div class="flex-item" style="min-width:50%;">
                     <table class="fp enemy-roster">
-                            <tr class="fp sheet-label">
+                            <tr class="fp sheet-label labels">
                                 <th>{{localize "FP.enemy.stat.description"}}</th>
                             </tr>
                             <tr>
-                                <td style="padding-right:3px;"><input class="fp charname" style="text-align:left; width:100%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/></td>
+                                <td style="padding-right:3px;"><span data-field="name" class="inline-edit hw val-box" style="background:none;" contenteditable>{{actor.name}}</span></td>
                             </tr>
                         </table>
                         
@@ -52,7 +54,7 @@
                     <div class="fp flexrow">
                         <div class="fp flex-item" style="text-align:center; max-width:48%;">
                             <table class="fp enemy-roster">
-                                <tr class="fp sheet-label-center">
+                                <tr class="fp sheet-label-center labels">
                                     <th>{{localize "FP.enemy.stat.panic"}}</th>
                                     <th>{{localize "FP.character.stat_abbrev.speed"}}</th>
                                     <th>{{localize "FP.character.stat_abbrev.combat"}}</th>
@@ -60,23 +62,23 @@
                                 </tr>
                                     
                                 </tr>
-                                <td><input class="fp value-input" type="text" name="data.data.panic_str" value="{{data.data.panic_str}}" data-dtype="String"/></td>
-                            <td><input class="fp value-input" type="text" name="data.data.speed" value="{{data.data.speed}}" data-dtype="Number"/></td>
-                            <td><input class="fp value-input" type="text" name="data.data.combat" value="{{data.data.combat}}" data-dtype="Number"/></td>
-                            <td><input class="fp value-input" type="text" name="data.data.toughness" value="{{data.data.toughness}}" data-dtype="Number"/></td>
+                                <td><span data-field="data.data.panic_str" class="inline-edit hw val-box" contenteditable>{{data.data.panic_str}}</span></td>
+                            <td><span data-field="data.data.speed" class="inline-edit hw val-box" contenteditable>{{data.data.speed}}</span></td>
+                            <td><span data-field="data.data.combat" class="inline-edit hw val-box" contenteditable>{{data.data.combat}}</span></td>
+                            <td><span data-field="data.data.toughness" class="inline-edit hw val-box" contenteditable>{{data.data.toughness}}</span></td>
                             </table>
                         </div>
                         <div class="fp flex-item" style="text-align:center; max-width:48%;">
                             <table class="fp enemy-roster">
-                                <tr class="fp sheet-label-center">
+                                <tr class="fp sheet-label-center labels">
                                     <th>{{localize "FP.enemy.setup_info.numbers"}}</th>
                                     <th>{{localize "FP.enemy.setup_info.ai"}}</th>
                                     <th>{{localize "FP.enemy.setup_info.weapons"}}</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="fp value-input" type="text" name="data.data.numbers" value="{{data.data.numbers}}" data-dtype="String"/></td>
-                                    <td><input class="fp value-input" type="text" name="data.data.ai" value="{{data.data.ai}}" data-dtype="String"/></td>
-                                    <td><input class="fp value-input" type="text" name="data.data.weapons" value="{{data.data.weapons}}" data-dtype="String"/></td>
+                                    <td><span data-field="data.data.numbers" class="inline-edit hw val-box" contenteditable>{{data.data.numbers}}</span></td>
+                                    <td><span data-field="data.data.ai" class="inline-edit hw val-box" contenteditable>{{data.data.ai}}</span></td>
+                                    <td><span data-field="data.data.weapons" class="inline-edit hw val-box" contenteditable>{{data.data.weapons}}</span></td>
                                 </tr>
                             
                             </table>
@@ -85,21 +87,26 @@
                     {{!--name and stats row--}}
                
                
-                   <div class="fp flexcol" style="min-width:50%">
-                       
+                   <div class="fp flexcol" style="min-width:50%">       
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp enemy-roster" style="border-collapse:collapse;">
-                                <tr class="fp sheet-label">
+                                <tr class="fp sheet-label labels">
                                     <th>{{localize "FP.gameterm.weapon"}}</th>
                                     <th>{{localize "FP.weapon.stat.range"}}</th>
                                     <th>{{localize "FP.weapon.stat.shots"}}</th>
                                     <th>{{localize "FP.weapon.stat.damage"}}</th>
                                     <th>{{localize "FP.gear.stat.traits"}}</th>
                                 </tr>
-                                {{log "Enemy Weapons: " weapons}}
                                 {{#each weapons as |weapon id|}}
-                                <tr>
-                                    <td>{{weapon.name}}</td>
+                                <tr class="hw">
+                                    <td>{{weapon.name}} 
+
+                                        <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a> 
+                                            <a class="item-delete item" title="Delete {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}"><i class="fas fa-trash"></i></a>
+
+                                    </td>
                                     <td style="text-align:center">{{weapon.data.data.range}}</td>
                                     <td style="text-align:center">{{weapon.data.data.shots}}</td>
                                     <td style="text-align:center">{{weapon.data.data.damage}}</td>
@@ -108,22 +115,20 @@
                                 {{/each}}
                             </table>
                         </div>
-                        
-                   </div> {{!--weapon 1 / gear / xp row--}}
-                   <div class="fp flexcol">
-                        
+                    </div> {{!--weapon 1 / gear / xp row--}}
+                   <div class="fp flexcol"> 
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp enemy-roster">
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">Gear</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span></td>
                                     <td style="padding-left:3px;">
                                         
                                         {{#each gear as |gear id|}}
                                         
-                                            <a class="item-edit item" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}">{{gear.name}}
+                                            <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}">{{gear.name}}
                                                 {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}
                                             </a> 
-                                            [<a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a>] 
+                                             <a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a> 
                                             
                                             {{#if @last}} {{else}}, {{/if}}
 
@@ -132,39 +137,12 @@
                                 </tr>
                                 <tr>
                                     <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">Notes</span></td>
-                                    <td data-field="notes" class="inline-edit-notes" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
+                                    <td data-field="notes" class="inline-edit-notes hw" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
                                 </tr>
                             </table>
                         </div>
                    </div>
                 
-                <div class="fp flexrow" style="margin:auto; justify-content:flex-start; align-items:flex-start;">
-                    <div class="fp flex-item dice-icon">
-                        <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
-                        </a>
-                    </div>
-                    <div class="fp flex-item dice-icon">
-                        <a title="Roll 2d6" class="dice-roll" data-dice-base="2d6">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d6.png" height="32" width="32" style="border:0"/>
-                        </a>
-                    </div>
-                     <div class="fp flex-item dice-icon">
-                        <a title="Roll 1d10" class="dice-roll" data-dice-base="1d10">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d10.png" height="32" width="32" style="border:0"/>
-                        </a>
-                    </div>
-                     <div class="fp flex-item dice-icon">
-                        <a title="Roll Percentile" class="dice-roll" data-dice-base="1d100">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d100.png" height="32" width="32" style="border:0"/>
-                        </a>
-                    </div>
-                    <div class="fp flex-item dice-icon">
-                        <a title="Roll Custom" class="dice-roll" data-dice-base="custom">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 

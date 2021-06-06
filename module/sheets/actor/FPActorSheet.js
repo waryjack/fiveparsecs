@@ -37,8 +37,11 @@ export class FPActorSheet extends ActorSheet {
 
          if(this.actor.type === "character" || this.actor.type === "enemy") {
             let gl = new Array();
-            data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
-            data.gear = ownedItems.filter(function(item) {return item.type == "gear"});
+            data.weapons = ownedItems.filter(function(item) {return item.type === "weapon"});
+            data.gear = ownedItems.filter(function(item) {return item.type === "gear"});
+            data.backgrounds = ownedItems.filter(item => item.type === "background");
+            data.motivations = ownedItems.filter(item => item.type === "motivation");
+            data.class = ownedItems.filter(item => item.type === "class");
             data.gearCount = data.gear.length - 1;
          } 
          
@@ -59,6 +62,9 @@ export class FPActorSheet extends ActorSheet {
         if (!this.options.editable) return;
 
         html.find('.inline-edit-notes').blur(this._inlineEditNotes.bind(this));
+
+        html.find('.inline-edit').blur(this._inlineEdit.bind(this));
+
         html.find('.item-create').click(this._addItem.bind(this));
 
         html.find('.item-edit').click(this._editItem.bind(this));
@@ -125,6 +131,16 @@ export class FPActorSheet extends ActorSheet {
         return this.actor.update({"data.data.notes": element.innerText});
 
     }
+
+    _inlineEdit(event){
+
+        event.preventDefault();
+        let element = event.currentTarget;
+        let attribute = element.dataset.field;
+        return this.actor.update({[attribute] : element.innerText});
+
+    }
+
     _editItem(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -226,7 +242,8 @@ export class FPActorSheet extends ActorSheet {
                 mbr_toughness: crewActor.data.data.data.toughness,
                 mbr_savvy: crewActor.data.data.data.savvy,
                 mbr_notes: crewActor.data.data.data.notes,
-                mbr_luck: crewActor.data.data.data.luck
+                mbr_luck: crewActor.data.data.data.luck,
+                mbr_xp: crewActor.data.data.data.xp
 
             };
             let crewMemberWeps = crewActor.items.filter(function(item) {return item.type == "weapon"});
