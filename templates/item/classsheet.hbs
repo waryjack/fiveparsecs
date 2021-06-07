@@ -1,0 +1,24 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <section class="sheetbody">
+        <div class="fp flexcol">
+            <table class="fp item-roster">
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.effect"}}</th>
+                    <td><input type="text" class="fp text-input" name="data.effect" value="{{data.effect}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.resources"}}</th>
+                    <td><input class="fp text-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">{{localize "FP.trait.stat.startingRolls"}}</th>
+                    <td><input class="fp text-input" type="text" name="data.starting_rolls" value="{{data.starting_rolls}}" data-dtype="String"/></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</form>

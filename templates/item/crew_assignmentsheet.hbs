@@ -1,0 +1,31 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <section class="sheetbody">
+     
+        <div class="fp flexrow">
+            <p>{{localize "FP.ui.instructions.assign_crew_basics"}}</p>
+            <table class="fp item-roster">
+                <tr>
+                    <th>{{localize "FP.ui.instructions.select_linked_character"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="data.assigned_crew_actorId" id="data.assigned_crew_actorId">
+                            {{#select data.assigned_crew_actorId}}
+                            {{#each eligibleCrew as |ecrew id|}}
+                            {{log "ecrew" ecrew}}
+                            {{log "id" id}}
+                            <option value="{{ecrew.eligibleId}}" {{#if (eq ecrew.eligibleId data.assigned_crew_actorId)}}selected{{/if}}>{{ecrew.eligibleName}}</option>
+                            {{/each}}
+                            {{/select}}    
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
+</form>

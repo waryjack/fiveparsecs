@@ -1,10 +1,8 @@
 export class FPItemSheet extends ItemSheet {
 
     get template() {
-      /*   const path = 'systems/fiveparsecs/templates/item/';
-        return `${path}${this.item.data.type}sheet.hbs`; */
-
-        return 'systems/fiveparsecs/templates/item/itemsheet.hbs';
+      const path = 'systems/fiveparsecs/templates/item/';
+        return `${path}${this.item.data.type}sheet.hbs`; 
 
     }
 

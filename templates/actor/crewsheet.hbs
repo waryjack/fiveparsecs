@@ -2,7 +2,13 @@
     <header class="fp sheethead">
     </header>
 
+     <nav class="sheet-tabs tabs" data-group="primary" >
+            <a class="fp labels" style="text-transform:uppercase" data-tab="main">Main Log</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">World Log</a>
+        </nav>
+
     <section class="sheetbody">
+        <div class="tab main" data-group="primary" data-tab="main">
         <div class="fp flexrow"> {{!--main row - image, and crewsheet body--}}
             <div class="fp flexcol" style="max-width:200px; background:#7dc8e6; margin-right:6px;"> {{!--dice and image column--}}
                 <div class="fp flex-item" style="text-align:center;">
@@ -238,6 +244,38 @@
     </div>
           
     </div>
+    </div>
+    <div class="tab worlds" data-group="primary" data-tab="worlds">
+        <div style="padding:3px; margin-right:12px;">
+            <table class="fp crew-roster" style="border-collapse:collapse;">
+                <tr class="fp sheet-label">
+                    <th>World</th>
+                    <th>World Traits</th>
+                    <th>Licensing</th>
+                    <th>Local Patrons</th>
+                    <th>Local Rivals</th>
+                    
+                </tr>
+                {{#each worlds as |world id|}}
+                <tr>
+                    <td class="hw">
+                        {{world.name}}&nbsp;
+                        <a class="item-edit item" title="Edit {{world.name}}" data-type="world" data-item-id="{{world.data._id}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a> 
+                                            <a class="item-delete item" title="Delete {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a> 
 
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{world.data.data.traits}}
+                        
+                    </td>
+                    <td class="hw" style="text-align:center">{{world.data.data.p1.name}}/{{world.data.data.p1.benefit}}</td>
+                    <td class="hw" style="text-align:center">{{world.data.data.r1.name}}/{{world.data.data.r1.notes}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
     </section>
 </form>

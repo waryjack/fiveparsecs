@@ -46,7 +46,7 @@
         }
     },
     "Item":{
-        "types":["weapon","gear","crew_assignment","background","motivation","class"],
+        "types":["background","class","crew_assignment","gear","motivation","weapon","world"],
         "templates":{
             "common":{
                 "name":"",
@@ -89,6 +89,38 @@
             "effect":"",
             "resources":"",
             "starting_rolls":""
+        },
+        "world":{
+            "traits":"",
+            "notes":"",
+            "licensing":false,
+            "license_obtained":false,
+            "invaders":"",
+            "inv_progress":"",
+            "p1":{
+                "name":"",
+                "benefit":""
+            },
+            "p2":{
+                "name":"",
+                "benefit":""
+            },
+            "p3":{
+                "name":"",
+                "benefit":""
+            },
+            "r1":{
+                "name":"",
+                "notes":""
+            },
+            "r2":{
+                "name":"",
+                "notes":""
+            },
+            "r3":{
+                "name":"",
+                "notes":""
+            }
         }
     }
 

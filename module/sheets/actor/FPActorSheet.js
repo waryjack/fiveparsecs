@@ -48,6 +48,7 @@ export class FPActorSheet extends ActorSheet {
          
          if (this.actor.type === "crew") {
             data.assignedCrew = this._buildCrewData(ownedItems);
+            data.worlds = ownedItems.filter(item => item.type === "world");
             console.warn("Assigned Crew: ", data.assignedCrew);
          }
 

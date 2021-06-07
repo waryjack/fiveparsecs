@@ -1,0 +1,39 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <section class="sheetbody">
+       
+        <div class="fp flexrow">
+            <table class="fp item-roster">
+                <tr class="fp sheet-label">
+                    <th>{{localize "FP.weapon.stat.range"}}</th>
+                    <th>{{localize "FP.weapon.stat.shots"}}</th>
+                    <th>{{localize "FP.weapon.stat.damage"}}</th>
+                    <th>{{localize "FP.gear.stat.traits"}}</th>
+                </tr>
+                <tr>
+                    <td class="center"><input class="fp value-input" type="text" name="data.range" value="{{data.range}}" data-dtype="Number"/></td>
+                    <td class="center"><input class="fp value-input" type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/></td>
+                    <td class="center"><input class="fp value-input" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/></td>
+                    <td><input class="fp text-input" type="text" name="data.traits" value="{{data.traits}}" data-dtype="String"/></td>                
+                </tr>
+            </table>
+        </div>
+        
+        {{!--Common Item Traits Area--}}
+          <div class="fp flexrow">
+            <table class="fp item-roster">
+                <tr class="fp sheet-label">
+                    <th>{{localize "FP.gameterm.notes"}}/{{localize "FP.gameterm.rules"}}</th>
+                    <th>{{localize "FP.gameterm.cost"}}</th>
+                </tr>
+                <tr>
+                    <td><input class="fp text-input" type="text" name="data.notes" value="{{data.notes}}" data-dtype="String"/></td>
+                    <td style="width:15%; text-align:center;"><input class="fp value-input" type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number"/></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</form>
