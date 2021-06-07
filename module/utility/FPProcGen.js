@@ -8,6 +8,9 @@ export class FPProcGen {
         const mo = game.tables.filter(table => table.name === "Motivations")[0];
         const cl = game.tables.filter(table => table.name === "Class")[0];
 
+        if(bg === undefined || mo === undefined || cl === undefined) {
+            return ui.notifications.error("You must create tables for Backgrounds, Motivations, and Class before using this feature.")
+        }
         let newBg = await bg.draw({displayChat:false});
         let newMo = await mo.draw({displayChat:false});
         let newCl = await cl.draw({displayChat:false});
