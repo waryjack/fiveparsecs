@@ -25,9 +25,12 @@ border - #039e5d
     background:none !important;
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Sedgwick+Ave&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Wallpoet&family=Zen+Dots&display=swap');
+
+@font-face {
+    font-family: SheetContent;
+    src: url("../fonts/Kalam-Regular.ttf");
+}
 
 .center {
     text-align:center;
@@ -240,8 +243,8 @@ border - #039e5d
 .hw {
     /* font-family: 'Nothing You Could Do', sans-serif; */
     /* font-size:1.15em; */ 
-    font-family: 'Sedgwick Ave', sans-serif;
-    font-size: 1em;
+    font-family: 'SheetContent', sans-serif;
+    font-size: 1.2em;
 }
 
 .labels {
@@ -249,7 +252,7 @@ border - #039e5d
 }
 
 .fp .text-input .hw, .fp .value-input .hw {
-    font-family: 'Sedgwick Ave', sans-serif;
-    font-size: 1em;
+    font-family: 'SheetContent', sans-serif;
+    font-size: 1.2em;
 }
 

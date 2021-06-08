@@ -77,6 +77,8 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.gen-bmc').click(this._generateBmc.bind(this));
 
+        html.find('.refresh-crew').click(this._refreshCrewSheet.bind(this));
+
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -127,6 +129,12 @@ export class FPActorSheet extends ActorSheet {
 
     }
 
+    _refreshCrewSheet(event){
+        event.preventDefault();
+
+        this.actor.sheet.render(true);
+    }
+
     _inlineEditNotes(event){
 
         event.preventDefault();
@@ -152,7 +160,8 @@ export class FPActorSheet extends ActorSheet {
         let crewId = element.closest(".item").dataset.crewId;
 
         console.warn("crewId, itemId: ", crewId, itemId);
-
+        let thisCrew = this.actor;
+        console.log("thisCrew points at: ", thisCrew.name);
         let item = this.actor.items.get(itemId);
 
         if(element.dataset.type === "crew_actor"){
@@ -162,6 +171,8 @@ export class FPActorSheet extends ActorSheet {
             console.warn("Actor to edit: ", actorToEdit);
 
             actorToEdit[0].sheet.render(true);
+
+            
 
         } else {
 
@@ -220,9 +231,30 @@ export class FPActorSheet extends ActorSheet {
 
     _generateBmc(event) {
         event.preventDefault();
-        console.warn("Trying to generate random traits");
-        
-       return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject())));
+
+        let d = new Dialog({
+            title: "Delete This Item?",
+            content: "<p>This will add 3 new traits to this character. It will not replace existing traits.</p>",
+            buttons: {
+             one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: "Continue",
+              callback: () => { return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject()))); }
+             },
+             two: {
+              icon: '<i class="fas fa-times"></i>',
+              label: "Cancel",
+              callback: () => { return; }
+             }
+            },
+            default: "two",
+            render: html => console.log("Register interactivity in the rendered dialog"),
+            close: html => console.log("This always is logged no matter which option is chosen")
+           });
+
+           d.render(true);
+          
+       // return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject())));
 
        // FPProcGen.generateBMC(this.actor).then(bmc => Item.create(bmc, {parent: this.actor, renderSheet:true}));
     }
