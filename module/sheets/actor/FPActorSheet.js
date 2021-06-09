@@ -79,6 +79,8 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.refresh-crew').click(this._refreshCrewSheet.bind(this));
 
+        html.find('.atk-roll').click(this._attackRoll.bind(this));
+
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -129,6 +131,24 @@ export class FPActorSheet extends ActorSheet {
 
     }
 
+    _attackRoll(event){
+        event.preventDefault();
+        let element = event.currentTarget;
+        let wpn = element.dataset.weaponName;
+        let numShots = element.dataset.weaponShots;
+        const baseDie = "d6";
+        const template = "systems/fiveparsecs/templates/roll/attackroll.hbs";
+
+        let data = {
+            weapon: wpn,
+            shots: numShots,
+            die: baseDie
+        }
+
+        FPRollHelper.attackRoll(template, data);
+        
+    }
+
     _refreshCrewSheet(event){
         event.preventDefault();
 
@@ -172,7 +192,7 @@ export class FPActorSheet extends ActorSheet {
 
             actorToEdit[0].sheet.render(true);
 
-            
+            return this.actor.sheet.render(false);
 
         } else {
 
@@ -288,7 +308,8 @@ export class FPActorSheet extends ActorSheet {
                 mbr_savvy: crewActor.data.data.data.savvy,
                 mbr_notes: crewActor.data.data.data.notes,
                 mbr_luck: crewActor.data.data.data.luck,
-                mbr_xp: crewActor.data.data.data.xp
+                mbr_xp: crewActor.data.data.data.xp,
+                mbr_casualty: crewActor.data.data.data.casualty
 
             };
             let crewMemberWeps = crewActor.items.filter(function(item) {return item.type == "weapon"});

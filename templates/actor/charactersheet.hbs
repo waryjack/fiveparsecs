@@ -4,14 +4,18 @@
     
     <section class="sheetbody">
         <div class="fp flexrow">
-            <div class="fp flexcol" style="border:2px solid rgb(111, 188, 252); border-radius:8px; margin:6px;">
+            <div class="fp flexcol" style="border:2px solid rgb(111, 188, 252); border-radius:8px; margin:6px;
+                                            {{#if data.data.casualty}}background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJ0lEQVQYV2NkgIL/DAz/GRkYGEFcMIEsABZEF4CrhBmBpAshBNMFAA5zCgTDHweQAAAAAElFTkSuQmCC);{{/if}}">
                 {{!--pic and dice links--}}
                 <div class="fp flexrow">
                     <div class="fp flex-item">
                         <img class="profile-img" style="border:1px solid #44b9de; min-width:64px !important; min-height:64px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
                     {{!--character image column--}}
                     </div>
-                    <div class="fp flexrow" style="background:#7dc8e6; max-height:42px; border:2px solid #7dc8e6; margin-right:0 !important;">
+                    <div class="fp flexrow" style="background:#7dc8e6; 
+                                                   max-height:42px; 
+                                                   border:2px solid #7dc8e6; 
+                                                   margin-right:0 !important;">
                     <div class="fp flex-item dice-icon">
                         <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
@@ -42,14 +46,17 @@
                             <img class="dice-img" src="systems/fiveparsecs/assets/card-pickup.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
-                    </div>
+                    
                 </div>
+                </div>
+                
                 
                     <div class="flex-item" style="min-width:50%;">
                         <table class="fp crew-roster">
                             <tr class="fp sheet-label">
                                 <th style="border-right:1px solid gray">{{localize "FP.gameterm.name"}}</th>
                                 <th>{{localize "FP.gameterm.species"}}</th>
+                                <th>Casualty?</th>
                             </tr>
                             <tr>
                                 <td style="padding-right:3px">
@@ -58,6 +65,9 @@
                                 </td>
                                 <td style="padding-left:3px;">
                                     <span data-field="data.data.species" class="inline-edit hw val-box" contenteditable>{{data.data.species}}</span>
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="checkbox" class="fp toggle" name="data.data.casualty" value="{{data.data.casualty}}" {{#if data.data.casualty}}checked{{/if}}/>
                                 </td>
                             </tr>
                         </table>
@@ -110,7 +120,12 @@
                                 </tr>
                                 {{#each weapons as |weapon id|}}
                                 <tr class="hw">
-                                    <td>{{weapon.name}} 
+                                    <td>
+                                        <a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-name="{{weapon.name}}" data-weapon-shots="{{weapon.data.data.shots}}">
+                                            <i class="fa fa-dice-six"></i>
+                                        </a>
+                                        
+                                        {{weapon.name}} 
 
                                         <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
                                             <i class="fa fa-edit"></i>

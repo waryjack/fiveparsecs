@@ -139,7 +139,8 @@
             {{log "assignedCrew object: " assignedCrew}}
             {{#each assignedCrew as |crew id|}}
             {{log "crew object: " crew}}
-            <div class="fp flex-item" style="border:2px solid #7dc8e6; border-radius:8px; margin:3px;">
+            <div class="fp flex-item" style="border:2px solid #7dc8e6; border-radius:8px; margin:3px; 
+            {{#if crew.mbr_casualty}}background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJ0lEQVQYV2NkgIL/DAz/GRkYGEFcMIEsABZEF4CrhBmBpAshBNMFAA5zCgTDHweQAAAAAElFTkSuQmCC){{/if}}">
                 
                 <div class="fp flexrow">
                     

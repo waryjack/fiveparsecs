@@ -16,7 +16,8 @@
             "reactions":1,
             "savvy":0,
             "luck":0,
-            "xp":0
+            "xp":0,
+            "casualty":false
         },
         "enemy":{
             "templates":["common"],
