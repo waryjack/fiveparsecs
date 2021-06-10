@@ -46,6 +46,11 @@
                             <img class="dice-img" src="systems/fiveparsecs/assets/card-pickup.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
+                    <div class="fp flex-item dice-icon">
+                        <a title="Generate Random Traits" class="atk-roll" data-weapon-id="brawl">
+                            <img class="dice-img" src="systems/fiveparsecs/assets/mailed-fist.png" height="32" width="32" style="border:0"/>
+                        </a>
+                    </div>
                     
                 </div>
                 </div>
@@ -121,7 +126,7 @@
                                 {{#each weapons as |weapon id|}}
                                 <tr class="hw">
                                     <td>
-                                        <a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-name="{{weapon.name}}" data-weapon-shots="{{weapon.data.data.shots}}">
+                                        <a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
                                             <i class="fa fa-dice-six"></i>
                                         </a>
                                         

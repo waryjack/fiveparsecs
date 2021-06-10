@@ -1,5 +1,6 @@
-import { FPRollHelper } from "../../utility/FPRollHelper.js";
+import { FPRollUtility } from "../../utility/FPRollUtility.js";
 import { FPProcGen } from "../../utility/FPProcGen.js";
+
 
 export class FPActorSheet extends ActorSheet {
     get template() {
@@ -103,7 +104,7 @@ export class FPActorSheet extends ActorSheet {
             let data = {
                 actor:this.actor,
             }
-            FPRollHelper.reactionRoll(template, data);
+            FPRollUtility.reactionRoll(template, data);
 
         } else if (expr === "custom") {
 
@@ -112,7 +113,7 @@ export class FPActorSheet extends ActorSheet {
                 actor:this.actor
             };
             // stub
-            FPRollHelper.customRoll(template, data); 
+            FPRollUtility.customRoll(template, data); 
         } else {
 
             const template = "systems/fiveparsecs/templates/roll/basicroll.hbs";
@@ -123,7 +124,7 @@ export class FPActorSheet extends ActorSheet {
             }
             
 
-            FPRollHelper.roll(template, data);
+            FPRollUtility.roll(template, data);
 
         }
 
@@ -134,18 +135,57 @@ export class FPActorSheet extends ActorSheet {
     _attackRoll(event){
         event.preventDefault();
         let element = event.currentTarget;
-        let wpn = element.dataset.weaponName;
-        let numShots = element.dataset.weaponShots;
+        let wpn_id = element.dataset.weaponId;
+        let data = {};
+
         const baseDie = "d6";
         const template = "systems/fiveparsecs/templates/roll/attackroll.hbs";
 
-        let data = {
-            weapon: wpn,
-            shots: numShots,
-            die: baseDie
+        if(wpn_id === "brawl") {
+            
+            data = {
+                a_name: this.actor.name,
+                a_combat: this.actor.data.data.combat,
+                w_name: "Brawl",
+                w_range: "Melee",
+                w_shots: 1,
+                w_traits: "",
+                w_dmg: "As weapon",
+                die: baseDie
+            }
+
+        } else {
+            
+            let selectedWeapon = this.actor.items.filter(item => item.data._id == wpn_id)[0];
+
+            console.warn("Selected weapon: ", selectedWeapon);
+
+            const wName = selectedWeapon.name;
+            const wShots = selectedWeapon.data.data.shots;
+            const wDmg = selectedWeapon.data.data.damage;
+            const wRange = selectedWeapon.data.data.range;
+            const wTraits = selectedWeapon.data.data.traits;
+
+            console.warn("This actor double-data combat: ", this.actor.data.data.combat);
+            console.warn("This actor triple-data combat: ", this.actor.data.data.data.combat);
+
+            // No targeting yet, but target info should probably be obtained here and passed along
+
+            data = {
+                a_name: this.actor.name,
+                a_combat: this.actor.data.data.data.combat,
+                w_name: wName,
+                w_range: wRange,
+                w_shots: wShots,
+                w_traits: wTraits,
+                w_dmg: wDmg,
+                die: baseDie,
+            }
         }
 
-        FPRollHelper.attackRoll(template, data);
+        console.warn('Data sent to FPRollUtility', data);
+
+        FPRollUtility.attackRoll(template, data);
         
     }
 

@@ -1,4 +1,6 @@
-export class FPRollHelper {
+import { FPMessageUtility } from "./FPMessageUtility.js";
+
+export class FPRollUtility {
 
     static roll(template, data) {
 
@@ -40,7 +42,31 @@ export class FPRollHelper {
 
     }
 
+    /**
+     * 
+     * @param {*} template : the hbs file that is the template for the roll dialog
+     * @param {*} data : information to render the template with
+     * 
+     * Creates a dialog for an attack roll, showing weapon, combat value, and 
+     */
     static attackRoll(template, data) {
+
+        data.rollType = "attack";
+
+        /*
+            data = {
+                a_name: this.actor.name,
+                a_combat: this.actor.data.data.combat,
+                w_name: wName,
+                w_range: wRange,
+                w_shots: wShots,
+                w_traits: wTraits,
+                die: baseDie,
+                rollType: "attack"
+
+            }
+
+        */
         
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
@@ -52,32 +78,26 @@ export class FPRollHelper {
                      label: "Roll!",
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
-                      let die = data.die;
-                      let shots = data.shots;
+                      let dieType = data.die;
+                      let shots = data.w_shots;
                       let extraDice = html.find('#extraDice').val();
-                      let bonus = html.find('#bonus').val();
-                      let malus = html.find('#penalty').val();
+                      data.bonus = html.find('#bonus').val();
+                      data.malus = html.find('#penalty').val();
+
                       let totalDice = Number(shots) + Number(extraDice);
 
-                      let finalExpr = totalDice + die + "+" + bonus + "+" + malus;
+                      console.warn("combat value: ", data.a_combat);
 
+                      let finalExpr = totalDice + dieType + "+" + data.a_combat + "+" + data.bonus + "+" + data.malus;
+
+                      console.warn("totaldice: ", totalDice);
+                      console.warn("finalExpr");
                       let r = new Roll(finalExpr);
 
-                      FPRollHelper.processRoll(r, data.weapon, finalExpr);
-                     /*  r.evaluate({async:false});
+                      let rollInfo = FPRollUtility.processRoll(r, data);
 
-                      const rDice = r.dice;
-                      const diceArray = new Array();
-              
-                      rDice.forEach((die) => {
-              
-                          die.values.forEach(value => diceArray.push(value));
-                          
-                      });
-              
-                      console.warn(diceArray.toString());
-              
-                      r.toMessage(); */
+                      console.warn("RollINfo from Process Roll: ", rollInfo);
+                      FPMessageUtility.createChatMessage(rollInfo);
                      }
                     },
                     close: {
@@ -126,6 +146,7 @@ export class FPRollHelper {
                       let baseDice = html.find('#cr-die-type').val();
                       let bonus = html.find('#bonus').val();
                       let malus = html.find('#penalty').val();
+                      
 
                       let finalExpr = numDice + baseDice + "+" + bonus + "+" + malus;
 
@@ -150,33 +171,65 @@ export class FPRollHelper {
 
     }
 
-    static processRoll(r, weapon, shots, rollType) {
+    /**
+     * 
+     * @param {Roll} roll 
+     * @param {object} data : data about the roll based on actor and item stats
+     * @returns {object} : data to turn into a chat message
+     * 
+     * Takes information from a roll dialog and processes the roll and builds a data object 
+     * for creation of a custom chat message. The data returned is based on the type of roll (attack, basic roll, etc).
+     * 
+     * If attack type is unknown, it will default to just outputting the roll as a standard chat message.
+     */
 
-        r.evaluate({async:false});
+    static processRoll(roll, data) {
 
-        const rDice = r.dice;
+        console.warn("Process Roll incoming roll, data", roll, data);
+
+        roll.evaluate({async:false});
+
         const diceArray = new Array();
 
-        if(rollType === "attack") {
-            rDice.forEach((die) => {
+        // do a rolltype switch here; build data, and return it?
 
-                die.values.forEach(value => diceArray.push(value));
-                
-            });
+        switch(data.rollType) {
+
+            case "attack":
+
+                roll.dice.forEach(die => {
+                    die.values.forEach(value => diceArray.push(value));
+                });
+
+                data.results = diceArray;
+                data.roll = roll;
+                data.totalMod = Number(data.a_combat) + Number(data.bonus) - Number(data.malus);
+
+                /* What does data look like? 
+                    data = {
+                        a_name: this.actor.name,
+                        a_combat: this.actor.data.data.combat,
+                        w_name: wName,
+                        w_range: wRange,
+                        w_shots: wShots,
+                        w_traits: wTraits,
+                        die: baseDie,
+                        rollType: "attack",
+                        results: diceArray,
+                        roll: roll
+                */
+                break;
+
+            case "basic":
+                roll.toMessage(); break; // placeholder
+
+            default: roll.toMessage(); break;
+
         }
-
-        console.warn(diceArray.toString());
-
-        let data = {
-            results: diceArray,
-            roll: r,
-            shots: shots,
-            rollType: rollType
-        }
-
 
         // FPMessageUtility.createChatMessage(data, rollType);
-        r.toMessage();
+       console.log("Finished Roll Process, would return data: ", data);
+       return data;
 
     }
 

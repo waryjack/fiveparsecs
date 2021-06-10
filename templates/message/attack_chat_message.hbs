@@ -1,0 +1,40 @@
+<form class="fp roll-dialog" style="background:#d5ebf7; border:1px solid #44b9de;">
+ <div class="fp flexcol" style="background:#7dc8e6; border:1px solid #44b9de;">
+    <header class="roll-header">
+            <h2 style="border-bottom:none; font-family:'SheetHeader', sans-serif;">
+                {{w_name}} Attack
+            </h2>
+    </header>
+    <div class="fp flexrow" style="flex-wrap:wrap;">
+        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+            {{w_shots}} shots
+        </div>
+        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+            {{w_dmg}} damage
+        </div>
+        {{#unless (eq w_traits "")}}
+        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+            <em>{{w_traits}}</em>
+        </div>
+        {{/unless}}
+    </div>
+</div>
+<div class="taskroll-msg">
+    <p> <strong><span style="font-family:'SheetHeader',sans-serif;">Attack Modifiers</span>:  
+    <span style="border-bottom:1px dotted black;" title="{{#if (lt 1 a_combat)}}-{{else}}+{{/if}}{{a_combat}} (Combat) + {{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (lt 0 modifiers)}}-{{else}}+{{/if}}{{totalMod}}</span></strong>
+    </p>
+</div>
+
+    <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
+        {{#each results as |result id|}}
+            <div class="fp dice-display" style="background:{{#if (eq result 1)}}red{{else if (eq result 6)}}green{{else}}black{{/if}};">
+                <p>{{result}}</p>
+            </div>
+        {{/each}}
+    </div>
+
+<div class="taskroll-outcome {{outclass}}" style="display:none;">
+    {{outcome}}
+</div>
+
+</form>

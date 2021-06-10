@@ -25,11 +25,14 @@ border - #039e5d
     background:none !important;
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Wallpoet&family=Zen+Dots&display=swap');
-
 @font-face {
     font-family: SheetContent;
     src: url("../fonts/Kalam-Regular.ttf");
+}
+
+@font-face {
+    font-family: SheetHeader;
+    src: url("../fonts/nulshock_bd.ttf");
 }
 
 .center {
@@ -43,6 +46,15 @@ border - #039e5d
 .fp .window-content {
     background:white;
 }
+
+.chat-message {
+    background:white !important;
+}
+
+.chat-message.whisper {
+    background: #e8e8ef;
+    border: 2px solid #545469;
+  }
 
 .fp .value-input {
     width:4ch;
@@ -170,7 +182,7 @@ border - #039e5d
 /* End Item Sheet Table Styling */
 
 .fp .sheet-label {
-    font-family:"Wallpoet", sans-serif;
+    font-family:"SheetHeader", sans-serif;
     text-transform:uppercase;
     font-size:0.8em; 
     font-weight:bold;
@@ -178,7 +190,7 @@ border - #039e5d
 }
 
 .fp .sheet-label-white {
-    font-family:"Wallpoet", sans-serif;
+    font-family:"SheetHeader", sans-serif;
     text-transform:uppercase;
     font-size:0.8em; 
     font-weight:bold;
@@ -187,7 +199,7 @@ border - #039e5d
 }
 
 .fp .sheet-label-center {
-    font-family:"Wallpoet", sans-serif;
+    font-family:"SheetHeader", sans-serif;
     text-transform:uppercase;
     font-size:0.8em;
     font-weight:bold;
@@ -201,7 +213,7 @@ border - #039e5d
   
   }
 
-  .fp .flexrow {
+.fp .flexrow {
     display:flex;
     flex-flow:row nowrap;
     justify-content:space-between;
@@ -258,7 +270,7 @@ border - #039e5d
 }
 
 .labels {
-    font-family: 'Wallpoet', sans-serif;
+    font-family: 'SheetHeader', sans-serif;
 }
 
 .fp .text-input .hw, .fp .value-input .hw {
@@ -266,3 +278,24 @@ border - #039e5d
     font-size: 1.2em;
 }
 
+/******************************
+*            CHAT MESSAGES
+*
+*******************************/
+
+.fp .dice-display {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:4px; 
+    border-radius:3px; 
+    align-content:center; 
+    min-width:32px; 
+    max-width:32px; 
+    min-height:32px; 
+    max-height:32px; 
+    color:white; 
+    text-align:center; 
+    font-weight:bold;
+    font-size:2em;
+}
