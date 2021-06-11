@@ -1,9 +1,17 @@
 import { FPMessageUtility } from "./FPMessageUtility.js";
+import { FP } from "../config.js";
 
 export class FPRollUtility {
 
-    static roll(template, data) {
-
+    static basicRoll(template, data) {
+        /**
+         * Data Structure
+         * data = {
+                actor:this.actor (the actor bound to the sheet)
+                expr:expr (the dice expression, from the click handler)
+                rollType:"basic"
+            }
+         */
         
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
@@ -15,16 +23,16 @@ export class FPRollUtility {
                      label: "Roll!",
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
-                      let baseExpr = data.expr;
-                      let bonus = html.find('#bonus').val();
-                      let malus = html.find('#penalty').val();
+                      data.bonus = html.find('#bonus').val();
+                      data.malus = html.find('#penalty').val();
 
-                      let finalExpr = baseExpr + "+" + bonus + "+" + malus;
+                      let finalExpr = data.expr + "+" + data.bonus + "+" + data.malus;
 
                       let r = new Roll(finalExpr);
-                      ///processRoll(r);
-                      r.evaluate({async:false});
-                      r.toMessage();
+
+                      let rollInfo = FPRollUtility.processRoll(r, data);
+                      
+                      FPMessageUtility.createChatMessage(rollInfo);
                      }
                     },
                     close: {
@@ -37,9 +45,6 @@ export class FPRollUtility {
             }).render(true);
 
         });
-
-
-
     }
 
     /**
@@ -50,24 +55,22 @@ export class FPRollUtility {
      * Creates a dialog for an attack roll, showing weapon, combat value, and 
      */
     static attackRoll(template, data) {
+        /* Incoming argument data:
+        
+                data.a_name: Actor name
+                data.a_combat: actor combat value
+                data.w_name: weapon name
+                data.w_range: weapon range
+                data.w_shots: weapon shots
+                data.w_traits: weapon traits
+                data.w_dmg: weapon damage value
+                data.die: "d6"
+                
+            }
+        */
 
         data.rollType = "attack";
-
-        /*
-            data = {
-                a_name: this.actor.name,
-                a_combat: this.actor.data.data.combat,
-                w_name: wName,
-                w_range: wRange,
-                w_shots: wShots,
-                w_traits: wTraits,
-                die: baseDie,
-                rollType: "attack"
-
-            }
-
-        */
-        
+ 
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
                 title:"Attack Roll",
@@ -84,7 +87,7 @@ export class FPRollUtility {
                       data.bonus = html.find('#bonus').val();
                       data.malus = html.find('#penalty').val();
 
-                      let totalDice = Number(shots) + Number(extraDice);
+                      let totalDice = parseInt(shots) + parseInt(extraDice);
 
                       console.warn("combat value: ", data.a_combat);
 
@@ -96,7 +99,6 @@ export class FPRollUtility {
 
                       let rollInfo = FPRollUtility.processRoll(r, data);
 
-                      console.warn("RollINfo from Process Roll: ", rollInfo);
                       FPMessageUtility.createChatMessage(rollInfo);
                      }
                     },
@@ -146,7 +148,6 @@ export class FPRollUtility {
                       let baseDice = html.find('#cr-die-type').val();
                       let bonus = html.find('#bonus').val();
                       let malus = html.find('#penalty').val();
-                      
 
                       let finalExpr = numDice + baseDice + "+" + bonus + "+" + malus;
 
@@ -185,25 +186,32 @@ export class FPRollUtility {
 
     static processRoll(roll, data) {
 
-        console.warn("Process Roll incoming roll, data", roll, data);
-
         roll.evaluate({async:false});
 
         const diceArray = new Array();
-
+        let diceImageSet = "d6";
         // do a rolltype switch here; build data, and return it?
 
         switch(data.rollType) {
 
             case "attack":
 
-                roll.dice.forEach(die => {
+               /* roll.dice.forEach(die => {
                     die.values.forEach(value => diceArray.push(value));
+                }); */
+
+                roll.dice.forEach(die => {
+                    die.values.forEach(value => {
+                        let dImgCode = "d6_"+value;
+                        let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D6[dImgCode];
+                        
+                        diceArray.push(diceImageUrl);
+                    });
                 });
 
                 data.results = diceArray;
                 data.roll = roll;
-                data.totalMod = Number(data.a_combat) + Number(data.bonus) - Number(data.malus);
+                data.totalMod = parseInt(data.a_combat) + parseInt(data.bonus) - parseInt(data.malus);
 
                 /* What does data look like? 
                     data = {
@@ -221,14 +229,75 @@ export class FPRollUtility {
                 break;
 
             case "basic":
-                roll.toMessage(); break; // placeholder
+
+                /**
+                 * let data = {
+                    actor:this.actor,
+                    expr:expr,
+                    rollType:"basic"
+                }
+                */
+
+                if(data.imgs === "d6") {
+                   
+
+                    roll.dice.forEach(die => {
+                        die.values.forEach(value => {
+                            let dImgCode = "d6_"+value;
+                            let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D6[dImgCode];
+                            
+                            diceArray.push(diceImageUrl);
+                        });
+                    });
+                    /*
+                    roll.dice.forEach(die => {
+                        die.values.forEach(value => {
+                            diceArray.push(value);
+                        });
+                    });
+                    */
+                } else if (data.imgs === "d10") {
+
+                    roll.dice.forEach(die => {
+                        die.values.forEach(value => {
+                            let dImgCode = "d10_"+value;
+                            let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D10[dImgCode];
+                            
+                            diceArray.push(diceImageUrl);
+                        });
+                    });
+                } else if (data.imgs === "d100") {
+
+                    if(roll.total < 10) {
+                        let dImgCode = "d10_"+roll.total;
+                        diceArray.push(
+                            CONFIG.fiveparsecs.DICE_IMAGE.D10.d10_0,
+                            CONFIG.fiveparsecs.DICE_IMAGE.D10[dImgCode]);
+                    } else {
+                        let tensDigit = String(roll.total)[0];
+                        let onesDigit = String(roll.total)[1];
+
+                        let tImgCode = "d10_"+tensDigit;
+                        let oImgCode = "d10_"+onesDigit;
+
+                        diceArray.push(
+                            CONFIG.fiveparsecs.DICE_IMAGE.D10[tImgCode],
+                            CONFIG.fiveparsecs.DICE_IMAGE.D10[oImgCode]);
+
+                    }
+                }
+                
+                data.results = diceArray;
+                data.roll = roll;
+                data.totalMod = parseInt(data.bonus) - parseInt(data.malus);
+
+                break; // placeholder
 
             default: roll.toMessage(); break;
 
         }
 
         // FPMessageUtility.createChatMessage(data, rollType);
-       console.log("Finished Roll Process, would return data: ", data);
        return data;
 
     }

@@ -20,18 +20,26 @@
     </div>
 </div>
 <div class="taskroll-msg">
-    <p> <strong><span style="font-family:'SheetHeader',sans-serif;">Attack Modifiers</span>:  
+    
+    <p> <strong><span style="margin-left:6px; font-family:'SheetHeader',sans-serif;">Attack Modifiers</span>:  
     <span style="border-bottom:1px dotted black;" title="{{#if (lt 1 a_combat)}}-{{else}}+{{/if}}{{a_combat}} (Combat) + {{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (lt 0 modifiers)}}-{{else}}+{{/if}}{{totalMod}}</span></strong>
     </p>
 </div>
 
     <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
         {{#each results as |result id|}}
+            <div class="fp dice-display" style="max-height:64px !important; max-width:64px !important;">
+                <img src="{{result}}" style="height:64px, width:64px" height="64" width="64"/>
+            </div>
+        {{/each}}
+    </div>
+    <!--div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
+        {{#each results as |result id|}}
             <div class="fp dice-display" style="background:{{#if (eq result 1)}}red{{else if (eq result 6)}}green{{else}}black{{/if}};">
                 <p>{{result}}</p>
             </div>
         {{/each}}
-    </div>
+    </div-->
 
 <div class="taskroll-outcome {{outclass}}" style="display:none;">
     {{outcome}}

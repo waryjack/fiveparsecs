@@ -1,0 +1,37 @@
+<form class="fp roll-dialog" style="background:#d5ebf7; border:1px solid #44b9de;">
+ <div class="fp flexcol" style="background:#7dc8e6; border:1px solid #44b9de;">
+    <header class="roll-header">
+            <h2 style="border-bottom:none; margin-left:6px; font-family:'SheetHeader', sans-serif;">
+                {{expr}} Roll
+            </h2>
+    </header>
+</div>
+<div class="taskroll-msg">
+    <p> <strong><span style="margin-left:6px; font-family:'SheetHeader',sans-serif;">Roll Total</span>: {{roll.total}}</strong></p>  
+    <p> <strong><span style="margin-left:6px; font-family:'SheetHeader',sans-serif;">Total Modifiers</span>:  
+    <span style="border-bottom:1px dotted black;" title="{{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (lt 0 modifiers)}}-{{else}}+{{/if}}{{totalMod}}</span></strong>
+    </p>
+</div>
+{{!--#if (or (eq expr "2d6") (eq expr "1d6"))}}
+    <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
+        {{#each results as |result id|}}
+            <div class="fp dice-display" style="background:{{#if (eq result 1)}}red{{else if (eq result 6)}}green{{else}}black{{/if}};">
+                <p>{{result}}</p>
+            </div>
+        {{/each}}
+    </div>
+{{else--}}
+    {{!--use dice images not divs for D10--}}
+    <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
+        {{#each results as |result id|}}
+            <div class="fp dice-display" style="max-height:64px !important; max-width:64px !important;">
+                <img src="{{result}}" style="height:64px, width:64px" height="64" width="64"/>
+            </div>
+        {{/each}}
+    </div>
+
+<div class="taskroll-outcome {{outclass}}" style="display:none;">
+    {{outcome}}
+</div>
+
+</form>

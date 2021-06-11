@@ -97,12 +97,14 @@ export class FPActorSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let expr = element.dataset.diceBase;
+        let imageSet = "d6";
 
             
         if (expr === "Reaction Roll") {
             const template = "systems/fiveparsecs/templates/roll/reactionroll.hbs";
             let data = {
                 actor:this.actor,
+                rollType:"reaction"
             }
             FPRollUtility.reactionRoll(template, data);
 
@@ -110,7 +112,8 @@ export class FPActorSheet extends ActorSheet {
 
             const template = "systems/fiveparsecs/templates/roll/customroll.hbs";
             let data = {
-                actor:this.actor
+                actor:this.actor,
+                rollType:"custom"
             };
             // stub
             FPRollUtility.customRoll(template, data); 
@@ -118,13 +121,21 @@ export class FPActorSheet extends ActorSheet {
 
             const template = "systems/fiveparsecs/templates/roll/basicroll.hbs";
 
+            if(expr === "1d10" ) { 
+                imageSet = "d10"; 
+            } else if (expr === "1d100") {
+                imageSet = "d100";
+            }
+
             let data = {
                 actor:this.actor,
-                expr:expr
+                expr:expr,
+                rollType:"basic",
+                imgs: imageSet
             }
             
 
-            FPRollUtility.roll(template, data);
+            FPRollUtility.basicRoll(template, data);
 
         }
 
