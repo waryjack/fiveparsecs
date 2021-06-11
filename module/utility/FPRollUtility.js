@@ -129,6 +129,8 @@ export class FPRollUtility {
 
     static customRoll(template, data) {
 
+        data.rollType = "custom"; 
+
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
                 title:"Custom Roll",
@@ -146,14 +148,15 @@ export class FPRollUtility {
                       }
 
                       let baseDice = html.find('#cr-die-type').val();
-                      let bonus = html.find('#bonus').val();
-                      let malus = html.find('#penalty').val();
+                      data.bonus = html.find('#bonus').val();
+                      data.malus = html.find('#penalty').val();
 
-                      let finalExpr = numDice + baseDice + "+" + bonus + "+" + malus;
+                      let finalExpr = numDice + baseDice + "+" + data.bonus + "+" + data.malus;
 
                       let r = new Roll(finalExpr);
-                      r.evaluate({async:false});
-                      r.toMessage();
+                      let rollInfo = FPRollUtility.processRoll(r, data);
+
+                      FPMessageUtility.createChatMessage(rollInfo);
                      }
                     },
                     close: {
@@ -188,7 +191,7 @@ export class FPRollUtility {
 
         roll.evaluate({async:false});
 
-        const diceArray = new Array();
+        let diceArray = new Array();
         let diceImageSet = "d6";
         // do a rolltype switch here; build data, and return it?
 
@@ -196,77 +199,19 @@ export class FPRollUtility {
 
             case "attack":
 
-               /* roll.dice.forEach(die => {
-                    die.values.forEach(value => diceArray.push(value));
-                }); */
-
-                roll.dice.forEach(die => {
-                    die.values.forEach(value => {
-                        let dImgCode = "d6_"+value;
-                        let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D6[dImgCode];
-                        
-                        diceArray.push(diceImageUrl);
-                    });
-                });
+                diceArray = FPRollUtility.buildDiceImageArray(roll);
 
                 data.results = diceArray;
                 data.roll = roll;
                 data.totalMod = parseInt(data.a_combat) + parseInt(data.bonus) - parseInt(data.malus);
 
-                /* What does data look like? 
-                    data = {
-                        a_name: this.actor.name,
-                        a_combat: this.actor.data.data.combat,
-                        w_name: wName,
-                        w_range: wRange,
-                        w_shots: wShots,
-                        w_traits: wTraits,
-                        die: baseDie,
-                        rollType: "attack",
-                        results: diceArray,
-                        roll: roll
-                */
+             
                 break;
 
+            case "custom":
             case "basic":
 
-                /**
-                 * let data = {
-                    actor:this.actor,
-                    expr:expr,
-                    rollType:"basic"
-                }
-                */
-
-                if(data.imgs === "d6") {
-                   
-
-                    roll.dice.forEach(die => {
-                        die.values.forEach(value => {
-                            let dImgCode = "d6_"+value;
-                            let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D6[dImgCode];
-                            
-                            diceArray.push(diceImageUrl);
-                        });
-                    });
-                    /*
-                    roll.dice.forEach(die => {
-                        die.values.forEach(value => {
-                            diceArray.push(value);
-                        });
-                    });
-                    */
-                } else if (data.imgs === "d10") {
-
-                    roll.dice.forEach(die => {
-                        die.values.forEach(value => {
-                            let dImgCode = "d10_"+value;
-                            let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE.D10[dImgCode];
-                            
-                            diceArray.push(diceImageUrl);
-                        });
-                    });
-                } else if (data.imgs === "d100") {
+                if (data.imgs === "d100") {
 
                     if(roll.total < 10) {
                         let dImgCode = "d10_"+roll.total;
@@ -285,6 +230,8 @@ export class FPRollUtility {
                             CONFIG.fiveparsecs.DICE_IMAGE.D10[oImgCode]);
 
                     }
+                } else {
+                    diceArray = FPRollUtility.buildDiceImageArray(roll);
                 }
                 
                 data.results = diceArray;
@@ -299,6 +246,41 @@ export class FPRollUtility {
 
         // FPMessageUtility.createChatMessage(data, rollType);
        return data;
+
+    }
+
+    static buildDiceImageArray(roll) {
+
+        let diceImageArray = new Array();
+
+        roll.dice.forEach(die => {
+
+            let configCode = "";
+            let imgCode = "";
+            console.warn("die.faces: ", die.faces);
+
+            switch (die.faces) {
+                case 4: configCode = "D4"; imgCode = "d4_"; break;
+                case 6: configCode = "D6"; imgCode = "d6_"; break;
+                case 8: configCode = "D8"; imgCode = "d8_";break;
+                case 10: configCode = "D10"; imgCode = "d10_"; break;
+                case 12: configCode = "D12"; imgCode = "d12_"; break;
+                case 20: configCode = "D20"; imgCode = "d20_"; break;
+            }
+
+            die.values.forEach(value => {
+                let imgCodeComplete = imgCode + value;
+                let diceImageUrl = CONFIG.fiveparsecs.DICE_IMAGE[configCode][imgCodeComplete];
+                
+                diceImageArray.push(diceImageUrl);
+            });
+
+
+
+
+        });
+
+        return diceImageArray; 
 
     }
 

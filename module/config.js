@@ -13,6 +13,12 @@ export const FP = {
     MESSAGE_TYPE:{},
     DIALOG_TYPE:{},
     DICE_IMAGE:{
+        D4:{
+            d4_1:"../systems/fiveparsecs/assets/dice_img/d4/d4-1.png",
+            d4_2:"../systems/fiveparsecs/assets/dice_img/d4/d4-2.png",
+            d4_3:"../systems/fiveparsecs/assets/dice_img/d4/d4-3.png",
+            d4_4:"../systems/fiveparsecs/assets/dice_img/d4/d4-4.png"
+        },
         D6:{
             d6_1:"../systems/fiveparsecs/assets/dice_img/d6/d6-1.png",
             d6_2:"../systems/fiveparsecs/assets/dice_img/d6/d6-2.png",
@@ -20,6 +26,17 @@ export const FP = {
             d6_4:"../systems/fiveparsecs/assets/dice_img/d6/d6-4.png",
             d6_5:"../systems/fiveparsecs/assets/dice_img/d6/d6-5.png",
             d6_6:"../systems/fiveparsecs/assets/dice_img/d6/d6-6.png"
+        },
+        D8:{
+            d8_1:"../systems/fiveparsecs/assets/dice_img/d8/d8-1.png",
+            d8_2:"../systems/fiveparsecs/assets/dice_img/d8/d8-2.png",
+            d8_3:"../systems/fiveparsecs/assets/dice_img/d8/d8-3.png",
+            d8_4:"../systems/fiveparsecs/assets/dice_img/d8/d8-4.png",
+            d8_5:"../systems/fiveparsecs/assets/dice_img/d8/d8-5.png",
+            d8_6:"../systems/fiveparsecs/assets/dice_img/d8/d8-6.png",
+            d8_7:"../systems/fiveparsecs/assets/dice_img/d8/d8-7.png",
+            d8_8:"../systems/fiveparsecs/assets/dice_img/d8/d8-8.png"
+
         },
         D10:{
             d10_0:"../systems/fiveparsecs/assets/dice_img/d10/d10-0.png",
@@ -33,6 +50,44 @@ export const FP = {
             d10_8:"../systems/fiveparsecs/assets/dice_img/d10/d10-8.png",
             d10_9:"../systems/fiveparsecs/assets/dice_img/d10/d10-9.png",
             d10_10:"../systems/fiveparsecs/assets/dice_img/d10/d10-10.png"
+        },
+        D12:{
+            d12_0:"../systems/fiveparsecs/assets/dice_img/d12/d12-0.png",
+            d12_1:"../systems/fiveparsecs/assets/dice_img/d12/d12-1.png",
+            d12_2:"../systems/fiveparsecs/assets/dice_img/d12/d12-2.png",
+            d12_3:"../systems/fiveparsecs/assets/dice_img/d12/d12-3.png",
+            d12_4:"../systems/fiveparsecs/assets/dice_img/d12/d12-4.png",
+            d12_5:"../systems/fiveparsecs/assets/dice_img/d12/d12-5.png",
+            d12_6:"../systems/fiveparsecs/assets/dice_img/d12/d12-6.png",
+            d12_7:"../systems/fiveparsecs/assets/dice_img/d12/d12-7.png",
+            d12_8:"../systems/fiveparsecs/assets/dice_img/d12/d12-8.png",
+            d12_9:"../systems/fiveparsecs/assets/dice_img/d12/d12-9.png",
+            d12_10:"../systems/fiveparsecs/assets/dice_img/d12/d12-10.png",
+            d12_11:"../systems/fiveparsecs/assets/dice_img/d12/d12-11.png",
+            d12_12:"../systems/fiveparsecs/assets/dice_img/d12/d12-12.png"
+        },
+        D20:{
+            d20_0:"../systems/fiveparsecs/assets/dice_img/d20/d20-0.png",
+            d20_1:"../systems/fiveparsecs/assets/dice_img/d20/d20-1.png",
+            d20_2:"../systems/fiveparsecs/assets/dice_img/d20/d20-2.png",
+            d20_3:"../systems/fiveparsecs/assets/dice_img/d20/d20-3.png",
+            d20_4:"../systems/fiveparsecs/assets/dice_img/d20/d20-4.png",
+            d20_5:"../systems/fiveparsecs/assets/dice_img/d20/d20-5.png",
+            d20_6:"../systems/fiveparsecs/assets/dice_img/d20/d20-6.png",
+            d20_7:"../systems/fiveparsecs/assets/dice_img/d20/d20-7.png",
+            d20_8:"../systems/fiveparsecs/assets/dice_img/d20/d20-8.png",
+            d20_9:"../systems/fiveparsecs/assets/dice_img/d20/d20-9.png",
+            d20_10:"../systems/fiveparsecs/assets/dice_img/d20/d20-10.png",
+            d20_11:"../systems/fiveparsecs/assets/dice_img/d20/d20-11.png",
+            d20_12:"../systems/fiveparsecs/assets/dice_img/d20/d20-12.png",
+            d20_13:"../systems/fiveparsecs/assets/dice_img/d20/d20-13.png",
+            d20_14:"../systems/fiveparsecs/assets/dice_img/d20/d20-14.png",
+            d20_15:"../systems/fiveparsecs/assets/dice_img/d20/d20-15.png",
+            d20_16:"../systems/fiveparsecs/assets/dice_img/d20/d20-16.png",
+            d20_17:"../systems/fiveparsecs/assets/dice_img/d20/d20-17.png",
+            d20_18:"../systems/fiveparsecs/assets/dice_img/d20/d20-18.png",
+            d20_19:"../systems/fiveparsecs/assets/dice_img/d20/d20-19.png",
+            d20_20:"../systems/fiveparsecs/assets/dice_img/d20/d20-20.png"
         }
 
     }
