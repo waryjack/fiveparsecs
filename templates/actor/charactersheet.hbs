@@ -67,6 +67,7 @@
                                 <td style="padding-right:3px">
                                     <span data-field="name" class="inline-edit hw val-box" style="background:none;" contenteditable>{{actor.name}}</span>
                                     <!--input class="fp charname" style="text-align:left; width:100%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/-->
+                                    {{#if data.data.captain}}  <i class="fas fa-star"></i>{{/if}}
                                 </td>
                                 <td style="padding-left:3px;">
                                     <span data-field="data.data.species" class="inline-edit hw val-box" contenteditable>{{data.data.species}}</span>

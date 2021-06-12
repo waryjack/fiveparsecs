@@ -82,6 +82,8 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.atk-roll').click(this._attackRoll.bind(this));
 
+        html.find('.passthru-edit-crew-member').click(this._editCrewMember.bind(this));
+
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -243,8 +245,8 @@ export class FPActorSheet extends ActorSheet {
 
             actorToEdit[0].sheet.render(true);
 
-            return this.actor.sheet.render(false);
-
+            //todo : update hook check for actor connection to crew, if so, re-render crew sheet using force "false"
+            
         } else {
 
             item.sheet.render(true);
@@ -360,7 +362,8 @@ export class FPActorSheet extends ActorSheet {
                 mbr_notes: crewActor.data.data.data.notes,
                 mbr_luck: crewActor.data.data.data.luck,
                 mbr_xp: crewActor.data.data.data.xp,
-                mbr_casualty: crewActor.data.data.data.casualty
+                mbr_casualty: crewActor.data.data.data.casualty,
+                mbr_captain: crewActor.data.data.data.captain
 
             };
             let crewMemberWeps = crewActor.items.filter(function(item) {return item.type == "weapon"});
@@ -391,5 +394,30 @@ export class FPActorSheet extends ActorSheet {
 
         return crewRoster;
 
+    }
+
+    _editCrewMember(event) {
+        // event.preventDefault();
+
+        let element = event.currentTarget;
+        let passthruAction = element.dataset.crewAction;
+
+        // Pull crew assignment Item ID and get the ID of the related crew member
+        let caId = element.closest(".item").dataset.itemId; // not used at this point
+        let crewId = element.closest(".item").dataset.crewId;
+
+        let actorToEdit = game.actors.filter(function(actor) { return actor.data._id == crewId; })[0];
+
+        if (passthruAction === "toggle_captain") {
+            let setCaptain = actorToEdit.data.data.data.captain;
+            console.log("setCaptain: ", setCaptain);
+            actorToEdit.update({"data.data.captain":!setCaptain}).then(() => this.actor.sheet.render(true));
+        } else if (passthruAction === "toggle_casualty") {
+            let setCasualty = actorToEdit.data.data.data.casualty;
+            actorToEdit.update({"data.data.casualty":!setCasualty}).then(() => this.actor.sheet.render(true));
+        } 
+        
+        return;
+        
     }
 }

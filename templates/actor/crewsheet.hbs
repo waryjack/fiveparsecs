@@ -52,7 +52,7 @@
                 <div class="fp flexrow" style="background:#7dc8e6;">
                     <div class="fp flex-item" style="max-width:25%">
                         <span class="fp sheet-label-white">Crew Name</span><br/>
-                        <span data-field="name" class="inline-edit hw val-box" contenteditable>{{actor.name}}</span>
+                        <span data-field="name" class="inline-edit hw val-box" contenteditable>{{actor.name}} </span>
                         <!--input type="text" class="fp text-input hw" name="name" value="{{actor.name}}" data-dtype="String"/-->
                     </div>
                     <div class="fp flex-item" style="max-width:59%">
@@ -151,7 +151,7 @@
                                 <th>Species/Type</th>
                             </tr>
                             <tr class="hw">
-                                <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}}</td>
+                                <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}} {{#if crew.mbr_captain}}<i class="fas fa-flag"></i>{{/if}}</td>
                                 <td style="padding-left:3px;">{{crew.mbr_species}}</td>
                             </tr>
                         </table>  
@@ -237,6 +237,14 @@
                                     </tr>
                                 </table>
                             </div>
+                    </div>
+                    <div class="fp flexcol item-name item" data-crew-id="{{crew.mbr_id}}" data-item-id="{{crew.mbr_item_id}}" style="max-width:48px; background:#7dc8e6; color:white; text-align:center;">
+                        <a class="passthru-edit-crew-member" title="Toggle Captain" data-crew-action="toggle_captain">
+                            <span style="font-size:2em"><i class="fas fa-flag"></i></span>
+                        </a>
+                        <a class="passthru-edit-crew-member" title="Toggle Casualty" data-crew-action="toggle_casualty">
+                            <span style="font-size:2em"><i class="fas fa-heartbeat"></i></span>
+                        </a>
                     </div>
                     
                 </div>

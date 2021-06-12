@@ -17,7 +17,8 @@
             "savvy":0,
             "luck":0,
             "xp":0,
-            "casualty":false
+            "casualty":false,
+            "captain":false
         },
         "enemy":{
             "templates":["common"],
