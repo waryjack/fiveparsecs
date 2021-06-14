@@ -89,12 +89,8 @@ export class FPRollUtility {
 
                       let totalDice = parseInt(shots) + parseInt(extraDice);
 
-                      console.warn("combat value: ", data.a_combat);
-
                       let finalExpr = totalDice + dieType + "+" + data.a_combat + "+" + data.bonus + "+" + data.malus;
 
-                      console.warn("totaldice: ", totalDice);
-                      console.warn("finalExpr");
                       let r = new Roll(finalExpr);
 
                       let rollInfo = FPRollUtility.processRoll(r, data);
@@ -145,6 +141,7 @@ export class FPRollUtility {
 
                       if (numDice < 1) {
                           console.warn("Can't roll fewer than 1 die");
+                          numDice = 1;
                       }
 
                       let baseDice = html.find('#cr-die-type').val();
@@ -257,7 +254,6 @@ export class FPRollUtility {
 
             let configCode = "";
             let imgCode = "";
-            console.warn("die.faces: ", die.faces);
 
             switch (die.faces) {
                 case 4: configCode = "D4"; imgCode = "d4_"; break;

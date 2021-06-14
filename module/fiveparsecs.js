@@ -208,3 +208,27 @@ Hooks.on('preCreateItem', function(item, data) {
  
  });
 
+ Hooks.on('closeFPActorSheet', function(actorSheet, sheetData) {
+
+    let sheetActorId = actorSheet.actor.data._id;
+
+    let allOwnedCrewAssignments = [];
+    const allCrews = game.actors.filter(a => a.type === "crew");
+    
+    allCrews.forEach(c => {
+        let crewItems = c.items.filter(i => i.type === "crew_assignment");
+       
+        crewItems.forEach(ci => allOwnedCrewAssignments.push(ci));
+
+    }); 
+
+
+    let thisActorAssignments = allOwnedCrewAssignments.filter((a) => a.data.data.assigned_crew_actorId === sheetActorId);
+
+    thisActorAssignments.forEach(a => {
+        let parentCrew = a.parent;
+        parentCrew.sheet.render(false);
+    })
+
+ });
+

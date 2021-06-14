@@ -12,18 +12,18 @@ export class FPActorSheet extends ActorSheet {
      * @override
      */
     static get defaultOptions() {
-        console.warn("defaultOptions actor: ", this.actor);
 
             return mergeObject(super.defaultOptions, {
                 classes: ['fp', 'sheet', 'actor', 'actor-sheet'],
-                width: 480,
+                // width: 480,
                 height: 400,
                 left:75,
                 tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
                 dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
             });
-  
+            
     }
+
     
     /**
      * @override
@@ -38,6 +38,7 @@ export class FPActorSheet extends ActorSheet {
          
 
          if(this.actor.type === "character" || this.actor.type === "enemy") {
+          
             let gl = new Array();
             data.weapons = ownedItems.filter(function(item) {return item.type === "weapon"});
             data.gear = ownedItems.filter(function(item) {return item.type === "gear"});
@@ -50,7 +51,7 @@ export class FPActorSheet extends ActorSheet {
          if (this.actor.type === "crew") {
             data.assignedCrew = this._buildCrewData(ownedItems);
             data.worlds = ownedItems.filter(item => item.type === "world");
-            console.warn("Assigned Crew: ", data.assignedCrew);
+           
          }
 
          return data;
@@ -171,17 +172,13 @@ export class FPActorSheet extends ActorSheet {
             
             let selectedWeapon = this.actor.items.filter(item => item.data._id == wpn_id)[0];
 
-            console.warn("Selected weapon: ", selectedWeapon);
-
             const wName = selectedWeapon.name;
             const wShots = selectedWeapon.data.data.shots;
             const wDmg = selectedWeapon.data.data.damage;
             const wRange = selectedWeapon.data.data.range;
             const wTraits = selectedWeapon.data.data.traits;
 
-            console.warn("This actor double-data combat: ", this.actor.data.data.combat);
-            console.warn("This actor triple-data combat: ", this.actor.data.data.data.combat);
-
+         
             // No targeting yet, but target info should probably be obtained here and passed along
 
             data = {
@@ -195,8 +192,6 @@ export class FPActorSheet extends ActorSheet {
                 die: baseDie,
             }
         }
-
-        console.warn('Data sent to FPRollUtility', data);
 
         FPRollUtility.attackRoll(template, data);
         
@@ -231,17 +226,14 @@ export class FPActorSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let crewId = element.closest(".item").dataset.crewId;
-
-        console.warn("crewId, itemId: ", crewId, itemId);
+       
         let thisCrew = this.actor;
-        console.log("thisCrew points at: ", thisCrew.name);
+       
         let item = this.actor.items.get(itemId);
 
         if(element.dataset.type === "crew_actor"){
 
             const actorToEdit = game.actors.filter(function(actor) { return actor.data._id == crewId; });
-
-            console.warn("Actor to edit: ", actorToEdit);
 
             actorToEdit[0].sheet.render(true);
 
@@ -276,8 +268,6 @@ export class FPActorSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
-
-        console.warn("triggered delete for item id: ", itemId);
 
         let d = new Dialog({
           title: "Delete This Item?",
@@ -333,19 +323,19 @@ export class FPActorSheet extends ActorSheet {
     }
 
     _buildCrewData(ownedItems) {
-        console.warn("Crew Owned Items: ", ownedItems);
+       
         let crewRoster = [];
         let gList = [];
         let assignedCrew = ownedItems.filter(function(item) {return item.type == "crew_assignment"});
-        console.warn("Assigned Crew: ", assignedCrew);
+   
         if (!Array.isArray(assignedCrew) || assignedCrew.length === 0) { console.log("No assigned crew"); return; }
 
 
         assignedCrew.forEach(crew => {
             // console.warn("All Actors: ", game.actors);
-            console.warn("This Actor ID: ", crew.data.data.assigned_crew_actorId);
+          
             let crewActor = game.actors.filter(function(actor) {return actor.data._id == crew.data.data.assigned_crew_actorId})[0];
-            console.warn("Current Actor: ", crewActor); 
+           
             let mbr_weapons = {};
 
             // Build object with basic crewmember info  
@@ -386,9 +376,6 @@ export class FPActorSheet extends ActorSheet {
             setProperty(crewMemberData, "mbr_gear", gList.toString());
             setProperty(crewMemberData, "mbr_weapons", mbr_weapons);
             crewRoster.push(crewMemberData);
-
-            console.warn("Crew Member Data: ", crewMemberData); 
-            console.warn("Crew Roster: ", crewRoster);
           
         });
 
@@ -410,7 +397,7 @@ export class FPActorSheet extends ActorSheet {
 
         if (passthruAction === "toggle_captain") {
             let setCaptain = actorToEdit.data.data.data.captain;
-            console.log("setCaptain: ", setCaptain);
+           
             actorToEdit.update({"data.data.captain":!setCaptain}).then(() => this.actor.sheet.render(true));
         } else if (passthruAction === "toggle_casualty") {
             let setCasualty = actorToEdit.data.data.data.casualty;

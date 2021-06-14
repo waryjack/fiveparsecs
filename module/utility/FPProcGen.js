@@ -20,8 +20,7 @@ export class FPProcGen {
             game.items.filter(item => item.data._id === newMo.results[0].data.resultId)[0],
             game.items.filter(item => item.data._id === newCl.results[0].data.resultId)[0]    
         );
-        
-        console.log("random item array: ", bmcArray); 
+      
         
         return bmcArray;
 

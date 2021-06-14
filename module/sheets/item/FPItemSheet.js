@@ -12,8 +12,8 @@ export class FPItemSheet extends ItemSheet {
      static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
         classes: ['fp', 'sheet', 'item', 'item-sheet'],
-        width: 480,
-        height: 200,
+        width: 500,
+        height: 300,
         tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
         dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
         });
