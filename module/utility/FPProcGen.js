@@ -26,4 +26,39 @@ export class FPProcGen {
 
     }
 
+    static async generateWorldTraits(world) {
+        let generatedTraits = {};
+        let licenseRoll = new Roll("1d6").evaluate().result;
+        let licenseReqd = false;
+        let newTrait_1 = "";
+        let newTrait_2 = "";
+        let newName = "";
+
+        const worldTraits = game.tables.filter(t => t.name === "World Traits")[0];
+        const planetNames = game.tables.filter(t => t.name === "Planet Names")[0];
+
+        if(worldTraits === undefined || planetNames === undefined) {
+            return ui.notifications.error("You must create tables titled World Traits and Planet Names to automatically generate world traits");
+        }
+        
+        newTrait_1 = await worldTraits.draw({displayChat:false});
+        if (game.settings.get("FP", "Wild Galaxy")) { newTrait_2 = await worldTraits.draw({displayChat:false}); }
+        newName = await planetNames.draw({displayChat:false});
+
+        if (licenseRoll > 4) { licenseReqd = true; }
+
+        generatedTraits = {
+            genName: newName,
+            genTrait_1: newTrait_1,
+            genTrait_2: newTrait_2,
+            genLicensing: licenseReqd
+        }
+
+    }
+
+    static async generateEncounter() {
+
+        
+    }
+
 }
