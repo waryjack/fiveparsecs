@@ -407,4 +407,11 @@ export class FPActorSheet extends ActorSheet {
         return;
         
     }
+
+    _generateEncounter(e) {
+        e.preventDefault();
+        return ui.notifications.warn("Non functional until tables are prepared");
+
+        
+    }
 }

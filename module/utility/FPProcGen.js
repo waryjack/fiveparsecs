@@ -58,7 +58,10 @@ export class FPProcGen {
 
     static async generateEncounter() {
 
-        
+        // build encounter data
+        // create new encounter
+        // output to chat and create journal entry? 
+
     }
 
 }
