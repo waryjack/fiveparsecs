@@ -7,6 +7,12 @@ This is the shell for a FoundryVTT system to play *Five Parsecs from Home*, a so
 
 I intend to leave openings for increased automation of the game regarding the procedural generation steps for each campaign turn, and resolution of combat, but the first step is getting a basic framework established.
 
+## Roadmap of Sorts
+
+Next up: Campaign Turn tracker (part of the *Crew* sheet): track the stages of your current Campaign Turn, including handling upkeep, crew tasks, job creation, and world details. Ideally, at the end of a campaign turn, you'll click "log this" and it will generate a new Journal entry for that campaign turn. 
+
+Future: combat automation with target selection and hit resolving, casualty counts, battle events. 
+
 ## Status
 
 * Minimally playable / usable
