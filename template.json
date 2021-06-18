@@ -45,70 +45,8 @@
             "ship_traits":"",
             "ship_upgrades":"",
             "stashed_gear":"",
-            "campaign_turn":{
-                "fleeing":false,
-                "travel":{
-                    "travel_done":false,
-                    "travel_event":""
-                },
-                "arrival":{
-                    "rival_followed":"unknown"
-                },
-                "upkeep":{
-                    "crew_paid":false,
-                    "debt_paid":false
-                },
-                "crew_tasks":{
-                    "patron_found":false,
-                    "patron_count":0,
-                    "trained":false,
-                    "traded":false,
-                    "recruited":false,
-                    "explored":false,
-                    "tracked_rivals":false,
-                    "decoyed_rivals":false,
-                    "repaired":false
-                },
-                "jobs":{
-                    "patron_job":{
-                        "patron_type":"",
-                        "danger_pay":"",
-                        "time_frame":"",
-                        "benefits":"",
-                        "hazards":"",
-                        "conditions":""
-                    }
-                },
-                "assigned_equipment":false,
-                "rumors":{
-                    "checked_rumors":false,
-                    "gained_quest":false
-                },
-                "rival_attack":{
-                    "checked_rival_attack":false,
-                    "rivals_attack":false
-                },
-                "battle":{
-                    "battle_created":false,
-                    "type":"",
-                    "rival_name":"",
-                    "rival_type":"",
-                    "deployment":"",
-                    "objective":"",
-                    "notable_sights":"",
-                    "opposition":{
-                            "num_enemies":0,
-                            "spec_lt_present":0,
-                            "unique_present":0,
-                            "enemy_element":"",
-                            "enemy_element_specific":"",
-                            "basic_weapon":"",
-                            "spec_weapon":""
-                    },
-                    "outcome":""
-                }
-
-            }
+            "current_campaign_turn":"",
+            "campaign_turns":[]
         }
     },
     "Item":{
