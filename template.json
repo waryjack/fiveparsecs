@@ -50,7 +50,7 @@
         }
     },
     "Item":{
-        "types":["background","class","crew_assignment","gear","motivation","weapon","world"],
+        "types":["weapon", "gear", "background", "class", "motivation", "crew_assignment", "world", "patron_job", "battle"],
         "templates":{
             "common":{
                 "name":"",
@@ -95,6 +95,7 @@
             "starting_rolls":""
         },
         "world":{
+            "known":false,
             "active":false,
             "traits":"",
             "notes":"",
@@ -125,6 +126,33 @@
             "r3":{
                 "name":"",
                 "notes":""
+            }
+        },
+        "patron_job":{
+            "patron_type":"",
+            "danger_pay":"",
+            "time_frame":"",
+            "benefits":"",
+            "hazards":"",
+            "conditions":""
+        },
+        "battle":{
+            "type":"",
+            "rival_name":"",
+            "rival_type":"",
+            "deployment":"",
+            "objective":"",
+            "notable_sights":"",
+            "complete":false,
+            "outcome":"",
+            "opposition":{
+                "number":0,
+                "spec_lts":0,
+                "uniques":0,
+                "element":"",
+                "element_specific":"",
+                "basic_weapon":"",
+                "spec_weapon":""
             }
         }
     }

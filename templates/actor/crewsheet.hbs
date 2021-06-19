@@ -4,8 +4,8 @@
 
      <nav class="sheet-tabs tabs" data-group="primary" >
             <a class="fp labels" style="text-transform:uppercase" data-tab="main">Main Log</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">World Log</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="battles">Battle Log</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="turn">Campaign Turn</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">Known Worlds</a>
         </nav>
 
     <section class="sheetbody">
@@ -258,6 +258,9 @@
           
     </div>
     </div>
+    <div class="tab turn" data-group="primary" data-tab="turn">
+        {{!--campaign turn stuff here--}}
+    </div>
     <div class="tab worlds" data-group="primary" data-tab="worlds">
         <div style="padding:3px; margin-right:12px;">
             <table class="fp crew-roster" style="border-collapse:collapse;">
@@ -305,7 +308,6 @@
             </table>
         </div>
     </div>
-    {{!--Battle Log--}}
-    
+ 
     </section>
 </form>
