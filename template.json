@@ -45,8 +45,39 @@
             "ship_traits":"",
             "ship_upgrades":"",
             "stashed_gear":"",
-            "current_campaign_turn":"",
-            "campaign_turns":[]
+            "campaign_turn":{
+                "flee":false,
+                "travel":{
+                    "traveling":false,
+                    "travel_even":""
+                },
+                "arrival":{
+                    "followed":false
+                },
+                "upkeep":{
+                    "debt":false,
+                    "payroll":false
+                },
+                "crew_tasks":{
+                    "patron_found":false,
+                    "train":false,
+                    "trade":false,
+                    "trade_result":"",
+                    "recruit":false,
+                    "recruits":0,
+                    "explore":false,
+                    "explore_results":"",
+                    "track":false,
+                    "track_results":"",
+                    "decoy":false,
+                    "decoy_results":"",
+                    "repair":false
+                },
+                "battles":[],
+                "jobs":[],
+                "complete":false,
+                "logged":false
+            }
         }
     },
     "Item":{
