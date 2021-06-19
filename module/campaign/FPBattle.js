@@ -43,4 +43,8 @@ export class FPBattle {
 
     }
 
+    async persistState() {
+        // save this battle to game.settings.battles array
+    }
+
 }

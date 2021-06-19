@@ -1,3 +1,7 @@
+import { FPBattle } from "./FPBattle.js";
+import { FPJob } from "./FPJob.js";
+import { FPWorld } from "./FPWorld.js";
+
 export class FPCampaignTurn {
 
     constructor(sheet) {
@@ -63,7 +67,19 @@ export class FPCampaignTurn {
         this._name = newName;
     }
 
+    addBattle() {
+        let battle = new FPBattle(this._id);
+        this.data.battles.push(battle.getId());
+    }
 
+    /**
+     * Saves current state of the campaign turn to game.settings for persistence.
+     */
+
+    async persistState() {
+        
+
+    }
 
 }
 
