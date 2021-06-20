@@ -46,13 +46,14 @@
             "ship_upgrades":"",
             "stashed_gear":"",
             "campaign_turn":{
+                "turn_id":"",
                 "flee":false,
                 "travel":{
                     "traveling":false,
                     "travel_even":""
                 },
                 "arrival":{
-                    "followed":false
+                    "followed":"unknown"
                 },
                 "upkeep":{
                     "debt":false,
@@ -178,7 +179,7 @@
             "outcome":"",
             "opposition":{
                 "number":0,
-                "spec_lts":0,
+                "specialists":0,
                 "uniques":0,
                 "element":"",
                 "element_specific":"",

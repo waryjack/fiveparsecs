@@ -258,9 +258,15 @@
           
     </div>
     </div>
+    
+    
+    
     <div class="tab turn" data-group="primary" data-tab="turn">
-        {{!--campaign turn stuff here--}}
+        {{> 'systems/fiveparsecs/templates/partials/campaign/campaignturn.hbs'}}
     </div>
+
+
+
     <div class="tab worlds" data-group="primary" data-tab="worlds">
         <div style="padding:3px; margin-right:12px;">
             <table class="fp crew-roster" style="border-collapse:collapse;">
@@ -273,7 +279,7 @@
                     <th>Notes<th>
                     
                 </tr>
-                {{#each worlds as |world id|}}
+                {{#each inactive_worlds as |world id|}}
                 <tr>
                     <td class="hw">
                         {{world.name}}&nbsp;

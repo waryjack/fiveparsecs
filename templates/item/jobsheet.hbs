@@ -1,0 +1,82 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <a title="Randomly Generate" class="gen-world"><img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/></a>
+    </header>
+    <section class="sheetbody">
+      
+        <div class="fp flexcol">
+            <table class="fp item-roster">
+                <tr>
+                    <th class="fp sheet-label">World Traits</th>
+                    <td><input type="text" class="fp text-input" name="data.traits" value="{{data.traits}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Licensing</th>
+                    <td>
+                        <input type="checkbox" name="data.licensing" {{#if data.licensing}}checked{{/if}}/>&nbsp;
+                        Acquired?&nbsp;<input type="checkbox" name="data.license_obtained" {{#if data.license_obtained}}checked{{/if}}/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Notes</th>
+                    <td>
+                        <input type="text" class="fp text-input" name="data.notes" value="{{data.notes}}" data-dtype="String"/>
+                    </td>
+                </tr>
+            </table>
+            <table class="fp item-roster">
+                <tr class="fp sheet-label">
+                    <th>Local Patron</th>
+                    <th>Benefit</th>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.p1.name" value="{{data.p1.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.p1.benefit" value="{{data.p1.benefit}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.p2.name" value="{{data.p2.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.p2.benefit" value="{{data.p2.benefit}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.p3.name" value="{{data.p3.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.p3.benefit" value="{{data.p3.benefit}}" data-dtype="String"/></td>
+                </tr>
+            </table>
+             <table class="fp item-roster">
+                <tr class="fp sheet-label">
+                    <th>Local Rival</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.r1.name" value="{{data.r1.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.r1.notes" value="{{data.r1.notes}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.r2.name" value="{{data.r2.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.r2.notes" value="{{data.r2.notes}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="fp text-input" name="data.r3.name" value="{{data.r3.name}}" data-dtype="String"/></td>
+                    <td><input type="text" class="fp text-input" name="data.r3.notes" value="{{data.r3.notes}}" data-dtype="String"/></td>
+                </tr>
+            </table>
+            <table class="fp item-roster">
+                <tr class="fp sheet-label">
+                    <th>Invasion</th>
+                    <th>War Progress</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="fp text-input" name="data.invaders" value="{{data.invaders}}" data-dtype="String"/>
+                    </td>
+                    <td>
+                        <input type="text" class="fp text-input" name="data.inv_progress" value="{{data.inv_progress}}" data-dtype="String"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+    </section>
+</form>

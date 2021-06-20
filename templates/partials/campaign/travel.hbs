@@ -3,9 +3,13 @@
     <p><span class="fp-labels">Travel</span> <a class="campaign-turn" data-ct-step="travel-event" title="Generate Travel Event"><i class="fas fa-rocket"></i></a></p>
 </div>
 <div class="fp flex-item">
-   {{data.data.travel_event}}
+    <a class="ct-step" data-ct-action="leave-world">Leave This World</a>
+    <a class="ct-step" data-ct-action="stay-world">Stay on This World</a>
+</div>
+<div class="fp flex-item">
+    <p><strong>Travel Event</strong>: {{#if data.data.traveling}}{{data.data.travel_event}}{{else}}N/A{{/if}}</p>
 </div>
 <div class="fp flex-item" style="padding:3px; margin-right:12px;">
-    <input type="checkbox" name="data.data.travel_done" {{#if data.data.travel_done}}checked{{/if}}</p>
+    <input type="checkbox" name="data.data.travel_done" {{#if data.data.travel_done}}checked{{/if}}/></p> Step Completed
 </div>
 </div>

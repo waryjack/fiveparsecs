@@ -1,3 +1,58 @@
-<div class="fp flex-item" style="padding:3px; margin-right:12px;">
-        
+<div class="fp flexrow">
+        <div class="fp flex-item" style="padding:3px; margin-right:12px;">
+              Arrival  
+        </div>
+        <div class="fp flex-item">
+            <a class="ct-step" data-ct-action="follow-check">Followed by Rivals?</a>: {{data.data.arrival.followed}}
+        </div>
+        <div class="fp flex-item">
+            <a class="ct-step" data-ct-action="rnd-new-world">Generate World</a>
+            <a class="ct-step" data-ct-action="custom-new-world">Create Custom World</a>
+            <a class="ct-step" data-ct-action="visit-known-world">Return to a Known World</a>
+        </div>
+</div>
+<div class="fp flexrow">
+    <table class="fp crew-roster" style="border-collapse:collapse;">
+                <tr class="fp sheet-label">
+                    <th>World</th>
+                    <th>Invasion</th>
+                    <th>Licensing</th>
+                    <th>Local Patrons</th>
+                    <th>Local Rivals</th>
+                    <th>Notes<th>
+                    
+                </tr>
+                {{#each active_world as |world id|}}
+                <tr>
+                    <td class="hw">
+                        {{world.name}}&nbsp;
+                        <a class="item-edit item" title="Edit {{world.name}}" data-type="world" data-item-id="{{world.data._id}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a> 
+                                            <a class="item-delete item" title="Delete {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a>
+                        <p>{{world.data.data.traits}}</p>
+
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{world.data.data.invaders}}{{#if (ne world.data.data.invaders "")}}/{{/if}}{{world.data.data.inv_progress}}
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{#if world.data.data.licensing}}Yes{{else}}No{{/if}} {{#if world.data.data.license_obtained}}(Acquired){{else}}(Not Acquired){{/if}}
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{#if (ne world.data.data.p1.name "")}}<p>{{world.data.data.p1.name}}: {{world.data.data.p1.benefit}}</p>{{/if}}
+                        {{#if (ne world.data.data.p2.name "")}}<p>{{world.data.data.p2.name}}: {{world.data.data.p2.benefit}}</p>{{/if}}
+                        {{#if (ne world.data.data.p3.name "")}}<p>{{world.data.data.p3.name}}: {{world.data.data.p3.benefit}}</p>{{/if}}
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{#if (ne world.data.data.r1.name "")}}<p>{{world.data.data.r1.name}}: {{world.data.data.r1.notes}}</p>{{/if}}
+                        {{#if (ne world.data.data.r2.name "")}}<p>{{world.data.data.r2.name}}: {{world.data.data.r2.notes}}</p>{{/if}}
+                        {{#if (ne world.data.data.r3.name "")}}<p>{{world.data.data.r3.name}}: {{world.data.data.r3.notes}}</p>{{/if}}
+                    </td>
+                    <td class="hw" style="text-align:center">
+                        {{world.data.data.notes}}
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
 </div>

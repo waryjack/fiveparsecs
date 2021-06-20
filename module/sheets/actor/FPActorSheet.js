@@ -50,7 +50,10 @@ export class FPActorSheet extends ActorSheet {
          
          if (this.actor.type === "crew") {
             data.assignedCrew = this._buildCrewData(ownedItems);
-            data.worlds = ownedItems.filter(item => item.type === "world");
+            data.active_world = ownedItems.filter(item => item.type === "world" && item.data.data.active);
+            data.inactive_worlds = ownedItems.filter(item => item.type === "world" && !item.data.data.active);
+            data.battles = ownedItems.filter(item => item.type === "battle");
+
          }
 
          return data;
