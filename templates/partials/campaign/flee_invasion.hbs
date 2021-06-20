@@ -1,4 +1,4 @@
-<div class="fp flexrow">
+<!--div class="fp flexrow">
 <div class="fp flex-item" style="padding:3px; margin-right:12px;">
     <p><span class="fp-labels">Flee Invasion</span></p>
 </div>
@@ -10,4 +10,14 @@
 <div class="fp flex-item" style="padding:3px; margin-right:12px;">
     <input type="checkbox" name="data.data.flee_invasion" {{#if data.data.flee_invasion}}checked{{/if}}> Step Complete
 </div>
-</div>
+</div-->
+
+<tr>
+    <td class="fp sheet-label">Flee Invasion</td>
+    <td>
+        <a class="ct-step" data-ct-action="flee" title="Flee Planet"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/rocket-flight.png" height="32" width="32" style="border:0"/> Flee</a><br/>
+        <a class="ct-step" data-ct-action="rnd-inv-battle" title="Random Invasion Battle"> <img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Fight Random Battle</a><br/>
+        <a class="ct-step" data-ct-action="custom-inv-battle" title="Custom Invasion Battle"> <img class="dice-img" src="systems/fiveparsecs/assets/campaign/targeting.png" height="32" width="32" style="border:0"/> Fight Custom Battle</a><br/>
+    </td>
+    <td></td>
+</tr>

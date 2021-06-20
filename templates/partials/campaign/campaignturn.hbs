@@ -1,13 +1,28 @@
 <div class="fp flexcol" style="padding:3px; margin-right:12px;">
+    <h2>Campaign Turn
+        <a class="log-turn" title="Log Turn to Journal and Start New Turn">Update Captain's Log</a>
+        <a class="reset-turn" title="Reset Turn (No Logging)">Reset Turn</a>
+    </h2>
+    <table class="fp crew-roster">
+        <tr class="fp sheet-label">
+            <th>Step</th>
+            <th>Options</th>
+            <th>Results</th>
+        </tr>
     {{> "systems/fiveparsecs/templates/partials/campaign/flee_invasion.hbs"}}
-    <hr>
+ 
     {{> "systems/fiveparsecs/templates/partials/campaign/travel.hbs"}}
-    <hr>
+
     {{> "systems/fiveparsecs/templates/partials/campaign/arrival.hbs"}}
-    <hr>
+
+    {{> "systems/fiveparsecs/templates/partials/campaign/upkeep.hbs"}}
+
+    {{> "systems/fiveparsecs/templates/partials/campaign/crew_tasks.hbs"}}
+
         <!--div class="fp flexrow">
         <div class="fp flex-item">
             <h3>Fleeing Invasion?</h3> <input type="checkbox" name="data.data.flee_invasion" {{#if data.data.flee_invasion}}checked{{/if}}/>
         </div>
     </div-->   
+    </table>
 </div>

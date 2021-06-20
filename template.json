@@ -50,18 +50,21 @@
                 "flee":false,
                 "travel":{
                     "traveling":false,
-                    "travel_even":""
+                    "travel_event":""
                 },
                 "arrival":{
-                    "followed":"unknown"
+                    "followed":false,
+                    "arrival_complete":false
                 },
                 "upkeep":{
                     "debt":false,
-                    "payroll":false
+                    "payroll":false,
+                    "upkeep_complete":false
                 },
                 "crew_tasks":{
                     "patron_found":false,
                     "train":false,
+                    "trained_this_turn":"",
                     "trade":false,
                     "trade_result":"",
                     "recruit":false,
@@ -72,7 +75,9 @@
                     "track_results":"",
                     "decoy":false,
                     "decoy_results":"",
-                    "repair":false
+                    "repair":false,
+                    "repair_result":"",
+                    "crew_tasks_complete":false
                 },
                 "battles":[],
                 "jobs":[],
