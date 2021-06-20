@@ -87,6 +87,8 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.passthru-edit-crew-member').click(this._editCrewMember.bind(this));
 
+        html.find('.ct-step').click(this._handleCampaignTurnStep.bind(this));
+
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -415,5 +417,40 @@ export class FPActorSheet extends ActorSheet {
         return ui.notifications.warn("Non functional until tables are prepared");
 
         
+    }
+
+    _handleCampaignTurnStep(e) {
+        e.preventDefault();
+        let element = e.currentTarget;
+        let phase = element.dataset.ctPhase;
+        let action = element.dataset.ctAction;
+
+        switch(phase) {
+            case "flee-invasion": 
+                {
+                    return this.actor.handleFleeInvasion(action);
+                }; break;
+            case "arrival":
+                {
+                    return this.actor.handleArrival(action); 
+                }
+            case "upkeep":
+                {
+                    return this.actor.handleUpkeep(action);
+                }
+            case "crew_tasks":
+                {
+                    return this.actor.handleCrewTask(action);
+                }
+            case "jobs":
+                {
+                    return this.actor.addJob(action, type);
+                }
+            case "battles":
+                {
+                    return this.actor.addBattle(action, type);
+                }
+        }
+
     }
 }
