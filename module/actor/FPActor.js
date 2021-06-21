@@ -144,10 +144,9 @@ export class FPActor extends Actor {
                         type: "world"
                     }
 
-                    let worldData = FPProcGen.generateWorld();
-                    itemData.data = worldData;
+                    FPProcGen.generateWorld().then((worldData) => itemData.data = worldData);
                     console.warn("Generated world data: ", itemData);
-                    return Item.create(itemData, {parent:this, renderSheet:true});
+                    return Item.create(itemData, {parent:this, renderSheet:false});
                 }
             case 1:
                 {
