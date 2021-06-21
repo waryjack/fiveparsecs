@@ -176,7 +176,7 @@ export class FPActor extends Actor {
     createBattle(type, random){
         if(random){
             return ui.notifications.warn("Generate Random Battle Here");
-            // let itemData = await FPProgGen.generateBattle();
+            FPProgGen.generateBattle().then(battleData => itemData.data = battleData);
             itemData.type = "battle";
             itemData.name = type+" Battle";
             return Item.create(itemData, {parent: this, renderSheet:false});
