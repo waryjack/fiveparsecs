@@ -59,17 +59,12 @@ export class FPProcGen {
     static async generateWorld() {
         //sample placeholder 
         let worldData = {
-            name: "Example random active world",
-            type: "",
-            data:{
-                data:{
                     active:true,
                     licensing:true,
                     invaders:"Scary Aliens",
                     invasion_progress:"Impending",
                     traits:"Sample, example, demonstration"
-                }
-            }
+            
         }
 
         return worldData;

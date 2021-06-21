@@ -82,6 +82,7 @@ export class FPActor extends Actor {
 
     handleArrival(action) {
         let follow = new Roll("1d6").evaluate({async:false}).result;
+        console.warn("Arrival Follow Check result: ", follow);
         if (follow > 5) {
             this.data.data.campaign_turn.arrival.followed = true;
         }
@@ -96,6 +97,8 @@ export class FPActor extends Actor {
                 this.createWorld(2);
             }; break;
         }
+
+        this.update({"data.campaign_turn.arrival.followed":true})
     }
 
     handleUpkeep(action) {
@@ -120,10 +123,13 @@ export class FPActor extends Actor {
      */
     createWorld(random) {
         // Get list of owned world Items
-        const worlds = this.items.filter(i => i.type === "world");
+        let worlds = this.items.filter(i => i.type === "world");
+        console.warn("World List: ", worlds);
 
         // Set all world Items to inactive (you can only have one active world per campaign turn)
         worlds.forEach(w => {
+            console.log("Specific World: ", w);
+            console.log("Is Active: ", w.data.data.active);
             if (w.data.data.active) {
                 w.data.data.active = false;
             }
@@ -133,8 +139,15 @@ export class FPActor extends Actor {
         switch(random) {
             case 0:
                 {
-                    let itemData = FPProcGen.generateWorld();
-                    return Item.create(itemData, {parent:this, renderSheet:false});
+                    let itemData = {
+                        name: "Rando Calrissian World",
+                        type: "world"
+                    }
+
+                    let worldData = FPProcGen.generateWorld();
+                    itemData.data = worldData;
+                    console.warn("Generated world data: ", itemData);
+                    return Item.create(itemData, {parent:this, renderSheet:true});
                 }
             case 1:
                 {
@@ -142,7 +155,7 @@ export class FPActor extends Actor {
                         name: "New World",
                         type: "world"
                     }
-
+                    console.warn("Custom world data: ", itemData);
                     return Item.create(itemData, {parent:this, renderSheet:true});
                 }
             case 2:

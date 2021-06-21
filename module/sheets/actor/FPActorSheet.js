@@ -54,6 +54,9 @@ export class FPActorSheet extends ActorSheet {
             data.inactive_worlds = ownedItems.filter(item => item.type === "world" && !item.data.data.active);
             data.battles = ownedItems.filter(item => item.type === "battle");
 
+            console.warn("Active World: ", data.active_world);
+            console.warn("Inactive Worlds: ", data.inactive_worlds);
+
          }
 
          return data;

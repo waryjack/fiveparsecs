@@ -8,6 +8,7 @@
         <a class="ct-step" data-ct-phase="arrival" data-ct-action="arrive-known-world" title="Return to a Known World"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/planet-conquest.png" height="32" width="32" style="border:0"/> Known World</a>
     </td>
     <td class="hw">
+        {{log "Active Worlds HBS: " active_world}}
         {{#each active_world as |world id|}}
         <strong>{{world.name}}</strong> ({{world.data.data.traits}})<br/>
         <strong>Invaders: </strong>{{world.data.data.invaders}}{{#if (ne world.data.data.invaders "")}}/{{/if}}{{world.data.data.inv_progress}}<br/>
