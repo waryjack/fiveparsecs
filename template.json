@@ -48,6 +48,7 @@
             "campaign_turn":{
                 "turn_id":"",
                 "flee":false,
+                "flee_outcome":"",
                 "travel":{
                     "traveling":false,
                     "travel_event":""

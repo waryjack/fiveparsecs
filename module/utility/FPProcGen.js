@@ -56,12 +56,32 @@ export class FPProcGen {
 
     }
 
-    static async generateEncounter() {
+    static async generateWorld() {
+        //sample placeholder 
+        let worldData = {
+            name: "Example random active world",
+            type: "",
+            data:{
+                data:{
+                    active:true,
+                    licensing:true,
+                    invaders:"Scary Aliens",
+                    invasion_progress:"Impending",
+                    traits:"Sample, example, demonstration"
+                }
+            }
+        }
+
+        return worldData;
+    }
+
+    static async generateBattle() {
 
         // build encounter data
         // create new encounter
         // output to chat and create journal entry? 
 
+        return {};
     }
 
 }
