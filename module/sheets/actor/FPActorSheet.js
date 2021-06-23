@@ -332,7 +332,6 @@ export class FPActorSheet extends ActorSheet {
     _buildCrewData(ownedItems) {
        
         let crewRoster = [];
-        let gList = [];
         let assignedCrew = ownedItems.filter(function(item) {return item.type == "crew_assignment"});
    
         if (!Array.isArray(assignedCrew) || assignedCrew.length === 0) { console.log("No assigned crew"); return; }
@@ -344,6 +343,7 @@ export class FPActorSheet extends ActorSheet {
             let crewActor = game.actors.filter(function(actor) {return actor.data._id == crew.data.data.assigned_crew_actorId})[0];
            
             let mbr_weapons = {};
+            let gList = [];
 
             // Build object with basic crewmember info  
             let crewMemberData = {
