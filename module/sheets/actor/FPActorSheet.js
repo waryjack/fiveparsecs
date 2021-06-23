@@ -53,6 +53,7 @@ export class FPActorSheet extends ActorSheet {
             data.active_world = ownedItems.filter(item => item.type === "world" && item.data.data.active);
             data.inactive_worlds = ownedItems.filter(item => item.type === "world" && !item.data.data.active);
             data.battles = ownedItems.filter(item => item.type === "battle");
+            data.jobs = ownedItems.filter(item => item.type === "patron_job");
 
             console.warn("Active World: ", data.active_world);
             console.warn("Inactive Worlds: ", data.inactive_worlds);
@@ -447,11 +448,11 @@ export class FPActorSheet extends ActorSheet {
                 }
             case "jobs":
                 {
-                    return this.actor.addJob(action, type);
+                    return this.actor.addJob(action, true); // true for now - random job generation
                 }
             case "battles":
                 {
-                    return this.actor.addBattle(action, type);
+                    return this.actor.addBattle(action, true); // true - random battle generation
                 }
         }
 

@@ -70,13 +70,55 @@ export class FPProcGen {
         return worldData;
     }
 
-    static async generateBattle() {
+    static async generateBattle(battleType) {
 
-        // build encounter data
-        // create new encounter
-        // output to chat and create journal entry? 
+        // Battle Template
 
-        return {};
+        /* "battle":{
+            "type":"",
+            "rival_name":"",
+            "rival_type":"",
+            "deployment":"",
+            "objective":"",
+            "notable_sights":"",
+            "complete":false,
+            "outcome":"",
+            "opposition":{
+                "base_number":0,
+                "bonus_number":0,
+                "specialists":0,
+                "uniques":0,
+                "element":"",
+                "element_subtype":"",
+                "basic_weapon":"",
+                "spec_weapon":""
+            }
+        } */ 
+
+        let base_enemies = Number(new Roll("1d6").evaluate({async:false}).result);
+
+        let battleData = {
+            type: battleType,
+            rival_name: "None",
+            rival_type: "None",
+            deployment: "Brief engagement",
+            objective: "Move through",
+            notable_sights: "Documentation",
+            complete:false,
+            outcome:"unknown",
+            opposition: {
+                base_number: base_enemies,
+                bonus_number: 1,
+                specialists: 0,
+                uniques: 0,
+                element: "Hired Muscle",
+                element_subtype: "Guild Troops",
+                basic_weapon: "Colony Rifle",
+                spec_weapon: "Power Claw"
+            }
+        }
+
+        return battleData;
     }
 
 }

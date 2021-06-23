@@ -110,11 +110,20 @@ export class FPActor extends Actor {
     }
 
     addJob(action, type){
-
+        return ui.notifications.warn("Not implemented yet");
     }
 
     addBattle(type, random) {
-
+        let rivalCheck = new Roll("1d6").evaluate({async:false}).result;
+        if (type === "rival"){
+            if (rivalCheck < 3) {
+                this.createBattle("rival", true);
+            } else {
+                return ui.notifications.warn("No Rivals Found You");
+            }
+        } else {
+            this.createBattle(type, random);
+        }
     }
 
     /**
@@ -175,10 +184,13 @@ export class FPActor extends Actor {
      */
     createBattle(type, random){
         if(random){
-            return ui.notifications.warn("Generate Random Battle Here");
-            FPProgGen.generateBattle().then(battleData => itemData.data = battleData);
-            itemData.type = "battle";
-            itemData.name = type+" Battle";
+            let itemData = {
+                name: type + " Battle",
+                type: "battle"
+            }
+            // return ui.notifications.warn("Generate Random Battle Here");
+            FPProcGen.generateBattle(type).then(battleData => itemData.data = battleData);
+            
             return Item.create(itemData, {parent: this, renderSheet:false});
         } else {
             let itemData  = {

@@ -184,11 +184,12 @@
             "complete":false,
             "outcome":"",
             "opposition":{
-                "number":0,
+                "base_number":0,
+                "bonus_number":0,
                 "specialists":0,
                 "uniques":0,
                 "element":"",
-                "element_specific":"",
+                "element_subtype":"",
                 "basic_weapon":"",
                 "spec_weapon":""
             }
