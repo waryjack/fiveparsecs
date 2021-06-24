@@ -163,9 +163,10 @@ export class FPProcGen {
             base_enemies = new Roll("1d6").evaluate({async:false}).result;
         }
 
+       
         
         enemyCount = Number(base_enemies) + Number(enemyNumbers); // placeholding; might later do calcs based on enemies
-
+        console.log("Base, Bonus, Final: ", base_enemies, enemyNumbers, enemyCount);
         // Determine number of specialists / lieutenants
         if (enemyCount < 3) {
             specs = 0;
