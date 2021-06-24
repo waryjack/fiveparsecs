@@ -12,69 +12,6 @@
                     <th class="fp sheet-label">Battle Type</th>
                     <td>{{> 'systems/fiveparsecs/templates/partials/battle/battletypeselect.hbs'}}</td>
                 </tr>
-                <tr>
-                    <th class="fp sheet-label">Licensing</th>
-                    <td>
-                        <input type="checkbox" name="data.licensing" {{#if data.licensing}}checked{{/if}}/>&nbsp;
-                        Acquired?&nbsp;<input type="checkbox" name="data.license_obtained" {{#if data.license_obtained}}checked{{/if}}/>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="fp sheet-label">Notes</th>
-                    <td>
-                        <input type="text" class="fp text-input" name="data.notes" value="{{data.notes}}" data-dtype="String"/>
-                    </td>
-                </tr>
-            </table>
-            <table class="fp item-roster">
-                <tr class="fp sheet-label">
-                    <th>Local Patron</th>
-                    <th>Benefit</th>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.p1.name" value="{{data.p1.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.p1.benefit" value="{{data.p1.benefit}}" data-dtype="String"/></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.p2.name" value="{{data.p2.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.p2.benefit" value="{{data.p2.benefit}}" data-dtype="String"/></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.p3.name" value="{{data.p3.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.p3.benefit" value="{{data.p3.benefit}}" data-dtype="String"/></td>
-                </tr>
-            </table>
-             <table class="fp item-roster">
-                <tr class="fp sheet-label">
-                    <th>Local Rival</th>
-                    <th>Notes</th>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.r1.name" value="{{data.r1.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.r1.notes" value="{{data.r1.notes}}" data-dtype="String"/></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.r2.name" value="{{data.r2.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.r2.notes" value="{{data.r2.notes}}" data-dtype="String"/></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="fp text-input" name="data.r3.name" value="{{data.r3.name}}" data-dtype="String"/></td>
-                    <td><input type="text" class="fp text-input" name="data.r3.notes" value="{{data.r3.notes}}" data-dtype="String"/></td>
-                </tr>
-            </table>
-            <table class="fp item-roster">
-                <tr class="fp sheet-label">
-                    <th>Invasion</th>
-                    <th>War Progress</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" class="fp text-input" name="data.invaders" value="{{data.invaders}}" data-dtype="String"/>
-                    </td>
-                    <td>
-                        <input type="text" class="fp text-input" name="data.inv_progress" value="{{data.inv_progress}}" data-dtype="String"/>
-                    </td>
-                </tr>
             </table>
         </div>
     

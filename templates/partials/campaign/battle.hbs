@@ -3,17 +3,22 @@
       Battles
     </td>
     <td>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="rival" title="Check for Rivals"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/spy.png" height="32" width="32" style="border:0"/> Check for Rivals</a><br/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="patron" title="Carry out Patron Job"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/> Patron Job</a><br/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="opportunity" title="Carry out Opportunity Mission"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Opportunity Mission</a><br/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="quest" title="Continue a Quest"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Quest Mission</a>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Rival" title="Check for Rivals"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/spy.png" height="32" width="32" style="border:0"/> Check for Rivals</a><br/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Patron" title="Carry out Patron Job"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/> Patron Job</a><br/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Opportunity" title="Carry out Opportunity Mission"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Opportunity Mission</a><br/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Quest" title="Continue a Quest"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Quest Mission</a>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Invasion" title="Fight Invading Forces"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/> Invasion Battle</a>
     </td>
     <td class="hw">
+        {{log "Battle List: " battles}}
         {{#each battles as |battle id|}}
+        {{log "Battle info: " battle}}
         <p><strong>{{battle.name}}</strong> <a class="item-delete item" data-item-id="{{battle.data._id}}"><i class="fas fa-trash"></i></a><br/>
-        {{battle.type}}<br/>
-        {{battle.data.data.objective}}<br/>
-        {{battle.data.data.opposition.element_subtype}}</p>
+        <strong>Objective: </strong>{{battle.data.data.objective}}<br/>
+        <strong>Deployment: </strong>{{battle.data.data.deployment}}<br/>
+        <strong>Notable Sights: </strong>{{battle.data.data.notable_sights}}<br/>
+        <strong>Opposition:</strong> {{battle.data.data.opposition.element_subtype}} x{{battle.data.data.opposition.base_number}} 
+        ({{battle.data.data.opposition.specialists}} Spec / {{battle.data.data.opposition.uniques}} Unique)</p>
         {{/each}}
     </td>
 </tr>

@@ -177,7 +177,7 @@
         "battle":{
             "type":"",
             "rival_name":"",
-            "rival_type":"",
+            "rival_attack_type":"",
             "deployment":"",
             "objective":"",
             "notable_sights":"",
@@ -188,6 +188,7 @@
                 "bonus_number":0,
                 "specialists":0,
                 "uniques":0,
+                "unique_type":0,
                 "element":"",
                 "element_subtype":"",
                 "basic_weapon":"",

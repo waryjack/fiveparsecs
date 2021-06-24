@@ -115,14 +115,35 @@ export class FPActor extends Actor {
 
     addBattle(type, random) {
         let rivalCheck = new Roll("1d6").evaluate({async:false}).result;
-        if (type === "rival"){
+        if (type === "Rival"){
             if (rivalCheck < 3) {
-                this.createBattle("rival", true);
+                this.createBattle("Rival", false); // rival battles should be custom setups
             } else {
                 return ui.notifications.warn("No Rivals Found You");
             }
         } else {
-            this.createBattle(type, random);
+            new Dialog({
+                title:"Crew Size",
+                content: "<div class='form-group'><table><tr><th>Crew size for this Battle</th><td><input id='crewsize' type='text' value='5' data-dtype='Number'/></td></tr></table></div>",
+                buttons: {
+                    roll: {
+                     icon: '<i class="fas fa-check"></i>',
+                     label: "Roll!",
+                     callback: (html) => {
+                      //  console.log("passed html: ", html); 
+                      let crewSize = html.find('#crewsize').val();
+                      console.warn("Crewsize: ", crewSize);
+                      this.createBattle(type, random, crewSize);
+                     }
+                    },
+                    close: {
+                     icon: '<i class="fas fa-times"></i>',
+                     label: "Cancel",
+                     callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                   },
+                default: "close"
+            }).render(true);
         }
     }
 
@@ -182,14 +203,15 @@ export class FPActor extends Actor {
      * @param {Boolean} random if true, generates a random battle; if false, opens the Item sheet for battles to custom-create
      * @returns 
      */
-    createBattle(type, random){
+    createBattle(type, random, crewsize){
         if(random){
             let itemData = {
                 name: type + " Battle",
                 type: "battle"
             }
             // return ui.notifications.warn("Generate Random Battle Here");
-            FPProcGen.generateBattle(type).then(battleData => itemData.data = battleData);
+            FPProcGen.generateBattle(type, crewsize).then((battleData) => itemData.data = battleData);
+            console.warn("Generated Battle Data: ", itemData); 
             
             return Item.create(itemData, {parent: this, renderSheet:false});
         } else {
