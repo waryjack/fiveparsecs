@@ -157,26 +157,28 @@ export class FPActor extends Actor {
         // Get the active world
         let activeWorldArray = this.items.filter(i => i.type === "world" && i.data.data.active);
 
+        // deactivate current world (only one world is active at a time)
         if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
             let currentWorld = activeWorldArray[0];
             console.warn("Current World: ", currentWorld);
             currentWorld.update({"data.active":false});
         }
-        // set it to Inactive
+     
         
 
         // switch based on random, custom, or known world selection
         switch(random) {
             case 0:
                 {
-                    let itemData = {
+
+                   /* let itemData = {
                         name: "Random World #" + new Roll("1d999").evaluate({async:false}).result,
                         type: "world"
-                    }
+                    }*/
 
-                    FPProcGen.generateWorld().then((worldData) => itemData.data = worldData);
-                    console.warn("Generated world data: ", itemData);
-                    return Item.create(itemData, {parent:this, renderSheet:false});
+                    FPProcGen.generateWorld().then((worldData) => {
+                        return Item.create(worldData, {parent:this, renderSheet:false});
+                    }); break;
                 }
             case 1:
                 {
@@ -189,7 +191,7 @@ export class FPActor extends Actor {
                     }
                    console.warn("Custom world data: ", itemData);
                     return Item.create(itemData, {parent:this, renderSheet:true});
-                }
+                };
             case 2:
                 {
                     // dialog to select existing world here

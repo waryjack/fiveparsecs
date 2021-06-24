@@ -42,29 +42,39 @@ export class FPProcGen {
         }
         
         newTrait_1 = await worldTraits.draw({displayChat:false});
-        if (game.settings.get("FP", "Wild Galaxy")) { newTrait_2 = await worldTraits.draw({displayChat:false}); }
+        newTrait_2 = await worldTraits.draw({displayChat:false});
+        // if (game.settings.get("FP", "Wild Galaxy")) { newTrait_2 = await worldTraits.draw({displayChat:false}); }
         newName = await planetNames.draw({displayChat:false});
 
         if (licenseRoll > 4) { licenseReqd = true; }
 
         generatedTraits = {
-            genName: newName,
-            genTrait_1: newTrait_1,
-            genTrait_2: newTrait_2,
+            genName: newName.results[0].data.text,
+            genTrait_1: newTrait_1.results[0].data.text,
+            genTrait_2: newTrait_2.results[0].data.text,
             genLicensing: licenseReqd
         }
+
+        return generatedTraits;
 
     }
 
     static async generateWorld() {
+
+        let genWorldStats = await FPProcGen.generateWorldTraits();
+
+
         //sample placeholder 
         let worldData = {
-                    active:true,
-                    licensing:true,
-                    invaders:"Scary Aliens",
-                    invasion_progress:"Impending",
-                    traits:"Sample, example, demonstration"
-            
+            name: genWorldStats.genName,
+            type: "world",
+            data:{
+                active:true,
+                licensing:genWorldStats.genLicensing,
+                invaders:"None",
+                inv_progress:"N/A",
+                traits: genWorldStats.genTrait_1 + ", " + genWorldStats.genTrait_2
+            }
         }
 
         return worldData;
