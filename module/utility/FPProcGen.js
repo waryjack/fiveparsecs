@@ -95,6 +95,8 @@ export class FPProcGen {
             }
         } */ 
 
+        // Initialize basic variables
+        console.warn("Battletype: ", battleType);
         let base_enemies = 0;
         let bonus_enemies = "As enemy type";
         let specs = 0;
@@ -102,36 +104,47 @@ export class FPProcGen {
         let enemyCount = 0;
         let rivalAttackType = "N/A";
         let uniqueType = "";
-        // Battle Table Setup
-
-        console.warn("BattleType: ", battleType);
-
-        const tblRivalAttack = game.tables.filter(table => table.name === "Rival Attack Type")[0];
+        let deployCond = "";
+        let sights = "";
+        let objective = "";
+        let enemySubCat = "";
+        let enemyCatText = "";
+        
+        
+        // Get tables for random draws
+        // const tblRivalAttack = game.tables.filter(table => table.name === "Rival Attack Type")[0];
         const tblUniques = game.tables.filter(table => table.name === "Unique Individuals")[0];
         
         const tblSights = game.tables.filter(table => table.name === `Notable Sights-${battleType}`)[0];
         const tblEnemyCat = game.tables.filter(table => table.name === `Opposition-${battleType}`)[0];
         const tblDeploy = game.tables.filter(table => table.name === `Deployment-${battleType}`)[0];
-        const tblObjective = game.tables.filter(table => table.name === `Objective-${battleType}`)[0];        
-
-        console.warn("Enemy Category Table: ", tblEnemyCat);
-        const enemyCat = await tblEnemyCat.draw({displayChat:false});
-        let enemyCatText = enemyCat.results[0].data.text;
-        console.warn("Enemy Category: ", enemyCatText);
+        const tblObjective = game.tables.filter(table => table.name === `Objective-${battleType}`)[0];   
+        console.warn("enemy cat table: ", tblEnemyCat);     
+        let ec = await tblEnemyCat.draw({displayChat:false});
+        enemyCatText = ec.results[0].data.text;
         const tblEnemySubtype = game.tables.filter(table => table.name === enemyCatText)[0];
         
-        // Draw info from the random tables
+        // Make random draws, resolve to text results
+        let dc = await tblDeploy.draw({displayChat:false});
+        deployCond = dc.results[0].data.text;
+        console.warn("Deploy Cond: ", deployCond);
+        let ns = await tblSights.draw({displayChat:false})
+        sights = ns.results[0].data.text;
+        let ob = await tblObjective.draw({displayChat:false});
+        objective = ob.results[0].data.text;
+        let es = await tblEnemySubtype.draw({displayChat:false})
+        enemySubCat = es.results[0].data.text;
 
-        let deployCond = await tblDeploy.draw({displayChat:false});
-        let sights = await tblSights.draw({displayChat:false});
-        let objective = await tblObjective.draw({displayChat:false});
-        let enemySubCat = await tblEnemySubtype.draw({displayChat:false});
+        const enemyDetails = enemySubCat.split("/");
+        let enemySpecificType = enemyDetails[0];
+        let enemyNumbers = enemyDetails[1];
+
        
-        deployCond = deployCond.results[0].data.text;
-        sights = (battleType != "Invasion") ? sights.results[0].data.text : "None";
-        objective = objective.results[0].data.text;
-        enemySubCat = enemySubCat.results[0].data.text;
 
+       
+        sights = (battleType != "Invasion") ? sights : "None";
+      
+        // Determine base size of enemy squad
         if (crewsize < 5) {
             base_enemies = new Roll("2d6kl1").evaluate({async:false}).result;
         } else if (crewsize > 5) {
@@ -140,8 +153,10 @@ export class FPProcGen {
             base_enemies = new Roll("1d6").evaluate({async:false}).result;
         }
 
-        enemyCount = base_enemies; // convenience redundancy
+        
+        enemyCount = Number(base_enemies) + Number(enemyNumbers); // placeholding; might later do calcs based on enemies
 
+        // Determine number of specialists / lieutenants
         if (enemyCount < 3) {
             specs = 0;
         } else if (enemyCount > 6) {
@@ -150,17 +165,17 @@ export class FPProcGen {
             specs = 1;
         }
 
-        if (battleType != "invasion" && enemyCat != "Roving Threats") {
+        // Determine unique enemy presence
+        if (battleType != "invasion" && enemyCatText != "Roving Threats") {
             const uniqueCheck = new Roll("2d6").evaluate().result;
             if(uniqueCheck > 8) {
                 uniques = 1;
-                uniqueType = await tblUniques.draw({displayChat:false});
-                uniqueType = uniqueType.results[0].data.text;
+                let ut = await tblUniques.draw({displayChat:false})
+                uniqueType = ut.results[0].data.text;
             }
         }
 
-        console.warn("Draws: ", deployCond, objective, sights, enemyCat, enemySubCat, uniqueType);
-
+        // Create data for battle
         let battleData = {
         
                 type: battleType,
@@ -177,11 +192,34 @@ export class FPProcGen {
                     specialists: specs,
                     uniques: uniques,
                     unique_type: uniqueType,
-                    element: enemyCat,
-                    element_subtype: enemySubCat
+                    element: enemyCatText,
+                    element_subtype: enemySpecificType
             }
             
         }
+
+        /*
+        let battleData = {
+        
+            type: "Patron",
+            rival_name: "None",
+            rival_attack_type: "N/A",
+            deployment: "No Condition",
+            objective: "Defend",
+            notable_sights: "Documentation",
+            complete:false,
+            outcome:"unknown",
+            opposition: {
+                base_number: 4,
+                bonus_number: 0,
+                specialists: 0,
+                uniques: 0,
+                unique_type: "",
+                element: "Criminal Element",
+                element_subtype: "Starport Scum"
+            }
+        
+        } */
 
         return battleData;
     }

@@ -7,13 +7,16 @@
         <a class="ct-step" data-ct-phase="arrival" data-ct-action="arrive-custom-world" title="Create Custom World"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/eclipse.png" height="32" width="32" style="border:0"/> Custom World</a><br/>
         <a class="ct-step" data-ct-phase="arrival" data-ct-action="arrive-known-world" title="Return to a Known World"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/planet-conquest.png" height="32" width="32" style="border:0"/> Known World</a>
     </td>
-    <td class="hw">
+    <td>
         {{log "Active Worlds HBS: " active_world}}
-        {{#each active_world as |world id|}}
-        <strong>{{world.name}}</strong> ({{world.data.data.traits}})<br/>
-        <strong>Invaders: </strong>{{world.data.data.invaders}}{{#if (ne world.data.data.invaders "")}}/{{/if}}{{world.data.data.inv_progress}}<br/>
-        <strong>Licensing: </strong>{{#if world.data.data.licensing}}Yes{{else}}No{{/if}} {{#if world.data.data.license_obtained}}(Acquired){{else}}(Not Acquired){{/if}}
+        {{#each worlds as |world id|}}
+        {{#if world.data.data.active}}
+        <p><span class="fp sheet-label">World: </span><span class="hw">{{world.name}}</span> <a class="item-edit item" data-item-id="{{world.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a><br/>
+        <span class="fp sheet-label">World Traits: </span><span class="hw">{{world.data.data.traits}}</span><br/>
+        <span class="fp sheet-label">Licensing:</span><span class="hw">{{#if world.data.data.licensing}}Yes{{else}}No{{/if}} {{#if world.data.data.license_obtained}}(Acquired){{else}}(Not Acquired){{/if}}</span><br/>
+        <span class="fp sheet-label">Invaders: </span><span class="hw">{{world.data.data.invaders}}{{#if (ne world.data.data.invaders "")}}/{{/if}}{{world.data.data.inv_progress}}</span><br/>
+        {{/if}}
         {{/each}}
-        {{#if data.campaign_turn.arrival.followed}}<br/><strong>You have been followed by a Rival!</strong>{{/if}}
+        <!--span class="fp sheet-label">Followed? </span><span class="hw">{{#if data.campaign_turn.arrival.followed}}Yes{{else}}No{{/if}}</span></p-->
     </td>
 </tr>

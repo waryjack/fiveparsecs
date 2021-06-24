@@ -188,7 +188,7 @@
                 "bonus_number":0,
                 "specialists":0,
                 "uniques":0,
-                "unique_type":0,
+                "unique_type":"",
                 "element":"",
                 "element_subtype":"",
                 "basic_weapon":"",

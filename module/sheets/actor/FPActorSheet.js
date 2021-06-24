@@ -51,13 +51,9 @@ export class FPActorSheet extends ActorSheet {
          if (this.actor.type === "crew") {
             data.assignedCrew = this._buildCrewData(ownedItems);
             data.active_world = ownedItems.filter(item => item.type === "world" && item.data.data.active);
-            data.inactive_worlds = ownedItems.filter(item => item.type === "world" && !item.data.data.active);
+            data.worlds = ownedItems.filter(item => item.type === "world");
             data.battles = ownedItems.filter(item => item.type === "battle");
             data.jobs = ownedItems.filter(item => item.type === "patron_job");
-
-            console.warn("Active World: ", data.active_world);
-            console.warn("Inactive Worlds: ", data.inactive_worlds);
-
          }
 
          return data;

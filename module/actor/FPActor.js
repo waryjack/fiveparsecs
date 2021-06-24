@@ -121,6 +121,8 @@ export class FPActor extends Actor {
             } else {
                 return ui.notifications.warn("No Rivals Found You");
             }
+        } else if (type === "Invasion") {
+            this.createBattle("Invasion", false);
         } else {
             new Dialog({
                 title:"Crew Size",
@@ -152,25 +154,23 @@ export class FPActor extends Actor {
      * @param {Int} random 0 = random world; 1 = custom world; 2 = return to known world
      */
     createWorld(random) {
-        // Get list of owned world Items
-        let worlds = this.items.filter(i => i.type === "world");
-        console.warn("World List: ", worlds);
+        // Get the active world
+        let activeWorldArray = this.items.filter(i => i.type === "world" && i.data.data.active);
 
-        // Set all world Items to inactive (you can only have one active world per campaign turn)
-        worlds.forEach(w => {
-            console.log("Specific World: ", w);
-            console.log("Is Active: ", w.data.data.active);
-            if (w.data.data.active) {
-                w.data.data.active = false;
-            }
-        });
+        if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
+            let currentWorld = activeWorldArray[0];
+            console.warn("Current World: ", currentWorld);
+            currentWorld.update({"data.active":false});
+        }
+        // set it to Inactive
+        
 
         // switch based on random, custom, or known world selection
         switch(random) {
             case 0:
                 {
                     let itemData = {
-                        name: "Rando Calrissian World",
+                        name: "Random World #" + new Roll("1d999").evaluate({async:false}).result,
                         type: "world"
                     }
 
@@ -182,9 +182,12 @@ export class FPActor extends Actor {
                 {
                     let itemData = {
                         name: "New World",
-                        type: "world"
+                        type: "world",
+                        data: {
+                            active:true
+                        }
                     }
-                    console.warn("Custom world data: ", itemData);
+                   console.warn("Custom world data: ", itemData);
                     return Item.create(itemData, {parent:this, renderSheet:true});
                 }
             case 2:
@@ -207,13 +210,16 @@ export class FPActor extends Actor {
         if(random){
             let itemData = {
                 name: type + " Battle",
-                type: "battle"
+                type: "battle",
+                data: {}
             }
-            // return ui.notifications.warn("Generate Random Battle Here");
-            FPProcGen.generateBattle(type, crewsize).then((battleData) => itemData.data = battleData);
-            console.warn("Generated Battle Data: ", itemData); 
-            
-            return Item.create(itemData, {parent: this, renderSheet:false});
+
+                // return ui.notifications.warn("Generate Random Battle Here");
+                FPProcGen.generateBattle(type, crewsize).then(battleData => {
+                    itemData.data = battleData;
+                    return Item.create(itemData, {parent:this, renderSheet:false});
+                });
+          
         } else {
             let itemData  = {
                 name: type + " Battle",
