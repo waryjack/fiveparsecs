@@ -3,6 +3,78 @@ import { FP } from "../config.js";
 
 export class FPRollUtility {
 
+
+    static upkeepDialog(template, data) {
+
+        console.warn("upkeep data: ", data); 
+
+        renderTemplate(template, data).then(dlg => {
+            new Dialog({
+                title: "Upkeep & Payments",
+                content: dlg,
+                buttons: {
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Continue",
+                        callback: (html) => {
+                            let debtPayment = Number(html.find('#debt-pay').val());
+                            let crewPayment = Number(html.find('#crew-pay').val());
+                            let repairPayment = Number(html.find('#repair-pay').val());
+                            let medPayment = Number(html.find('#med-pay').val());
+
+                            return data.actor.handleUpkeep(debtPayment, crewPayment, repairPayment, medPayment);
+                        }
+                    },
+                    close: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+
+
+                }
+
+
+            }).render(true);
+
+        });
+    }
+
+
+    static crewTaskDialog(template, data) {
+
+        renderTemplate(template, data).then(dlg => {
+            new Dialog({
+                title: "Upkeep & Payments",
+                content: dlg,
+                buttons: {
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Continue",
+                        callback: (html) => {
+                            let debtPayment = Number(html.find('#debt-pay').val());
+                            let crewPayment = Number(html.find('#crew-pay').val());
+                            let repairPayment = Number(html.find('#repair-pay').val());
+                            let medPayment = Number(html.find('#med-pay').val());
+
+                            return data.actor.handleUpkeep(debtPayment, crewPayment, repairPayment, medPayment);
+                        }
+                    },
+                    close: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+
+
+                }
+
+
+            }).render(true);
+
+        });
+    }
+
     static basicRoll(template, data) {
         /**
          * Data Structure

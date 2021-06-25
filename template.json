@@ -18,7 +18,9 @@
             "luck":0,
             "xp":0,
             "casualty":false,
-            "captain":false
+            "captain":false,
+            "sickbay_time":0,
+            "saving_throw":""
         },
         "enemy":{
             "templates":["common"],
@@ -41,6 +43,7 @@
             "rumors":"",
             "ship":"",
             "hull":0,
+            "hullmax":0,
             "debt":0,
             "ship_traits":"",
             "ship_upgrades":"",
@@ -51,34 +54,48 @@
                 "flee_outcome":"",
                 "travel":{
                     "traveling":false,
-                    "travel_event":""
+                    "travel_event":"",
+                    "departing":""
                 },
                 "arrival":{
                     "followed":false,
-                    "arrival_complete":false
+                    "arrival_complete":false,
+                    "arriving":""
                 },
                 "upkeep":{
                     "debt":false,
+                    "debt_paid":0,
                     "payroll":false,
-                    "upkeep_complete":false
+                    "payroll_paid":0,
+                    "ship_repair":false,
+                    "repair_cost":0,
+                    "upkeep_complete":false,
+                    "upkeep_text":""
                 },
                 "crew_tasks":{
                     "patron_found":false,
+                    "patron_searchers":"",
                     "train":false,
-                    "trained_this_turn":"",
+                    "trainees":"",
                     "trade":false,
+                    "traders":"",
                     "trade_result":"",
                     "recruit":false,
                     "recruits":0,
                     "explore":false,
+                    "explorers":"",
                     "explore_results":"",
                     "track":false,
+                    "trackers":"",
                     "track_results":"",
                     "decoy":false,
+                    "decoys":"",
                     "decoy_results":"",
                     "repair":false,
+                    "repairers":"",
                     "repair_result":"",
-                    "crew_tasks_complete":false
+                    "crew_tasks_complete":false,
+                    "crew_task_text":""
                 },
                 "battles":[],
                 "jobs":[],
@@ -183,6 +200,7 @@
             "notable_sights":"",
             "complete":false,
             "outcome":"",
+            "casualties":0,
             "opposition":{
                 "base_number":0,
                 "bonus_number":0,

@@ -261,6 +261,15 @@ border - #039e5d
     padding-right:3px;
 }
 
+.val-box-narrow {
+    display:block; 
+    border-radius:2px;
+    background:white; 
+    width:50%; 
+    padding-left:3px; 
+    padding-right:3px;
+}
+
 /* Font Fiddling */
 .hw {
     /* font-family: 'Nothing You Could Do', sans-serif; */

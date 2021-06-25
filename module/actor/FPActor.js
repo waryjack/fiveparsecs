@@ -32,6 +32,19 @@ export class FPActor extends Actor {
     _prepareCrewData(actorData) {
         super.prepareDerivedData(); 
         const data = actorData.data;
+        let crewMembers = [];
+        let assignedCrew = this.items.filter(i => i.type === "crew_assignment");
+
+        
+        assignedCrew.forEach(c => {
+            let crewActor = game.actors.filter(function(actor) {return actor.data._id == c.data.data.assigned_crew_actorId})[0];
+
+            crewActor.forEach(ca => {
+                crewMembers.push(ca.name);
+            });
+        })
+
+        this.update({"data.data.members": crewMembers});
     }
 
     // Campaign Turn Methods
@@ -101,12 +114,39 @@ export class FPActor extends Actor {
         this.update({"data.campaign_turn.arrival.followed":true})
     }
 
-    handleUpkeep(action) {
+    handleUpkeep(debtPmt, payroll, repairs, med) {
+        let totalPmts = debtPmt + payroll + repairs + med;
+        
+        let bankBal = this.data.data.data.credits;
+        let currDebt = this.data.data.data.debt;
+        let currHull = this.data.data.data.hull;
+        let maxHull = this.data.data.data.hullmax;
 
+        console.warn("totalPmts, bankBal, currDebt, currHull, maxHull: ", totalPmts, bankBal, currDebt, currHull, maxHull);
+        if (totalPmts > bankBal) {
+             return ui.notifications.warn("You don't have sufficient credits to cover these expenses");
+        } else {
+            // Ship Debt
+            bankBal -= debtPmt;
+            currDebt -= debtPmt;
+            (currDebt > 0) ? currDebt++ : currDebt = currDebt;
+            // Crew Pay
+            bankBal -= payroll;
+            //Repairs
+            bankBal -= repairs;
+            let totalHullRepair = repairs + 1;
+            currHull = Math.min(currHull + totalHullRepair, maxHull);
+            // Medical Treatment
+            bankBal -= med; 
+
+            console.warn("New BankBal (totalPmts): ", bankBal, totalPmts);
+            this.update({"data.data.debt":currDebt, "data.data.credits":bankBal, "data.data.hull":currHull});
+        }
+    
     }
 
     handleCrewTask(action) {
-
+        return ui.notifications.warn("Not implemented yet");
     }
 
     addJob(action, type){

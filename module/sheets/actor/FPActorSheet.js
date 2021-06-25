@@ -436,11 +436,21 @@ export class FPActorSheet extends ActorSheet {
                 }
             case "upkeep":
                 {
-                    return this.actor.handleUpkeep(action);
+                    let template = "systems/fiveparsecs/templates/roll/upkeepdialog.hbs";
+                    let upkeepData = {
+                        actor:this.actor,
+                        credits:this.actor.data.data.data.credits
+                    }
+                    return FPRollUtility.upkeepDialog(template, upkeepData);
                 }
             case "crew_tasks":
                 {
-                    return this.actor.handleCrewTask(action);
+                    let template = "systems/fiveparsecs/templates/roll/crewtaskdialog.hbs";
+                    
+                    let crewTaskData = {
+                        crew_names: this.actor.data.data.members
+                    }
+                    return FPRollUtility.crewTaskDialog(template, crewTaskData); 
                 }
             case "jobs":
                 {

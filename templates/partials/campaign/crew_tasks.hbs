@@ -1,75 +1,12 @@
 {{log "data for crewtask partial: " data}}
 <tr>
-    <td class="fp sheet-label" rowspan="8">
+    <td class="fp sheet-label">
         Crew Tasks
     </td>
     <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="find-patron" title="Find Patron"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/> Find Patron</a>
+        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="handle-crew-tasks" title="Find Patron"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/three-friends.png" height="32" width="32" style="border:0"/></a>
     </td>
     <td>
-        {{data.campaign_turn.travel.travel_event}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="train" title="Train Crew"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/jumping-rope.png" height="32" width="32" style="border:0"/> Train</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.train}}{{data.campaign_turn.crew_tasks.trained_this_turn}} trained{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="trade" title="Trade"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/trade.png" height="32" width="32" style="border:0"/> Trade</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.trade}}Traded for {{data.campaign_turn.crew_tasks.trade_result}}{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="recruit" title="Recruit"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/pikeman.png" height="32" width="32" style="border:0"/> Recruit</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.recruit}}Found {{data.campaign_turn.crew_tasks.recruits}} new recruits{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="explore" title="Explore"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/binoculars.png" height="32" width="32" style="border:0"/> Explore</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.explore}}{{data.campaign_turn.crew_tasks.explore_result}}{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="track" title="Track Rivals"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/sniffing-dog.png" height="32" width="32" style="border:0"/> Track</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.track}}{{data.campaign_turn.crew_tasks.track_result}}{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" data-ct-action="repair-kit" title="Repair Gear"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/auto-repair.png" height="32" width="32" style="border:0"/> Repair Gear</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.repair}}{{data.campaign_turn.crew_tasks.repair_result}}{{/if}}
-    </td>
-</tr>
-<tr>
-
-    <td>
-        <a class="ct-step" data-ct-phase="crew_tasks" fdata-ct-action="decoy" title="Decoy"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/slalom.png" height="32" width="32" style="border:0"/> Decoy</a>
-    </td>
-    <td>
-        {{#if data.campaign_turn.crew_tasks.decoy}}+1 to roll when checking to see if Rivals track you down{{/if}}
+        {{data.campaign_turn.crew_tasks.crew_task_text}}
     </td>
 </tr>
