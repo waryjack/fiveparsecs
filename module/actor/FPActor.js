@@ -32,19 +32,6 @@ export class FPActor extends Actor {
     _prepareCrewData(actorData) {
         super.prepareDerivedData(); 
         const data = actorData.data;
-        let crewMembers = [];
-        let assignedCrew = this.items.filter(i => i.type === "crew_assignment");
-
-        
-        assignedCrew.forEach(c => {
-            let crewActor = game.actors.filter(function(actor) {return actor.data._id == c.data.data.assigned_crew_actorId})[0];
-
-            crewActor.forEach(ca => {
-                crewMembers.push(ca.name);
-            });
-        })
-
-        this.update({"data.data.members": crewMembers});
     }
 
     // Campaign Turn Methods
@@ -121,6 +108,10 @@ export class FPActor extends Actor {
         let currDebt = this.data.data.data.debt;
         let currHull = this.data.data.data.hull;
         let maxHull = this.data.data.data.hullmax;
+        let debtText = "No payments were made on the ship.";
+        let payText = "The crew is awaiting payment.";
+        let medText = "No medical care payments were made (or none were needed).";
+        let repText = "No repairs were paid for (or none were needed).";
 
         console.warn("totalPmts, bankBal, currDebt, currHull, maxHull: ", totalPmts, bankBal, currDebt, currHull, maxHull);
         if (totalPmts > bankBal) {
@@ -139,14 +130,98 @@ export class FPActor extends Actor {
             // Medical Treatment
             bankBal -= med; 
 
+            if (debtPmt > 0) { debtText = `You paid ${debtPmt} Credits toward your ship. You still owe ${currDebt} credits.`; }
+            if (payroll > 0) { payText = `You paid ${payroll} Credits to your crew for their upkeep.`; }
+            if (repairs > 0) { repText = `You paid ${repair} Credits toward ship repairs.`; }
+            if (med > 0) { medText = `You paid ${med} Credits for medical care for your crew.`; }
+
             console.warn("New BankBal (totalPmts): ", bankBal, totalPmts);
-            this.update({"data.data.debt":currDebt, "data.data.credits":bankBal, "data.data.hull":currHull});
+            this.update({
+                "data.data.debt":currDebt, 
+                "data.data.credits":bankBal, 
+                "data.data.hull":currHull,
+                "data.campaign_turn.upkeep.debt_text":debtText,
+                "data.campaign_turn.upkeep.payroll_text":payText,
+                "data.campaign_turn.upkeep.repair_text":repText,
+                "data.campaign_turn.upkeep.med_text":medText
+            });
         }
     
     }
 
-    handleCrewTask(action) {
-        return ui.notifications.warn("Not implemented yet");
+    /**
+     * 
+     * @param {Object} assignments data indicating which crew members are assigned to which Crew Task
+     * @returns notification at this point
+     */
+    handleCrewTasks(assignments) {
+        let autoGen = false;
+
+        let finalPatronText = "Nobody searched for a Patron.";
+        let finalTrainText = "Nobody elected to train.";
+        let finalTradeText = "No trading was conducted.";
+        let finalRecruitText = "No recruiting was done.";
+        let finalExploreText = "Nobody explored the area.";
+        let finalTrackText = "Nobody looked for Rivals.";
+        let finalRepairText = "Nobody repaired gear (or nothing needed repaired).";
+        let finalDecoyText = "Nobody acted as a decoy (or no Rivals were in pursuit).";
+
+        const stdPatronText = " searched for a Patron.";
+        const stdTrainText = " spent time training, and gained 1XP.";
+        const stdTradeText = " spent time trading with local merchants.";
+        const stdRecruitText = " looked for new crewmembers to hire.";
+        const stdExploreText = " explored the area.";
+        const stdTrackText = " tried to track down a Rival.";
+        const stdRepairText = " worked on some broken gear.";
+        const stdDecoyText = " tried to throw some Rivals off your trail.";
+
+        console.warn("Task Assignments: ", assignments);
+
+        if (autoGen) {
+
+            // placeholder; much more complicated crap
+
+        } else {
+            if (Array.isArray(assignments.finders) && assignments.finders.length) {
+                finalPatronText = assignments.finders.join(" and ") + stdPatronText;
+            }
+            if (assignments.trainers.length) {
+                finalTrainText = assignments.trainers.join(" and ") + stdTrainText;
+            }
+            if (assignments.traders.length) {
+                finalTradeText = assignments.traders.join(" and ") + stdTradeText;
+            }
+            if (assignments.recruiters.length) {
+                finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText;
+            }
+            if (assignments.explorers.length) {
+                finalExploreText = assignments.explorers.join(" and ") + stdExploreText;
+            }
+            if (assignments.trackers.length) {
+                finalTrackText = assignments.trackers.join(" and ") + stdTrackText;
+            }
+            if (assignments.repairers.length) { 
+                finalRepairText = assignments.repairers.join(" and ") + stdRepairText;
+            }
+            if (assignments.decoys.length) {
+                finalDecoyText = assignment.decoys.join(" and ") + stdDecoyText
+            }
+        }
+        
+    
+        this.update({
+            "data.campaign_turn.crew_tasks.patron_searchers":finalPatronText,
+            "data.campaign_turn.crew_tasks.trainees":finalTrainText,
+            "data.campaign_turn.crew_tasks.trade_result":finalTradeText,
+            "data.campaign_turn.crew_tasks.recruiters":finalRecruitText,
+            "data.campaign_turn.crew_tasks.explore_result":finalExploreText,
+            "data.campaign_turn.crew_tasks.track_result":finalTrackText,
+            "data.campaign_turn.crew_tasks.decoy_result":finalDecoyText,
+            "data.campaign_turn.crew_tasks.repair_result":finalRepairText,
+        });
+        
+
+       
     }
 
     addJob(action, type){
@@ -154,6 +229,7 @@ export class FPActor extends Actor {
     }
 
     addBattle(type, random) {
+        const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
         let rivalCheck = new Roll("1d6").evaluate({async:false}).result;
         if (type === "Rival"){
             if (rivalCheck < 3) {
@@ -163,6 +239,8 @@ export class FPActor extends Actor {
             }
         } else if (type === "Invasion") {
             this.createBattle("Invasion", false);
+        } else if (!autoGen) { // No automatic generation
+            this.createBattle(type, false);
         } else {
             new Dialog({
                 title:"Crew Size",

@@ -43,21 +43,51 @@ export class FPRollUtility {
 
     static crewTaskDialog(template, data) {
 
+        console.warn("data to crew tasks: ", data);
+
         renderTemplate(template, data).then(dlg => {
             new Dialog({
-                title: "Upkeep & Payments",
+                title: "Crew Tasks",
                 content: dlg,
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
                         label: "Continue",
                         callback: (html) => {
-                            let debtPayment = Number(html.find('#debt-pay').val());
-                            let crewPayment = Number(html.find('#crew-pay').val());
-                            let repairPayment = Number(html.find('#repair-pay').val());
-                            let medPayment = Number(html.find('#med-pay').val());
+                            let taskAssignments = {};
+                            taskAssignments.finders = new Array();
+                            if (html.find("#finder1").val() != "") { taskAssignments.finders.push(html.find("#finder1").val()); }
+                            if (html.find("#finder2").val() != "") { taskAssignments.finders.push(html.find("#finder2").val()); }
+                            
+                            taskAssignments.trainers = new Array(); 
+                            if (html.find("#trainer1").val() != "") { taskAssignments.trainers.push(html.find("#trainer1").val())}
+                            if (html.find("#trainer2").val() != "") { taskAssignments.trainers.push(html.find("#trainer2").val())}
 
-                            return data.actor.handleUpkeep(debtPayment, crewPayment, repairPayment, medPayment);
+                            taskAssignments.traders = new Array();
+                            if (html.find("#trader1").val() != "") { taskAssignments.trainers.push(html.find("#trader1").val())}
+                            if (html.find("#trader2").val() != "") { taskAssignments.trainers.push(html.find("#trader2").val())}
+
+                            taskAssignments.recruiters = new Array();
+                            if (html.find("#recruiter1").val() != "") {taskAssignments.recruiters.push(html.find("#recruiter1").val())}
+                            if (html.find("#recruiter2").val() != "") {taskAssignments.recruiters.push(html.find("#recruiter2").val())}
+
+                            taskAssignments.explorers = new Array();
+                            if (html.find("#explorer1").val() != "") {taskAssignments.explorers.push(html.find("#explorer1").val())}
+                            if (html.find("#explorer2").val() != "") {taskAssignments.explorers.push(html.find("#explorer2").val())}
+
+                            taskAssignments.trackers = new Array();
+                            if (html.find("#tracker1").val() != "") {taskAssignments.trackers.push(html.find("#tracker1").val())}
+                            if (html.find("#tracker2").val() != "") {taskAssignments.trackers.push(html.find("#tracker2").val())}
+                            
+                            taskAssignments.repairers = new Array();
+                            if (html.find("#repairer1").val() != "") {taskAssignments.repairers.push(html.find("#repairer1").val())}
+                            if (html.find("#repairer2").val() != "") {taskAssignments.repairers.push(html.find("#repairer2").val())}
+
+                            taskAssignments.decoys = new Array();
+                            if (html.find("#decoy1").val() != "") {taskAssignments.decoys.push(html.find("#decoy1").val())}
+                            if (html.find("#decoy2").val() != "") {taskAssignments.decoys.push(html.find("#decoy2").val())}
+
+                            return data.actor.handleCrewTasks(taskAssignments);
                         }
                     },
                     close: {

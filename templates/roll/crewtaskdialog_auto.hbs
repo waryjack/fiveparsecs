@@ -1,0 +1,174 @@
+<form class="fp roll-dialog">
+ <header class="roll-header">
+        <h1 class="fp roll-name">Assign Crew Tasks</h1>
+    </header>
+
+ <div class="fp roll-dialog">
+   <p>Note: the system will not prevent your from assigning the same crew member to multiple tasks. It's up to you to follow the rules!</p>
+     <div class="form-group">
+        
+         <table class="fp crew-roster">
+             <tr class="fp sheet-label">
+                 <th>Task</th>
+                 <th>First Crew</th>
+                 <th>Second Crew</th>
+             </tr>
+             <tr>
+                 <th>Find a Patron</th>
+                 <td>
+                     <select name="finder1" id="finder1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="finder2" id="finder2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+              <tr>
+                 <th>Train</th>
+                 <td>
+                     <select name="trainer1" id="trainer1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="trainer2" id="trainer2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+              <tr>
+                 <th>Trade</th>
+                 <td>
+                     <select name="trader1" id="trader1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="trader2" id="trader2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+              <tr>
+                 <th>Recruit</th>
+                 <td>
+                     <select name="recruiter1" id="recruiter1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="recruiter2" id="recruiter2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+              <tr>
+                 <th>Explore</th>
+                 <td>
+                     <select name="explorer1" id="explorer1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="explorer2" id="explorer2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th>Track</th>
+                 <td>
+                     <select name="tracker1" id="tracker1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="tracker2" id="tracker2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th>Repair Kit</th>
+                 <td>
+                     <select name="repairer1" id="repairer1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="repairer2" id="repairer2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th>Decoy</th>
+                 <td>
+                     <select name="decoy1" id="decoy1">
+                         <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+                 <td>
+                     <select name="decoy2" id="decoy2">
+                        <option value="">Nobody</option>
+                         {{#each crew_names as |name id|}}
+                         <option value="{{name}}">{{name}}</option>
+                         {{/each}}
+                     </select>
+                 </td>
+             </tr>
+            
+         </table>         
+     </div>
+ </div>
+
+
+</form>

@@ -329,6 +329,7 @@ export class FPActorSheet extends ActorSheet {
     _buildCrewData(ownedItems) {
        
         let crewRoster = [];
+        let crewRosterNames = [];
         let assignedCrew = ownedItems.filter(function(item) {return item.type == "crew_assignment"});
    
         if (!Array.isArray(assignedCrew) || assignedCrew.length === 0) { console.log("No assigned crew"); return; }
@@ -338,7 +339,7 @@ export class FPActorSheet extends ActorSheet {
             // console.warn("All Actors: ", game.actors);
           
             let crewActor = game.actors.filter(function(actor) {return actor.data._id == crew.data.data.assigned_crew_actorId})[0];
-           
+            crewRosterNames.push(crewActor.name);
             let mbr_weapons = {};
             let gList = [];
 
@@ -380,6 +381,7 @@ export class FPActorSheet extends ActorSheet {
             setProperty(crewMemberData, "mbr_gear", gList.toString());
             setProperty(crewMemberData, "mbr_weapons", mbr_weapons);
             crewRoster.push(crewMemberData);
+            this.actor.update({"data.data.members":crewRosterNames});
           
         });
 
@@ -424,7 +426,7 @@ export class FPActorSheet extends ActorSheet {
         let element = e.currentTarget;
         let phase = element.dataset.ctPhase;
         let action = element.dataset.ctAction;
-
+        const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
         switch(phase) {
             case "flee-invasion": 
                 {
@@ -445,10 +447,17 @@ export class FPActorSheet extends ActorSheet {
                 }
             case "crew_tasks":
                 {
-                    let template = "systems/fiveparsecs/templates/roll/crewtaskdialog.hbs";
-                    
+                    let template = "";
+                    if (autoGen) {
+                        template = "systems/fiveparsecs/templates/roll/crewtaskdialog_auto.hbs";
+                    } else {
+                        template = "systems/fiveparsecs/templates/roll/crewtaskdialog_manual.hbs";
+                    }
+                    console.warn("actor possible members (1, x2, or x3)", this.actor.data.members, " x2", this.actor.data.data.members, " x3 ", this.actor.data.data.data.members)
                     let crewTaskData = {
-                        crew_names: this.actor.data.data.members
+                        actor: this.actor,
+                        crew_names: this.actor.data.data.data.members,
+                        auto: autoGen
                     }
                     return FPRollUtility.crewTaskDialog(template, crewTaskData); 
                 }
