@@ -14,6 +14,7 @@ export const preloadHandlebarsTemplates = async function() {
         "systems/fiveparsecs/templates/partials/campaign/jobs.hbs",
         "systems/fiveparsecs/templates/partials/campaign/travel.hbs",
         "systems/fiveparsecs/templates/partials/campaign/upkeep.hbs",
+        "systems/fiveparsecs/templates/partials/campaign/patrontypeselect.hbs",
 
         // sheet partials
         "systems/fiveparsecs/templates/partials/sheet/dice_roll_block.hbs"

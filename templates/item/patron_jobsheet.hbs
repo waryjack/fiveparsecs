@@ -1,0 +1,38 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <section class="sheetbody">
+
+        <div class="fp flexcol">
+            <table class="fp item-roster">
+                <tr>
+                    <th class="fp sheet-label">Patron Type</th>
+                    <td>{{> 'systems/fiveparsecs/templates/partials/campaign/patrontypeselect.hbs'}}</td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Danger Pay</th>
+                    <td><input class="fp text-input" name="data.danger_pay" value="{{data.danger_pay}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Time Frame</th>
+                    <td><input class="fp text-input" name="data.time_frame" value="{{data.time_frame}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Benefits</th>
+                    <td><input class="fp text-input" name="data.benefits" value="{{data.benefits}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Hazards</th>
+                    <td><input class="fp text-input" name="data.hazards" value="{{data.hazards}}" data-dtype="String"/></td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Conditions</th>
+                    <td><input class="fp text-input" name="data.conditions" value="{{data.conditions}}" data-dtype="String"/></td>
+                </tr>
+            </table>
+        </div>
+    
+    </section>
+</form>
