@@ -64,8 +64,8 @@ export class FPRollUtility {
                             if (html.find("#trainer2").val() != "") { taskAssignments.trainers.push(html.find("#trainer2").val())}
 
                             taskAssignments.traders = new Array();
-                            if (html.find("#trader1").val() != "") { taskAssignments.trainers.push(html.find("#trader1").val())}
-                            if (html.find("#trader2").val() != "") { taskAssignments.trainers.push(html.find("#trader2").val())}
+                            if (html.find("#trader1").val() != "") { taskAssignments.traders.push(html.find("#trader1").val())}
+                            if (html.find("#trader2").val() != "") { taskAssignments.traders.push(html.find("#trader2").val())}
 
                             taskAssignments.recruiters = new Array();
                             if (html.find("#recruiter1").val() != "") {taskAssignments.recruiters.push(html.find("#recruiter1").val())}
@@ -100,8 +100,7 @@ export class FPRollUtility {
                 }
 
 
-            }).render(true);
-
+            }).render(true)
         });
     }
 

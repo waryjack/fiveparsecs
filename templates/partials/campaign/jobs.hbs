@@ -3,9 +3,19 @@
       Patron Jobs
     </td>
     <td>
-        <a class="ct-step" data-ct-phase="jobs" data-ct-action="gen-pat-job" title="Generate Patron Job"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/> Generate Patron Job</a><br/>
+        <a class="ct-step" data-ct-phase="jobs" data-ct-action="gen-pat-job" title="Generate Patron Job"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/></a>
     </td>
-    <td class="hw">
-          Patron jobs appear here.
+    <td>
+          {{#each jobs as |job id|}}
+          {{log "jobs: " jobs}}
+          <p><span class="fp sheet-label"><strong>{{job.name}}</strong></span> <a class="item-edit item" data-item-id="{{job.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" data-item-id="{{job.data._id}}"><i class="fas fa-trash"></i></a><br/>
+        <span class="fp sheet-label">Patron: </span><span class="hw">{{job.data.data.patron_type}}</span><br/>
+        <span class="fp sheet-label">Danger Pay: </span><span class="hw">{{job.data.data.danger_pay}}</span><br/>
+        <span class="fp sheet-label">Time Frame: </span><span class="hw">{{job.data.data.time_frame}}</span><br/>
+        <span class="fp sheet-label">Benefits: </span><span class='hw'>{{job.data.data.benefits}}</span><br/>
+        <span class="fp sheet-label">Hazards: </span><span class='hw'>{{job.data.data.hazards}}</span><br/>
+        <span class="fp sheet-label">Conditions: </span><span class='hw'>{{job.data.data.conditions}}</span><br/>
+        </p>
+        {{/each}}
     </td>
 </tr>

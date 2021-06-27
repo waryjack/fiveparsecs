@@ -155,7 +155,7 @@ export class FPActor extends Actor {
      * @returns notification at this point
      */
     handleCrewTasks(assignments) {
-        let autoGen = false;
+        let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
 
         let finalPatronText = "Nobody searched for a Patron.";
         let finalTrainText = "Nobody elected to train.";
@@ -165,24 +165,83 @@ export class FPActor extends Actor {
         let finalTrackText = "Nobody looked for Rivals.";
         let finalRepairText = "Nobody repaired gear (or nothing needed repaired).";
         let finalDecoyText = "Nobody acted as a decoy (or no Rivals were in pursuit).";
+        
+        let findResultsText = ".";
+        let tradeResultText = ".";
+        let explorResultText = ".";
+        let trackResultText = ".";
+        let repairResultText = ".";
+        let decoyResultText = ".";
+        let trainResultText = ".";
 
-        const stdPatronText = " searched for a Patron.";
-        const stdTrainText = " spent time training, and gained 1XP.";
-        const stdTradeText = " spent time trading with local merchants.";
-        const stdRecruitText = " looked for new crewmembers to hire.";
-        const stdExploreText = " explored the area.";
-        const stdTrackText = " tried to track down a Rival.";
-        const stdRepairText = " worked on some broken gear.";
-        const stdDecoyText = " tried to throw some Rivals off your trail.";
+        const stdPatronText = " searched for a Patron: ";
+        const stdTrainText = " spent time training, and gained 1XP";
+        const stdTradeText = " spent time trading: ";
+        const stdRecruitText = " looked for new crewmembers to hire";
+        const stdExploreText = " explored the area: ";
+        const stdTrackText = " tried to track down a Rival: ";
+        const stdRepairText = " worked on some broken gear";
+        const stdDecoyText = " tried to throw some Rivals off your trail";
 
         console.warn("Task Assignments: ", assignments);
 
         if (autoGen) {
+            if(assignments.finders.length) {
+                FPProcGen.getCrewTaskResults("find", assignments.finders).then(ctr => {
+                    console.warn("Finder Results: ", ctr);
+                    finalPatronText = assignments.finders.join(" and ") + stdPatronText + ctr;
+                    console.warn("finalPatronText within: "); 
+                    this.update({"data.campaign_turn.crew_tasks.patron_searchers":finalPatronText})
+                });
+              
+            }
+            if (assignments.trainers.length) {
+                finalTrainText = assignments.trainers.join(" and ") + stdTrainText;
+                this.update({"data.campaign_turn.crew_tasks.trainees":finalTrainText});
+            }
+            if (assignments.traders.length) {
+                
+                FPProcGen.getCrewTaskResults("trade", assignments.traders).then(ctr => {
+                    console.warn("Trade Results: ", ctr);
+                    finalTradeText = assignments.traders.join(" and ") + stdTradeText + ctr;
+                    this.update({"data.campaign_turn.crew_tasks.trade_result":finalTradeText});
+                })
+            }
+            if (assignments.recruiters.length) {
+                finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText;
+                /* FPProcGen.getCrewTaskResults("recruit", recruiters).then(ctr => {
+                    finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText + ", " + ctr;
+                }) */ 
+                this.update({"data.campaign_turn.crew_tasks.recruiter":finalRecruitText});
+            }
+            if (assignments.explorers.length) {
+                
+                FPProcGen.getCrewTaskResults("explore", assignments.explorers).then(ctr => {
+                    console.warn("Explorers Results: ", ctr);
+                    finalExploreText = assignments.explorers.join(" and ") + stdExploreText + ctr;
+                    this.update({"data.campaign_turn.crew_tasks.explore_result":finalExploreText});
+                })
+            }
+            if (assignments.trackers.length) {
+                FPProcGen.getCrewTaskResults("track", assignments.trackers).then(ctr => {
+                    finalTrackText = assignments.trackers.join(" and ") + stdTrackText + ctr;
+                    this.update({"data.campaign_turn.crew_tasks.track_result":finalTrackText});
+                })
+                
+            }
+            if (assignments.repairers.length) { 
+                finalRepairText = assignments.repairers.join(" and ") + stdRepairText;
+                this.update({"data.campaign_turn.crew_tasks.repair_result":finalRepairText});
+            }
+            if (assignments.decoys.length) {
+                finalDecoyText = assignments.decoys.join(" and ") + stdDecoyText
+                this.update({"data.campaign_turn.crew_tasks.decoy_result":finalDecoyText});
+            }
 
             // placeholder; much more complicated crap
 
         } else {
-            if (Array.isArray(assignments.finders) && assignments.finders.length) {
+            if (assignments.finders.length) {
                 finalPatronText = assignments.finders.join(" and ") + stdPatronText;
             }
             if (assignments.trainers.length) {
@@ -206,26 +265,45 @@ export class FPActor extends Actor {
             if (assignments.decoys.length) {
                 finalDecoyText = assignment.decoys.join(" and ") + stdDecoyText
             }
-        }
-        
-    
-        this.update({
-            "data.campaign_turn.crew_tasks.patron_searchers":finalPatronText,
-            "data.campaign_turn.crew_tasks.trainees":finalTrainText,
-            "data.campaign_turn.crew_tasks.trade_result":finalTradeText,
-            "data.campaign_turn.crew_tasks.recruiters":finalRecruitText,
-            "data.campaign_turn.crew_tasks.explore_result":finalExploreText,
-            "data.campaign_turn.crew_tasks.track_result":finalTrackText,
-            "data.campaign_turn.crew_tasks.decoy_result":finalDecoyText,
-            "data.campaign_turn.crew_tasks.repair_result":finalRepairText,
-        });
-        
 
+            this.update({
+                "data.campaign_turn.crew_tasks.patron_searchers":finalPatronText,
+                "data.campaign_turn.crew_tasks.trainees":finalTrainText,
+                "data.campaign_turn.crew_tasks.trade_result":finalTradeText,
+                "data.campaign_turn.crew_tasks.recruiters":finalRecruitText,
+                "data.campaign_turn.crew_tasks.explore_result":finalExploreText,
+                "data.campaign_turn.crew_tasks.track_result":finalTrackText,
+                "data.campaign_turn.crew_tasks.decoy_result":finalDecoyText,
+                "data.campaign_turn.crew_tasks.repair_result":finalRepairText,
+            });
+            
+        }
        
     }
 
     addJob(action, type){
-        return ui.notifications.warn("Not implemented yet");
+
+        let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
+
+        if(autoGen){
+            FPProcGen.generateJob().then(jobData => {
+                let itemData = {
+                    name:"Patron Job",
+                    type:"patron_job"
+                }
+
+                itemData.data = jobData;
+
+                return Item.create(itemData, {parent:this, renderSheet:false});
+            });
+        } else {
+           let itemData = {
+                name:"Patron Job",
+                type:"patron_job"
+            }
+
+            return Item.create(itemData, {parent:this, renderSheet:true});
+        }
     }
 
     addBattle(type, random) {

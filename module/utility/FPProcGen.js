@@ -80,6 +80,104 @@ export class FPProcGen {
         return worldData;
     }
 
+    static async generateJob() {
+        const tblPatron = game.tables.filter(t => t.name === "Patron")[0];
+        const tblDangerPay = game.tables.filter(t => t.name === "Danger Pay")[0];
+        const tblTimeFrame = game.tables.filter(t => t.name === "Time Frame")[0];
+        const tblBenefits = game.tables.filter(t => t.name === "Benefits")[0];
+        const tblHazards = game.tables.filter(t => t.name === "Hazards")[0];
+        const tblConditions = game.tables.filter(t => t.name === "Conditions")[0];
+        let cndRes = "None";
+        let benRes = "None";
+        let hazRes = "None";
+
+        // Get Patron Type
+        const pDraw = await tblPatron.draw({displayChat:false});
+        const pType = pDraw.results[0].data.text;
+
+        // Get Danger Pay
+        let dpExpr = "1d10 + " + (pType === "Corporation") ? "1": "0";
+        let dpRoll = new Roll(dpExpr).evaluate({async:false});
+        let dpDraw = await tblDangerPay.draw({displayChat:false, roll:dpRoll});
+        let dpRes = dpDraw.results[0].data.text;
+
+        // Get Time Frame
+        let tfExpr = "1d10 + " + (pType === "Secretive Group") ? "1" : "0";
+        let tfRoll = new Roll(tfExpr).evaluate({async:false});
+        let tfDraw = await tblTimeFrame.draw({displayChat:false, roll:tfRoll});
+        let tfRes = tfDraw.results[0].data.text;
+
+        let bhcRoll = parseInt(new Roll("1d10").evaluate({async:false}).result);
+        // Get 
+        switch(pType){
+            case "Corporation": {
+                if (bhcRoll >= 5) {
+                    let cndDraw = await tblConditions.draw({displayChat:false});
+                    cndRes = cndDraw.results[0].data.text;
+                }
+                if (bhcRoll >= 8) {
+                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    let benDraw = await tblBenefits.draw({displayChat:false});
+                    hazRes = hazDraw.results[0].data.text;
+                    benRes = benDraw.results[0].data.text;
+
+                }
+                break;
+            }
+            case "Wealthy Individual": {
+                if (bhcRoll >= 5) {
+                    let benDraw = await tblBenefits.draw({displayChat:false});
+                    benRes = benDraw.results[0].data.text;
+                }
+                if (bhcRoll >= 8) {
+                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    let cndDraw = await tblConditions.draw({displayChat:false});
+                    cndRes = cndDraw.results[0].data.text;
+                    hazRes = hazDraw.results[0].data.text;
+                }
+                break;
+            }
+            case "Secretive Group": {
+                if (bhcRoll >= 5) {
+                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    hazRes = hazDraw.results[0].data.text;
+                }
+                if (bhcRoll >= 8) { 
+                    let cndDraw = await tblConditions.draw({displayChat:false});
+                    let benDraw = await tblBenefits.draw({displayChat:false});
+                    benRes = benDraw.results[0].data.text;
+                    cndRes = cndDraw.results[0].data.text;
+                }
+                break;
+            }
+            case "Local Government":
+            case "Sector Government":
+            case "Private Organization":
+            case "Private Organisation": {
+                if (bhcRoll >= 8) { 
+                    let cndDraw = await tblConditions.draw({displayChat:false});
+                    let benDraw = await tblBenefits.draw({displayChat:false});
+                    let hazDraw = await tblHazards.draw({displayChat:false});
+                    hazRes = hazDraw.results[0].data.text;
+                    benRes = benDraw.results[0].data.text;
+                    cndRes = cndDraw.results[0].data.text;
+                }
+                break;
+            }
+        }
+
+        let jobData = {
+            patron_type:pType,
+            danger_pay:dpRes,
+            time_frame:tfRes,
+            benefits:benRes,
+            hazards:hazRes,
+            conditions:cndRes
+        }
+
+        return jobData;
+    }
+
     static async generateBattle(battleType, crewsize) {
 
         // Battle Template
@@ -233,6 +331,71 @@ export class FPProcGen {
         } */
 
         return battleData;
+    }
+
+    /**
+     * 
+     * @param {String} task the specific type of task, so it knows what to do!
+     * @param {Array} crew the crew member names performing the task
+     */
+    static async getCrewTaskResults(task, crew) {
+        let crewTaskResult = "";
+        const tblTrade = game.tables.filter(t => t.name === "Trade")[0];
+        const tblExplore = game.tables.filter(t => t.name === "Explore")[0];
+
+
+        switch(task) {
+            case "find": {
+                let r = new Roll("1d6").evaluate({async:false}).result;
+                r = parseInt(r) + crew.length;
+                if (r < 5) {
+                    crewTaskResult = `No Patrons are looking for a crew to hire. (Roll: ${r})`;
+                } else if (r >= 6) {
+                    crewTaskResult = `2 Patrons are looking for a crew to hire. (Roll: ${r})`;
+                } else {
+                    crewTaskResult = `1 Patron is looking for a crew to hire. (Roll: ${r})`;
+                }
+                break;
+            }
+            case "trade": {
+                let items = [];
+                for(let i = 0; i < crew.length; i++){
+                    let tradeDraw = await tblTrade.draw({displayChat:false});
+                    let tradeItem = tradeDraw.results[0].data.text;
+                    items.push(tradeItem);
+                }
+                crewTaskResult = items.join(" and ");
+                break;
+            } 
+            case "explore": {
+                let results = [];
+                for(let i = 0; i < crew.length; i++) {
+                    let expDraw = await tblExplore.draw({displayChat:false});
+                    let expRes = expDraw.results[0].data.text;
+                    results.push(expRes);
+                }
+                crewTaskResult = results.join(" and ");
+                break;
+                
+            }
+            case "track": {
+                let troll = new Roll("1d6").evaluate({async:false}).result;
+                troll = parseInt(troll) + crew.length;
+                if (troll >= 6) {
+                    crewTaskResult = "discovered one of your Rivals on-planet. (Roll: " + troll +")";
+                } else {
+                    crewTaskResult = "but did not locate any Rivals on-planet. (Roll: " + troll + ")";
+                }
+                break;
+            }
+            case "repair":{
+                break; 
+            }
+        }
+
+        console.warn("FPProcGen Crew Task Results: ", crewTaskResult);
+        return crewTaskResult;
+
     }
 
 }
