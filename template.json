@@ -19,6 +19,7 @@
             "xp":0,
             "casualty":false,
             "captain":false,
+            "injury":"",
             "sickbay_time":0,
             "saving_throw":""
         },
@@ -101,6 +102,16 @@
                     "repair_result":"",
                     "crew_tasks_complete":false,
                     "crew_task_text":""
+                },
+                "post_battle":{
+                    "riv":"",
+                    "pat":"",
+                    "qst":"",
+                    "pay":"",
+                    "fnd":"",
+                    "inv":"",
+                    "cev":"",
+                    "loot":""
                 },
                 "battles":[],
                 "jobs":[],

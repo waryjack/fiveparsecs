@@ -469,6 +469,14 @@ export class FPActorSheet extends ActorSheet {
                 {
                     return this.actor.addBattle(action, true); // true - random battle generation
                 }
+            case "post":
+                {
+                    let template = "systems/fiveparsecs/templates/roll/postbattledialog.hbs";
+                    let postData = {
+                        actor: this.actor
+                    }
+                    return FPRollUtility.postBattle(template, postData);
+                }
         }
 
     }

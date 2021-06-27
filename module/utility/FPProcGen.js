@@ -398,4 +398,115 @@ export class FPProcGen {
 
     }
 
+    static async getPostBattleResults(pbData) {
+        // Post Battle Tables
+        const tblFinds = game.tables.filter(t => t.name === "Battlefield Finds")[0];
+
+        // Events Tables
+        const tblCampEvents = game.tables.filter(t => t.name === "Campaign Events")[0];
+
+        // Loot Tables
+        const tblLoot = game.tables.filter(t => t.name === "Loot")[0];
+
+        // Default Response
+        let rivText = "No changes to your Rivals.";
+        let patText = "No changes to your Patrons."; 
+        let questText = "No changes to quest status.";
+        let payText = "No mission pay determined.";
+        let findText = "No battlefield finds.";
+        let invText = "No invasion pending.";
+        let campEventText = "No campaign events.";
+        let lootText = "No loot.";
+        let bfRes = "";
+     
+        if (pbData.rival === "yes") {
+            let rr = new Roll("1d6").evaluate({async:false}).result;
+            rr = parseInt(rr) + parseInt(pbData.rivbonus);
+            if (pbData.existingRival) {
+                if (rr >= 4) {
+                    rivText = "This Rival has had enough. You can remove them from your rivals list.";
+                }
+            } else {
+                if (rr == 1) {
+                    rivText = "You have gained a Rival on this planet.";
+                }
+            }
+        }
+
+        if (pbData.patron === "yes") {
+            patText = "You have gained a Patron on this planet.";
+        }
+
+        if (pbData.quest === "yes") {
+            let qr = new Roll("1d6").evaluate({async:false}).result;
+            qr = parseInt(qr) + parseInt(pbData.questbonus);
+
+            if (qr <= 3) {
+                questText = "This was a dead end."
+            } else if (qr > 3 && qr < 7) {
+                questText = "You move closer to the end of your quest (Gain 1 Quest Rumor).";
+            } else {
+                questText = "Your next Quest mission will conclude your current quest.";
+            }
+        }
+
+        if (pbData.getPaid === "yes") {
+            if (pbData.questfinal) {
+                let pr = new Roll("2d6kh").evaluate({async:false}).result;
+                pr = parseInt(pr) + parseInt(pbData.paybonus);
+            } else {
+                let pr = new Roll("1d6").evaluate({async:false}).result;
+                pr = parseInt(pr) + parseInt(pbData.paybonus);
+            }
+
+            payText = "You earn " + pr + " Credits in mission pay. Remember to add Danger Pay and other bonuses when updating your Credit balance.";
+        }
+
+        if (pbData.finds === "yes") {
+            let bfDraw = await tblFinds.draw({displayChat:false});
+            bfRes = bfDraw.results[0].data.text;
+
+            findText = "Battlefield finds: " + bfRes;
+        }
+
+        if (pbData.invasion === "yes") {
+            let ir = new Roll("2d6").evaluate({displayChat:false}).result;
+            ir = parseInt(ir) + parseInt(pbData.invbonus) + (bfRes === "Curious data stick / Invasion threat") ? 1 : 0;
+            if (ir >= 9) {
+                invText = "This world is about to be invaded! Your next campaign turn must being with the Flee Invasion step.";
+            }
+        }
+
+        if (pbData.campevent === "yes") {
+            let ceDraw = await tblCampEvents.draw({displayChat:false});
+            let ceRes = ceDraw.results[0].data.text;
+            campEventText = "Campaign Event: " + ceRes;
+        }
+
+        if (pbData.loot === "yes") {
+            lootText = "Loot: ";
+            lootArray = [];
+            for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
+                let ltDraw = await tblLoot.draw({displayChat:false});
+                let ltRes = ltDraw.results[0].data.text;
+                lootArray.push(ltRes);
+            }
+
+            lootText += lootArray.join(", ");
+        }
+
+        let afterActionReport = {
+            rivText: rivText,
+            patText: patText,
+            questText: questText,
+            payText: payText,
+            findText: findText,
+            invText: invText,
+            campEventText: campEventText,
+            lootText: lootText
+        }
+
+        return afterActionReport;
+    }
+
 }

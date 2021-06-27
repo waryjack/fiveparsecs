@@ -1,0 +1,98 @@
+<form class="fp roll-dialog">
+ <header class="roll-header">
+        <h1 class="fp roll-name">Post Battle Checks</h1>
+    </header>
+
+ <div class="fp roll-dialog">
+    {{log "data passed for upkeep: " data}}
+     <div class="form-group">
+         
+         <table class="fp crew-roster">
+             <tr>
+                 <th>Check for New Rivals?</th>
+                 <td>
+                     <select name="riv" id="riv">
+                           <option value="yes">Yes</option>
+                           <option value="no" selected>No</option>
+                     </select>
+                 </td>
+                 <td style="padding-left:12px;">
+                     Check modifier: <input class="fp value-input" id="riv-mod" type="text" value="0" data-dtype="Number"/>
+                     Existing Rival? <input type="checkbox" id="exist-rival"/></td>
+             </tr>
+             <tr>
+                 <th>Successful Patron Mission?</th>
+                 <td>
+                     <select name="pat" id="pat">
+                           <option value="yes">Yes</option>
+                           <option value="no" selected>No</option>
+                     </select>
+                 </td>
+                 <td></td>
+            </tr>
+            <tr>
+                <th>Fought a Quest Mission?</th>
+                 <td>
+                     <select name="qst" id="qst">
+                           <option value="yes">Yes</option>
+                           <option value="no" selected>No</option>
+                     </select>
+                 </td>
+                 <td style="padding-left:12px;">
+                    Quest Modifiers: <input class="fp value-input" id="qst-mod" type="text" value="0" data-dtype="Number"/>
+                 </td>
+             </tr>
+             <tr>
+                <th>Determine Mission Pay?</th>
+                 <td>
+                     <select name="pay" id="pay">
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                     </select>
+                 </td>
+                 <td style="padding-left:12px;">
+                    Pay Modifiers: <input class="fp value-input" type="text" id="pay-mod" value="0" data-dtype="Number"/>
+                 </td>
+             </tr>
+             <tr>
+                <th>Get Battlefield Finds?</th>
+                 <td>
+                     <select name="fnd" id="fnd">
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                     </select>
+                 </td>
+                 <td>
+                 </td>
+             </tr>
+             <tr>
+                 <th>Check for Invasion?</th>
+                <td>
+                     <select name="inv" id="inv">
+                           <option value="yes">Yes</option>
+                           <option value="no" selected>No</option>
+                     </select>
+                 </td>
+                 <td style="padding-left:12px;">
+                    Enemy is Invasion Threat: <input type="checkbox" id="inv-threat"/>
+                 </td>
+             </tr>
+              <tr>
+                 <th>Get Loot?</th>
+                <td>
+                     <select name="loot" id="loot">
+                           <option value="yes" selected>Yes</option>
+                           <option value="no">No</option>
+                     </select>
+                 </td>
+                 <td style="padding-left:12px;">
+                     Num. loot rolls: <input class="fp value-input" type="text" id="loot-mod" value="0" data-dtype="Number"/>
+                 </td>
+             </tr>
+            
+         </table>         
+     </div>
+ </div>
+
+
+</form>

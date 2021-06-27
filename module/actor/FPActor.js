@@ -427,4 +427,29 @@ export class FPActor extends Actor {
         }
     }
 
+    postBattle(postData) {
+
+        FPProcGen.getPostBattleResults(postData).then(pb => {
+            this.update({
+                "data.campaign_turn.post_battle.riv":pb.rivText,
+                "data.campaign_turn.post_battle.pat":pb.patText,
+                "data.campaign_turn.post_battle.qst":pb.questText,
+                "data.campaign_turn.post_battle.pay":pb.payText,
+                "data.campaign_turn.post_battle.inv":pb.invText,
+                "data.campaign_turn.post_battle.fnd":pb.findText,
+                "data.campaign_turn.post_battle.cev":pb.campEventText,
+                "data.campaign_turn.post_battle.loot":pb.lootText
+            })
+        });
+    }
+
+    characterEvent() {
+
+    }
+
+    injuryEvent() {
+
+    }
+
+
 }

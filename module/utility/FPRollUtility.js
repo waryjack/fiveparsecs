@@ -104,6 +104,44 @@ export class FPRollUtility {
         });
     }
 
+    static postBattle(template, data) {
+
+        renderTemplate(template, data).then(dlg => {
+            new Dialog({
+                title: "Post Battle",
+                content: dlg,
+                buttons: {
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Continue",
+                        callback: (html) => {
+                            let postData = {};
+                            postData.rival = html.find("#riv").val();
+                            postData.rivbonus = html.find("#riv-mod").val();
+                            postData.existingRival = html.find("#exist-rival").checked;
+                           
+                            postData.invasion = html.find("#inv").val();
+                            postData.inv_threat = html.find("#inv-threat").checked;
+
+                            return ui.notifications.warn("Clicked the postbattle link");
+                            //return data.actor.postBattle(postData);
+                        }
+                    },
+                    close: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+
+
+                }
+
+
+            }).render(true);
+
+        });
+    }
+
     static basicRoll(template, data) {
         /**
          * Data Structure
