@@ -477,6 +477,10 @@ export class FPActorSheet extends ActorSheet {
                     }
                     return FPRollUtility.postBattle(template, postData);
                 }
+            case "travel":
+                {
+                    return this.actor.handleTravel();
+                }
         }
 
     }

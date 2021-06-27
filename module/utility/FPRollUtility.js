@@ -123,7 +123,23 @@ export class FPRollUtility {
                             postData.invasion = html.find("#inv").val();
                             postData.inv_threat = html.find("#inv-threat").checked;
 
-                            return ui.notifications.warn("Clicked the postbattle link");
+                            postData.patron = html.find("#pat").val();
+
+                            postData.quest = html.find("#qst").val();
+                            postData.questbonus = html.find("#qst-mod").val();
+                            postData.questfinal = html.find("#qst-final").checked;
+
+                            postData.getPaid = html.find("#pay").val();
+                            postData.paybonus = html.find("#pay-mod").val();
+
+                            postData.finds = html.find("#fnd").val();
+
+                            postData.loot = html.find("#loot").val();
+                            postData.lootrolls = html.find("#loot-mod").val();
+
+                            postData.campevent = html.find("#cev").val();
+
+                            return data.actor.postBattle(postData);
                             //return data.actor.postBattle(postData);
                         }
                     },

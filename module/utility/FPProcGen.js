@@ -398,6 +398,15 @@ export class FPProcGen {
 
     }
 
+    static async getTravelEvents() {
+        const tblTravel = game.tables.filter(t => t.name === "Travel Events")[0];
+
+        let teDraw = await tblTravel.draw({displayChat:false});
+        let teRes = teDraw.results[0].data.text;
+        console.warn("teRes: ", teRes);
+        return teRes;
+    }
+
     static async getPostBattleResults(pbData) {
         // Post Battle Tables
         const tblFinds = game.tables.filter(t => t.name === "Battlefield Finds")[0];
@@ -414,7 +423,7 @@ export class FPProcGen {
         let questText = "No changes to quest status.";
         let payText = "No mission pay determined.";
         let findText = "No battlefield finds.";
-        let invText = "No invasion pending.";
+        let invText = "Invasion Status: No invasion pending.";
         let campEventText = "No campaign events.";
         let lootText = "No loot.";
         let bfRes = "";
@@ -442,24 +451,25 @@ export class FPProcGen {
             qr = parseInt(qr) + parseInt(pbData.questbonus);
 
             if (qr <= 3) {
-                questText = "This was a dead end."
+                questText = "Quest Update: This was a dead end."
             } else if (qr > 3 && qr < 7) {
-                questText = "You move closer to the end of your quest (Gain 1 Quest Rumor).";
+                questText = "Quest Update: You are closer to the end of your quest (Gain 1 Quest Rumor).";
             } else {
-                questText = "Your next Quest mission will conclude your current quest.";
+                questText = "Quest Update: Your next Quest mission will conclude your current quest.";
             }
         }
 
         if (pbData.getPaid === "yes") {
+            let pr = "";
             if (pbData.questfinal) {
-                let pr = new Roll("2d6kh").evaluate({async:false}).result;
+                pr = new Roll("2d6kh").evaluate({async:false}).result;
                 pr = parseInt(pr) + parseInt(pbData.paybonus);
             } else {
-                let pr = new Roll("1d6").evaluate({async:false}).result;
+                pr = new Roll("1d6").evaluate({async:false}).result;
                 pr = parseInt(pr) + parseInt(pbData.paybonus);
             }
 
-            payText = "You earn " + pr + " Credits in mission pay. Remember to add Danger Pay and other bonuses when updating your Credit balance.";
+            payText = "Mission Pay: You earn " + pr + " Credits in mission pay. Remember to add Danger Pay and other bonuses when updating your Credit balance.";
         }
 
         if (pbData.finds === "yes") {
@@ -470,10 +480,15 @@ export class FPProcGen {
         }
 
         if (pbData.invasion === "yes") {
+            let invEv = 0;
             let ir = new Roll("2d6").evaluate({displayChat:false}).result;
-            ir = parseInt(ir) + parseInt(pbData.invbonus) + (bfRes === "Curious data stick / Invasion threat") ? 1 : 0;
+            if(bfRes.toLowerCase() === "curious data stick / invasion threat" || bfRes.toLowerCase() === "vital info / invasion threat") {
+                invEv = 1;
+            }
+
+            ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
             if (ir >= 9) {
-                invText = "This world is about to be invaded! Your next campaign turn must being with the Flee Invasion step.";
+                invText = "Invasiont Status: Invasion imminent!";
             }
         }
 
@@ -485,7 +500,7 @@ export class FPProcGen {
 
         if (pbData.loot === "yes") {
             lootText = "Loot: ";
-            lootArray = [];
+            let lootArray = [];
             for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
                 let ltDraw = await tblLoot.draw({displayChat:false});
                 let ltRes = ltDraw.results[0].data.text;

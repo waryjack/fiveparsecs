@@ -77,7 +77,12 @@ export class FPActor extends Actor {
     }
 
     handleTravel(action) {
+        console.warn("Entered handleTravel");
 
+        FPProcGen.getTravelEvents().then(te => {
+            console.warn("ProcGen result for travel: ", te);
+            this.update({'data.campaign_turn.travel.travel_event':te});
+        })
     }
 
     handleArrival(action) {
