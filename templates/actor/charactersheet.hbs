@@ -23,7 +23,9 @@
                             <tr class="fp sheet-label">
                                 <th style="border-right:1px solid gray">{{localize "FP.gameterm.name"}}</th>
                                 <th>{{localize "FP.gameterm.species"}}</th>
-                                <th>Casualty?</th>
+                                <th style="text-align:center">Casualty?</th>
+                                <th>Sickbay Time</th>
+                                <th>Saving Throw</th>
                             </tr>
                             <tr>
                                 <td style="padding-right:3px">
@@ -35,7 +37,13 @@
                                     <span data-field="data.data.species" class="inline-edit hw val-box" contenteditable>{{data.data.species}}</span>
                                 </td>
                                 <td style="text-align:center;">
-                                    <input type="checkbox" class="fp toggle" name="data.data.casualty" value="{{data.data.casualty}}" {{#if data.data.casualty}}checked{{/if}}/>
+                                    <input type="checkbox" class="fp toggle" name="data.data.casualty" value="{{data.data.casualty}}" {{#if data.data.casualty}}checked{{/if}}/> 
+                                </td>
+                                <td>
+                                    <span data-field="data.data.sickbay_time" class="inline-edit hw val-box" style="background:none;" contenteditable>{{data.data.sickbay_time}}</span>
+                                </td>
+                                <td>
+                                    <span data-field="data.data.save" class="inline-edit hw val-box" style="background:none;" contenteditable>{{data.data.save}}</span>
                                 </td>
                             </tr>
                         </table>

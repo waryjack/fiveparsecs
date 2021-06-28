@@ -89,6 +89,8 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.ct-step').click(this._handleCampaignTurnStep.bind(this));
 
+        html.find('.reset-turn').click(this._resetTurn.bind(this));
+
         /* Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -430,7 +432,7 @@ export class FPActorSheet extends ActorSheet {
         switch(phase) {
             case "flee-invasion": 
                 {
-                    return this.actor.handleFleeInvasion(action);
+                    return this.actor.handleFleeInvasion("flee-invasion");
                 }; break;
             case "arrival":
                 {
@@ -483,5 +485,13 @@ export class FPActorSheet extends ActorSheet {
                 }
         }
 
+    }
+
+    _resetTurn(e) {
+        e.preventDefault();
+        let element = e.currentTarget;
+        let log = element.dataset.logging;
+        
+        return this.actor.resetCampaignTurn(log);
     }
 }

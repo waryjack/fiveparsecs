@@ -1,4 +1,5 @@
 import { FPProcGen } from "../utility/FPProcGen.js";
+import { FPTurnLogger } from "../utility/FPTurnLogger.js";
 export class FPActor extends Actor {
     
     /**
@@ -456,5 +457,100 @@ export class FPActor extends Actor {
 
     }
 
+    resetCampaignTurn(log) {
+
+
+
+        if (log === "yes") {
+            FPTurnLogger.logCampaignTurn(this).then(() => {
+                let battList = this.items.filter(i => i.type === "battle");
+                let jobList = this.items.filter(i => i.type === "patron_job");
+                let delIds = [];
+                console.warn("jobList: ", jobList);
+                battList.forEach(b => {
+                    delIds.push(b.data._id);
+    
+                });
+                jobList.forEach(j => {
+                    delIds.push(j.data._id);
+                }); 
+    
+                this.deleteEmbeddedDocuments("Item", delIds);
+                // reset turn data
+                this.update({
+                    "data.campaign_turn.flee_outcome":"",
+                    "data.campaign_turn.travel.travel_event":"",
+                    "data.campaign_turn.arrival.followed":false,
+                    "data.campaign_turn.upkeep.debt_paid":0,
+                    "data.campaign_turn.upkeep.payroll_paid":0,
+                    "data.campaign_turn.upkeep.repair_cost":0,
+                    "data.campaign_turn.upkeep.debt_text":"",
+                    "data.campaign_turn.upkeep.payroll_text":"",
+                    "data.campaign_turn.upkeep.repair_text":"",
+                    "data.campaign_turn.upkeep.med_text":"",
+                    "data.campaign_turn.crew_tasks.patron_searchers":"",
+                    "data.campaign_turn.crew_tasks.trainees":"",
+                    "data.campaign_turn.crew_tasks.trade_result":"",
+                    "data.campaign_turn.crew_tasks.recruiters":"",
+                    "data.campaign_turn.crew_tasks.explore_result":"",
+                    "data.campaign_turn.crew_tasks.track_result":"",
+                    "data.campaign_turn.crew_tasks.decoy_result":"",
+                    "data.campaign_turn.crew_tasks.repair_result":"",
+                    "data.campaign_turn.post_battle.riv":"",
+                    "data.campaign_turn.post_battle.pat":"",
+                    "data.campaign_turn.post_battle.qst":"",
+                    "data.campaign_turn.post_battle.pay":"",
+                    "data.campaign_turn.post_battle.fnd":"",
+                    "data.campaign_turn.post_battle.inv":"",
+                    "data.campaign_turn.post_battle.cev":"",
+                    "data.campaign_turn.post_battle.loot":""
+                });
+            });
+        } else {
+            let battList = this.items.filter(i => i.type === "battle");
+            let jobList = this.items.filter(i => i.type === "patron_job");
+            let delIds = [];
+            
+            battList.forEach(b => {
+                delIds.push(b.data._id);
+
+            });
+            jobList.forEach(j => {
+                delIds.push(j.data._id);
+            }); 
+
+            this.deleteEmbeddedDocuments("Item", delIds);
+
+                // reset turn data
+            this.update({
+                "data.campaign_turn.flee_outcome":"",
+                "data.campaign_turn.travel.travel_event":"",
+                "data.campaign_turn.arrival.followed":false,
+                "data.campaign_turn.upkeep.debt_paid":0,
+                "data.campaign_turn.upkeep.payroll_paid":0,
+                "data.campaign_turn.upkeep.repair_cost":0,
+                "data.campaign_turn.upkeep.debt_text":"",
+                "data.campaign_turn.upkeep.payroll_text":"",
+                "data.campaign_turn.upkeep.repair_text":"",
+                "data.campaign_turn.upkeep.med_text":"",
+                "data.campaign_turn.crew_tasks.patron_searchers":"",
+                "data.campaign_turn.crew_tasks.trainees":"",
+                "data.campaign_turn.crew_tasks.trade_result":"",
+                "data.campaign_turn.crew_tasks.recruiters":"",
+                "data.campaign_turn.crew_tasks.explore_result":"",
+                "data.campaign_turn.crew_tasks.track_result":"",
+                "data.campaign_turn.crew_tasks.decoy_result":"",
+                "data.campaign_turn.crew_tasks.repair_result":"",
+                "data.campaign_turn.post_battle.riv":"",
+                "data.campaign_turn.post_battle.pat":"",
+                "data.campaign_turn.post_battle.qst":"",
+                "data.campaign_turn.post_battle.pay":"",
+                "data.campaign_turn.post_battle.fnd":"",
+                "data.campaign_turn.post_battle.inv":"",
+                "data.campaign_turn.post_battle.cev":"",
+                "data.campaign_turn.post_battle.loot":""
+            });
+        }
+    }
 
 }

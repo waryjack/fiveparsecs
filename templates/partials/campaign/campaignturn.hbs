@@ -1,13 +1,12 @@
 <div class="fp flexcol" style="padding:3px; margin-right:12px;">
     <h2>Campaign Turn
-        <a class="log-turn" title="Log Turn to Journal and Start New Turn">Update Captain's Log</a>
-        <a class="reset-turn" title="Reset Turn (No Logging)">Reset Turn</a>
+        <a class="reset-turn" data-logging="yes" title="Log Turn to Journal and Start New Turn"><i class="fas fa-file-alt"></i></a>
+         <a class="reset-turn" data-logging="no" title="Reset Turn (No Logging)"><i class="fas fa-trash"></i></a>
     </h2>
     <table class="fp crew-roster">
         <tr class="fp sheet-label">
             <th>Step</th>
-            <th>Options</th>
-            <th>Results</th>
+            <th>Results / Info</th>
         </tr>
     {{> "systems/fiveparsecs/templates/partials/campaign/flee_invasion.hbs"}}
  

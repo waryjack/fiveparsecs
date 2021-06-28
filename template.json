@@ -21,7 +21,7 @@
             "captain":false,
             "injury":"",
             "sickbay_time":0,
-            "saving_throw":""
+            "save":""
         },
         "enemy":{
             "templates":["common"],
@@ -29,7 +29,8 @@
             "panic_val":1,
             "panic_str":"1-2",
             "ai":"a",
-            "weapons":"1A"
+            "weapons":"1A",
+            "save":""
         },
         "crew":{
             "name":"Crew",

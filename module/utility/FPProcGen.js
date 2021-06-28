@@ -488,7 +488,9 @@ export class FPProcGen {
 
             ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
             if (ir >= 9) {
-                invText = "Invasiont Status: Invasion imminent!";
+                invText = "Invasion Status: Invasion imminent! (Roll: " + ir + ")";
+            } else {
+                invText = invText + "(Roll: " + ir +")";
             }
         }
 
