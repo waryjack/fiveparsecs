@@ -402,6 +402,7 @@ export class FPProcGen {
         const tblTravel = game.tables.filter(t => t.name === "Travel Events")[0];
 
         let teDraw = await tblTravel.draw({displayChat:false});
+        console.warn("Travel Event Draw Roll Value: ", teDraw.roll.total);
         let teRes = teDraw.results[0].data.text;
         console.warn("teRes: ", teRes);
         return teRes;
@@ -416,6 +417,8 @@ export class FPProcGen {
 
         // Loot Tables
         const tblLoot = game.tables.filter(t => t.name === "Loot")[0];
+        const tblWeapons = game.tables.filter(t => t.name === "Weapon Category")[0];
+        const tblGear = game.tables.filter(t => t.name === "Gear Category")[0];
 
         // Default Response
         let rivText = "No changes to your Rivals.";
@@ -482,9 +485,6 @@ export class FPProcGen {
         if (pbData.invasion === "yes") {
             let invEv = 0;
             let ir = new Roll("2d6").evaluate({displayChat:false}).result;
-            if(bfRes.toLowerCase() === "curious data stick / invasion threat" || bfRes.toLowerCase() === "vital info / invasion threat") {
-                invEv = 1;
-            }
 
             ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
             if (ir >= 9) {
@@ -504,9 +504,26 @@ export class FPProcGen {
             lootText = "Loot: ";
             let lootArray = [];
             for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
-                let ltDraw = await tblLoot.draw({displayChat:false});
-                let ltRes = ltDraw.results[0].data.text;
-                lootArray.push(ltRes);
+                // let ltDraw = await tblLoot.draw({displayChat:false});
+                let ltDrawRoll = new Roll("1d100").evaluate({async:false}).result;
+
+                if (ltDrawRoll >= 26 && ltDrawRoll <= 35) {
+                    let ltDraw1 = await tblWeapons.draw({displayChat:false});
+                    let ltDraw2 = await tblWeapons.draw({displayChat:false});
+                    let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
+                    let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
+                    lootArray.push(ltRes1, ltRes2);
+                } else if (ltDrawRoll >=46 && ltDrawRoll <= 65) {
+                    let ltDraw1 = await tblGear.draw({displayChat:false});
+                    let ltDraw2 = await tblGear.draw({displayChat:false});
+                    let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
+                    let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
+                    lootArray.push(ltRes1, ltRes2);
+                } else {
+                    let ltDraw = await tblLoot.draw({displayChat:false, roll:ltDrawRoll});
+                    let ltRes = ltDraw.results[0].data.text;
+                    lootArray.push(ltRes);
+                }
             }
 
             lootText += lootArray.join(", ");

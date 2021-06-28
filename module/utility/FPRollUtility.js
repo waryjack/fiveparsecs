@@ -121,7 +121,7 @@ export class FPRollUtility {
                             postData.existingRival = html.find("#exist-rival").checked;
                            
                             postData.invasion = html.find("#inv").val();
-                            postData.inv_threat = html.find("#inv-threat").checked;
+                            postData.invbonus = html.find("#inv-mod").val();
 
                             postData.patron = html.find("#pat").val();
 
