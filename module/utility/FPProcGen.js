@@ -399,13 +399,16 @@ export class FPProcGen {
     }
 
     static async getTravelEvents() {
-        const tblTravel = game.tables.filter(t => t.name === "Travel Events")[0];
+        
+        
+            const tblTravel = game.tables.filter(t => t.name === "Travel Events")[0];
 
-        let teDraw = await tblTravel.draw({displayChat:false});
-        console.warn("Travel Event Draw Roll Value: ", teDraw.roll.total);
-        let teRes = teDraw.results[0].data.text;
-        console.warn("teRes: ", teRes);
-        return teRes;
+            let teDraw = await tblTravel.draw({displayChat:false});
+            console.warn("Travel Event Draw Roll Value: ", teDraw.roll.total);
+            let teRes = teDraw.results[0].data.text;
+            console.warn("teRes: ", teRes);
+            return teRes;
+       
     }
 
     static async getPostBattleResults(pbData) {
@@ -419,7 +422,7 @@ export class FPProcGen {
         let campEventText = "No campaign events.";
         let lootText = "No loot.";
         let bfRes = "";
-        
+
         if(auto){
             // Post Battle Tables
             const tblFinds = game.tables.filter(t => t.name === "Battlefield Finds")[0];

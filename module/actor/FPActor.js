@@ -79,11 +79,37 @@ export class FPActor extends Actor {
 
     handleTravel(action) {
         console.warn("Entered handleTravel");
+        let auto = game.settings.get("fiveparsecs", "autoGenerate");
+        if(auto){
+            FPProcGen.getTravelEvents().then(te => {
+                console.warn("ProcGen result for travel: ", te);
+                this.update({'data.campaign_turn.travel.travel_event':te});
+            });
 
-        FPProcGen.getTravelEvents().then(te => {
-            console.warn("ProcGen result for travel: ", te);
-            this.update({'data.campaign_turn.travel.travel_event':te});
-        })
+        } else {
+            new Dialog({
+                title:"Travel Event",
+                content: "<table><tr><th>Travel Event</th><td><input type='text' id='tev' class='fp text-input' style='width:100%' data-dtype='String'/></td></tr></table>",
+                buttons: {
+                    roll: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: "Continue",
+                    callback: (html) => {
+                    //  console.log("passed html: ", html); 
+                        let tev = html.find('#tev').val();
+                        
+                        return this.update({"data.campaign_turn.travel.travel_event":tev});
+                        }
+                    },
+                    close: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel",
+                    callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                },
+                default: "close"
+            }).render(true);
+        }
     }
 
     handleArrival(action) {
