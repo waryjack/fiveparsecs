@@ -449,14 +449,8 @@ export class FPActorSheet extends ActorSheet {
                 }
             case "crew_tasks":
                 {
-                    let template = "";
-                    if (autoGen) {
-                        template = "systems/fiveparsecs/templates/roll/crewtaskdialog_auto.hbs";
-                    } else {
-                        template = "systems/fiveparsecs/templates/roll/crewtaskdialog_manual.hbs";
-                    }
-                    console.warn("actor possible members (1, x2, or x3)", this.actor.data.members, " x2", this.actor.data.data.members, " x3 ", this.actor.data.data.data.members)
-                    let crewTaskData = {
+                    let template = "systems/fiveparsecs/templates/roll/crewtaskdialog_manual.hbs";
+                     let crewTaskData = {
                         actor: this.actor,
                         crew_names: this.actor.data.data.data.members,
                         auto: autoGen
@@ -475,7 +469,8 @@ export class FPActorSheet extends ActorSheet {
                 {
                     let template = "systems/fiveparsecs/templates/roll/postbattledialog.hbs";
                     let postData = {
-                        actor: this.actor
+                        actor: this.actor,
+                        auto: autoGen
                     }
                     return FPRollUtility.postBattle(template, postData);
                 }

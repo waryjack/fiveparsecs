@@ -58,34 +58,42 @@ export class FPRollUtility {
                             taskAssignments.finders = new Array();
                             if (html.find("#finder1").val() != "") { taskAssignments.finders.push(html.find("#finder1").val()); }
                             if (html.find("#finder2").val() != "") { taskAssignments.finders.push(html.find("#finder2").val()); }
+                            taskAssignments.findOutcome = html.find("#find-outcome").val();
                             
                             taskAssignments.trainers = new Array(); 
                             if (html.find("#trainer1").val() != "") { taskAssignments.trainers.push(html.find("#trainer1").val())}
                             if (html.find("#trainer2").val() != "") { taskAssignments.trainers.push(html.find("#trainer2").val())}
+                            taskAssignments.trainOutcome = html.find("#train-outcome").val();
 
                             taskAssignments.traders = new Array();
                             if (html.find("#trader1").val() != "") { taskAssignments.traders.push(html.find("#trader1").val())}
                             if (html.find("#trader2").val() != "") { taskAssignments.traders.push(html.find("#trader2").val())}
+                            taskAssignments.tradeOutcome = html.find("#trade-outcome").val();
 
                             taskAssignments.recruiters = new Array();
                             if (html.find("#recruiter1").val() != "") {taskAssignments.recruiters.push(html.find("#recruiter1").val())}
                             if (html.find("#recruiter2").val() != "") {taskAssignments.recruiters.push(html.find("#recruiter2").val())}
+                            taskAssignments.recruitOutcome = html.find("#recruit-outcome").val();
 
                             taskAssignments.explorers = new Array();
                             if (html.find("#explorer1").val() != "") {taskAssignments.explorers.push(html.find("#explorer1").val())}
                             if (html.find("#explorer2").val() != "") {taskAssignments.explorers.push(html.find("#explorer2").val())}
+                            taskAssignments.exploreOutcome = html.find("#explore-outcome").val();
 
                             taskAssignments.trackers = new Array();
                             if (html.find("#tracker1").val() != "") {taskAssignments.trackers.push(html.find("#tracker1").val())}
                             if (html.find("#tracker2").val() != "") {taskAssignments.trackers.push(html.find("#tracker2").val())}
+                            taskAssignments.trackOutcome = html.find("#track-oucome").val();
                             
                             taskAssignments.repairers = new Array();
                             if (html.find("#repairer1").val() != "") {taskAssignments.repairers.push(html.find("#repairer1").val())}
                             if (html.find("#repairer2").val() != "") {taskAssignments.repairers.push(html.find("#repairer2").val())}
+                            taskAssignments.repairOutcome = html.find("#repair-outcome").val();
 
                             taskAssignments.decoys = new Array();
                             if (html.find("#decoy1").val() != "") {taskAssignments.decoys.push(html.find("#decoy1").val())}
                             if (html.find("#decoy2").val() != "") {taskAssignments.decoys.push(html.find("#decoy2").val())}
+                            taskAssignments.decoyOutcome = html.find("#decoy-outcome").val();
 
                             return data.actor.handleCrewTasks(taskAssignments);
                         }
@@ -97,10 +105,10 @@ export class FPRollUtility {
                     }
 
 
-                }
+                },
 
 
-            }).render(true)
+            },{width:500}).render(true)
         });
     }
 
@@ -119,25 +127,33 @@ export class FPRollUtility {
                             postData.rival = html.find("#riv").val();
                             postData.rivbonus = html.find("#riv-mod").val();
                             postData.existingRival = html.find("#exist-rival").checked;
+                            postData.rivOutome = html.find("#riv-outcome").val();
                            
                             postData.invasion = html.find("#inv").val();
                             postData.invbonus = html.find("#inv-mod").val();
+                            postData.invOutcome = html.find("#inv-outcome").val();
 
                             postData.patron = html.find("#pat").val();
+                            postData.patOucome = html.find("#pat-outcome").val();
 
                             postData.quest = html.find("#qst").val();
                             postData.questbonus = html.find("#qst-mod").val();
                             postData.questfinal = html.find("#qst-final").checked;
+                            postData.qstOutome = html.find("#qst-outcome").val();
 
                             postData.getPaid = html.find("#pay").val();
                             postData.paybonus = html.find("#pay-mod").val();
+                            postData.payOutcome = html.find("#pay-outcome").val();
 
                             postData.finds = html.find("#fnd").val();
+                            postData.findOutcome = html.find("#fnd-outcome").val();
 
                             postData.loot = html.find("#loot").val();
                             postData.lootrolls = html.find("#loot-mod").val();
+                            postData.lootOutcome = html.find("#loot-outcome").val();
 
                             postData.campevent = html.find("#cev").val();
+                            postData.cevOutcome = html.find("#cev-outcome").val();
 
                             return data.actor.postBattle(postData);
                             //return data.actor.postBattle(postData);
@@ -153,7 +169,7 @@ export class FPRollUtility {
                 }
 
 
-            }).render(true);
+            },{width:500}).render(true);
 
         });
     }

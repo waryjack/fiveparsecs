@@ -248,28 +248,28 @@ export class FPActor extends Actor {
 
         } else {
             if (assignments.finders.length) {
-                finalPatronText = assignments.finders.join(" and ") + stdPatronText;
+                finalPatronText = assignments.finders.join(" and ") + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
             }
             if (assignments.trainers.length) {
-                finalTrainText = assignments.trainers.join(" and ") + stdTrainText;
+                finalTrainText = assignments.trainers.join(" and ") + ((assignments.trainOutcome != "" && typeof(assignments.trainOutcome !== "undefined")) ? " "+assignments.trainOucome : stdTrainText);
             }
             if (assignments.traders.length) {
-                finalTradeText = assignments.traders.join(" and ") + stdTradeText;
+                finalTradeText = assignments.traders.join(" and ") + ((assignments.tradeOutcome != "" && typeof(assignments.tradeOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdTradeText);
             }
             if (assignments.recruiters.length) {
-                finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText;
+                finalRecruitText = assignments.recruiters.join(" and ") + ((assignments.recruitOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdRecruitText);
             }
             if (assignments.explorers.length) {
-                finalExploreText = assignments.explorers.join(" and ") + stdExploreText;
+                finalExploreText = assignments.explorers.join(" and ") + ((assignments.exploreOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.exploreOutcome : stdExploreText);
             }
             if (assignments.trackers.length) {
-                finalTrackText = assignments.trackers.join(" and ") + stdTrackText;
+                finalTrackText = assignments.trackers.join(" and ") + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
             }
             if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(" and ") + stdRepairText;
+                finalRepairText = assignments.repairers.join(" and ") + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcom : stdRepairText);
             }
             if (assignments.decoys.length) {
-                finalDecoyText = assignment.decoys.join(" and ") + stdDecoyText
+                finalDecoyText = assignment.decoys.join(" and ") + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
             }
 
             this.update({

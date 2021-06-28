@@ -10,9 +10,7 @@
          <table class="fp crew-roster">
              <tr class="fp sheet-label">
                  <th>Task</th>
-                 <th>First Crew</th>
-                 <th>Second Crew</th>
-                 <!--th>Outcome</th-->
+                 <th>Crew {{#unless auto}}& Outcome{{/unless}}</th>
              </tr>
              <tr>
                  <th>Find a Patron</th>
@@ -23,21 +21,15 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
-                     <select name="finder2" id="finder2">
+                      <select name="finder2" id="finder2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                      {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="find-outcome" data-dtype="String"/>{{/unless}}
                  </td>
-                 <!--td>
-                     <a class="proc-gen" data-gen-roll="find-patron">
-                         <img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="24" width="24" style="border:0"/></a>
-                     </a>
-                     <td><input type="fp text-input" id="rand-patron-results" data-dtype="String"/></td>
-                 </td-->
              </tr>
               <tr>
                  <th>Train</th>
@@ -48,14 +40,16 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
                      <select name="trainer2" id="trainer2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                 
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="train-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
               <tr>
@@ -67,14 +61,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                
                      <select name="trader2" id="trader2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                 
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="trade-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
               <tr>
@@ -86,14 +83,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                
                      <select name="recruiter2" id="recruiter2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+               
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="recruit-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
               <tr>
@@ -105,15 +105,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                
                      <select name="explorer2" id="explorer2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
+                 
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="explore-outcome" data-dtype="String"/>
+                 {{/unless}}</td>
              </tr>
              <tr>
                  <th>Track</th>
@@ -124,14 +126,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                 
                      <select name="tracker2" id="tracker2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="track-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
              <tr>
@@ -143,14 +148,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                
                      <select name="repairer2" id="repairer2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                 
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="repair-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
              <tr>
@@ -162,14 +170,17 @@
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
-                 </td>
-                 <td>
+                
                      <select name="decoy2" id="decoy2">
                         <option value="">Nobody</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
+                
+                 {{#unless auto}}<br/>
+                     <input type="fp text-input" style="width:100%" id="decoy-outcome" data-dtype="String"/>
+                 {{/unless}}
                  </td>
              </tr>
             

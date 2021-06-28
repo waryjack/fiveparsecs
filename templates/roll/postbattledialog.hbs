@@ -16,9 +16,15 @@
                            <option value="no" selected>No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#if auto}}<td style="padding-left:12px;">
                      Modifier: <input class="fp value-input" id="riv-mod" type="text" value="0" data-dtype="Number"/><br/>
-                     Existing Rival? <input type="checkbox" id="exist-rival"/></td>
+                     <input type="checkbox" id="exist-rival"/> Existing Rival? 
+                 </td>
+                 {{else}}
+                 <td>
+                     <input type="text" class="fp text-input" style="width:100%" id="riv-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
              </tr>
              <tr>
                  <th>Successful Patron Mission?</th>
@@ -28,7 +34,11 @@
                            <option value="no" selected>No</option>
                      </select>
                  </td>
-                 <td></td>
+                 {{#unless auto}}
+                 <td>
+                    <input type="text" class="fp text-input" style="width:100%" id="pat-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/unless}}
             </tr>
             <tr>
                 <th>Fought a Quest Mission?</th>
@@ -38,9 +48,14 @@
                            <option value="no" selected>No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#if auto}} <td style="padding-left:12px;">
                     Modifier: <input class="fp value-input" id="qst-mod" type="text" value="0" data-dtype="Number"/>
                  </td>
+                 {{else}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="qst-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
              </tr>
              <tr>
                 <th>Determine Mission Pay?</th>
@@ -50,10 +65,15 @@
                            <option value="no">No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#if auto}} <td style="padding-left:12px;">
                     Modifier: <input class="fp value-input" type="text" id="pay-mod" value="0" data-dtype="Number"/><br/>
-                    Quest Finale? <input type="checkbox" id="qst-final"/>
+                    <input type="checkbox" id="qst-final"/> Quest Finale? 
                  </td>
+                 {{else}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="pay-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
              </tr>
               <tr>
                 <th>Check for Campaign Event?</th>
@@ -63,8 +83,11 @@
                            <option value="no">No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#unless auto}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="cev-outcome" data-dtype="String" value=""/>
                  </td>
+                 {{/unless}}
              </tr>
              <tr>
                 <th>Get Battlefield Finds?</th>
@@ -74,8 +97,11 @@
                            <option value="no">No</option>
                      </select>
                  </td>
+                 {{#unless auto}}
                  <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="fnd-outcome" data-dtype="String" value=""/>
                  </td>
+                 {{/unless}}
              </tr>
              <tr>
                  <th>Check for Invasion?</th>
@@ -85,9 +111,14 @@
                            <option value="no" selected>No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#if auto}}<td style="padding-left:12px;">
                    Modifier: <input class="fp value-input" type="text" id="inv-mod" value="0" data-dtype="Number"/><br/>
                  </td>
+                 {{else}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="inv-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
              </tr>
               <tr>
                  <th>Get Loot?</th>
@@ -97,9 +128,14 @@
                            <option value="no">No</option>
                      </select>
                  </td>
-                 <td style="padding-left:12px;">
+                 {{#if auto}}<td style="padding-left:12px;">
                      Num. loot rolls: <input class="fp value-input" type="text" id="loot-mod" value="1" data-dtype="Number"/>
                  </td>
+                 {{else}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="loot-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
              </tr>
             
          </table>         

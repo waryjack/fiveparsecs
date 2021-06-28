@@ -409,18 +409,7 @@ export class FPProcGen {
     }
 
     static async getPostBattleResults(pbData) {
-        // Post Battle Tables
-        const tblFinds = game.tables.filter(t => t.name === "Battlefield Finds")[0];
-
-        // Events Tables
-        const tblCampEvents = game.tables.filter(t => t.name === "Campaign Events")[0];
-
-        // Loot Tables
-        const tblLoot = game.tables.filter(t => t.name === "Loot")[0];
-        const tblWeapons = game.tables.filter(t => t.name === "Weapon Category")[0];
-        const tblGear = game.tables.filter(t => t.name === "Gear Category")[0];
-
-        // Default Response
+        let auto = game.settings.get("fiveparsecs", "autoGenerate");
         let rivText = "No changes to your Rivals.";
         let patText = "No changes to your Patrons."; 
         let questText = "No changes to quest status.";
@@ -430,103 +419,129 @@ export class FPProcGen {
         let campEventText = "No campaign events.";
         let lootText = "No loot.";
         let bfRes = "";
-     
-        if (pbData.rival === "yes") {
-            let rr = new Roll("1d6").evaluate({async:false}).result;
-            rr = parseInt(rr) + parseInt(pbData.rivbonus);
-            if (pbData.existingRival) {
-                if (rr >= 4) {
-                    rivText = "This Rival has had enough. You can remove them from your rivals list.";
-                }
-            } else {
-                if (rr == 1) {
-                    rivText = "You have gained a Rival on this planet.";
-                }
-            }
-        }
+        
+        if(auto){
+            // Post Battle Tables
+            const tblFinds = game.tables.filter(t => t.name === "Battlefield Finds")[0];
 
-        if (pbData.patron === "yes") {
-            patText = "You have gained a Patron on this planet.";
-        }
+            // Events Tables
+            const tblCampEvents = game.tables.filter(t => t.name === "Campaign Events")[0];
 
-        if (pbData.quest === "yes") {
-            let qr = new Roll("1d6").evaluate({async:false}).result;
-            qr = parseInt(qr) + parseInt(pbData.questbonus);
+            // Loot Tables
+            const tblLoot = game.tables.filter(t => t.name === "Loot")[0];
+            const tblWeapons = game.tables.filter(t => t.name === "Weapon Category")[0];
+            const tblGear = game.tables.filter(t => t.name === "Gear Category")[0];
 
-            if (qr <= 3) {
-                questText = "Quest Update: This was a dead end."
-            } else if (qr > 3 && qr < 7) {
-                questText = "Quest Update: You are closer to the end of your quest (Gain 1 Quest Rumor).";
-            } else {
-                questText = "Quest Update: Your next Quest mission will conclude your current quest.";
-            }
-        }
-
-        if (pbData.getPaid === "yes") {
-            let pr = "";
-            if (pbData.questfinal) {
-                pr = new Roll("2d6kh").evaluate({async:false}).result;
-                pr = parseInt(pr) + parseInt(pbData.paybonus);
-            } else {
-                pr = new Roll("1d6").evaluate({async:false}).result;
-                pr = parseInt(pr) + parseInt(pbData.paybonus);
-            }
-
-            payText = "Mission Pay: You earn " + pr + " Credits in mission pay. Remember to add Danger Pay and other bonuses when updating your Credit balance.";
-        }
-
-        if (pbData.finds === "yes") {
-            let bfDraw = await tblFinds.draw({displayChat:false});
-            bfRes = bfDraw.results[0].data.text;
-
-            findText = "Battlefield finds: " + bfRes;
-        }
-
-        if (pbData.invasion === "yes") {
-            let invEv = 0;
-            let ir = new Roll("2d6").evaluate({displayChat:false}).result;
-
-            ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
-            if (ir >= 9) {
-                invText = "Invasion Status: Invasion imminent! (Roll: " + ir + ")";
-            } else {
-                invText = invText + "(Roll: " + ir +")";
-            }
-        }
-
-        if (pbData.campevent === "yes") {
-            let ceDraw = await tblCampEvents.draw({displayChat:false});
-            let ceRes = ceDraw.results[0].data.text;
-            campEventText = "Campaign Event: " + ceRes;
-        }
-
-        if (pbData.loot === "yes") {
-            lootText = "Loot: ";
-            let lootArray = [];
-            for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
-                // let ltDraw = await tblLoot.draw({displayChat:false});
-                let ltDrawRoll = new Roll("1d100").evaluate({async:false}).result;
-
-                if (ltDrawRoll >= 26 && ltDrawRoll <= 35) {
-                    let ltDraw1 = await tblWeapons.draw({displayChat:false});
-                    let ltDraw2 = await tblWeapons.draw({displayChat:false});
-                    let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
-                    let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
-                    lootArray.push(ltRes1, ltRes2);
-                } else if (ltDrawRoll >=46 && ltDrawRoll <= 65) {
-                    let ltDraw1 = await tblGear.draw({displayChat:false});
-                    let ltDraw2 = await tblGear.draw({displayChat:false});
-                    let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
-                    let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
-                    lootArray.push(ltRes1, ltRes2);
+            // Default Response
+           
+        
+            if (pbData.rival === "yes") {
+                let rr = new Roll("1d6").evaluate({async:false}).result;
+                rr = parseInt(rr) + parseInt(pbData.rivbonus);
+                if (pbData.existingRival) {
+                    if (rr >= 4) {
+                        rivText = "This Rival has had enough. You can remove them from your rivals list.";
+                    }
                 } else {
-                    let ltDraw = await tblLoot.draw({displayChat:false, roll:ltDrawRoll});
-                    let ltRes = ltDraw.results[0].data.text;
-                    lootArray.push(ltRes);
+                    if (rr == 1) {
+                        rivText = "You have gained a Rival on this planet.";
+                    }
                 }
             }
 
-            lootText += lootArray.join(", ");
+            if (pbData.patron === "yes") {
+                patText = "You have gained a Patron on this planet.";
+            }
+
+            if (pbData.quest === "yes") {
+                let qr = new Roll("1d6").evaluate({async:false}).result;
+                qr = parseInt(qr) + parseInt(pbData.questbonus);
+
+                if (qr <= 3) {
+                    questText = "Quest Update: This was a dead end."
+                } else if (qr > 3 && qr < 7) {
+                    questText = "Quest Update: You are closer to the end of your quest (Gain 1 Quest Rumor).";
+                } else {
+                    questText = "Quest Update: Your next Quest mission will conclude your current quest.";
+                }
+            }
+
+            if (pbData.getPaid === "yes") {
+                let pr = "";
+                if (pbData.questfinal) {
+                    pr = new Roll("2d6kh").evaluate({async:false}).result;
+                    pr = parseInt(pr) + parseInt(pbData.paybonus);
+                } else {
+                    pr = new Roll("1d6").evaluate({async:false}).result;
+                    pr = parseInt(pr) + parseInt(pbData.paybonus);
+                }
+
+                payText = "Mission Pay: You earn " + pr + " Credits in mission pay. Remember to add Danger Pay and other bonuses when updating your Credit balance.";
+            }
+
+            if (pbData.finds === "yes") {
+                let bfDraw = await tblFinds.draw({displayChat:false});
+                bfRes = bfDraw.results[0].data.text;
+
+                findText = "Battlefield finds: " + bfRes;
+            }
+
+            if (pbData.invasion === "yes") {
+                let invEv = 0;
+                let ir = new Roll("2d6").evaluate({displayChat:false}).result;
+
+                ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
+                if (ir >= 9) {
+                    invText = "Invasion Status: Invasion imminent! (Roll: " + ir + ")";
+                } else {
+                    invText = invText + "(Roll: " + ir +")";
+                }
+            }
+
+            if (pbData.campevent === "yes") {
+                let ceDraw = await tblCampEvents.draw({displayChat:false});
+                let ceRes = ceDraw.results[0].data.text;
+                campEventText = "Campaign Event: " + ceRes;
+            }
+
+            if (pbData.loot === "yes") {
+                lootText = "Loot: ";
+                let lootArray = [];
+                for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
+                    // let ltDraw = await tblLoot.draw({displayChat:false});
+                    let ltDrawRoll = new Roll("1d100").evaluate({async:false}).result;
+
+                    if (ltDrawRoll >= 26 && ltDrawRoll <= 35) {
+                        let ltDraw1 = await tblWeapons.draw({displayChat:false});
+                        let ltDraw2 = await tblWeapons.draw({displayChat:false});
+                        let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
+                        let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
+                        lootArray.push(ltRes1, ltRes2);
+                    } else if (ltDrawRoll >=46 && ltDrawRoll <= 65) {
+                        let ltDraw1 = await tblGear.draw({displayChat:false});
+                        let ltDraw2 = await tblGear.draw({displayChat:false});
+                        let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
+                        let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
+                        lootArray.push(ltRes1, ltRes2);
+                    } else {
+                        let ltDraw = await tblLoot.draw({displayChat:false, roll:ltDrawRoll});
+                        let ltRes = ltDraw.results[0].data.text;
+                        lootArray.push(ltRes);
+                    }
+                }
+
+                lootText += lootArray.join(", ");
+            }
+        } else {
+        
+            rivText = (pbData.rivOutcome != "" && typeof(pbData.rivOutcome !== "undefined")) ? "Rival Status: " + pbData.rivOutcome : rivText;
+            patText = (pbData.patOutcome != "" && typeof(pbData.patOutcome !== "undefined")) ? "Patron Status: " + pbData.patOutcome : patText;
+            questText = (pbData.qstOutcome != "" && typeof(pbData.qstOutcome !== "undefined")) ? "Quest Status: " + pbData.qstOutcome : questText;
+            payText = (pbData.payOutcome != "" && typeof(pbData.payOutcome !== "undefined")) ? "Mission Pay: " + pbData.payOutcome : payText;
+            findText = (pbData.fndOutcome != "" && typeof(pbData.fndOutcome !== "undefined")) ? "Battlefield Finds: "+pbData.fndOutcome : findText;
+            invText = (pbData.invOutcome != "" && typeof(pbData.invOutcome !== "undefined")) ? "Invasion Status: "+pbData.invOutcome : invText;
+            campEventText = (pbData.cevOutcome != "" && typeof(pbData.cevOutcome !== "undefined")) ? "Campaign Event: "+pbData.cevOutcome : campEventText;
+            lootText = (pbData.cevOutcome != "" && typeof(pbData.cevOutcome !== "undefined")) ? "Loot: "+pbData.lootOutcome : lootText;
         }
 
         let afterActionReport = {
