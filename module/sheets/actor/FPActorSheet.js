@@ -91,14 +91,14 @@ export class FPActorSheet extends ActorSheet {
 
         html.find('.reset-turn').click(this._resetTurn.bind(this));
 
-        /* Allows drag-drop to sidebar
+        // Allows drag-drop to sidebar
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
             if (item.dataset && item.dataset.itemId) {
                 item.setAttribute('draggable', true);
                 item.addEventListener('dragstart', handler, false);
             }
-        }); */
+        });
 
     }
 

@@ -88,7 +88,7 @@
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp crew-roster" style="border-collapse:collapse;">
                                 <tr class="fp sheet-label labels">
-                                    <th>{{localize "FP.gameterm.weapon"}}</th>
+                                    <th>{{localize "FP.gameterm.weapon"}} <a class="item-create" title="Add Weapon" data-type="weapon"><i class="fas fa-plus-square"></i></a></th>
                                     <th>{{localize "FP.weapon.stat.range"}}</th>
                                     <th>{{localize "FP.weapon.stat.shots"}}</th>
                                     <th>{{localize "FP.weapon.stat.damage"}}</th>
@@ -96,7 +96,7 @@
                                 </tr>
                                 {{#each weapons as |weapon id|}}
                                 <tr class="hw">
-                                    <td>
+                                    <td class="item-name item" data-item-id="{{weapon.data._id}}">
                                         <a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
                                             <i class="fa fa-dice-six"></i>
                                         </a>
@@ -122,14 +122,14 @@
                         <div class="fp flex-item" style="margin-right:12px">
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
-                                   <th>{{localize "FP.trait.type.background"}}</th>
+                                   <th>{{localize "FP.trait.type.background"}} <a class="item-create" data-type="background" title="Add Background"><i class="fas fa-plus-square"></i></a></th>
                                    <th>Effect</th>
                                    <th>Resources</th>
                                    <th>Starting Rolls</th>
                                </tr>
                                {{#each backgrounds as |item id|}}
                                <tr class="hw">
-                                   <td>
+                                   <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
                                         <a class="item-edit item" title="Edit {{item.name}}" data-type="background" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
@@ -153,14 +153,14 @@
                        <div class="fp flex-item" style="margin-right:12px">
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
-                                   <th>{{localize "FP.trait.type.motivation"}}</th>
+                                   <th>{{localize "FP.trait.type.motivation"}} <a class="item-create" data-type="motivation" title="Add Motivation"><i class="fas fa-plus-square"></i></a></th>
                                    <th>Effect</th>
                                    <th>Resources</th>
                                    <th>Starting Rolls</th>
                                </tr>
                                {{#each motivations as |item id|}}
                                <tr class="hw">
-                                   <td>
+                                   <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
                                         <a class="item-edit item" title="Edit {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
@@ -184,14 +184,14 @@
                        <div class="fp flex-item" style="margin-right:12px">
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
-                                   <th>{{localize "FP.trait.type.class"}}</th>
+                                   <th>{{localize "FP.trait.type.class"}} <a class="item-create" data-type="class" title="Add Class"><i class="fas fa-plus-square"></i></a></th>
                                    <th>Effect</th>
                                    <th>Resources</th>
                                    <th>Starting Rolls</th>
                                </tr>
                                {{#each class as |item id|}}
                                <tr class="hw">
-                                   <td>
+                                   <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
                                         <a class="item-edit item" title="Edit {{item.name}}" data-type="class" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
@@ -217,13 +217,13 @@
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp crew-roster">
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span> <a class="item-create" data-type="gear" title="Add Gear"><i class="fas fa-plus-square"></i></a></td>
                                     <td style="padding-left:3px;">
                                         
                                         {{#each gear as |gear id|}}
                                         
-                                            <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}">{{gear.name}}
-                                                {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}
+                                            <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><span class="item-name item" data-item-id="{{gear.data._id}}">{{gear.name}}
+                                                {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}</span>
                                             </a> 
                                              <a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a> 
                                             

@@ -69,7 +69,7 @@
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp enemy-roster" style="border-collapse:collapse;">
                                 <tr class="fp sheet-label labels">
-                                    <th>{{localize "FP.gameterm.weapon"}}</th>
+                                    <th>{{localize "FP.gameterm.weapon"}} <a class="item-create" title="Add Weapon" data-type="weapon"><i class="fas fa-plus-square"></i></a></th>
                                     <th>{{localize "FP.weapon.stat.range"}}</th>
                                     <th>{{localize "FP.weapon.stat.shots"}}</th>
                                     <th>{{localize "FP.weapon.stat.damage"}}</th>
@@ -77,7 +77,7 @@
                                 </tr>
                                 {{#each weapons as |weapon id|}}
                                 <tr class="hw">
-                                    <td>{{weapon.name}} 
+                                    <td class="item-name item" data-item-id="{{weapon.data._id}}">{{weapon.name}} 
 
                                         <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
                                             <i class="fa fa-edit"></i>
@@ -98,7 +98,7 @@
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp enemy-roster">
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span> <a class="item-create" title="Add Gear" data-type="gear"><i class="fas fa-plus-square"></i></a></td>
                                     <td style="padding-left:3px;">
                                         
                                         {{#each gear as |gear id|}}
