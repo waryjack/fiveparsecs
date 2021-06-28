@@ -184,6 +184,12 @@ These tables are for the *specific* enemy faced in a battle. Create and fill out
 * Roving Threats
 * Unique Individuals
 
+**IMPORTANT**: for each of the above tables, the entry must be formatted like so: Enemy Type/Numbers (using the Numbers stat in the core book, but excluding the "+" sign). So for example, the entry for Unknown Mercs (page 96 in the core rules) would look like this in the table:
+
+`Unknown Mercs/0`
+
+If you leave off the / and the number, generation will still work, but the game won't be able to tell you how many enemies you are facing. 
+
 ## Crew Task Tables
 
 * Trade
