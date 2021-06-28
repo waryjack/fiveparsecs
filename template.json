@@ -206,7 +206,8 @@
             "time_frame":"",
             "benefits":"",
             "hazards":"",
-            "conditions":""
+            "conditions":"",
+            "complete":false
         },
         "battle":{
             "type":"",
@@ -217,6 +218,7 @@
             "notable_sights":"",
             "complete":false,
             "outcome":"",
+            "obj_complete":false,
             "casualties":0,
             "opposition":{
                 "base_number":0,

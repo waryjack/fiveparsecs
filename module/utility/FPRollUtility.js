@@ -127,19 +127,19 @@ export class FPRollUtility {
                             postData.rival = html.find("#riv").val();
                             postData.rivbonus = html.find("#riv-mod").val();
                             postData.existingRival = html.find("#exist-rival").checked;
-                            postData.rivOutome = html.find("#riv-outcome").val();
+                            postData.rivOutcome = html.find("#riv-outcome").val();
                            
                             postData.invasion = html.find("#inv").val();
                             postData.invbonus = html.find("#inv-mod").val();
                             postData.invOutcome = html.find("#inv-outcome").val();
 
                             postData.patron = html.find("#pat").val();
-                            postData.patOucome = html.find("#pat-outcome").val();
+                            postData.patOutcome = html.find("#pat-outcome").val();
 
                             postData.quest = html.find("#qst").val();
                             postData.questbonus = html.find("#qst-mod").val();
                             postData.questfinal = html.find("#qst-final").checked;
-                            postData.qstOutome = html.find("#qst-outcome").val();
+                            postData.qstOutcome = html.find("#qst-outcome").val();
 
                             postData.getPaid = html.find("#pay").val();
                             postData.paybonus = html.find("#pay-mod").val();

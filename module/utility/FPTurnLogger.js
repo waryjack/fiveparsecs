@@ -14,11 +14,12 @@ export class FPTurnLogger {
         let numJobs = jobs.length;
 
         battles.forEach(b => {
-            battleTextArray.push(`<b>Battle</b>: ${b.data.data.type} / Objective: ${b.data.data.objective} / Opposition: ${b.data.data.opposition.element_subtype} / Outcome ${b.data.data.outcome}`);
+            battleTextArray.push(`<b>Battle</b>: ${b.data.data.type} / Objective: ${b.data.data.objective} / Opposition: ${b.data.data.opposition.element_subtype} (${b.data.data.opposition.element}) / Outcome ${b.data.data.outcome}`);
         });
 
         jobs.forEach(j => {
-            jobTextArray.push(`<b>Patron</b>: ${j.data.data.patron_type} / Danger Pay: ${j.data.data.danger_pay} / Time Frame: ${j.data.data.time_frame} / BHC: ${j.data.data.benefits}, ${j.data.data.hazards}, ${j.data.data.conditions}`);
+            let job_done = (j.data.data.complete) ? "Yes" : "No";
+            jobTextArray.push(`<b>Patron</b>: ${j.data.data.patron_type} / Danger Pay: ${j.data.data.danger_pay} / Time Frame: ${j.data.data.time_frame} / BHC: ${j.data.data.benefits}, ${j.data.data.hazards}, ${j.data.data.conditions} / Completed: ${job_done}`);
         });
 
         let finalBattleText = battleTextArray.join("<br/>");

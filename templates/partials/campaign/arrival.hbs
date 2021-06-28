@@ -9,7 +9,7 @@
         {{log "Active Worlds HBS: " active_world}}
         {{#each worlds as |world id|}}
         {{#if world.data.data.active}}
-        <p><span class="fp sheet-label">World: </span><span class="hw">{{world.name}}</span> <a class="item-edit item" data-item-id="{{world.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a><br/>
+        <p><span class="fp sheet-label">World: </span><span class="hw">{{world.name}} ({{world.data._id}}</span> <a class="item-edit item" data-item-id="{{world.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a><br/>
         <span class="fp sheet-label">World Traits: </span><span class="hw">{{world.data.data.traits}}</span><br/>
         <span class="fp sheet-label">Licensing:</span><span class="hw">{{#if world.data.data.licensing}}Yes{{else}}No{{/if}} {{#if world.data.data.license_obtained}}(Acquired){{else}}(Not Acquired){{/if}}</span><br/>
         <span class="fp sheet-label">Invaders: </span><span class="hw">{{world.data.data.invaders}}{{#if (ne world.data.data.invaders "")}}/{{/if}}{{world.data.data.inv_progress}}</span><br/>

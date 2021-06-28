@@ -13,6 +13,7 @@
         <span class="fp sheet-label">Benefits: </span><span class='hw'>{{job.data.data.benefits}}</span><br/>
         <span class="fp sheet-label">Hazards: </span><span class='hw'>{{job.data.data.hazards}}</span><br/>
         <span class="fp sheet-label">Conditions: </span><span class='hw'>{{job.data.data.conditions}}</span><br/>
+        <span class="fp sheet-label">Completed: </span>{{#if job.data.data.complete}}<i class="fas fa-check-square"></i>{{else}}<i class="far fa-square"></i>{{/if}}
         </p>
         {{/each}}
     </td>

@@ -56,6 +56,8 @@ export class FPActorSheet extends ActorSheet {
             data.jobs = ownedItems.filter(item => item.type === "patron_job");
          }
 
+         data.auto = game.settings.get("fiveparsecs", "autoGenerate");
+
          return data;
     }
 

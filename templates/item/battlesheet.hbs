@@ -6,6 +6,7 @@
     <section class="sheetbody">
       
         <div class="fp flexcol">
+            <h3 class="fp sheet-label">Basic Info</h3>
             <table class="fp item-roster">
                 <tr>
                     <th class="fp sheet-label">Battle Type</th>
@@ -20,8 +21,60 @@
                     <td><input class="fp text-input" name="data.deployment" value="{{data.deployment}}" data-dtype="String"/></td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Opposition</th>
-                    <td><input class="fp text-input" name="data.opposition.element_subtype" value="{{data.opposition.element_subtype}}" data-dtype="String"/></td>
+                    <th class="fp sheet-label">Outcome</th>
+                    <td>
+                        <select name="data.outcome" id="data.outcome">
+                            {{#select data.outcome}}
+                            <option value="Unfought">Unfought</option>
+                            <option value="Held the Field">Held the Field</option>
+                            <option value="Left the Field">Left the Field</option>
+                            <option value="Defeated">Defeated</option>
+                            <option value="Draw">Draw</option>
+                            {{/select}}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Objective Complete</th>
+                    <td>
+                         <input type="checkbox" name="data.obj_complete" {{#if data.obj_complete}}checked{{/if}}/>
+                    </td>
+                </tr>
+                
+            </table>
+            <h3 class="fp sheet-label">Opposition</h3>
+            <table class="fp item-roster">
+                <tr>
+                    <th class="fp sheet-label">Enemy Category</th>
+                    <td>
+                        <select name="data.opposition.element" id="data.opposition.element">
+                            {{#select data.opposition.element}}
+                            <option value="Criminal Elements">Criminal Elements</option>
+                            <option value="Hired Muscle">Hired Muscle</option>
+                            <option value="Interested Parties">Interested Parties</option>
+                            <option value="Roving Threats">Roving Threats</option>
+                            {{/select}}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Main Opposition</th>
+                    <td>
+                        <input type="text" class="fp text-input" style="width:50%" name="data.opposition.element_subtype" value="{{data.opposition.element_subtype}}" data-dtype="String"/> x
+                        <input type="text" class="fp value-input" name="data.opposition.base_number" value="{{data.opposition.base_number}}" data-dtype="Number"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Specialists</th>
+                    <td>
+                        <input type="text" class="fp value-input" name="data.opposition.specialists" value="{{data.opposition.specialists}}" data-dtype="String"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="fp sheet-label">Unique Individuals</th>
+                    <td>
+                        <input type="text" class="fp text-input" name="data.opposition.unique_type" value="{{data.opposition.unique_type}}" data-dtype="String"/>
+                    </td>
                 </tr>
             </table>
         </div>

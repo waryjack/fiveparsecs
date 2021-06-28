@@ -31,6 +31,10 @@
                     <th class="fp sheet-label">Conditions</th>
                     <td><input class="fp text-input" name="data.conditions" value="{{data.conditions}}" data-dtype="String"/></td>
                 </tr>
+                <tr>
+                    <th class="fp sheet-label">Completed</th>
+                    <td><input type="checkbox" name="data.complete" {{#if data.complete}}checked{{/if}}/></td>
+                </tr>
             </table>
         </div>
     
