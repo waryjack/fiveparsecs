@@ -6,7 +6,7 @@
     <td>
           {{#each jobs as |job id|}}
           {{log "jobs: " jobs}}
-          <p><span class="fp sheet-label"><strong>{{job.name}}</strong></span> <a class="item-edit item" data-item-id="{{job.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" data-item-id="{{job.data._id}}"><i class="fas fa-trash"></i></a><br/>
+          <p><span class="fp sheet-label"><strong>{{job.name}}</strong></span> <span style="margin-left:3px; border-radius:3px; padding-left:6px; padding-right:6px; color:white; background:black;"><a class="item-edit item" title="Edit Job" data-item-id="{{job.data._id}}"><i class="fas fa-edit"></i></a> <a class="item-delete item" title="Delete Job" data-item-id="{{job.data._id}}"><i class="fas fa-trash"></i></a></span><br/>
         <span class="fp sheet-label">Patron: </span><span class="hw">{{job.data.data.patron_type}}</span><br/>
         <span class="fp sheet-label">Danger Pay: </span><span class="hw">{{job.data.data.danger_pay}}</span><br/>
         <span class="fp sheet-label">Time Frame: </span><span class="hw">{{job.data.data.time_frame}}</span><br/>

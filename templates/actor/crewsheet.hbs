@@ -7,41 +7,42 @@
     <section class="sheetbody">
         
         <div class="fp flexrow"> {{!--main row - image, and crewsheet body--}}
-            <div class="fp flexcol" style="max-width:200px; background:#7dc8e6; margin-right:6px;"> {{!--dice and image column--}}
-                <div class="fp flex-item" style="text-align:center;">
-                    <span class="fp sheet-label labels" style="color:white; font-size:2em;">CREW LOG</span>
-                </div>
-                <div class="fp flex-item" style="flex-grow:0; text-align:center"> {{!--image flex column--}}
-                        <img class="profile-img" style=" border:1px solid #44b9de; margin-right:auto; margin-left:auto; min-width:128px !important; min-height:128px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="128" width="128"/>
-                    
-                </div>
-                <div class="fp flexrow">
+            <div class="fp flexcol" style="max-width:28px; background:#7dc8e6; text-align:center;">
                     <div class="fp flex-item dice-icon-compact">
                         <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="24" width="24" style="border:0"/>
                         </a>
                     </div>
                     <div class="fp flex-item dice-icon-compact">
                         <a title="Roll 2d6" class="dice-roll" data-dice-base="2d6">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d6.png" height="32" width="32" style="border:0"/>
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d6.png" height="24" width="24" style="border:0"/>
                         </a>
                     </div>
                      <div class="fp flex-item dice-icon-compact">
                         <a title="Roll 1d10" class="dice-roll" data-dice-base="1d10">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d10.png" height="32" width="32" style="border:0"/>
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d10.png" height="24" width="24" style="border:0"/>
                         </a>
                     </div>
                      <div class="fp flex-item dice-icon-compact">
                         <a title="Roll Percentile" class="dice-roll" data-dice-base="1d100">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/d100.png" height="32" width="32" style="border:0"/>
+                            <img class="dice-img" src="systems/fiveparsecs/assets/d100.png" height="24" width="24" style="border:0"/>
                         </a>
                     </div>
                     <div class="fp flex-item dice-icon-compact">
                         <a title="Roll Custom" class="dice-roll" data-dice-base="custom">
-                            <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/>
+                            <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="24" width="24" style="border:0"/>
                         </a>
                     </div>
+            </div>
+            <div class="fp flexcol" style="max-width:150px; background:#7dc8e6; margin-left:6px;"> {{!--dice and image column--}}
+                <div class="fp flex-item" style="text-align:center;">
+                    <span class="fp sheet-label labels" style="color:white; font-size:1.35em;">CREW LOG</span>
                 </div>
+                <div class="fp flex-item" style="flex-grow:0; text-align:center"> {{!--image flex column--}}
+                        <img class="profile-img" style=" border:1px solid #44b9de; margin-right:auto; margin-left:auto; min-width:96px !important; min-height:96px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="96" width="96"/>
+                    
+                </div>
+                
             </div> {{!--end dice and image column--}}
             
             <div class="fp flexcol" style="min-width:70%; margin-left:6px;"> {{!--crew information column--}}
@@ -130,15 +131,14 @@
         </nav>     
         <div class="tab main" data-group="primary" data-tab="main">       
         <div>
-            <h1 class="fp sheet-label">
-                Crew Roster
+            <h2 class="fp sheet-label">
                 <a class="item-create" title="Add Crew Member" data-type="crew_assignment">
-                    <i class="fas fa-plus-square"></i>
-                </a>
+                    <i class="fas fa-plus-square"></i> Add Crew Member
+                </a> | 
                 <a class="refresh-crew" title="Refresh Crew List">
-                    <i class="fas fa-sync-alt"></i>
+                    <i class="fas fa-sync-alt"></i> Refresh Roster
                 </a>
-            </h1>
+            </h2>
         </div>
 
         <div class="fp flexcol"  > {{!--crew roster container flex column--}}
@@ -276,22 +276,21 @@
         <div style="padding:3px; margin-right:12px;">
             <table class="fp crew-roster" style="border-collapse:collapse;">
                 <tr class="fp sheet-label">
+                    
                     <th>World</th>
                     <th>Invasion</th>
                     <th>Licensing</th>
                     <th>Local Patrons</th>
                     <th>Local Rivals</th>
                     <th>Notes<th>
+                    <th></th>
                     
                 </tr>
                 {{#each worlds as |world id|}}
                 <tr>
                     <td class="hw">
                         {{world.name}}&nbsp;
-                        <a class="item-edit item" title="Edit {{world.name}}" data-type="world" data-item-id="{{world.data._id}}">
-                                            <i class="fa fa-edit"></i>
-                                        </a> 
-                                            <a class="item-delete item" title="Delete {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a>
+                        
                         <p>{{world.data.data.traits}}</p>
 
                     </td>
@@ -313,6 +312,9 @@
                     </td>
                     <td class="hw" style="text-align:center">
                         {{world.data.data.notes}}
+                    </td>
+                     <td style="font-size:2em; padding-left:3px; color:white; background:#7dc8e6"><a class="item-edit item" title="Edit {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fa fa-edit"></i></a><br/>
+                        <a class="item-delete item" title="Delete {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 {{/each}}
