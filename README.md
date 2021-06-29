@@ -1,11 +1,16 @@
 # fiveparsecs
 Foundry System for Five Parsecs from Home
 
-## Wot's all this then?
+## What's all this then?
 
 This is the shell for a FoundryVTT system to play *Five Parsecs from Home*, a solo/duo procedurally generated wargame from Modiphius Entertainment. The initial pass on the system will be low-automation, getting the basic dice rolling functions, items and characters (actors, in Foundry VTT parlance) working at a basic level. 
 
 Note: although the system will support random generation based on tables from the book, those tables must be created and populated **by the user**. This Five Parsecs Foundry System will not contain that content. 
+
+## Latest News
+
+* The latest alpha release includes the campaign tracker, styling updates, and fixes to missing items for characters. 
+* It also includes in System Settings the option to enable or disable automatic rolling on random tables. The default setting for random generation is *off*. If you want to use it, you must - MUST - create the tables as described below in **Creating the Random Tables**. Even then, random generation is in process, and buggy.
 
 ## Roadmap of Sorts
 
