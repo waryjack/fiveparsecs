@@ -6,14 +6,14 @@
             </h2>
     </header>
     <div class="fp flexrow" style="flex-wrap:wrap;">
-        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+        <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
             {{w_shots}} shots
         </div>
-        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+        <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
             {{w_dmg}} damage
         </div>
         {{#unless (eq w_traits "")}}
-        <div class="fp flex-item" style="padding:2px; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
+        <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
             <em>{{w_traits}}</em>
         </div>
         {{/unless}}
@@ -21,7 +21,7 @@
 </div>
 <div class="taskroll-msg">
     
-    <p> <strong><span style="margin-left:6px; font-family:'SheetHeader',sans-serif;">Attack Modifiers</span>:  
+    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">Attack Modifiers</span>:  
     <span style="border-bottom:1px dotted black;" title="{{#if (lt 1 a_combat)}}-{{else}}+{{/if}}{{a_combat}} (Combat) + {{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (lt 0 modifiers)}}-{{else}}+{{/if}}{{totalMod}}</span></strong>
     </p>
 </div>

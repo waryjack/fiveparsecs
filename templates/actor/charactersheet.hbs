@@ -97,16 +97,16 @@
                                 {{#each weapons as |weapon id|}}
                                 <tr class="hw">
                                     <td class="item-name item" data-item-id="{{weapon.data._id}}">
-                                        <a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
-                                            <i class="fa fa-dice-six"></i>
-                                        </a>
+                                        
                                         
                                         {{weapon.name}} 
 
-                                        <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
+                                        <span class="edit-icons-cs"><a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
+                                            <i class="fa fa-crosshairs"></i>
+                                        </a> <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}"><i class="fas fa-trash"></i></a>
+                                            <a class="item-delete item" title="Delete {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                     </td>
                                     <td style="text-align:center">{{weapon.data.data.range}}</td>
@@ -131,10 +131,10 @@
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <a class="item-edit item" title="Edit {{item.name}}" data-type="background" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="background" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="background" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a> 
+                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="background" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -162,10 +162,10 @@
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <a class="item-edit item" title="Edit {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a> 
+                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -193,10 +193,10 @@
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <a class="item-edit item" title="Edit {{item.name}}" data-type="class" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="class" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="class" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a> 
+                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="class" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -225,7 +225,7 @@
                                             <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><span class="item-name item" data-item-id="{{gear.data._id}}">{{gear.name}}
                                                 {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}</span>
                                             </a> 
-                                             <a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a> 
+                                            <span class="edit-icons-cs"><a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a></span>
                                             
                                             {{#if @last}} {{else}}, {{/if}}
 

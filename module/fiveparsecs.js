@@ -35,6 +35,11 @@ Hooks.once("init", () => {
     CONFIG.debug.hooks = true;
 
     CONFIG.Actor.documentClass = FPActor;
+
+    // Config Journal Editing Look & Feel
+
+  
+
     // CONFIG.Combat.documentClass = FPCombat;
 
 

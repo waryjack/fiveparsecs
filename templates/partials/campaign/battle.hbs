@@ -11,7 +11,7 @@
         {{log "Battle List: " battles}}
         {{#each battles as |battle id|}}
         {{log "Battle info: " battle}}
-        <p><span class="fp sheet-label"><strong>{{battle.name}}</strong></span> <span style="margin-left:3px; border-radius:3px; padding-left:6px; padding-right:6px; color:white; background:black;"><a class="item-edit item" title="Edit Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-edit"></i></a><a class="item-delete item" title="Delete Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-trash"></i></a></span><br/>
+        <p><span class="fp sheet-label"><strong>{{battle.name}}</strong></span> <span class="edit-icons"><a class="item-edit item" title="Edit Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-edit"></i></a> <a class="item-delete item" title="Delete Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-trash"></i></a></span><br/>
         <span class="fp sheet-label">Objective: </span><span class="hw">{{battle.data.data.objective}}</span><br/>
         <span class="fp sheet-label">Deployment Conditions: </span><span class="hw">{{battle.data.data.deployment}}</span><br/>
         <span class="fp sheet-label">Notable Sights: </span><span class="hw">{{battle.data.data.notable_sights}}</span><br/>

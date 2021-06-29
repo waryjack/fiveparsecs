@@ -24,6 +24,7 @@ border - #039e5d
 /* table tr:nth-child(even) {
     background:none !important;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap');
 
 @font-face {
     font-family: SheetContent;
@@ -272,6 +273,42 @@ border - #039e5d
     padding-right:3px;
 }
 
+.edit-icons {
+    margin-left:3px; 
+    border-radius:3px; 
+    padding-left:6px; 
+    padding-right:6px; 
+    color: rgb(23, 55, 77);
+    background:#7dc8e6;
+    font-size:1em !important;
+}
+
+.edit-icons-cs {
+    margin-left:3px; 
+    border-radius:3px; 
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:6px; 
+    padding-right:6px; 
+    color:rgb(23, 55, 77); 
+    background:#7dc8e6;
+    font-size:0.85em !important;
+    font-family:sans-serif !important;
+}
+
+.edit-icons-es {
+    margin-left:3px; 
+    border-radius:3px; 
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:6px; 
+    padding-right:6px; 
+    color:#4d1918;
+    background:#ec6260;
+    font-size:0.85em !important;
+    font-family:sans-serif !important;
+}
+
 /* Font Fiddling */
 .hw {
     /* font-family: 'Nothing You Could Do', sans-serif; */
@@ -309,4 +346,31 @@ border - #039e5d
     text-align:center; 
     font-weight:bold;
     font-size:2em;
+}
+
+/**************************
+*            JOURNALs
+*
+***************************/
+
+.journal-sheet .window-content {
+    background:#fffaff;
+}
+.journal-sheet .editor-content {
+    font-family: 'Saira Condensed', sans-serif;
+    font-size: 1.20em;
+    color:#4e2e4e;
+    background:#fffaff;
+}
+
+.journal-sheet .editor-content > h1, 
+.journal-sheet .editor-content > h2, 
+.journal-sheet .editor-content > h3, 
+.journal-sheet .editor-content > h4 {
+    font-family: 'SheetHeader', sans-serif;
+    font-size: 1em;
+}
+.journal-sheet .editor-content > h1, 
+.journal-sheet .editor-content > h2 {
+    border-bottom:1px solid #4e2e4e;
 }
