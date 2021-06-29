@@ -451,7 +451,7 @@ export class FPActorSheet extends ActorSheet {
                 }
             case "crew_tasks":
                 {
-                    let template = "systems/fiveparsecs/templates/roll/crewtaskdialog_manual.hbs";
+                    let template = "systems/fiveparsecs/templates/roll/crewtaskdialog.hbs";
                      let crewTaskData = {
                         actor: this.actor,
                         crew_names: this.actor.data.data.data.members,
@@ -489,6 +489,45 @@ export class FPActorSheet extends ActorSheet {
         let element = e.currentTarget;
         let log = element.dataset.logging;
         
-        return this.actor.resetCampaignTurn(log);
+        if(log === "yes") {
+            new Dialog({
+                title:"Are You Sure?",
+                content:"This will log this campaign to your Journals, and then clear this campaign turn. Are you sure?",
+                buttons:{
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Continue",
+                        callback: () => {
+                            return this.actor.resetCampaignTurn(log);
+                        }
+                    },
+                    close: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                }
+            }).render(true);
+        } else {
+            new Dialog({
+                title:"Are You Sure?",
+                content:"This will clear this Campaign Turn without logging anything. Are you sure?",
+                buttons:{
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Continue",
+                        callback: () => {
+                            return this.actor.resetCampaignTurn(log);
+                        }
+                    },
+                    close: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                }
+            }).render(true);
+        }
+        
     }
 }

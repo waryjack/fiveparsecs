@@ -59,10 +59,17 @@ export class FPProcGen {
 
     }
 
-    static async generateWorld() {
+    static async generateWorld(activeWorldArray) {
 
+        // deactivate current world
+        if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
+            let currentWorld = activeWorldArray[0];
+            console.warn("Current World: ", currentWorld);
+            await currentWorld.update({"data.active":false});
+        }
+
+        // create world traits
         let genWorldStats = await FPProcGen.generateWorldTraits();
-
 
         //sample placeholder 
         let worldData = {

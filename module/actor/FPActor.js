@@ -385,15 +385,6 @@ export class FPActor extends Actor {
         // Get the active world
         let activeWorldArray = this.items.filter(i => i.type === "world" && i.data.data.active);
 
-        // deactivate current world (only one world is active at a time)
-        if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
-            let currentWorld = activeWorldArray[0];
-            console.warn("Current World: ", currentWorld);
-            currentWorld.update({"data.active":false});
-        }
-     
-        
-
         // switch based on random, custom, or known world selection
         switch(random) {
             case 0:
@@ -404,7 +395,7 @@ export class FPActor extends Actor {
                         type: "world"
                     }*/
 
-                    FPProcGen.generateWorld().then((worldData) => {
+                    FPProcGen.generateWorld(activeWorldArray).then((worldData) => {
                         return Item.create(worldData, {parent:this, renderSheet:false});
                     }); break;
                 }
@@ -418,8 +409,16 @@ export class FPActor extends Actor {
                         }
                     }
                    console.warn("Custom world data: ", itemData);
-                    return Item.create(itemData, {parent:this, renderSheet:true});
-                };
+                   if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
+                        let currentWorld = activeWorldArray[0];
+                        console.warn("Current World: ", currentWorld);
+                        currentWorld.update({"data.active":false}).then(() => {
+                            return Item.create(itemData, {parent:this, renderSheet:true});
+                        });
+                    } else {
+                        return Item.create(itemData, {parent:this, renderSheet:true});
+                    }; break;
+                }     
             case 2:
                 {
                     // dialog to select existing world here
@@ -485,9 +484,12 @@ export class FPActor extends Actor {
 
     resetCampaignTurn(log) {
 
-
+        
 
         if (log === "yes") {
+            // Check to make sure
+            
+
             FPTurnLogger.logCampaignTurn(this).then(() => {
                 let battList = this.items.filter(i => i.type === "battle");
                 let jobList = this.items.filter(i => i.type === "patron_job");
@@ -533,6 +535,9 @@ export class FPActor extends Actor {
                 });
             });
         } else {
+
+            
+
             let battList = this.items.filter(i => i.type === "battle");
             let jobList = this.items.filter(i => i.type === "patron_job");
             let delIds = [];

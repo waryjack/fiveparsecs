@@ -2,14 +2,10 @@
     <header class="fp sheethead">
     </header>
 
-     <nav class="sheet-tabs tabs" data-group="primary" >
-            <a class="fp labels" style="text-transform:uppercase" data-tab="main">Main Log</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="turn">Campaign Turn</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">Known Worlds</a>
-        </nav>
+     
 
     <section class="sheetbody">
-        <div class="tab main" data-group="primary" data-tab="main">
+        
         <div class="fp flexrow"> {{!--main row - image, and crewsheet body--}}
             <div class="fp flexcol" style="max-width:200px; background:#7dc8e6; margin-right:6px;"> {{!--dice and image column--}}
                 <div class="fp flex-item" style="text-align:center;">
@@ -127,10 +123,14 @@
             </div> {{!--end crew information column--}}
 
         </div>
-                
-               
+           <nav class="sheet-tabs tabs" data-group="primary" >
+            <a class="fp labels" style="text-transform:uppercase" data-tab="main">Roster</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="turn">Campaign Turn</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">Known Worlds</a>
+        </nav>     
+        <div class="tab main" data-group="primary" data-tab="main">       
         <div>
-            <h1>
+            <h1 class="fp sheet-label">
                 Crew Roster
                 <a class="item-create" title="Add Crew Member" data-type="crew_assignment">
                     <i class="fas fa-plus-square"></i>
