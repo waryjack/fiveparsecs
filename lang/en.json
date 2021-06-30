@@ -120,7 +120,10 @@
                 "known":"Select a Known World"
             },
             "flee":{
-                "entity":"Flee Invasion"
+                "entity":"Flee Invasion",
+                "flee_fail":"Unable to escape invading forces!",
+                "flee_success":"Successfully escaped invading forces!",
+                "flee_either":"Unable to escape, or chose to stay and fight."
             },
             "travel":{
                 "entity":"Travel",
@@ -133,7 +136,14 @@
                 "payamt":"Crew Payroll Amount",
                 "debtamt":"Debt Payment Amount",
                 "repamt":"Repair Payment Amount",
-                "medamt":"Medical Care Payment Amount"
+                "medamt":"Medical Care Payment Amount",
+                "nsf":"You don't have enough credits to cover these expenses.",
+                "upkp_debt_default":"No payments were made on the ship.",
+                "upkp_pay_default":"The crew is awaiting payment.",
+                "upkp_med_default":"No medical care payments were made (or none were needed).",
+                "upkp_rep_default":"No repairs were paid for (or none were needed).",
+                "upkp_debt_paid":"`You paid ${debtPmt} Credits toward your ship. You still owe ${currDebt} credits.`"
+
             },
             "crew_tasks":{
                 "entity":"Crew Tasks",
@@ -152,7 +162,23 @@
                     "onepat":"No Patrons are looking for a crew to hire. (Roll: ",
                     "twopat":"No Patrons are looking for a crew to hire. (Roll: ",
                     "foundrival":"discovered one of your Rivals on-planet. (Roll: ",
-                    "foundnorival":"but did not locate any Rivals on-planet. (Roll: "
+                    "foundnorival":"but did not locate any Rivals on-planet. (Roll: ",
+                    "nofind_default":"Nobody searched for a Patron.",
+                    "notrain_default":"Nobody elected to train.",
+                    "notrade_default":"No trading was conducted.",
+                    "norecruit_default":"No recruiting was done.",
+                    "noexplore_default":"Nobody explored the area.",
+                    "notrack_default":"Nobody looked for Rivals.",
+                    "norepair_default":"Nobody repaired gear (or nothing needed repaired).",
+                    "nodecoy_default":"Nobody acted as a decoy (or no Rivals were in pursuit).",
+                    "find_sfx":" searched for a Patron: ",
+                    "train_sfx":" spent time training, and gained 1XP",
+                    "trade_sfx":" spent time trading: ",
+                    "recruit_sfx":" looked for new crewmembers to hire",
+                    "explore_sfx":" explored the area: ",
+                    "track_sfx":" tried to track down a Rival: ",
+                    "repair_sfx": " worked on some broken gear",
+                    "decoy_sfx": " tried to throw some Rivals off your trail"
                 }
             },
             "jobs":{
@@ -162,6 +188,7 @@
             "battles":{
                 "entity":"Battles",
                 "check_rival":"Check for Rival Attack",
+                "foundbyrival_false":"No Rivals Found You",
                 "opp":"Opportunity Battle",
                 "pat":"Patron Battle",
                 "qst":"Quest Battle",
@@ -293,7 +320,10 @@
                 "complete":"Completed"
             },
             "item":{
-                "new":"New Item"
+                "new":"New Item",
+                "new_world":"New World",
+                "new_battle":"New Battle",
+                "battle":"Battle"
             },
             "instructions":{
                 "select_linked_character":"Select character linked to this assignment.",

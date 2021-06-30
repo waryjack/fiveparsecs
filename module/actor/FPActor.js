@@ -57,19 +57,19 @@ export class FPActor extends Actor {
                 {
                     let r = new Roll("2d6").evaluate({async:false}).result;
                     if (r < 8) {
-                        outcome = "Unable to escape invading forces!";
+                        outcome = game.i18n.localize("FP.campaign_turn.flee.flee_fail");
                     } else {
-                        outcome = "Successfully escaped invading forces!";
+                        outcome = game.i18n.localize("FP.campaign_turn.flee.flee_success");
                     }
                 }; break;
             case "rnd-battle":
                 {
-                    outcome = "Unable to escape / chose to stay and fight.";
+                    outcome = game.i18n.localize("FP.campaign_turn.flee.flee_either");
                     this.createBattle("invasion", true);
                 }; break;
             case "custom-battle":
                 {  
-                    outcome = "Unable to escape / chose to stay and fight."
+                    outcome = game.i18n.localize("FP.campaign_turn.flee.flee_either");
                     this.createBattle("invasion", false);
                 }; break;
         }
@@ -88,12 +88,12 @@ export class FPActor extends Actor {
 
         } else {
             new Dialog({
-                title:"Travel Event",
+                title:game.i18n.localize("FP.campaign_turn.travel.event"),
                 content: "<table><tr><th>Travel Event</th><td><input type='text' id='tev' class='fp text-input' style='width:100%' data-dtype='String'/></td></tr></table>",
                 buttons: {
                     roll: {
                     icon: '<i class="fas fa-check"></i>',
-                    label: "Continue",
+                    label: game.i18n.localize("FP.ui.general.continue"),
                     callback: (html) => {
                     //  console.log("passed html: ", html); 
                         let tev = html.find('#tev').val();
@@ -103,7 +103,7 @@ export class FPActor extends Actor {
                     },
                     close: {
                     icon: '<i class="fas fa-times"></i>',
-                    label: "Cancel",
+                    label: game.i18n.localize("FP.ui.general.cancel"),
                     callback: () => { console.log("Clicked Cancel"); return; }
                     }
                 },
@@ -162,7 +162,7 @@ export class FPActor extends Actor {
             // Medical Treatment
             bankBal -= med; 
 
-            if (debtPmt > 0) { debtText = `You paid ${debtPmt} Credits toward your ship. You still owe ${currDebt} credits.`; }
+            if (debtPmt > 0) { debtText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_debt_paid"); }
             if (payroll > 0) { payText = `You paid ${payroll} Credits to your crew for their upkeep.`; }
             if (repairs > 0) { repText = `You paid ${repair} Credits toward ship repairs.`; }
             if (med > 0) { medText = `You paid ${med} Credits for medical care for your crew.`; }
@@ -189,14 +189,14 @@ export class FPActor extends Actor {
     handleCrewTasks(assignments) {
         let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
 
-        let finalPatronText = "Nobody searched for a Patron.";
-        let finalTrainText = "Nobody elected to train.";
-        let finalTradeText = "No trading was conducted.";
-        let finalRecruitText = "No recruiting was done.";
-        let finalExploreText = "Nobody explored the area.";
-        let finalTrackText = "Nobody looked for Rivals.";
-        let finalRepairText = "Nobody repaired gear (or nothing needed repaired).";
-        let finalDecoyText = "Nobody acted as a decoy (or no Rivals were in pursuit).";
+        let finalPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nofind_default");
+        let finalTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrain_default");
+        let finalTradeText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrade_default");
+        let finalRecruitText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.norecruit_default");
+        let finalExploreText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.noexplore_default");
+        let finalTrackText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrack_default");
+        let finalRepairText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.norepair_default");
+        let finalDecoyText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nodecoy_default");
         
         let findResultsText = ".";
         let tradeResultText = ".";
@@ -206,14 +206,16 @@ export class FPActor extends Actor {
         let decoyResultText = ".";
         let trainResultText = ".";
 
-        const stdPatronText = " searched for a Patron: ";
-        const stdTrainText = " spent time training, and gained 1XP";
-        const stdTradeText = " spent time trading: ";
-        const stdRecruitText = " looked for new crewmembers to hire";
-        const stdExploreText = " explored the area: ";
-        const stdTrackText = " tried to track down a Rival: ";
-        const stdRepairText = " worked on some broken gear";
-        const stdDecoyText = " tried to throw some Rivals off your trail";
+        const stdPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.find_sfx");
+        const stdTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.train_sfx");
+        const stdTradeText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.trade_sfx");
+        const stdRecruitText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.recruit_sfx");
+        const stdExploreText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.explore_sfx");
+        const stdTrackText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.track_sfx");
+        const stdRepairText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.repair_sfx");
+        const stdDecoyText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.decoy_sfx");
+
+        const join = game.i18n.localize("FP.ui.general.andjoin");
 
         console.warn("Task Assignments: ", assignments);
 
@@ -221,26 +223,26 @@ export class FPActor extends Actor {
             if(assignments.finders.length) {
                 FPProcGen.getCrewTaskResults("find", assignments.finders).then(ctr => {
                     console.warn("Finder Results: ", ctr);
-                    finalPatronText = assignments.finders.join(" and ") + stdPatronText + ctr;
+                    finalPatronText = assignments.finders.join(join) + stdPatronText + ctr;
                     console.warn("finalPatronText within: "); 
                     this.update({"data.campaign_turn.crew_tasks.patron_searchers":finalPatronText})
                 });
               
             }
             if (assignments.trainers.length) {
-                finalTrainText = assignments.trainers.join(" and ") + stdTrainText;
+                finalTrainText = assignments.trainers.join(join) + stdTrainText;
                 this.update({"data.campaign_turn.crew_tasks.trainees":finalTrainText});
             }
             if (assignments.traders.length) {
                 
                 FPProcGen.getCrewTaskResults("trade", assignments.traders).then(ctr => {
                     console.warn("Trade Results: ", ctr);
-                    finalTradeText = assignments.traders.join(" and ") + stdTradeText + ctr;
+                    finalTradeText = assignments.traders.join(join) + stdTradeText + ctr;
                     this.update({"data.campaign_turn.crew_tasks.trade_result":finalTradeText});
                 })
             }
             if (assignments.recruiters.length) {
-                finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText;
+                finalRecruitText = assignments.recruiters.join(join) + stdRecruitText;
                 /* FPProcGen.getCrewTaskResults("recruit", recruiters).then(ctr => {
                     finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText + ", " + ctr;
                 }) */ 
@@ -250,23 +252,23 @@ export class FPActor extends Actor {
                 
                 FPProcGen.getCrewTaskResults("explore", assignments.explorers).then(ctr => {
                     console.warn("Explorers Results: ", ctr);
-                    finalExploreText = assignments.explorers.join(" and ") + stdExploreText + ctr;
+                    finalExploreText = assignments.explorers.join(join) + stdExploreText + ctr;
                     this.update({"data.campaign_turn.crew_tasks.explore_result":finalExploreText});
                 })
             }
             if (assignments.trackers.length) {
                 FPProcGen.getCrewTaskResults("track", assignments.trackers).then(ctr => {
-                    finalTrackText = assignments.trackers.join(" and ") + stdTrackText + ctr;
+                    finalTrackText = assignments.trackers.join(join) + stdTrackText + ctr;
                     this.update({"data.campaign_turn.crew_tasks.track_result":finalTrackText});
                 })
                 
             }
             if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(" and ") + stdRepairText;
+                finalRepairText = assignments.repairers.join(join) + stdRepairText;
                 this.update({"data.campaign_turn.crew_tasks.repair_result":finalRepairText});
             }
             if (assignments.decoys.length) {
-                finalDecoyText = assignments.decoys.join(" and ") + stdDecoyText
+                finalDecoyText = assignments.decoys.join(join) + stdDecoyText
                 this.update({"data.campaign_turn.crew_tasks.decoy_result":finalDecoyText});
             }
 
@@ -274,28 +276,28 @@ export class FPActor extends Actor {
 
         } else {
             if (assignments.finders.length) {
-                finalPatronText = assignments.finders.join(" and ") + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
+                finalPatronText = assignments.finders.join(join) + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
             }
             if (assignments.trainers.length) {
-                finalTrainText = assignments.trainers.join(" and ") + ((assignments.trainOutcome != "" && typeof(assignments.trainOutcome !== "undefined")) ? " "+assignments.trainOucome : stdTrainText);
+                finalTrainText = assignments.trainers.join(join) + ((assignments.trainOutcome != "" && typeof(assignments.trainOutcome !== "undefined")) ? " "+assignments.trainOucome : stdTrainText);
             }
             if (assignments.traders.length) {
-                finalTradeText = assignments.traders.join(" and ") + ((assignments.tradeOutcome != "" && typeof(assignments.tradeOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdTradeText);
+                finalTradeText = assignments.traders.join(join) + ((assignments.tradeOutcome != "" && typeof(assignments.tradeOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdTradeText);
             }
             if (assignments.recruiters.length) {
-                finalRecruitText = assignments.recruiters.join(" and ") + ((assignments.recruitOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdRecruitText);
+                finalRecruitText = assignments.recruiters.join(join) + ((assignments.recruitOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdRecruitText);
             }
             if (assignments.explorers.length) {
-                finalExploreText = assignments.explorers.join(" and ") + ((assignments.exploreOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.exploreOutcome : stdExploreText);
+                finalExploreText = assignments.explorers.join(join) + ((assignments.exploreOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.exploreOutcome : stdExploreText);
             }
             if (assignments.trackers.length) {
-                finalTrackText = assignments.trackers.join(" and ") + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
+                finalTrackText = assignments.trackers.join(join) + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
             }
             if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(" and ") + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcom : stdRepairText);
+                finalRepairText = assignments.repairers.join(join) + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcom : stdRepairText);
             }
             if (assignments.decoys.length) {
-                finalDecoyText = assignment.decoys.join(" and ") + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
+                finalDecoyText = assignment.decoys.join(join) + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
             }
 
             this.update({
@@ -345,7 +347,7 @@ export class FPActor extends Actor {
             if (rivalCheck < 3) {
                 this.createBattle("Rival", false); // rival battles should be custom setups
             } else {
-                return ui.notifications.warn("No Rivals Found You");
+                return ui.notifications.warn(game.i18n.localize("FP.campaign_turn.battles.foundbyrival_false"));
             }
         } else if (type === "Invasion") {
             this.createBattle("Invasion", false);
@@ -353,12 +355,12 @@ export class FPActor extends Actor {
             this.createBattle(type, false);
         } else {
             new Dialog({
-                title:"Crew Size",
+                title:game.i18n.localize("FP.ui.rolldialog.crewsize"),
                 content: "<div class='form-group'><table><tr><th>Crew size for this Battle</th><td><input id='crewsize' type='text' value='5' data-dtype='Number'/></td></tr></table></div>",
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
-                     label: "Roll!",
+                     label: game.i18n.localize("FP.ui.general.continue"),
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
                       let crewSize = html.find('#crewsize').val();
@@ -368,7 +370,7 @@ export class FPActor extends Actor {
                     },
                     close: {
                      icon: '<i class="fas fa-times"></i>',
-                     label: "Cancel",
+                     label: game.i18n.localize("FP.ui.general.cancel"),
                      callback: () => { console.log("Clicked Cancel"); return; }
                     }
                    },
