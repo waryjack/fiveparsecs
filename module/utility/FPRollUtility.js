@@ -10,12 +10,12 @@ export class FPRollUtility {
 
         renderTemplate(template, data).then(dlg => {
             new Dialog({
-                title: "Upkeep & Payments",
+                title: game.i18n.localize("FP.ui.rolldialog.upkeep.unp"),
                 content: dlg,
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
-                        label: "Continue",
+                        label: game.i18n.localize("FP.ui.general.continue"),
                         callback: (html) => {
                             let debtPayment = Number(html.find('#debt-pay').val());
                             let crewPayment = Number(html.find('#crew-pay').val());
@@ -27,7 +27,7 @@ export class FPRollUtility {
                     },
                     close: {
                         icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
+                        label: game.i18n.localize("FP.ui.general.cancel"),
                         callback: () => { console.log("Clicked Cancel"); return; }
                     }
 
@@ -47,12 +47,12 @@ export class FPRollUtility {
 
         renderTemplate(template, data).then(dlg => {
             new Dialog({
-                title: "Crew Tasks",
+                title: game.i18n.localize("FP.campaign_turn.crew_tasks.entity"),
                 content: dlg,
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
-                        label: "Continue",
+                        label: game.i18n.localize("FP.ui.general.continue"),
                         callback: (html) => {
                             let taskAssignments = {};
                             taskAssignments.finders = new Array();
@@ -100,7 +100,7 @@ export class FPRollUtility {
                     },
                     close: {
                         icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
+                        label: game.i18n.localize("FP.ui.general.cancel"),
                         callback: () => { console.log("Clicked Cancel"); return; }
                     }
 
@@ -116,12 +116,12 @@ export class FPRollUtility {
 
         renderTemplate(template, data).then(dlg => {
             new Dialog({
-                title: "Post Battle",
+                title: game.i18n.localize("FP.campaign_turn.post.entity"),
                 content: dlg,
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
-                        label: "Continue",
+                        label: game.i18n.localize("FP.ui.general.continue"),
                         callback: (html) => {
                             let postData = {};
                             postData.rival = html.find("#riv").val();
@@ -161,7 +161,7 @@ export class FPRollUtility {
                     },
                     close: {
                         icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
+                        label: game.i18n.localize("FP.ui.general.cancel"),
                         callback: () => { console.log("Clicked Cancel"); return; }
                     }
 
@@ -186,12 +186,12 @@ export class FPRollUtility {
         
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
-                title:"Dice Roll",
+                title:game.i18n.localize("FP.ui.rolldialog.diceroll"),
                 content: dlg,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
-                     label: "Roll!",
+                     label: game.i18n.localize("FP.ui.general.roll"),
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
                       data.bonus = html.find('#bonus').val();
@@ -208,7 +208,7 @@ export class FPRollUtility {
                     },
                     close: {
                      icon: '<i class="fas fa-times"></i>',
-                     label: "Cancel",
+                     label: game.i18n.localize("FP.ui.general.cancel"),
                      callback: () => { console.log("Clicked Cancel"); return; }
                     }
                    },
@@ -244,12 +244,12 @@ export class FPRollUtility {
  
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
-                title:"Attack Roll",
+                title:game.i18n.localize("FP.ui.general.attackroll"),
                 content: dlg,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
-                     label: "Roll!",
+                     label: game.i18n.localize("FP.ui.general.roll"),
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
                       let dieType = data.die;
@@ -271,7 +271,7 @@ export class FPRollUtility {
                     },
                     close: {
                      icon: '<i class="fas fa-times"></i>',
-                     label: "Cancel",
+                     label: game.i18n.localize("FP.ui.general.cancel"),
                      callback: () => { console.log("Clicked Cancel"); return; }
                     }
                    },
@@ -300,12 +300,12 @@ export class FPRollUtility {
 
         renderTemplate(template, data).then((dlg) => {
             new Dialog({
-                title:"Custom Roll",
+                title:game.i18n.localize("FP.ui.general.customroll"),
                 content: dlg,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
-                     label: "Roll!",
+                     label: game.i18n.localize("FP.ui.general.roll"),
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
                       let numDice = html.find('#cr-num-dice').val();
@@ -329,7 +329,7 @@ export class FPRollUtility {
                     },
                     close: {
                      icon: '<i class="fas fa-times"></i>',
-                     label: "Cancel",
+                     label: game.i18n.localize("FP.ui.general.cancel"),
                      callback: () => { console.log("Clicked Cancel"); return; }
                     }
                    },

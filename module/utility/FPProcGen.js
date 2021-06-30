@@ -301,7 +301,7 @@ export class FPProcGen {
                 objective: objective,
                 notable_sights: sights,
                 complete:false,
-                outcome:"unknown",
+                outcome:"Unfought",
                 opposition: {
                     base_number: enemyCount,
                     bonus_number: bonus_enemies,
@@ -356,11 +356,12 @@ export class FPProcGen {
                 let r = new Roll("1d6").evaluate({async:false}).result;
                 r = parseInt(r) + crew.length;
                 if (r < 5) {
-                    crewTaskResult = `No Patrons are looking for a crew to hire. (Roll: ${r})`;
+                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nopat") + r + ")";
+                   
                 } else if (r >= 6) {
-                    crewTaskResult = `2 Patrons are looking for a crew to hire. (Roll: ${r})`;
+                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.onepat") + r + ")";
                 } else {
-                    crewTaskResult = `1 Patron is looking for a crew to hire. (Roll: ${r})`;
+                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.twopat") + r + ")";
                 }
                 break;
             }
@@ -371,7 +372,7 @@ export class FPProcGen {
                     let tradeItem = tradeDraw.results[0].data.text;
                     items.push(tradeItem);
                 }
-                crewTaskResult = items.join(" and ");
+                crewTaskResult = items.join(game.i18n.localize("FP.ui.general.andjoin"));
                 break;
             } 
             case "explore": {
@@ -381,7 +382,7 @@ export class FPProcGen {
                     let expRes = expDraw.results[0].data.text;
                     results.push(expRes);
                 }
-                crewTaskResult = results.join(" and ");
+                crewTaskResult = results.join(game.i18n.localize("FP.ui.general.andjoin"));
                 break;
                 
             }
@@ -389,9 +390,9 @@ export class FPProcGen {
                 let troll = new Roll("1d6").evaluate({async:false}).result;
                 troll = parseInt(troll) + crew.length;
                 if (troll >= 6) {
-                    crewTaskResult = "discovered one of your Rivals on-planet. (Roll: " + troll +")";
+                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundrival") + troll +")";
                 } else {
-                    crewTaskResult = "but did not locate any Rivals on-planet. (Roll: " + troll + ")";
+                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundnorival") + troll + ")";
                 }
                 break;
             }

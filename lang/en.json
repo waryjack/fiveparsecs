@@ -146,7 +146,14 @@
                 "track":"Track",
                 "repair":"Repair Kit",
                 "decoy":"Decoy",
-                "ctwarn":"Note: the system will not prevent your from assigning the same crew member to multiple tasks. It's up to you to follow the rules!"
+                "ctwarn":"Note: the system will not prevent your from assigning the same crew member to multiple tasks. It's up to you to follow the rules!",
+                "gen":{
+                    "nopat":"No Patrons are looking for a crew to hire. (Roll: ",
+                    "onepat":"No Patrons are looking for a crew to hire. (Roll: ",
+                    "twopat":"No Patrons are looking for a crew to hire. (Roll: ",
+                    "foundrival":"discovered one of your Rivals on-planet. (Roll: ",
+                    "foundnorival":"but did not locate any Rivals on-planet. (Roll: "
+                }
             },
             "jobs":{
                 "entity":"Patron Jobs",
@@ -173,6 +180,11 @@
                 }
             }
         },
+        "generators":{
+            "general":{
+                "none":"None"
+            }
+        },
         "ui":{
             "gentraits":"Generate Random Traits",
             "charsheet":{
@@ -185,6 +197,7 @@
                 
             },
             "rolldialog":{
+                "diceroll":"Dice Roll",
                 "extrad6":"Extra D6 to roll",
                 "wepdets":"Weapon Details",
                 "crewsize":"Crew Size",
@@ -192,6 +205,9 @@
                 "nobody":"Nobody",
                 "outcome":"Outcome",
                 "assigncrew":"Assign Crew Tasks",
+                "upkeep":{
+                    "unp":"Upkeep and Payments"
+                },
                 "postbattle":{
                     "title":"Post Battle Check",
                     "checkriv":"Check for new Rivals?",
@@ -208,10 +224,12 @@
                 }
             },
             "general":{
+                "andjoin":" and ",
                 "yes":"Yes",
                 "no":"No",
                 "roll":"Roll",
                 "cont":"Continue",
+                "cancel":"Cancel",
                 "notes":"Notes",
                 "delete":"Delete",
                 "edit":"Edit",
@@ -219,6 +237,8 @@
                 "percent":"Percentile",
                 "attack":"Attack",
                 "attacking":"Attacking with",
+                "attackroll":"Attack Roll",
+                "customroll":"Custom Roll",
                 "sickbay":"Sickbay",
                 "time":"Time",
                 "modifier":"Modifier",
@@ -254,7 +274,14 @@
                 "opposition_cat":"Opposition",
                 "enemy_forces":"Enemy Forces",
                 "spec":"Specialists",
-                "unique":"Unique"
+                "unique":"Unique",
+                "outcome":{
+                    "unfought":"Unfought",
+                    "held":"Held the Field",
+                    "left":"Left the Field",
+                    "defeat":"Defeated",
+                    "draw":"Draw"
+                }
             },
             "job":{
                 "patron":"Patron",
