@@ -1,23 +1,23 @@
 <tr>
     <td class="fp sheet-label">
-      Battles<br/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="Rival" title="Check for Rivals"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/spy.png" height="32" width="32" style="border:0"/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="Patron" title="Carry out Patron Job"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="Opportunity" title="Carry out Opportunity Mission"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="Quest" title="Continue a Quest"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
-        <a class="ct-step" data-ct-phase="battles" data-ct-action="Invasion" title="Fight Invading Forces"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/strafe.png" height="32" width="32" style="border:0"/>
+      {{localize "FP.campaign_turn.battles.entity"}}<br/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Rival" title="{{localize 'FP.campaign_turn.battles.check_rival'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/spy.png" height="32" width="32" style="border:0"/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Patron" title="{{localize 'FP.campaign_turn.battles.pat_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Opportunity" title="{{localize 'FP.campaign_turn.battles.opp_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Quest" title="{{localize 'FP.campaign_turn.battles.qst_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Invasion" title="{{localize 'FP.campaign_turn.battles.inv_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/strafe.png" height="32" width="32" style="border:0"/>
     </td>
     <td>
         {{log "Battle List: " battles}}
         {{#each battles as |battle id|}}
         {{log "Battle info: " battle}}
         <p><span class="fp sheet-label"><strong>{{battle.name}}</strong></span> <span class="edit-icons"><a class="item-edit item" title="Edit Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-edit"></i></a> <a class="item-delete item" title="Delete Battle" data-item-id="{{battle.data._id}}"><i class="fas fa-trash"></i></a></span><br/>
-        <span class="fp sheet-label">Objective: </span><span class="hw">{{battle.data.data.objective}}</span><br/>
-        <span class="fp sheet-label">Deployment Conditions: </span><span class="hw">{{battle.data.data.deployment}}</span><br/>
-        <span class="fp sheet-label">Notable Sights: </span><span class="hw">{{battle.data.data.notable_sights}}</span><br/>
-        <span class="fp sheet-label">Opposition: </span><span class="hw">{{battle.data.data.opposition.element}}</span><br/>
-        <span class="fp sheet-label">Enemy Forces: </span><span class='hw'>{{battle.data.data.opposition.element_subtype}} x{{battle.data.data.opposition.base_number}} 
-        ({{battle.data.data.opposition.specialists}} Specialists, {{battle.data.data.opposition.uniques}} Unique)</span></p>
+        <span class="fp sheet-label">{{localize "FP.ui.battle.objective"}}: </span><span class="hw">{{battle.data.data.objective}}</span><br/>
+        <span class="fp sheet-label">{{localize "FP.ui.battle.deploy"}}: </span><span class="hw">{{battle.data.data.deployment}}</span><br/>
+        <span class="fp sheet-label">{{localize "FP.ui.battle.sights"}}: </span><span class="hw">{{battle.data.data.notable_sights}}</span><br/>
+        <span class="fp sheet-label">{{localize "FP.ui.battle.opposition_cat"}}: </span><span class="hw">{{battle.data.data.opposition.element}}</span><br/>
+        <span class="fp sheet-label">{{localize "FP.ui.battle.enemy_forces"}}: </span><span class='hw'>{{battle.data.data.opposition.element_subtype}} x{{battle.data.data.opposition.base_number}} 
+        ({{battle.data.data.opposition.specialists}} {{localize "FP.ui.battle.spec"}}, {{battle.data.data.opposition.uniques}} {{localize "FP.battle.ui.unique"}})</span></p>
         {{/each}}
     </td>
 </tr>

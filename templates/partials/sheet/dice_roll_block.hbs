@@ -2,38 +2,38 @@
                                                    max-height:42px;  
                                                    margin-right:0 !important;">
                     <div class="fp flex-item dice-icon">
-                        <a title="Roll 1d6" class="dice-roll" data-dice-base="1d6">
+                        <a title="{{localize 'FP.ui.general.roll'}} 1d6" class="dice-roll" data-dice-base="1d6">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d6s.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                     <div class="fp flex-item dice-icon">
-                        <a title="Roll 2d6" class="dice-roll" data-dice-base="2d6">
+                        <a title="{{localize 'FP.ui.general.roll'}} 2d6" class="dice-roll" data-dice-base="2d6">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d6.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                      <div class="fp flex-item dice-icon">
-                        <a title="Roll 1d10" class="dice-roll" data-dice-base="1d10">
+                        <a title="{{localize 'FP.ui.general.roll'}} 1d10" class="dice-roll" data-dice-base="1d10">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d10.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                      <div class="fp flex-item dice-icon">
-                        <a title="Roll Percentile" class="dice-roll" data-dice-base="1d100">
+                        <a title="{{localize 'FP.ui.general.roll'}} {{localize 'FP.ui.general.percentile'}}" class="dice-roll" data-dice-base="1d100">
                             <img class="dice-img" src="systems/fiveparsecs/assets/d100.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                     <div class="fp flex-item dice-icon">
-                        <a title="Roll Custom" class="dice-roll" data-dice-base="custom">
+                        <a title="{{localize 'FP.ui.general.roll'}} {{localize 'FP.ui.general.custom'}}" class="dice-roll" data-dice-base="custom">
                             <img class="dice-img" src="systems/fiveparsecs/assets/dwhatever.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                     <div class="fp flex-item dice-icon">
-                        <a title="Generate Random Traits" class="gen-bmc">
+                        <a title="{{localize 'FP.ui.gentraits'}}" class="gen-bmc">
                             <img class="dice-img" src="systems/fiveparsecs/assets/card-pickup.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>
                     {{#if (eq chartype "character")}}
                     <div class="fp flex-item dice-icon">
-                        <a title="Generate Random Traits" class="atk-roll" data-weapon-id="brawl">
+                        <a title="{{localize 'FP.ui.combat.brawl_atk'}}" class="atk-roll" data-weapon-id="brawl">
                             <img class="dice-img" src="systems/fiveparsecs/assets/mailed-fist.png" height="32" width="32" style="border:0"/>
                         </a>
                     </div>

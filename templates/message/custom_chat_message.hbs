@@ -7,21 +7,12 @@
     </header>
 </div>
 <div class="taskroll-msg">
-    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">Roll Total</span>: {{roll.total}}</strong></p>  
-    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">Total Modifiers</span>:  
+    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">{{localize "FP.ui.general.roll"}} {{localize "FP.ui.general.total"}}</span>: {{roll.total}}</strong></p>  
+    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">{{localize "FP.ui.general.total"}} {{localize "FP.ui.general.modifiers"}}</span>:  
     <span style="border-bottom:1px dotted black;" title="{{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (gt 0 modifiers)}}+{{else}}-{{/if}}{{totalMod}}</span></strong>
     </p>
 </div>
-{{!--#if (or (eq expr "2d6") (eq expr "1d6"))}}
-    <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
-        {{#each results as |result id|}}
-            <div class="fp dice-display" style="background:{{#if (eq result 1)}}red{{else if (eq result 6)}}green{{else}}black{{/if}};">
-                <p>{{result}}</p>
-            </div>
-        {{/each}}
-    </div>
-{{else--}}
-    {{!--use dice images not divs for D10--}}
+
     <div class="fp flexrow" style="background:#d5ebf7; justify-content:center; flex-wrap:wrap">
         {{#each results as |result id|}}
             <div class="fp dice-display" style="max-height:48px !important; max-width:48px !important;">

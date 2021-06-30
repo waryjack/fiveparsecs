@@ -1,6 +1,6 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">Upkeep</h1>
+        <h1 class="fp roll-name">{{localize "FP.campaign_turn.upkeep.entity"}}</h1>
     </header>
 
  <div class="fp roll-dialog">
@@ -9,29 +9,29 @@
          
          <table class="fp crew-roster">
              <tr>
-                 <th>Current Credit Balance</th>
+                 <th>{{localize "FP.campaign_turn.upkeep.currbal"}}</th>
                  <td>{{credits}}</td>
              </tr>
              <tr>
-                 <th>Crew Payroll Amount</th>
+                 <th>{{localize "FP.campaign_turn.upkeep.payamt"}}</th>
                  <td>
                     <input class="fp value-input" id="crew-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
             </tr>
             <tr>
-                <th>Debt Payment Amount</th>
+                <th>{{localize "FP.campaign_turn.upkeep.debtamt"}}</th>
                  <td>
                      <input class="fp value-input" id="debt-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
              </tr>
              <tr>
-                <th>Repair Payment Amount</th>
+                <th>{{localize "FP.campaign_turn.upkeep.repamt"}}</th>
                  <td>
                      <input class="fp value-input" id="repair-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
              </tr>
              <tr>
-                <th>Medical Care Payment Amount</th>
+                <th>{{localize "FP.campaign_turn.upkeep.medamt"}}</th>
                  <td>
                      <input class="fp value-input" id="med-pay" type="text" value="0" data-dtype="Number"/>
                  </td>

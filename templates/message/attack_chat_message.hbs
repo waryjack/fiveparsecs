@@ -2,15 +2,15 @@
  <div class="fp flexcol" style="background:#7dc8e6; border:1px solid #44b9de;">
     <header class="roll-header">
             <h2 style="border-bottom:none; font-family:'SheetHeader', sans-serif;">
-                {{w_name}} Attack
+                {{w_name}} {{localize "FP.ui.general.attack"}}
             </h2>
     </header>
     <div class="fp flexrow" style="flex-wrap:wrap;">
         <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
-            {{w_shots}} shots
+            {{w_shots}} {{localize "FP.weapon.stat.shots"}}
         </div>
         <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
-            {{w_dmg}} damage
+            {{w_dmg}} {{localize "FP.weapon.stat.damage"}}
         </div>
         {{#unless (eq w_traits "")}}
         <div class="fp flex-item" style="padding:2px; font-family:'Saira Condensed', sans-serif; background:rgb(34, 34, 68); color:white; margin-right:2px; border-radius:2px">
@@ -21,7 +21,7 @@
 </div>
 <div class="taskroll-msg">
     
-    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">Attack Modifiers</span>:  
+    <p> <strong><span style="margin-left:6px; font-family:'Saira Condensed',sans-serif;">{{localize "FP.ui.general.attack"}} {{localize "FP.ui.general.modifiers"}}</span>:  
     <span style="border-bottom:1px dotted black;" title="{{#if (lt 1 a_combat)}}-{{else}}+{{/if}}{{a_combat}} (Combat) + {{bonus}} (Bonus) - {{malus}} (Penalty)">{{#if (lt 0 modifiers)}}-{{else}}+{{/if}}{{totalMod}}</span></strong>
     </p>
 </div>

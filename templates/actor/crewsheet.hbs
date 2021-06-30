@@ -49,17 +49,17 @@
                 
                 <div class="fp flexrow" style="background:#7dc8e6;">
                     <div class="fp flex-item" style="max-width:25%">
-                        <span class="fp sheet-label-white">Crew Name</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.name"}}</span><br/>
                         <span data-field="name" class="inline-edit hw val-box" contenteditable>{{actor.name}} </span>
                         <!--input type="text" class="fp text-input hw" name="name" value="{{actor.name}}" data-dtype="String"/-->
                     </div>
                     <div class="fp flex-item" style="max-width:59%">
-                        <span class="fp sheet-label-white">Notes</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ui.general.notes"}}</span><br/>
                          <span data-field="data.data.notes" class="inline-edit hw val-box"  contenteditable>{{data.data.notes}}</span>
                         <!--input type="text" class="fp text-input" name="data.data.notes" value="{{data.data.notes}}" data-dtype="String"/-->
                     </div>
                      <div class="fp flex-item" style="max-width:15%; text-align:center">
-                        <span class="fp sheet-label-white">SP</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.stat.story_points"}}</span><br/>
                         <span data-field="data.data.sp" class="inline-edit hw val-box"  contenteditable>{{data.data.sp}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.sp" value="{{data.data.sp}}" data-dtype="Number"/-->
                     </div>
@@ -67,56 +67,56 @@
 
                 <div class="fp flexrow" style="background:#7dc8e6;">
                     <div class="fp flex-item">
-                        <span class="fp sheet-label-white">Stash</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.stash"}}</span><br/>
                         <span data-field="data.data.stash" class="inline-edit hw val-box"  contenteditable>{{data.data.stash}}</span>
                         <!--input type="text" class="fp text-input" name="data.data.stash" value="{{data.data.stash}}" data-dtype="String"/-->
                     </div>
                     <div class="fp flex-item" style="max-width:10%; text-align:center">
-                        <span class="fp sheet-label-white">Credits</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.stat.credits"}}</span><br/>
                         <span data-field="data.data.credits" class="inline-edit hw val-box"  contenteditable>{{data.data.credits}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.credits" value="{{data.data.credits}}" data-dtype="Number"/-->
                     </div>
                      <div class="fp flex-item" style="max-width:10%; text-align:center">
-                        <span class="fp sheet-label-white">Patrons</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.stat.patrons"}}</span><br/>
                         <span data-field="data.data.patrons" class="inline-edit hw val-box"  contenteditable>{{data.data.patrons}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.patrons" value="{{data.data.patrons}}" data-dtype="Number"/-->
                     </div>
                     <div class="fp flex-item" style="max-width:10%; text-align:center">
-                        <span class="fp sheet-label-white">Rivals</span><br/>
-                        <span data-field="data.data.rivals" class="inline-edit hw val-box"  contenteditable>{{data.data.rivals}}</span>
+                        <span class="fp sheet-label-white">{{localize "FP.crew.stat.rivals"}}</span><br/>
+                        <span data-field="data.data.rivals" class="inline-edit hw val-box" contenteditable>{{data.data.rivals}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.rivals" value="{{data.data.rivals}}" data-dtype="Number"/-->
                     </div>
                 </div>
 
                 <div class="fp flexrow" style="background:#7dc8e6;">
                     <div class="fp flex-item" style="max-width:25%;">
-                        <span class="fp sheet-label-white">Ship Name</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.name"}}</span><br/>
                         <span data-field="data.data.ship" class="inline-edit hw val-box"  contenteditable>{{data.data.ship}}</span>
                         <!--input type="text" class="fp text-input" name="data.data.ship" value="{{data.data.ship}}" data-dtype="String"/-->
                     </div>
                     
                      <div class="fp flex-item">
-                        <span class="fp sheet-label-white">Ship Traits</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.stat.traits"}}</span><br/>
                         <span data-field="data.data.ship_traits" class="inline-edit hw val-box"  contenteditable>{{data.data.ship_traits}}</span>
                         <!--input type="text" class="fp text-input" name="data.data.ship_traits" value="{{data.data.ship_traits}}" data-dtype="String"/-->
                     </div>
                     <div class="fp flex-item">
-                        <span class="fp sheet-label-white">Ship Upgrades</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.stat.upgrades"}}</span><br/>
                         <span data-field="data.data.ship_upgrades" class="inline-edit hw val-box"  contenteditable>{{data.data.ship_upgrades}}</span>
                         <!--input type="text" class="fp text-input" name="data.data.ship_upgrades" value="{{data.data.ship_upgrades}}" data-dtype="String"/-->
                     </div>
                     <div class="fp flex-item" style="max-width:7%; text-align:center">
-                        <span class="fp sheet-label-white">Hull</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.stat.hull"}}</span><br/>
                         <span data-field="data.data.hull" class="inline-edit hw val-box"  contenteditable>{{data.data.hull}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.hull" value="{{data.data.hull}}" data-dtype="Number"/-->
                     </div>
                      <div class="fp flex-item" style="max-width:7%; text-align:center">
-                        <span class="fp sheet-label-white">Max</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.stat.maxhull"}}</span><br/>
                         <span data-field="data.data.hullmax" class="inline-edit hw val-box"  contenteditable>{{data.data.hullmax}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.hull" value="{{data.data.hull}}" data-dtype="Number"/-->
                     </div>
                      <div class="fp flex-item" style="max-width:7%; text-align:center">
-                        <span class="fp sheet-label-white">Debt</span><br/>
+                        <span class="fp sheet-label-white">{{localize "FP.ship.stat.debt"}}</span><br/>
                         <span data-field="data.data.debt" class="inline-edit hw val-box"  contenteditable>{{data.data.debt}}</span>
                         <!--input type="text" class="fp value-input" name="data.data.debt" value="{{data.data.debt}}" data-dtype="Number"/-->
                     </div>
@@ -125,18 +125,18 @@
 
         </div>
            <nav class="sheet-tabs tabs" data-group="primary" >
-            <a class="fp labels" style="text-transform:uppercase" data-tab="main">Roster</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="turn">Campaign Turn</a>
-            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">Known Worlds</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="main">{{localize "FP.ui.crewsheet.roster"}}</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="turn">{{localize "FP.campaign_turn.entity"}}</a>
+            <a class="fp labels" style="text-transform:uppercase" data-tab="worlds">{{localize "FP.ui.crewsheet.known"}}</a>
         </nav>     
         <div class="tab main" data-group="primary" data-tab="main">       
         <div>
             <h2 class="fp sheet-label">
-                <a class="item-create" title="Add Crew Member" data-type="crew_assignment">
-                    <i class="fas fa-plus-square"></i> Add Crew Member
+                <a class="item-create" title="{{localize 'FP.ui.crewsheet.add'}}" data-type="crew_assignment">
+                    <i class="fas fa-plus-square"></i> {{localize "FP.ui.crewsheet.add"}}
                 </a> | 
-                <a class="refresh-crew" title="Refresh Crew List">
-                    <i class="fas fa-sync-alt"></i> Refresh Roster
+                <a class="refresh-crew" title="{{localize 'FP.ui.crewsheet.refresh'}}">
+                    <i class="fas fa-sync-alt"></i> {{localize "FP.ui.crewsheet.refresh"}}
                 </a>
             </h2>
         </div>
@@ -153,23 +153,25 @@
                     <div class="flex-item" style="min-width:50%;">
                         <table class="fp crew-roster">
                             <tr class="fp sheet-label">
-                                <th style="border-right:1px solid gray">Name</th>
-                                <th>Species/Type</th>
+                                <th style="border-right:1px solid gray">{{localize "FP.gameterm.name"}}</th>
+                                <th>{{localize "FP.gameterm.species"}}</th>
+                                <th>{{localize "FP.character.save"}}</th>
                             </tr>
                             <tr class="hw">
-                                <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}} {{#if crew.mbr_captain}}<i class="fas fa-flag"></i>{{/if}}</td>
+                                <td style="padding-right:3px; border-right:1px solid gray;">{{crew.mbr_name}} {{#if crew.mbr_captain}}<i class="fas fa-flag"></i>{{/if}} {{#if (gt crew.mbr_sick 0)}}({{localize "FP.ui.general.sickbay"}} {{crew.mbr_sick}} {{localize "FP.ui.general.time"}}){{/if}}</td>
                                 <td style="padding-left:3px;">{{crew.mbr_species}}</td>
+                                <td style="padding-left:3px;">{{crew.mbr_save}}</td>
                             </tr>
                         </table>  
                     </div>
                     <div class="fp flex-item" style="text-align:center; max-width:35%;">
                         <table class="fp crew-roster">
                             <tr class="fp sheet-label-center">
-                                <th>Rea</th>
-                                <th>Spd</th>
-                                <th>Cbt</th>
-                                <th>Tou</th>
-                                <th>Sav</th>
+                                <th>{{localize "FP.character.stat_abbrev.reactions"}}</th>
+                                <th>{{localize "FP.character.stat_abbrev.speed"}}</th>
+                                <th>{{localize "FP.character.stat_abbrev.combat"}}</th>
+                                <th>{{localize "FP.character.stat_abbrev.toughness"}}</th>
+                                <th>{{localize "FP.character.stat_abbrev.savvy"}}</th>
                             </tr>
                                 
                             <tr class="hw">
@@ -184,8 +186,8 @@
                     <div class="fp flex-item" style="text-align:center; max-width:10%;">
                         <table class="fp crew-roster">
                             <tr class="fp sheet-label-center">
-                                <th>Luck</th>
-                                <th>XP</th>
+                                <th>{{localize "FP.character.stat.luck"}}</th>
+                                <th>{{localize "FP.character.stat.xp"}}</th>
                             </tr>
                             <tr class="hw">
                                 <td>{{crew.mbr_luck}}</td>
@@ -196,10 +198,10 @@
                         </table>
                     </div>
                     <div class="fp flexcol item-name item" data-crew-id="{{crew.mbr_id}}" data-item-id="{{crew.mbr_item_id}}" style="max-width:48px; background:#7dc8e6; color:white; text-align:center;">
-                        <a class="item-delete" title="Remove Crew Member" data-type="crew_assignment">
+                        <a class="item-delete" title="{{localize 'FP.ui.crewsheet.delete'}}" data-type="crew_assignment">
                             <span style="font-size:2em"><i class="fas fa-minus-square"></i></span>
                         </a>
-                        <a class="item-edit" title="Edit Crew Member" data-type="crew_actor">
+                        <a class="item-edit" title="{{localize 'FP.ui.crewsheet.edit'}}" data-type="crew_actor">
                             <span style="font-size:2em"><i class="fas fa-edit"></i></span>
                         </a>
                     </div>
@@ -211,11 +213,11 @@
                             <div style="padding:3px; margin-right:12px;">
                                 <table class="fp crew-roster" style="border-collapse:collapse;">
                                     <tr class="fp sheet-label">
-                                        <th>Weapon</th>
-                                        <th>Range</th>
-                                        <th>Shots</th>
-                                        <th>Damage</th>
-                                        <th>Traits</th>
+                                        <th>{{localize "FP.gameterm.weapon"}}</th>
+                                        <th>{{localize "FP.weapon.stat.range"}}</th>
+                                        <th>{{localize "FP.weapon.stat.shots"}}</th>
+                                        <th>{{localize "FP.weapon.stat.damage"}}</th>
+                                        <th>{{localize "FP.gameterm.traits"}}</th>
                                     </tr>
                                     {{#each mbr_weapons as |weapon id|}}
                                     <tr>
@@ -235,20 +237,20 @@
                             <div style="padding:3px; margin-right:12px;">
                                 <table class="fp crew-roster">
                                     <tr>
-                                        <th><span class="fp sheet-label" style="vertical-align:top;">Gear</span></th>
+                                        <th><span class="fp sheet-label" style="vertical-align:top;">{{localize 'FP.gameterm.gear'}}</span></th>
                                         <td class="hw">{{crew.mbr_gear}}</td>
                                     </tr>
                                     <tr>
-                                        <th><span class="fp sheet-label" style="vertical-align:top;">Notes</span></th><td class="hw">{{crew.mbr_notes}}</td>
+                                        <th><span class="fp sheet-label" style="vertical-align:top;">{{localize 'FP.gameterm.notes'}}</span></th><td class="hw">{{crew.mbr_notes}}</td>
                                     </tr>
                                 </table>
                             </div>
                     </div>
                     <div class="fp flexcol item-name item" data-crew-id="{{crew.mbr_id}}" data-item-id="{{crew.mbr_item_id}}" style="max-width:48px; background:#7dc8e6; color:white; text-align:center;">
-                        <a class="passthru-edit-crew-member" title="Toggle Captain" data-crew-action="toggle_captain">
+                        <a class="passthru-edit-crew-member" title="{{localize 'FP.ui.crewsheet.captain'}}" data-crew-action="toggle_captain">
                             <span style="font-size:2em"><i class="fas fa-flag"></i></span>
                         </a>
-                        <a class="passthru-edit-crew-member" title="Toggle Casualty" data-crew-action="toggle_casualty">
+                        <a class="passthru-edit-crew-member" title="{{localize 'FP.ui.crewsheet.casualty'}}" data-crew-action="toggle_casualty">
                             <span style="font-size:2em"><i class="fas fa-heartbeat"></i></span>
                         </a>
                     </div>
@@ -277,12 +279,12 @@
             <table class="fp crew-roster" style="border-collapse:collapse;">
                 <tr class="fp sheet-label">
                     
-                    <th>World</th>
-                    <th>Invasion</th>
-                    <th>Licensing</th>
-                    <th>Local Patrons</th>
-                    <th>Local Rivals</th>
-                    <th>Notes<th>
+                    <th>{{localize "FP.ui.world.entity"}}</th>
+                    <th>{{localize "FP.ui.world.invaders"}}</th>
+                    <th>{{localize "FP.ui.world.license"}}</th>
+                    <th>{{localize "FP.ui.world.localpat"}}</th>
+                    <th>{{localize "FP.ui.world.localriv"}}</th>
+                    <th>{{localize "FP.gameterm.notes"}}<th>
                     <th></th>
                     
                 </tr>
@@ -313,8 +315,8 @@
                     <td class="hw" style="text-align:center">
                         {{world.data.data.notes}}
                     </td>
-                     <td style="font-size:2em; padding-left:3px; color:white; background:#7dc8e6"><a class="item-edit item" title="Edit {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fa fa-edit"></i></a><br/>
-                        <a class="item-delete item" title="Delete {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a>
+                     <td style="font-size:2em; padding-left:3px; color:white; background:#7dc8e6"><a class="item-edit item" title="{{localize 'FP.ui.general.edit'}} {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fa fa-edit"></i></a><br/>
+                        <a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{world.name}}" data-type="world" data-item-id="{{world.data._id}}"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 {{/each}}

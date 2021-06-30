@@ -362,7 +362,8 @@ export class FPActorSheet extends ActorSheet {
                 mbr_luck: crewActor.data.data.data.luck,
                 mbr_xp: crewActor.data.data.data.xp,
                 mbr_casualty: crewActor.data.data.data.casualty,
-                mbr_captain: crewActor.data.data.data.captain
+                mbr_captain: crewActor.data.data.data.captain,
+                mbr_sick: crewActor.data.data.data.sickbay_time
 
             };
             let crewMemberWeps = crewActor.items.filter(function(item) {return item.type == "weapon"});

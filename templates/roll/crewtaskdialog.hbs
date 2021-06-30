@@ -1,28 +1,28 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">Assign Crew Tasks</h1>
+        <h1 class="fp roll-name">{{localize "FP.ui.rolldialog.assigncrew"}}</h1>
     </header>
 
  <div class="fp roll-dialog">
-   <p>Note: the system will not prevent your from assigning the same crew member to multiple tasks. It's up to you to follow the rules!</p>
+   <p>{{localize "FP.campaign_turn.crew_tasks.ctwarn"}}</p>
      <div class="form-group">
         
          <table class="fp crew-roster">
              <tr class="fp sheet-label">
-                 <th>Task</th>
-                 <th>Crew {{#unless auto}}& Outcome{{/unless}}</th>
+                 <th>{{localize "FP.ui.general.task"}}</th>
+                 <th>{{localize "FP.gameterm.crew"}} {{#unless auto}}& {{localize "FP.ui.rolldialog.outcome"}}{{/unless}}</th>
              </tr>
              <tr>
-                 <th>Find a Patron</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.find"}}</th>
                  <td>
                      <select name="finder1" id="finder1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                       <select name="finder2" id="finder2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -32,16 +32,16 @@
                  </td>
              </tr>
               <tr>
-                 <th>Train</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.train"}}</th>
                  <td>
                      <select name="trainer1" id="trainer1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                      <select name="trainer2" id="trainer2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -53,17 +53,17 @@
                  </td>
              </tr>
               <tr>
-                 <th>Trade</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.trade"}}</th>
                  <td>
                      <select name="trader1" id="trader1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                 
                      <select name="trader2" id="trader2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -75,17 +75,17 @@
                  </td>
              </tr>
               <tr>
-                 <th>Recruit</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.recruit"}}</th>
                  <td>
                      <select name="recruiter1" id="recruiter1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                 
                      <select name="recruiter2" id="recruiter2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -97,17 +97,17 @@
                  </td>
              </tr>
               <tr>
-                 <th>Explore</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.explore"}}</th>
                  <td>
                      <select name="explorer1" id="explorer1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                 
                      <select name="explorer2" id="explorer2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -118,17 +118,17 @@
                  {{/unless}}</td>
              </tr>
              <tr>
-                 <th>Track</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.track"}}</th>
                  <td>
                      <select name="tracker1" id="tracker1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                  
                      <select name="tracker2" id="tracker2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -140,17 +140,17 @@
                  </td>
              </tr>
              <tr>
-                 <th>Repair Kit</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.repair"}}</th>
                  <td>
                      <select name="repairer1" id="repairer1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                 
                      <select name="repairer2" id="repairer2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
@@ -162,17 +162,17 @@
                  </td>
              </tr>
              <tr>
-                 <th>Decoy</th>
+                 <th>{{localize "FP.campaign_turn.crew_tasks.decoy"}}</th>
                  <td>
                      <select name="decoy1" id="decoy1">
-                         <option value="">Nobody</option>
+                         <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}
                      </select>
                 
                      <select name="decoy2" id="decoy2">
-                        <option value="">Nobody</option>
+                        <option value="">{{localize "FP.ui.rolldialog.nobody"}}</option>
                          {{#each crew_names as |name id|}}
                          <option value="{{name}}">{{name}}</option>
                          {{/each}}

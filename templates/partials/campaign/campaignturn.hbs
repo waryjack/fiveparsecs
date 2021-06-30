@@ -1,12 +1,12 @@
 <div class="fp flexcol" style="padding:3px; margin-right:12px;">
     <h2 class="fp sheet-label">
-        <a class="reset-turn" data-logging="yes" title="Log Turn to Journal and Start New Turn"><i class="fas fa-file-alt"></i> Log This Turn</a> |
-        <a class="reset-turn" data-logging="no" title="Reset Turn (No Logging)"><i class="fas fa-trash"></i> Reset Turn</a>
+        <a class="reset-turn" data-logging="yes" title="Log Turn to Journal and Start New Turn"><i class="fas fa-file-alt"></i> {{localize "FP.campaign_turn.logturn"}}</a> |
+        <a class="reset-turn" data-logging="no" title="Reset Turn (No Logging)"><i class="fas fa-trash"></i> {{localize "FP.campaign_turn.reset_turn"}}</a>
     </h2>
     <table class="fp crew-roster">
         <tr class="fp sheet-label">
-            <th>Step</th>
-            <th>Results / Info</th>
+            <th>{{localize "FP.campaign_turn.step"}}</th>
+            <th>{{localize "FP.campaign_turn.results"}}</th>
         </tr>
     {{> "systems/fiveparsecs/templates/partials/campaign/flee_invasion.hbs"}}
  

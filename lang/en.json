@@ -17,7 +17,8 @@
                 "toughness":"Tou",
                 "savvy":"Sav",
                 "luck":"Lck"
-            }
+            },
+            "save":"Save"
         },
         "enemy":{
             "stat":{
@@ -34,19 +35,23 @@
             }
         },
         "crew":{
+            "name":"Crew Name",
             "stat":{
-                "sp":"Story Points",
+                "story_points":"SP",
                 "credits":"Credits",
                 "patrons":"Patrons",
                 "rivals":"Rivals",
                 "event":"Event",
                 "clock":"Clock",
                 "questrumors":"Quest Rumors"
-            }
+            },
+            "stash":"Stash"
         },
         "ship":{
+            "name":"Ship Name",
             "stat":{
                 "hull":"Hull",
+                "maxhull":"Max",
                 "debt":"Debt",
                 "traits":"Traits",
                 "upgrades":"Ship Upgrades"
@@ -85,6 +90,7 @@
             "crew": "Crew",
             "crewlog": "Crew Log",
             "weapon": "Weapon",
+            "skill":"Skill",
             "upgrades": "Upgrades",
             "gear": "Gear",
             "gadget": "Gadget",
@@ -94,13 +100,171 @@
             "rules": "Rules",
             "cost": "Cost",
             "bonuses": "Bonuses",
-            "penalties": "Penalties"
+            "penalties": "Penalties",
+            "traits":"Traits"
         },
         "roll":{
             "basic":"Basic Roll",
             "custom":"Custom Roll"
         },
+        "campaign_turn":{
+            "entity": "Campaign Turn",
+            "logturn": "Log this Turn",
+            "reset_turn": "Reset Turn",
+            "step": "Step",
+            "results": "Results / Information",
+            "arrival":{
+                "entity":"Arrival",
+                "random":"Generate Random World",
+                "custom":"Create Custom World",
+                "known":"Select a Known World"
+            },
+            "flee":{
+                "entity":"Flee Invasion"
+            },
+            "travel":{
+                "entity":"Travel",
+                "event":"Travel Event"
+            },
+            "upkeep":{
+                "entity":"Upkeep",
+                "action":"Handle Upkeep",
+                "currbal":"Current Credit Balance",
+                "payamt":"Crew Payroll Amount",
+                "debtamt":"Debt Payment Amount",
+                "repamt":"Repair Payment Amount",
+                "medamt":"Medical Care Payment Amount"
+            },
+            "crew_tasks":{
+                "entity":"Crew Tasks",
+                "action":"Handle Crew Tasks",
+                "find":"Find a Patron",
+                "train":"Train",
+                "trade":"Trade",
+                "recruit":"Recruit",
+                "explore":"Explore",
+                "track":"Track",
+                "repair":"Repair Kit",
+                "decoy":"Decoy",
+                "ctwarn":"Note: the system will not prevent your from assigning the same crew member to multiple tasks. It's up to you to follow the rules!"
+            },
+            "jobs":{
+                "entity":"Patron Jobs",
+                "activity":"Generate Patron Job"
+            },
+            "battles":{
+                "entity":"Battles",
+                "check_rival":"Check for Rival Attack",
+                "opp":"Opportunity Battle",
+                "pat":"Patron Battle",
+                "qst":"Quest Battle",
+                "inv":"Invasion Battle",
+                "opp_activity":"Carry out Patron Job",
+                "pat_activity":"Carry out Opportunity Mission",
+                "qst_activity":"Continue a Quest",
+                "inv_activity":"Fight Invaders",
+                "riv_activity":"Create a Rival Battle"
+            },
+            "post":{
+                "entity":"Post-Battle",
+                "activity":"Post Battle Wrap-Up",
+                "dialog":{
+                    
+                }
+            }
+        },
         "ui":{
+            "gentraits":"Generate Random Traits",
+            "charsheet":{
+                "casualty":"Casualty",
+                "sick_time":"Sickbay Time",
+                "save":"Saving Throw"
+            },
+            "combat":{
+                "brawl_atk":"Brawl Attack"
+                
+            },
+            "rolldialog":{
+                "extrad6":"Extra D6 to roll",
+                "wepdets":"Weapon Details",
+                "crewsize":"Crew Size",
+                "crewsize_ext":"Crew size for this Battle",
+                "nobody":"Nobody",
+                "outcome":"Outcome",
+                "assigncrew":"Assign Crew Tasks",
+                "postbattle":{
+                    "title":"Post Battle Check",
+                    "checkriv":"Check for new Rivals?",
+                    "existriv":"Existing Rival?",
+                    "patsux":"Successful Patron Mission?",
+                    "questfought":"Fought a Quest Mission?",
+                    "questfinale":"Quest Finale?",
+                    "misspay":"Determine Mission Pay?",
+                    "campev":"Check for Campaign Event?",
+                    "battfind":"Get Battlefield Finds?",
+                    "checkinv":"Check for Invasion?",
+                    "getloot":"Get Loot?",
+                    "lootrolls":"Num. loot rolls"                    
+                }
+            },
+            "general":{
+                "yes":"Yes",
+                "no":"No",
+                "roll":"Roll",
+                "cont":"Continue",
+                "notes":"Notes",
+                "delete":"Delete",
+                "edit":"Edit",
+                "custom":"Custom",
+                "percent":"Percentile",
+                "attack":"Attack",
+                "attacking":"Attacking with",
+                "sickbay":"Sickbay",
+                "time":"Time",
+                "modifier":"Modifier",
+                "modifiers":"Modifiers",
+                "total":"Total",
+                "details":"Details",
+                "task":"Task"
+            },
+            "crewsheet":{
+                "known":"Known Worlds",
+                "roster":"Roster",
+                "add":"Add Crew Member",
+                "refresh":"Refresh Roster",
+                "delete":"Remove Crew Member",
+                "edit":"Edit Crew Member",
+                "captain":"Toggle Captain",
+                "casualty":"Toggle Casualty"
+            },
+            "world":{
+                "entity":"World",
+                "traits":"World Traits",
+                "license":"Licensing",
+                "invaders":"Invaders",
+                "lic_acq":"(Acquired)",
+                "lic_not_acq":"(Not Acquired)",
+                "localpat":"Local Patrons",
+                "localriv":"Local Rivals"
+            },
+            "battle":{
+                "objective":"Objective",
+                "deploy":"Deployment Conditions",
+                "sights":"Notable Sights",
+                "opposition_cat":"Opposition",
+                "enemy_forces":"Enemy Forces",
+                "spec":"Specialists",
+                "unique":"Unique"
+            },
+            "job":{
+                "patron":"Patron",
+                "danger_pay":"Danger Pay",
+                "time_frame":"Time Frame",
+                "benefits":"Benefits",
+                "hazards":"Hazards",
+                "conditions":"Conditions",
+                "complete":"Completed"
+            },
             "item":{
                 "new":"New Item"
             },
@@ -111,6 +275,23 @@
                 "rolling":"Rolling",
                 "select_die":"Select Die Type",
                 "numdice":"Number of Dice"
+            },
+            "select":{
+                "patron":{
+                    "corp":"Corporation",
+                    "sector":"Sector Government",
+                    "local":"Local Government",
+                    "wealthy":"Wealthy Individual",
+                    "private":"Private Organization",
+                    "secret":"Secretive Group"
+                },
+                "battle":{
+                    "patron":"Patron",
+                    "rival":"Rival",
+                    "opportunity":"Opportunity",
+                    "quest":"Quest",
+                    "invasion":"Invasion"
+                }
             }
             
         },

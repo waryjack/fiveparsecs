@@ -1,16 +1,16 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">Attacking With {{w_name}}</h1>
+        <h1 class="fp roll-name">{{localize "FP.ui.general.attacking"}} {{w_name}}</h1>
     </header>
 
  <div class="fp roll-dialog">
-      <h2>Combat Skill: +{{a_combat}}</h2>
-      <p><strong>Weapon Details</strong>: {{w_shots}} Shots / Damage {{w_dmg}} {{#if (ne w_traits "")}}({{w_traits}}){{else}}{{/if}}</p>
+      <h2>{{localize "FP.character.stat.combat"}} {{localize "FP.gameterm.skill"}}: +{{a_combat}}</h2>
+      <p><strong>{{localize "FP.ui.rolldialog.wepdets"}}</strong>: {{w_shots}} {{localize "FP.weapon.stat.shots"}} / {{localize "FP.weapon.stat.damage"}} {{w_dmg}} {{#if (ne w_traits "")}}({{w_traits}}){{else}}{{/if}}</p>
      <div class="form-group">
        
          <table>
              <tr>
-                 <th>Extra D6 to Roll</th>
+                 <th>{{localize "FP.ui.rolldialog.extrad6"}}</th>
                  <td><input id="extraDice" type="text" value="0" data-dtype="Number"/></td>
              </tr>
              <tr>

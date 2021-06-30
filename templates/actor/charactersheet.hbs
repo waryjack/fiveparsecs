@@ -23,9 +23,9 @@
                             <tr class="fp sheet-label">
                                 <th style="border-right:1px solid gray">{{localize "FP.gameterm.name"}}</th>
                                 <th>{{localize "FP.gameterm.species"}}</th>
-                                <th style="text-align:center">Casualty?</th>
-                                <th>Sickbay Time</th>
-                                <th>Saving Throw</th>
+                                <th style="text-align:center">{{localize "FP.ui.charsheet.casualty"}}?</th>
+                                <th>{{localize "FP.ui.charsheet.sick_time"}}</th>
+                                <th>{{localize "FP.ui.charsheet.save"}}</th>
                             </tr>
                             <tr>
                                 <td style="padding-right:3px">
@@ -101,12 +101,12 @@
                                         
                                         {{weapon.name}} 
 
-                                        <span class="edit-icons-cs"><a class="atk-roll" title="Roll {{weapon.name}} Attack" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
+                                        <span class="edit-icons-cs"><a class="atk-roll" title="{{localize 'FP.ui.general.roll'}} {{weapon.name}} {{localize 'FP.ui.general.attack'}}" data-type="weapon" data-weapon-id="{{weapon.data._id}}">
                                             <i class="fa fa-crosshairs"></i>
-                                        </a> <a class="item-edit item" title="Edit {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
+                                        </a> <a class="item-edit item" title="{{localize 'FP.ui.general.edit'}} {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                            <a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{weapon.name}}" data-type="weapon" data-item-id="{{weapon.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                     </td>
                                     <td style="text-align:center">{{weapon.data.data.range}}</td>
@@ -123,18 +123,18 @@
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
                                    <th>{{localize "FP.trait.type.background"}} <a class="item-create" data-type="background" title="Add Background"><i class="fas fa-plus-square"></i></a></th>
-                                   <th>Effect</th>
-                                   <th>Resources</th>
-                                   <th>Starting Rolls</th>
+                                   <th>{{localize "FP.trait.stat.effect"}}</th>
+                                   <th>{{localize "FP.trait.stat.resources"}}</th>
+                                   <th>{{localize "FP.trait.stat.startingRolls"}}</th>
                                </tr>
                                {{#each backgrounds as |item id|}}
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="background" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="{{localize 'FP.ui.general.edit'}} {{item.name}}" data-type="background" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="background" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                            <a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{item.name}}" data-type="background" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -154,18 +154,18 @@
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
                                    <th>{{localize "FP.trait.type.motivation"}} <a class="item-create" data-type="motivation" title="Add Motivation"><i class="fas fa-plus-square"></i></a></th>
-                                   <th>Effect</th>
-                                   <th>Resources</th>
-                                   <th>Starting Rolls</th>
+                                   <th>{{localize "FP.trait.stat.effect"}}</th>
+                                   <th>{{localize "FP.trait.stat.resources"}}</th>
+                                   <th>{{localize "FP.trait.stat.startingRolls"}}</th>
                                </tr>
                                {{#each motivations as |item id|}}
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="{{localize 'FP.ui.general.edit'}} {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                            <a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{item.name}}" data-type="motivation" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -185,18 +185,18 @@
                             <table class="fp crew-roster">
                                <tr class="fp sheet-label labels">
                                    <th>{{localize "FP.trait.type.class"}} <a class="item-create" data-type="class" title="Add Class"><i class="fas fa-plus-square"></i></a></th>
-                                   <th>Effect</th>
-                                   <th>Resources</th>
-                                   <th>Starting Rolls</th>
+                                  <th>{{localize "FP.trait.stat.effect"}}</th>
+                                   <th>{{localize "FP.trait.stat.resources"}}</th>
+                                   <th>{{localize "FP.trait.stat.startingRolls"}}</th>
                                </tr>
                                {{#each class as |item id|}}
                                <tr class="hw">
                                    <td class="item-name item" data-item-id="{{item.data._id}}">
                                        {{item.name}}
-                                        <span class="edit-icons-cs"><a class="item-edit item" title="Edit {{item.name}}" data-type="class" data-item-id="{{item.data._id}}">
+                                        <span class="edit-icons-cs"><a class="item-edit item" title="{{localize 'FP.ui.general.edit'}} {{item.name}}" data-type="class" data-item-id="{{item.data._id}}">
                                             <i class="fa fa-edit"></i>
                                         </a> 
-                                            <a class="item-delete item" title="Delete {{item.name}}" data-type="class" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                            <a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{item.name}}" data-type="class" data-item-id="{{item.data._id}}"><i class="fas fa-trash"></i></a></span>
 
                                    </td>
                                    <td style="text-align:center">
@@ -222,10 +222,10 @@
                                         
                                         {{#each gear as |gear id|}}
                                         
-                                            <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><span class="item-name item" data-item-id="{{gear.data._id}}">{{gear.name}}
+                                            <a class="item-edit item hw" title="{{localize 'FP.ui.general.edit'}} {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><span class="item-name item" data-item-id="{{gear.data._id}}">{{gear.name}}
                                                 {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}</span>
                                             </a> 
-                                            <span class="edit-icons-cs"><a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                            <span class="edit-icons-cs"><a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a></span>
                                             
                                             {{#if @last}} {{else}}, {{/if}}
 
@@ -233,7 +233,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">Notes</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.notes"}}</span></td>
                                     <td data-field="notes" class="inline-edit-notes hw" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
                                 </tr>
                             </table>

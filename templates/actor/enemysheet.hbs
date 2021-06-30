@@ -50,7 +50,7 @@
                                     <th>{{localize "FP.enemy.setup_info.numbers"}}</th>
                                     <th>{{localize "FP.enemy.setup_info.ai"}}</th>
                                     <th>{{localize "FP.enemy.setup_info.weapons"}}</th>
-                                    <th>Save</th>
+                                    <th>{{localize "FP.character.save"}}</th>
                                 </tr>
                                 <tr>
                                     <td><span data-field="data.data.numbers" class="inline-edit hw val-box" contenteditable>{{data.data.numbers}}</span></td>
@@ -105,10 +105,10 @@
                                         
                                         {{#each gear as |gear id|}}
                                         
-                                            <a class="item-edit item hw" title="Edit {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}">{{gear.name}}
+                                            <a class="item-edit item hw" title="{{localize 'FP.ui.general.edit'}} {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}">{{gear.name}}
                                                 {{#if (gt gear.data.data.uses 0)}}&nbsp;x{{gear.data.data.uses}}{{/if}}
                                             </a> 
-                                             <span class="edit-icons-es"><a class="item-delete item" title="Delete {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a></span>
+                                             <span class="edit-icons-es"><a class="item-delete item" title="{{localize 'FP.ui.general.delete'}} {{gear.name}}" data-type="gear" data-item-id="{{gear.data._id}}"><i class="fas fa-trash"></i></a></span>
                                             
                                             {{#if @last}} {{else}}, {{/if}}
 
@@ -116,7 +116,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">Notes</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.notes"}}</span></td>
                                     <td data-field="notes" class="inline-edit-notes hw" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
                                 </tr>
                             </table>
