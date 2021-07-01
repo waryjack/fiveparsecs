@@ -16,6 +16,8 @@ Note: although the system will support random generation based on tables from th
 
 Next up: 
 
+* Reworking table draws so that tables aren't locked to American English
+* Cleaning up dialogs, sheets for consistent look and feel (and better layout)
 * Character Creation Table (equipment, gear, etc.) support.
 * Configurable game settings (difficulty, "Wild Galaxy", etc).
 * Localization work.
