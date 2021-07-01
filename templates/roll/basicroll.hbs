@@ -1,16 +1,17 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name labels">{{localize "FP.ui.instructions.rolling"}} {{expr}}</h1>
+        <h1 class="fp roll-name dialog-header">{{localize "FP.ui.instructions.rolling"}} {{expr}}</h1>
     </header>
      <div class="form-group">
-         <table class="fp item-roster">
-             <tr>
-                 <th class="fp sheet-label">{{localize "FP.gameterm.bonuses"}}</th>
+         <table class="fp dialog-roster">
+             <tr class="fp terminal">
+                 <th>{{localize "FP.gameterm.bonuses"}}</th>
                  <td>
                     <input id="bonus" type="text" value="0" data-dtype="Number"/>
                  </td>
-            </tr><tr>
-                <th class="fp sheet-label">{{localize "FP.gameterm.penalties"}}</th>
+            </tr>
+            <tr class="fp terminal">
+                <th>{{localize "FP.gameterm.penalties"}}</th>
                  <td>
                      <input id="penalty" type="text" value="0" data-dtype="Number"/>
                  </td>

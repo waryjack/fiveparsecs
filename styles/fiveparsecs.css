@@ -181,6 +181,8 @@ border - #039e5d
 
 
 
+
+
 /* End Item Sheet Table Styling */
 
 .fp .sheet-label {
@@ -322,13 +324,22 @@ border - #039e5d
     font-family: 'SheetHeader', sans-serif;
 }
 
+.terminal {
+    font-family: 'Saira Condensed', sans-serif;
+}
+
+.left-larger {
+    font-size:1.2em;
+    text-align:left;
+}
+
 .fp .text-input .hw, .fp .value-input .hw {
     font-family: 'SheetContent', sans-serif;
     font-size: 1.2em;
 }
 
 .fp .roll-name {
-    background:#61b07c;
+    background:#36454f;
     color:white;
 }
 
@@ -379,10 +390,13 @@ h1.roll-name {
 .journal-sheet .editor-content > h4 {
     font-family: 'SheetHeader', sans-serif;
     font-size: 1em;
+    
 }
 .journal-sheet .editor-content > h1, 
 .journal-sheet .editor-content > h2 {
-    border-bottom:1px solid #4e2e4e;
+    background:#4e2e4e;
+    color:white;
+    border-bottom:none;
 }
 
 /***************************
@@ -400,4 +414,38 @@ h1.roll-name {
 .directory-list {
     font-family:'Saira Condensed', sans-serif;
     font-size:1.2em;
+}
+
+.dialog-header {
+    font-family:'Saira Condensed', sans-serif;
+    font-weight:bold;
+}
+
+/* Dialog Table Styling */
+/*
+Greens
+table background - #eff6f0
+header background - #61b07c
+even row - #cee2cf
+border - #039e5d
+*/
+
+.fp .dialog-roster {
+    border-collapse:collapse;
+    padding:0 12px 12px 12px;
+    background:#e5e4e2;
+}
+
+.fp .dialog-roster th {
+    background-color:#a9a9a9;
+    border:1px solid #899499;
+    color:black;
+}
+
+.fp .dialog-roster td {
+    border:1px solid #899499;
+}
+
+.fp .dialog-roster tr:nth-child(odd){
+    background:#ffffff;
 }

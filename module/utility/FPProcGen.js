@@ -126,7 +126,7 @@ export class FPProcGen {
                     cndRes = cndDraw.results[0].data.text;
                 }
                 if (bhcRoll >= 8) {
-                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    let hazDraw = await tblHazards.draw({displayChat:false});
                     let benDraw = await tblBenefits.draw({displayChat:false});
                     hazRes = hazDraw.results[0].data.text;
                     benRes = benDraw.results[0].data.text;
@@ -141,7 +141,7 @@ export class FPProcGen {
                     benRes = benDraw.results[0].data.text;
                 }
                 if (bhcRoll >= 8) {
-                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    let hazDraw = await tblHazards.draw({displayChat:false});
                     let cndDraw = await tblConditions.draw({displayChat:false});
                     cndRes = cndDraw.results[0].data.text;
                     hazRes = hazDraw.results[0].data.text;
@@ -150,7 +150,7 @@ export class FPProcGen {
             }
             case 10: {
                 if (bhcRoll >= 5) {
-                    let hazDraw = await tblHazards.draw({dispalyChat:false});
+                    let hazDraw = await tblHazards.draw({displayChat:false});
                     hazRes = hazDraw.results[0].data.text;
                 }
                 if (bhcRoll >= 8) { 

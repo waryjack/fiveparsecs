@@ -6,22 +6,22 @@
     <section class="sheetbody">
       
         <div class="fp flexcol">
-            <h3 class="fp sheet-label">Basic Info</h3>
+            <h3 class="fp sheet-label left-larger" style="font-size:1em;">Basic Info</h3>
             <table class="fp item-roster">
                 <tr>
-                    <th class="fp sheet-label">Battle Type</th>
+                    <th class="fp terminal left-larger">Battle Type</th>
                     <td>{{> 'systems/fiveparsecs/templates/partials/battle/battletypeselect.hbs'}}</td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Objective</th>
+                    <th class="fp terminal left-larger">Objective</th>
                     <td><input class="fp text-input" name="data.objective" value="{{data.objective}}" data-dtype="String"/></td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Deployment</th>
+                    <th class="fp terminal left-larger">Deployment</th>
                     <td><input class="fp text-input" name="data.deployment" value="{{data.deployment}}" data-dtype="String"/></td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Outcome</th>
+                    <th class="fp terminal left-larger">Outcome</th>
                     <td>
                         <select name="data.outcome" id="data.outcome">
                             {{#select data.outcome}}
@@ -35,17 +35,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Objective Complete</th>
+                    <th class="fp terminal left-larger">Objective Complete</th>
                     <td>
                          <input type="checkbox" name="data.obj_complete" {{#if data.obj_complete}}checked{{/if}}/>
                     </td>
                 </tr>
                 
             </table>
-            <h3 class="fp sheet-label">Opposition</h3>
+            <h3 class="fp sheet-label left-larger">Opposition</h3>
             <table class="fp item-roster">
                 <tr>
-                    <th class="fp sheet-label">Enemy Category</th>
+                    <th class="fp terminal left-larger">Enemy Category</th>
                     <td>
                         <select name="data.opposition.element" id="data.opposition.element">
                             {{#select data.opposition.element}}
@@ -58,20 +58,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Main Opposition</th>
+                    <th class="fp terminal left-larger">Main Opposition</th>
                     <td>
                         <input type="text" class="fp text-input" style="width:50%" name="data.opposition.element_subtype" value="{{data.opposition.element_subtype}}" data-dtype="String"/> x
                         <input type="text" class="fp value-input" name="data.opposition.base_number" value="{{data.opposition.base_number}}" data-dtype="Number"/>
                     </td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Specialists</th>
+                    <th class="fp terminal left-larger">Specialists</th>
                     <td>
                         <input type="text" class="fp value-input" name="data.opposition.specialists" value="{{data.opposition.specialists}}" data-dtype="String"/>
                     </td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Unique Individuals</th>
+                    <th class="fp terminal left-larger">Unique Individuals</th>
                     <td>
                         <input type="text" class="fp text-input" name="data.opposition.unique_type" value="{{data.opposition.unique_type}}" data-dtype="String"/>
                     </td>

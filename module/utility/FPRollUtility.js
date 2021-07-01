@@ -35,7 +35,7 @@ export class FPRollUtility {
                 }
 
 
-            }).render(true);
+            },{width:275}).render(true);
 
         });
     }

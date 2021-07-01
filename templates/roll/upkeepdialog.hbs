@@ -1,38 +1,38 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">{{localize "FP.campaign_turn.upkeep.entity"}}</h1>
+        <h1 class="fp roll-name dialog-header">{{localize "FP.campaign_turn.upkeep.entity"}}</h1>
     </header>
 
  <div class="fp roll-dialog">
     {{log "data passed for upkeep: " data}}
      <div class="form-group">
          
-         <table class="fp crew-roster">
+         <table class="fp dialog-roster terminal">
              <tr>
-                 <th>{{localize "FP.campaign_turn.upkeep.currbal"}}</th>
-                 <td>{{credits}}</td>
+                 <th style="text-align:left">{{localize "FP.campaign_turn.upkeep.currbal"}}</th>
+                 <td style="text-align:center; font-family:'SheetContent'; font-weight:bold; font-size:1.2em">{{credits}}</td>
              </tr>
              <tr>
-                 <th>{{localize "FP.campaign_turn.upkeep.payamt"}}</th>
-                 <td>
+                 <th style="text-align:left">{{localize "FP.campaign_turn.upkeep.payamt"}}</th>
+                 <td style="text-align:center">
                     <input class="fp value-input" id="crew-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
             </tr>
             <tr>
-                <th>{{localize "FP.campaign_turn.upkeep.debtamt"}}</th>
-                 <td>
+                <th style="text-align:left">{{localize "FP.campaign_turn.upkeep.debtamt"}}</th>
+                 <td style="text-align:center">
                      <input class="fp value-input" id="debt-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
              </tr>
              <tr>
-                <th>{{localize "FP.campaign_turn.upkeep.repamt"}}</th>
-                 <td>
+                <th style="text-align:left">{{localize "FP.campaign_turn.upkeep.repamt"}}</th>
+                 <td style="text-align:center">
                      <input class="fp value-input" id="repair-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
              </tr>
              <tr>
-                <th>{{localize "FP.campaign_turn.upkeep.medamt"}}</th>
-                 <td>
+                <th style="text-align:left">{{localize "FP.campaign_turn.upkeep.medamt"}}</th>
+                 <td style="text-align:center">
                      <input class="fp value-input" id="med-pay" type="text" value="0" data-dtype="Number"/>
                  </td>
              </tr>

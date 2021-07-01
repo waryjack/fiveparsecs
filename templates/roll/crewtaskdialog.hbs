@@ -1,18 +1,18 @@
 <form class="fp roll-dialog">
  <header class="roll-header">
-        <h1 class="fp roll-name">{{localize "FP.ui.rolldialog.assigncrew"}}</h1>
+        <h1 class="fp roll-name dialog-header">{{localize "FP.ui.rolldialog.assigncrew"}}</h1>
     </header>
 
  <div class="fp roll-dialog">
    <p>{{localize "FP.campaign_turn.crew_tasks.ctwarn"}}</p>
      <div class="form-group">
         
-         <table class="fp crew-roster">
+         <table class="fp dialog-roster">
              <tr class="fp sheet-label">
                  <th>{{localize "FP.ui.general.task"}}</th>
-                 <th>{{localize "FP.gameterm.crew"}} {{#unless auto}}& {{localize "FP.ui.rolldialog.outcome"}}{{/unless}}</th>
+                 <th>{{localize "FP.ui.rolldialog.assigned"}} {{#unless auto}}& {{localize "FP.ui.rolldialog.outcome"}}{{/unless}}</th>
              </tr>
-             <tr>
+             <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.find"}}</th>
                  <td>
                      <select name="finder1" id="finder1">
@@ -31,7 +31,7 @@
                      <input type="fp text-input" style="width:100%" id="find-outcome" data-dtype="String"/>{{/unless}}
                  </td>
              </tr>
-              <tr>
+              <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.train"}}</th>
                  <td>
                      <select name="trainer1" id="trainer1">
@@ -52,7 +52,7 @@
                  {{/unless}}
                  </td>
              </tr>
-              <tr>
+              <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.trade"}}</th>
                  <td>
                      <select name="trader1" id="trader1">
@@ -74,7 +74,7 @@
                  {{/unless}}
                  </td>
              </tr>
-              <tr>
+              <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.recruit"}}</th>
                  <td>
                      <select name="recruiter1" id="recruiter1">
@@ -96,7 +96,7 @@
                  {{/unless}}
                  </td>
              </tr>
-              <tr>
+              <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.explore"}}</th>
                  <td>
                      <select name="explorer1" id="explorer1">
@@ -117,7 +117,7 @@
                      <input type="fp text-input" style="width:100%" id="explore-outcome" data-dtype="String"/>
                  {{/unless}}</td>
              </tr>
-             <tr>
+             <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.track"}}</th>
                  <td>
                      <select name="tracker1" id="tracker1">
@@ -139,7 +139,7 @@
                  {{/unless}}
                  </td>
              </tr>
-             <tr>
+             <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.repair"}}</th>
                  <td>
                      <select name="repairer1" id="repairer1">
@@ -161,7 +161,7 @@
                  {{/unless}}
                  </td>
              </tr>
-             <tr>
+             <tr class="fp terminal">
                  <th>{{localize "FP.campaign_turn.crew_tasks.decoy"}}</th>
                  <td>
                      <select name="decoy1" id="decoy1">

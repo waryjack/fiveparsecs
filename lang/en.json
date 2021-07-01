@@ -232,6 +232,7 @@
                 "nobody":"Nobody",
                 "outcome":"Outcome",
                 "assigncrew":"Assign Crew Tasks",
+                "assigned":"Assigned Crew",
                 "upkeep":{
                     "unp":"Upkeep and Payments"
                 },
