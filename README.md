@@ -211,6 +211,19 @@ If you leave off the / and the number, generation will still work, but the game 
 * Hazards
 * Conditions
 
+## Post-Battle
+
+You'll need two post-battle tables at this point:
+
+* Battlefield Finds
+* Campaign Events
+
+You can also create these, although they're not used yet:
+
+* Injury
+* Bot Injury
+* Character Events
+* 
 ## Loot
 
 Setting up the loot tables is the trickiest part, because it's a series of nested tables. These aren't too hard to set up in Foundry, fortunately. Use these steps to create the Loot table:
