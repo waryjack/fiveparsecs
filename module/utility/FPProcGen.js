@@ -100,16 +100,18 @@ export class FPProcGen {
 
         // Get Patron Type
         const pDraw = await tblPatron.draw({displayChat:false});
+        console.log("patron table draw: ", pDraw);
         const pType = pDraw.results[0].data.text;
+        const pRoll = pDraw.roll.total;
 
         // Get Danger Pay
-        let dpExpr = "1d10 + " + (pType === "Corporation") ? "1": "0";
+        let dpExpr = "1d10 + " + (pRoll <= 2) ? "1": "0";
         let dpRoll = new Roll(dpExpr).evaluate({async:false});
         let dpDraw = await tblDangerPay.draw({displayChat:false, roll:dpRoll});
         let dpRes = dpDraw.results[0].data.text;
 
         // Get Time Frame
-        let tfExpr = "1d10 + " + (pType === "Secretive Group") ? "1" : "0";
+        let tfExpr = "1d10 + " + (pRoll === 10) ? "1" : "0";
         let tfRoll = new Roll(tfExpr).evaluate({async:false});
         let tfDraw = await tblTimeFrame.draw({displayChat:false, roll:tfRoll});
         let tfRes = tfDraw.results[0].data.text;
@@ -117,7 +119,8 @@ export class FPProcGen {
         let bhcRoll = parseInt(new Roll("1d10").evaluate({async:false}).result);
         // Get 
         switch(pType){
-            case "Corporation": {
+            case 1:
+            case 2: {
                 if (bhcRoll >= 5) {
                     let cndDraw = await tblConditions.draw({displayChat:false});
                     cndRes = cndDraw.results[0].data.text;
@@ -131,7 +134,8 @@ export class FPProcGen {
                 }
                 break;
             }
-            case "Wealthy Individual": {
+            case 6:
+            case 7: {
                 if (bhcRoll >= 5) {
                     let benDraw = await tblBenefits.draw({displayChat:false});
                     benRes = benDraw.results[0].data.text;
@@ -144,7 +148,7 @@ export class FPProcGen {
                 }
                 break;
             }
-            case "Secretive Group": {
+            case 10: {
                 if (bhcRoll >= 5) {
                     let hazDraw = await tblHazards.draw({dispalyChat:false});
                     hazRes = hazDraw.results[0].data.text;
@@ -157,10 +161,7 @@ export class FPProcGen {
                 }
                 break;
             }
-            case "Local Government":
-            case "Sector Government":
-            case "Private Organization":
-            case "Private Organisation": {
+            default: {
                 if (bhcRoll >= 8) { 
                     let cndDraw = await tblConditions.draw({displayChat:false});
                     let benDraw = await tblBenefits.draw({displayChat:false});
