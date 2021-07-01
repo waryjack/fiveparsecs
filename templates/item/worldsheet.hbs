@@ -8,25 +8,25 @@
         <div class="fp flexcol">
             <table class="fp item-roster">
                 <tr>
-                    <th class="fp sheet-label">World Traits</th>
+                    <th class="fp terminal left-larger">World Traits</th>
                     <td><input type="text" class="fp text-input" name="data.traits" value="{{data.traits}}" data-dtype="String"/></td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Licensing</th>
+                    <th class="fp terminal left-larger">Licensing</th>
                     <td>
-                        <input type="checkbox" name="data.licensing" {{#if data.licensing}}checked{{/if}}/>&nbsp;
-                        Acquired?&nbsp;<input type="checkbox" name="data.license_obtained" {{#if data.license_obtained}}checked{{/if}}/>
+                        <input style="vertical-align:middle" type="checkbox" name="data.licensing" {{#if data.licensing}}checked{{/if}}/> Required
+                        <input style="vertical-align:middle" type="checkbox" name="data.license_obtained" {{#if data.license_obtained}}checked{{/if}}/> Acquired
                     </td>
                 </tr>
                 <tr>
-                    <th class="fp sheet-label">Notes</th>
+                    <th class="fp terminal left-larger">Notes</th>
                     <td>
                         <input type="text" class="fp text-input" name="data.notes" value="{{data.notes}}" data-dtype="String"/>
                     </td>
                 </tr>
             </table>
             <table class="fp item-roster">
-                <tr class="fp sheet-label">
+                <tr class="fp terminal left-larger">
                     <th>Local Patron</th>
                     <th>Benefit</th>
                 </tr>
@@ -44,7 +44,7 @@
                 </tr>
             </table>
              <table class="fp item-roster">
-                <tr class="fp sheet-label">
+                <tr class="fp terminal left-larger">
                     <th>Local Rival</th>
                     <th>Notes</th>
                 </tr>
@@ -62,7 +62,7 @@
                 </tr>
             </table>
             <table class="fp item-roster">
-                <tr class="fp sheet-label">
+                <tr class="fp terminal left-larger">
                     <th>Invasion</th>
                     <th>War Progress</th>
                 </tr>

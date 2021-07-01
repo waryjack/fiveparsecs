@@ -213,7 +213,7 @@ export class FPRollUtility {
                     }
                    },
                 default: "close"
-            }).render(true);
+            },{width:275}).render(true);
 
         });
     }
@@ -276,7 +276,7 @@ export class FPRollUtility {
                     }
                    },
                 default: "close"
-            }).render(true);
+            },{width:275}).render(true);
 
         });
     }
@@ -334,7 +334,7 @@ export class FPRollUtility {
                     }
                    },
                 default: "close"
-            }).render(true);
+            },{width:275}).render(true);
 
         });
 

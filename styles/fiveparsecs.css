@@ -166,7 +166,8 @@ border - #039e5d
 .fp .item-roster th {
     background-color:#61b07c;
     border:1px solid #039e5d;
-    color:white;
+    color:rgb(21, 36, 24);
+    font-weight:bolder;
 }
 
 .fp .item-roster td {
@@ -329,7 +330,7 @@ border - #039e5d
 }
 
 .left-larger {
-    font-size:1.2em;
+    font-size:1.1em;
     text-align:left;
 }
 

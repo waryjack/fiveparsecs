@@ -328,7 +328,7 @@
                 "battle":"Battle"
             },
             "instructions":{
-                "select_linked_character":"Select character linked to this assignment.",
+                "select_linked_character":"Select linked character.",
                 "assign_crew_basics":"Select the crew member associated with this item, then drag and drop this Crew Assignment item onto your Crew Sheet.",
                 "unlim_uses":"(enter 0 for unlimited uses)",
                 "rolling":"Rolling",
