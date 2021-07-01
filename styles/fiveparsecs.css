@@ -28,6 +28,7 @@ border - #039e5d
 
 @font-face {
     font-family: SheetContent;
+    /* src: url('../fonts/SairaCondensed-Regular.ttf'); */
     src: url("../fonts/Kalam-Regular.ttf");
 }
 
@@ -326,6 +327,15 @@ border - #039e5d
     font-size: 1.2em;
 }
 
+.fp .roll-name {
+    background:#61b07c;
+    color:white;
+}
+
+h1.roll-name {
+    border:none;
+}
+
 /******************************
 *            CHAT MESSAGES
 *
@@ -373,4 +383,21 @@ border - #039e5d
 .journal-sheet .editor-content > h1, 
 .journal-sheet .editor-content > h2 {
     border-bottom:1px solid #4e2e4e;
+}
+
+/***************************
+*         DIALOGS
+****************************/
+
+.dialog .window-content {
+    background:white;
+}
+
+.window-header {
+    font-family:'Saira Condensed', sans-serif;
+}
+
+.directory-list {
+    font-family:'Saira Condensed', sans-serif;
+    font-size:1.2em;
 }
