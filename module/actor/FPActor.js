@@ -136,10 +136,10 @@ export class FPActor extends Actor {
     handleUpkeep(debtPmt, payroll, repairs, med) {
         let totalPmts = debtPmt + payroll + repairs + med;
         
-        let bankBal = this.data.data.data.credits;
-        let currDebt = this.data.data.data.debt;
-        let currHull = this.data.data.data.hull;
-        let maxHull = this.data.data.data.hullmax;
+        let bankBal = this.data.data.credits;
+        let currDebt = this.data.data.debt;
+        let currHull = this.data.data.hull;
+        let maxHull = this.data.data.hullmax;
         let debtText = "No payments were made on the ship.";
         let payText = "The crew is awaiting payment.";
         let medText = "No medical care payments were made (or none were needed).";
@@ -169,9 +169,9 @@ export class FPActor extends Actor {
 
             console.warn("New BankBal (totalPmts): ", bankBal, totalPmts);
             this.update({
-                "data.data.debt":currDebt, 
-                "data.data.credits":bankBal, 
-                "data.data.hull":currHull,
+                "data.debt":currDebt, 
+                "data.credits":bankBal, 
+                "data.hull":currHull,
                 "data.campaign_turn.upkeep.debt_text":debtText,
                 "data.campaign_turn.upkeep.payroll_text":payText,
                 "data.campaign_turn.upkeep.repair_text":repText,
@@ -188,6 +188,7 @@ export class FPActor extends Actor {
      */
     handleCrewTasks(assignments) {
         let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
+        let ctFinalArray = [];
 
         let finalPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nofind_default");
         let finalTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrain_default");
@@ -198,13 +199,7 @@ export class FPActor extends Actor {
         let finalRepairText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.norepair_default");
         let finalDecoyText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nodecoy_default");
         
-        let findResultsText = ".";
-        let tradeResultText = ".";
-        let explorResultText = ".";
-        let trackResultText = ".";
-        let repairResultText = ".";
-        let decoyResultText = ".";
-        let trainResultText = ".";
+        let ctFinalText = "";
 
         const stdPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.find_sfx");
         const stdTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.train_sfx");
@@ -220,60 +215,9 @@ export class FPActor extends Actor {
         console.warn("Task Assignments: ", assignments);
 
         if (autoGen) {
-            if(assignments.finders.length) {
-                FPProcGen.getCrewTaskResults("find", assignments.finders).then(ctr => {
-                    console.warn("Finder Results: ", ctr);
-                    finalPatronText = assignments.finders.join(join) + stdPatronText + ctr;
-                    console.warn("finalPatronText within: "); 
-                    this.update({"data.campaign_turn.crew_tasks.patron_searchers":finalPatronText})
-                });
-              
-            }
-            if (assignments.trainers.length) {
-                finalTrainText = assignments.trainers.join(join) + stdTrainText;
-                this.update({"data.campaign_turn.crew_tasks.trainees":finalTrainText});
-            }
-            if (assignments.traders.length) {
-                
-                FPProcGen.getCrewTaskResults("trade", assignments.traders).then(ctr => {
-                    console.warn("Trade Results: ", ctr);
-                    finalTradeText = assignments.traders.join(join) + stdTradeText + ctr;
-                    this.update({"data.campaign_turn.crew_tasks.trade_result":finalTradeText});
-                })
-            }
-            if (assignments.recruiters.length) {
-                finalRecruitText = assignments.recruiters.join(join) + stdRecruitText;
-                /* FPProcGen.getCrewTaskResults("recruit", recruiters).then(ctr => {
-                    finalRecruitText = assignments.recruiters.join(" and ") + stdRecruitText + ", " + ctr;
-                }) */ 
-                this.update({"data.campaign_turn.crew_tasks.recruiter":finalRecruitText});
-            }
-            if (assignments.explorers.length) {
-                
-                FPProcGen.getCrewTaskResults("explore", assignments.explorers).then(ctr => {
-                    console.warn("Explorers Results: ", ctr);
-                    finalExploreText = assignments.explorers.join(join) + stdExploreText + ctr;
-                    this.update({"data.campaign_turn.crew_tasks.explore_result":finalExploreText});
-                })
-            }
-            if (assignments.trackers.length) {
-                FPProcGen.getCrewTaskResults("track", assignments.trackers).then(ctr => {
-                    finalTrackText = assignments.trackers.join(join) + stdTrackText + ctr;
-                    this.update({"data.campaign_turn.crew_tasks.track_result":finalTrackText});
-                })
-                
-            }
-            if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(join) + stdRepairText;
-                this.update({"data.campaign_turn.crew_tasks.repair_result":finalRepairText});
-            }
-            if (assignments.decoys.length) {
-                finalDecoyText = assignments.decoys.join(join) + stdDecoyText
-                this.update({"data.campaign_turn.crew_tasks.decoy_result":finalDecoyText});
-            }
-
-            // placeholder; much more complicated crap
-
+            FPProcGen.getCrewTaskResults(assignments).then(ctr => {
+                this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctr});
+            });
         } else {
             if (assignments.finders.length) {
                 finalPatronText = assignments.finders.join(join) + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
@@ -299,17 +243,11 @@ export class FPActor extends Actor {
             if (assignments.decoys.length) {
                 finalDecoyText = assignment.decoys.join(join) + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
             }
-
-            this.update({
-                "data.campaign_turn.crew_tasks.patron_searchers":finalPatronText,
-                "data.campaign_turn.crew_tasks.trainees":finalTrainText,
-                "data.campaign_turn.crew_tasks.trade_result":finalTradeText,
-                "data.campaign_turn.crew_tasks.recruiters":finalRecruitText,
-                "data.campaign_turn.crew_tasks.explore_result":finalExploreText,
-                "data.campaign_turn.crew_tasks.track_result":finalTrackText,
-                "data.campaign_turn.crew_tasks.decoy_result":finalDecoyText,
-                "data.campaign_turn.crew_tasks.repair_result":finalRepairText,
-            });
+            ctFinalArray.push(finalPatronText,finalTrainText,finalTradeText,finalRecruitText,finalExploreText,
+                finalTrackText,finalRepairText,finalDecoyText);
+    
+            ctFinalText = ctFinalArray.join("<br/>");
+            this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctFinalText});
             
         }
        
@@ -486,13 +424,13 @@ export class FPActor extends Actor {
 
     resetCampaignTurn(log) {
 
-        
-
+        const blank = this._getBlankCt();
+        console.warn("Logging? ", log);
         if (log === "yes") {
             // Check to make sure
             
 
-            FPTurnLogger.logCampaignTurn(this).then(() => {
+            FPTurnLogger.logCampaignTurn(this, blank).then(() => {
                 let battList = this.items.filter(i => i.type === "battle");
                 let jobList = this.items.filter(i => i.type === "patron_job");
                 let delIds = [];
@@ -504,37 +442,10 @@ export class FPActor extends Actor {
                 jobList.forEach(j => {
                     delIds.push(j.data._id);
                 }); 
-    
+                
                 this.deleteEmbeddedDocuments("Item", delIds);
-                // reset turn data
-                this.update({
-                    "data.campaign_turn.flee_outcome":"",
-                    "data.campaign_turn.travel.travel_event":"",
-                    "data.campaign_turn.arrival.followed":false,
-                    "data.campaign_turn.upkeep.debt_paid":0,
-                    "data.campaign_turn.upkeep.payroll_paid":0,
-                    "data.campaign_turn.upkeep.repair_cost":0,
-                    "data.campaign_turn.upkeep.debt_text":"",
-                    "data.campaign_turn.upkeep.payroll_text":"",
-                    "data.campaign_turn.upkeep.repair_text":"",
-                    "data.campaign_turn.upkeep.med_text":"",
-                    "data.campaign_turn.crew_tasks.patron_searchers":"",
-                    "data.campaign_turn.crew_tasks.trainees":"",
-                    "data.campaign_turn.crew_tasks.trade_result":"",
-                    "data.campaign_turn.crew_tasks.recruiters":"",
-                    "data.campaign_turn.crew_tasks.explore_result":"",
-                    "data.campaign_turn.crew_tasks.track_result":"",
-                    "data.campaign_turn.crew_tasks.decoy_result":"",
-                    "data.campaign_turn.crew_tasks.repair_result":"",
-                    "data.campaign_turn.post_battle.riv":"",
-                    "data.campaign_turn.post_battle.pat":"",
-                    "data.campaign_turn.post_battle.qst":"",
-                    "data.campaign_turn.post_battle.pay":"",
-                    "data.campaign_turn.post_battle.fnd":"",
-                    "data.campaign_turn.post_battle.inv":"",
-                    "data.campaign_turn.post_battle.cev":"",
-                    "data.campaign_turn.post_battle.loot":""
-                });
+                this.update({"data.campaign_turn":blank});
+                this.update({"data.campaign_turn.crew_tasks.ct_final_result":""});
             });
         } else {
 
@@ -551,39 +462,74 @@ export class FPActor extends Actor {
             jobList.forEach(j => {
                 delIds.push(j.data._id);
             }); 
-
+            this.update({"data.campaign_turn":blank});
+           
+           
             this.deleteEmbeddedDocuments("Item", delIds);
 
                 // reset turn data
-            this.update({
-                "data.campaign_turn.flee_outcome":"",
-                "data.campaign_turn.travel.travel_event":"",
-                "data.campaign_turn.arrival.followed":false,
-                "data.campaign_turn.upkeep.debt_paid":0,
-                "data.campaign_turn.upkeep.payroll_paid":0,
-                "data.campaign_turn.upkeep.repair_cost":0,
-                "data.campaign_turn.upkeep.debt_text":"",
-                "data.campaign_turn.upkeep.payroll_text":"",
-                "data.campaign_turn.upkeep.repair_text":"",
-                "data.campaign_turn.upkeep.med_text":"",
-                "data.campaign_turn.crew_tasks.patron_searchers":"",
-                "data.campaign_turn.crew_tasks.trainees":"",
-                "data.campaign_turn.crew_tasks.trade_result":"",
-                "data.campaign_turn.crew_tasks.recruiters":"",
-                "data.campaign_turn.crew_tasks.explore_result":"",
-                "data.campaign_turn.crew_tasks.track_result":"",
-                "data.campaign_turn.crew_tasks.decoy_result":"",
-                "data.campaign_turn.crew_tasks.repair_result":"",
-                "data.campaign_turn.post_battle.riv":"",
-                "data.campaign_turn.post_battle.pat":"",
-                "data.campaign_turn.post_battle.qst":"",
-                "data.campaign_turn.post_battle.pay":"",
-                "data.campaign_turn.post_battle.fnd":"",
-                "data.campaign_turn.post_battle.inv":"",
-                "data.campaign_turn.post_battle.cev":"",
-                "data.campaign_turn.post_battle.loot":""
-            });
+            
         }
+    }
+
+    _getBlankCt() {
+        const blank = {
+                turn_id:"",
+                flee:false,
+                flee_outcome:"",
+                travel:{
+                    traveling:false,
+                    travel_event:"",
+                    departing:""
+                },
+                arrival:{
+                    followed:false,
+                    arrival_complete:false,
+                    arriving:""
+                },
+                upkeep:{
+                    debt:false,
+                    debt_paid:0,
+                    payroll:false,
+                    payroll_paid:0,
+                    ship_repair:false,
+                    repair_cost:0,
+                    upkeep_complete:false,
+                    upkeep_text:"",
+                    debt_text:"",
+                    payroll_text:"",
+                    repair_text:"",
+                    med_text:""
+                },
+                crew_tasks:{
+                    patron_result:"",
+                    train_result:"",
+                    trade_result:"",
+                    recruit_result:"",
+                    recruits:0,
+                    explore_result:"",
+                    track_result:"",
+                    decoy_result:"",
+                    repair_result:"",
+                    ct_final_result:"",
+                },
+                post_battle:{
+                    riv:"",
+                    pat:"",
+                    qst:"",
+                    pay:"",
+                    fnd:"",
+                    inv:"",
+                    cev:"",
+                    loot:""
+                },
+                battles:[],
+                jobs:[],
+                complete:false,
+                logged:false
+        }
+
+        return blank;
     }
 
 }

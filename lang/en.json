@@ -256,6 +256,7 @@
                 "no":"No",
                 "roll":"Roll",
                 "cont":"Continue",
+                "continue":"Continue",
                 "cancel":"Cancel",
                 "notes":"Notes",
                 "delete":"Delete",

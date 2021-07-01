@@ -83,7 +83,7 @@ export class FPRollUtility {
                             taskAssignments.trackers = new Array();
                             if (html.find("#tracker1").val() != "") {taskAssignments.trackers.push(html.find("#tracker1").val())}
                             if (html.find("#tracker2").val() != "") {taskAssignments.trackers.push(html.find("#tracker2").val())}
-                            taskAssignments.trackOutcome = html.find("#track-oucome").val();
+                            taskAssignments.trackOutcome = html.find("#track-outcome").val();
                             
                             taskAssignments.repairers = new Array();
                             if (html.find("#repairer1").val() != "") {taskAssignments.repairers.push(html.find("#repairer1").val())}

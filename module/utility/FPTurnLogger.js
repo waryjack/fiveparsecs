@@ -1,9 +1,11 @@
 export class FPTurnLogger {
 
-    static async logCampaignTurn(crew) {
+    static async logCampaignTurn(crew, blank) {
 
-        const data = crew.data.data.campaign_turn;
         
+        const data = crew.data.data.campaign_turn;
+        console.warn("Logger data: ", data);
+        console.warn("Logger just one data: ", crew.data.campaign_turn);
         let battleTextArray = [];
         let jobTextArray = [];
 
@@ -75,7 +77,7 @@ export class FPTurnLogger {
             content: journalEntryHtml,
         }
         //const entry = new JournalEntryData(loggedEntry);
-
+        // crew.update({"data.campaign_turn":blank});
         return JournalEntry.create(loggedEntry); 
 
 

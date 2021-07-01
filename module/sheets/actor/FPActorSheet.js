@@ -446,7 +446,7 @@ export class FPActorSheet extends ActorSheet {
                     let template = "systems/fiveparsecs/templates/roll/upkeepdialog.hbs";
                     let upkeepData = {
                         actor:this.actor,
-                        credits:this.actor.data.data.data.credits
+                        credits:this.actor.data.data.credits
                     }
                     return FPRollUtility.upkeepDialog(template, upkeepData);
                 }

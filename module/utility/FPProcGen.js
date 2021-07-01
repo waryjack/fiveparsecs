@@ -345,66 +345,114 @@ export class FPProcGen {
      * @param {String} task the specific type of task, so it knows what to do!
      * @param {Array} crew the crew member names performing the task
      */
-    static async getCrewTaskResults(task, crew) {
-        let crewTaskResult = "";
+    static async getCrewTaskResults(assignments) {
+        // text constants
+        let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
+        let ctFinalArray = [];
+        let ctFinalResultText = "";
+
+        let finalPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nofind_default");
+        let finalTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrain_default");
+        let finalTradeText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrade_default");
+        let finalRecruitText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.norecruit_default");
+        let finalExploreText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.noexplore_default");
+        let finalTrackText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.notrack_default");
+        let finalRepairText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.norepair_default");
+        let finalDecoyText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nodecoy_default");
+       
+        const stdPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.find_sfx");
+        const stdTrainText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.train_sfx");
+        const stdTradeText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.trade_sfx");
+        const stdRecruitText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.recruit_sfx");
+        const stdExploreText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.explore_sfx");
+        const stdTrackText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.track_sfx");
+        const stdRepairText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.repair_sfx");
+        const stdDecoyText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.decoy_sfx");
+
+        const join = game.i18n.localize("FP.ui.general.andjoin");
+        
         const tblTrade = game.tables.filter(t => t.name === "Trade")[0];
         const tblExplore = game.tables.filter(t => t.name === "Explore")[0];
 
-
-        switch(task) {
-            case "find": {
-                let r = new Roll("1d6").evaluate({async:false}).result;
-                r = parseInt(r) + crew.length;
-                if (r < 5) {
-                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nopat") + r + ")";
-                   
-                } else if (r >= 6) {
-                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.onepat") + r + ")";
-                } else {
-                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.twopat") + r + ")";
-                }
-                break;
+        if(assignments.finders.length) {
+            let r = new Roll("1d6").evaluate({async:false}).result;
+            let ftr = "";
+            r = parseInt(r) + assignments.finders.length;
+            if (r < 5) {
+                ftr = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nopat") + r + ")";
+            } else if (r >= 6) {
+                ftr = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.onepat") + r + ")";
+            } else {
+                ftr = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.twopat") + r + ")";
             }
-            case "trade": {
-                let items = [];
-                for(let i = 0; i < crew.length; i++){
+            finalPatronText = assignments.finders.join(join) + stdPatronText + ftr;
+        }
+
+        if (assignments.trainers.length) {
+            finalTrainText = assignments.trainers.join(join) + stdTrainText;
+        } 
+
+        if (assignments.traders.length) {
+            let items = [];
+            let ttr = "";
+                for(let i = 0; i < assignments.traders.length; i++){
                     let tradeDraw = await tblTrade.draw({displayChat:false});
                     let tradeItem = tradeDraw.results[0].data.text;
                     items.push(tradeItem);
                 }
-                crewTaskResult = items.join(game.i18n.localize("FP.ui.general.andjoin"));
-                break;
-            } 
-            case "explore": {
-                let results = [];
-                for(let i = 0; i < crew.length; i++) {
+            ttr = items.join(game.i18n.localize("FP.ui.general.andjoin"));
+            finalTradeText = assignments.traders.join(join) + stdTradeText + ttr;
+        }
+
+        if (assignments.recruiters.length) {
+            finalRecruitText = assignments.recruiters.join(join) + stdRecruitText;
+        }
+
+        if (assignments.explorers.length) {
+             let results = [];
+             let etr = "";
+                for(let i = 0; i < assignments.explorers.length; i++) {
                     let expDraw = await tblExplore.draw({displayChat:false});
                     let expRes = expDraw.results[0].data.text;
                     results.push(expRes);
                 }
-                crewTaskResult = results.join(game.i18n.localize("FP.ui.general.andjoin"));
-                break;
-                
-            }
-            case "track": {
-                let troll = new Roll("1d6").evaluate({async:false}).result;
-                troll = parseInt(troll) + crew.length;
-                if (troll >= 6) {
-                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundrival") + troll +")";
-                } else {
-                    crewTaskResult = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundnorival") + troll + ")";
-                }
-                break;
-            }
-            case "repair":{
-                break; 
-            }
+                etr = results.join(game.i18n.localize("FP.ui.general.andjoin"));
+                finalExploreText = assignments.explorers.join(join) + stdExploreText + etr;
         }
 
-        console.warn("FPProcGen Crew Task Results: ", crewTaskResult);
-        return crewTaskResult;
+        if (assignments.trackers.length) {
+            let troll = new Roll("1d6").evaluate({async:false}).result;
+            let tkr = "";
+            troll = parseInt(troll) + assignments.trackers.length;
+            if (troll >= 6) {
+                tkr = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundrival") + troll +")";
+            } else {
+                tkr = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.foundnorival") + troll + ")";
+            }
+            
+                finalTrackText = assignments.trackers.join(join) + stdTrackText + tkr;
+        }
+
+        if (assignments.repairers.length) { 
+            finalRepairText = assignments.repairers.join(join) + stdRepairText;
+        }
+        if (assignments.decoys.length) {
+            finalDecoyText = assignments.decoys.join(join) + stdDecoyText
+        }
+
+        ctFinalArray.push(finalPatronText,finalTrainText,finalTradeText,finalRecruitText,finalExploreText,
+            finalTrackText,finalRepairText,finalDecoyText);
+
+        let ctFinalText = ctFinalArray.join("<br/>");
+        let safeText = new Handlebars.SafeString(ctFinalText);
+        console.warn("SafeString, ctFinalText ", safeText.string, ctFinalText);
+        // this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctFinalText});
+
+        console.warn("FPProcGen Crew Task Results: ", ctFinalText);
+        return ctFinalText;
 
     }
+    
 
     static async getTravelEvents() {
         
