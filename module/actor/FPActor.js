@@ -140,10 +140,10 @@ export class FPActor extends Actor {
         let currDebt = this.data.data.debt;
         let currHull = this.data.data.hull;
         let maxHull = this.data.data.hullmax;
-        let debtText = "No payments were made on the ship.";
-        let payText = "The crew is awaiting payment.";
-        let medText = "No medical care payments were made (or none were needed).";
-        let repText = "No repairs were paid for (or none were needed).";
+        let debtText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_debt_default");
+        let payText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_pay_default");
+        let medText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_med_default");
+        let repText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_rep_default");
 
         console.warn("totalPmts, bankBal, currDebt, currHull, maxHull: ", totalPmts, bankBal, currDebt, currHull, maxHull);
         if (totalPmts > bankBal) {
@@ -162,10 +162,10 @@ export class FPActor extends Actor {
             // Medical Treatment
             bankBal -= med; 
 
-            if (debtPmt > 0) { debtText = game.i18n.localize("FP.campaign_turn.upkeep.upkp_debt_paid"); }
-            if (payroll > 0) { payText = `You paid ${payroll} Credits to your crew for their upkeep.`; }
-            if (repairs > 0) { repText = `You paid ${repair} Credits toward ship repairs.`; }
-            if (med > 0) { medText = `You paid ${med} Credits for medical care for your crew.`; }
+            if (debtPmt > 0) { debtText = game.i18n.format("FP.campaign_turn.upkeep.upkp_debt_paid", {paid:debtPmt, owed:currDebt}); }
+            if (payroll > 0) { payText = game.i18n.format("FP.campaign_turn.upkeep.upkp_crew_paid", {paychecks:payroll}); }
+            if (repairs > 0) { repText = game.i18n.format("FP.campaign_turn.upkeep.upkp_rep_paid", {rep:repairs}); }
+            if (med > 0) { medText = game.i18n.format("FP.campaign_turn.upkeep.upkp_med_paid", {copay:med}); }
 
             console.warn("New BankBal (totalPmts): ", bankBal, totalPmts);
             this.update({
@@ -238,7 +238,7 @@ export class FPActor extends Actor {
                 finalTrackText = assignments.trackers.join(join) + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
             }
             if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(join) + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcom : stdRepairText);
+                finalRepairText = assignments.repairers.join(join) + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcome : stdRepairText);
             }
             if (assignments.decoys.length) {
                 finalDecoyText = assignment.decoys.join(join) + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
@@ -281,16 +281,18 @@ export class FPActor extends Actor {
     addBattle(type, random) {
         const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
         let rivalCheck = new Roll("1d6").evaluate({async:false}).result;
-        if (type === "Rival"){
-            if (rivalCheck < 3) {
-                this.createBattle("Rival", false); // rival battles should be custom setups
-            } else {
-                return ui.notifications.warn(game.i18n.localize("FP.campaign_turn.battles.foundbyrival_false"));
-            }
-        } else if (type === "Invasion") {
-            this.createBattle("Invasion", false);
-        } else if (!autoGen) { // No automatic generation
-            this.createBattle(type, false);
+        if(autoGen) {
+            if (type === "Rival"){
+                if (rivalCheck < 3) {
+                    this.createBattle("Rival", false); // rival battles should be custom setups
+                } else {
+                    return ui.notifications.warn(game.i18n.localize("FP.campaign_turn.battles.foundbyrival_false"));
+                }
+            } else if (type === "Invasion") {
+                this.createBattle("Invasion", false);
+            } else { 
+                this.createBattle(type, true);
+            } 
         } else {
             new Dialog({
                 title:game.i18n.localize("FP.ui.rolldialog.crewsize"),
@@ -315,6 +317,7 @@ export class FPActor extends Actor {
                 default: "close"
             }).render(true);
         }
+
     }
 
     /**

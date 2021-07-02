@@ -1,11 +1,15 @@
 <tr>
     <td class="fp sheet-label">
       {{localize "FP.campaign_turn.battles.entity"}}<br/>
+      {{#if auto}}
         <a class="ct-step" data-ct-phase="battles" data-ct-action="Rival" title="{{localize 'FP.campaign_turn.battles.check_rival'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/spy.png" height="32" width="32" style="border:0"/>
         <a class="ct-step" data-ct-phase="battles" data-ct-action="Patron" title="{{localize 'FP.campaign_turn.battles.pat_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/shaking-hands.png" height="32" width="32" style="border:0"/>
         <a class="ct-step" data-ct-phase="battles" data-ct-action="Opportunity" title="{{localize 'FP.campaign_turn.battles.opp_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
         <a class="ct-step" data-ct-phase="battles" data-ct-action="Quest" title="{{localize 'FP.campaign_turn.battles.qst_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
         <a class="ct-step" data-ct-phase="battles" data-ct-action="Invasion" title="{{localize 'FP.campaign_turn.battles.inv_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/strafe.png" height="32" width="32" style="border:0"/>
+      {{else}}
+        <a class="ct-step" data-ct-phase="battles" data-ct-action="Custom" title="{{localize 'FP.campaign_turn.battles.create_activity'}}"><img class="dice-img" src="systems/fiveparsecs/assets/campaign/coinflip.png" height="32" width="32" style="border:0"/>
+      {{/if}}
     </td>
     <td>
         {{log "Battle List: " battles}}

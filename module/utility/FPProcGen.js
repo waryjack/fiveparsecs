@@ -601,7 +601,7 @@ export class FPProcGen {
             findText = (pbData.findOutcome != "" && typeof(pbData.findOutcome !== "undefined")) ? "Battlefield Finds: "+pbData.findOutcome : findText;
             invText = (pbData.invOutcome != "" && typeof(pbData.invOutcome !== "undefined")) ? "Invasion Status: "+pbData.invOutcome : invText;
             campEventText = (pbData.cevOutcome != "" && typeof(pbData.cevOutcome !== "undefined")) ? "Campaign Event: "+pbData.cevOutcome : campEventText;
-            lootText = (pbData.cevOutcome != "" && typeof(pbData.cevOutcome !== "undefined")) ? "Loot: "+pbData.lootOutcome : lootText;
+            lootText = (pbData.lootOutcome != "" && typeof(pbData.lootOutcome !== "undefined")) ? "Loot: "+ pbData.lootOutcome : lootText;
         }
 
         let afterActionReport = {
