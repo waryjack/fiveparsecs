@@ -51,6 +51,9 @@ export class FPTurnLogger {
                                                     battlog:finalBattleText,
                                                     riv:data.post_battle.riv,
                                                     pat:data.post_battle.pat,
+                                                    qst:data.post_battle.qst,
+                                                    pay:data.post_battle.pay,
+                                                    fnd:data.post_battle.fnd,
                                                     inv:data.post_battle.inv,
                                                     cev:data.post_battle.cev,
                                                     loot:data.post_battle.loot

@@ -21,7 +21,8 @@
             "captain":false,
             "injury":"",
             "sickbay_time":0,
-            "save":""
+            "save":"",
+            "use_bot_injury":false
         },
         "enemy":{
             "templates":["common"],

@@ -8,9 +8,12 @@
                                             {{#if data.data.casualty}}background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJ0lEQVQYV2NkgIL/DAz/GRkYGEFcMIEsABZEF4CrhBmBpAshBNMFAA5zCgTDHweQAAAAAElFTkSuQmCC);{{/if}}">
                 {{!--pic and dice links--}}
                 <div class="fp flexrow">
-                    <div class="fp flex-item">
+                    <div class="fp flex-item" style="position:relative">
                         <img class="profile-img" style="border:1px solid #44b9de; min-width:64px !important; min-height:64px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
                     {{!--character image column--}}
+                        <div style="position:absolute; top:2px; left:2px; width:24px; height:24px; background:none; color:black;">
+                               {{#if data.data.captain}} <i class="fas fa-flag"></i>{{/if}}
+                        </div>
                     </div>
                     {{> 'systems/fiveparsecs/templates/partials/sheet/dice_roll_block.hbs'
                             chartype=actor.type
@@ -31,7 +34,6 @@
                                 <td style="padding-right:3px">
                                     <span data-field="name" class="inline-edit hw val-box" style="background:none;" contenteditable>{{actor.name}}</span>
                                     <!--input class="fp charname" style="text-align:left; width:100%; vertical-align:top; background:rgb(255, 255, 255);" name="name" type="text" value="{{actor.name}}" placeholder="Name"/-->
-                                    {{#if data.data.captain}}  <i class="fas fa-star"></i>{{/if}}
                                 </td>
                                 <td style="padding-left:3px;">
                                     <span data-field="data.data.species" class="inline-edit hw val-box" contenteditable>{{data.data.species}}</span>
@@ -235,6 +237,10 @@
                                 <tr>
                                     <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.notes"}}</span></td>
                                     <td data-field="notes" class="inline-edit-notes hw" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.misc"}}</span></td>
+                                    <td class="hw"><input type="checkbox" style="vertical-align:middle; bottom:0.5em;" name="data.data.use_bot_injury" {{#if data.data.use_bot_injury}}checked{{/if}}/>{{localize "FP.character.use_bot_injury"}}</td>
                                 </tr>
                             </table>
                         </div>

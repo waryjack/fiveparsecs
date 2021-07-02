@@ -18,7 +18,8 @@
                 "savvy":"Sav",
                 "luck":"Lck"
             },
-            "save":"Save"
+            "save":"Save",
+            "use_bot_injury":"Use Bot Injury Table"
         },
         "enemy":{
             "stat":{
@@ -101,7 +102,8 @@
             "cost": "Cost",
             "bonuses": "Bonuses",
             "penalties": "Penalties",
-            "traits":"Traits"
+            "traits":"Traits",
+            "misc":"Misc"
         },
         "roll":{
             "basic":"Basic Roll",
@@ -251,7 +253,9 @@
                     "battfind":"Get Battlefield Finds?",
                     "checkinv":"Check for Invasion?",
                     "getloot":"Get Loot?",
-                    "lootrolls":"Num. loot rolls"                    
+                    "lootrolls":"Num. loot rolls",
+                    "charev":"Check for Character Event?",
+                    "rolltwice":"Roll Twice"                 
                 }
             },
             "general":{

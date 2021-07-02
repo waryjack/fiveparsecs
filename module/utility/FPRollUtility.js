@@ -131,6 +131,7 @@ export class FPRollUtility {
                            
                             postData.invasion = html.find("#inv").val();
                             postData.invbonus = html.find("#inv-mod").val();
+                            postData.invthreat = html.find("#inv-threat").checked;
                             postData.invOutcome = html.find("#inv-outcome").val();
 
                             postData.patron = html.find("#pat").val();
@@ -154,6 +155,10 @@ export class FPRollUtility {
 
                             postData.campevent = html.find("#cev").val();
                             postData.cevOutcome = html.find("#cev-outcome").val();
+
+                            postData.charev = html.find("#chv").val();
+                            postData.chvTwice = html.find("#chv-twice").checked;
+                            postData.chvOutcome = html.find("#chv-outcome").val();
 
                             return data.actor.postBattle(postData);
                             //return data.actor.postBattle(postData);

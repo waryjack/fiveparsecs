@@ -479,6 +479,7 @@ export class FPProcGen {
         let campEventText = "No campaign events.";
         let lootText = "No loot.";
         let bfRes = "";
+        let invEv = 0;
 
         if(auto){
             // Post Battle Tables
@@ -542,12 +543,14 @@ export class FPProcGen {
             if (pbData.finds === "yes") {
                 let bfDraw = await tblFinds.draw({displayChat:false});
                 bfRes = bfDraw.results[0].data.text;
-
+                if ((bfDraw.total >= 26 && bfDraw.total <= 35) && pbData.invthreat) {
+                    invEv = 1;
+                }
                 findText = "Battlefield finds: " + bfRes;
             }
 
             if (pbData.invasion === "yes") {
-                let invEv = 0;
+                
                 let ir = new Roll("2d6").evaluate({displayChat:false}).result;
 
                 ir = parseInt(ir) + parseInt(pbData.invbonus) + invEv;
@@ -569,22 +572,26 @@ export class FPProcGen {
                 let lootArray = [];
                 for(let i = 0; i < parseInt(pbData.lootrolls); i++) {
                     // let ltDraw = await tblLoot.draw({displayChat:false});
-                    let ltDrawRoll = new Roll("1d100").evaluate({async:false}).result;
-
-                    if (ltDrawRoll >= 26 && ltDrawRoll <= 35) {
+                    let ltDrawRoll = new Roll("1d100").evaluate({async:false});
+                    let ltr = ltDrawRoll.result;
+                    console.warn("Loot table roll: ", ltDrawRoll, ltr);
+                    if (ltr >= 26 && ltr <= 35) {
                         let ltDraw1 = await tblWeapons.draw({displayChat:false});
                         let ltDraw2 = await tblWeapons.draw({displayChat:false});
+                        console.warn("Loot Table Draw: ", ltDraw1, ltDraw2);
                         let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
                         let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
                         lootArray.push(ltRes1, ltRes2);
-                    } else if (ltDrawRoll >=46 && ltDrawRoll <= 65) {
+                    } else if (ltr >=36 && ltr <= 45) {
                         let ltDraw1 = await tblGear.draw({displayChat:false});
                         let ltDraw2 = await tblGear.draw({displayChat:false});
+                        console.warn("Loot Table Draw: ", ltDraw1, ltDraw2);
                         let ltRes1 = ltDraw1.results[0].data.text + " (damaged)";
                         let ltRes2 = ltDraw2.results[0].data.text + " (damaged)";
                         lootArray.push(ltRes1, ltRes2);
                     } else {
                         let ltDraw = await tblLoot.draw({displayChat:false, roll:ltDrawRoll});
+                        console.warn("Loot Table Draw: ", ltDraw);
                         let ltRes = ltDraw.results[0].data.text;
                         lootArray.push(ltRes);
                     }

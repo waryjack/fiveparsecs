@@ -104,6 +104,23 @@
                  {{/if}}
              </tr>
              <tr class="fp terminal">
+                <th>{{localize "FP.ui.rolldialog.postbattle.charev"}}</th>
+                 <td>
+                     <select name="chv" id="chv">
+                           <option value="yes">{{localize "FP.ui.general.yes"}}</option>
+                           <option value="no" selected>{{localize "FP.ui.general.no"}}</option>
+                     </select>
+                 </td>
+                 {{#if auto}}
+                 <td></td>
+                 <td><input type="checkbox" style="vertical-align:middle" id="chv-twice"/> {{localize "FP.ui.rolldialog.postbattle.rolltwice"}}</td>
+                 {{else}}
+                 <td>
+                      <input type="text" class="fp text-input" style="width:100%" id="chv-outcome" data-dtype="String" value=""/>
+                 </td>
+                 {{/if}}
+             </tr>
+             <tr class="fp terminal">
                 <th>{{localize "FP.ui.rolldialog.postbattle.battfind"}}</th>
                  <td>
                      <select name="fnd" id="fnd">
@@ -131,6 +148,9 @@
                  {{#if auto}}
                  <td style="padding-left:12px;">
                    {{localize "FP.ui.general.modifier"}}: <input class="fp value-input" type="text" id="inv-mod" value="0" data-dtype="Number"/>
+                 </td>
+                 <td>
+                     {{localize "FP.ui.rolldialog.invthreat"}}: <input style="vertical-align:middle" type="checkbox" id="inv-threat"/>
                  </td>
                  <td></td>
                  {{else}}
