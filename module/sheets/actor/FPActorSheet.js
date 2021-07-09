@@ -56,7 +56,7 @@ export class FPActorSheet extends ActorSheet {
             data.jobs = ownedItems.filter(item => item.type === "patron_job");
          }
 
-         data.auto = game.settings.get("fiveparsecs", "autoGenerate");
+         data.auto = false;
 
          return data;
     }
@@ -80,8 +80,6 @@ export class FPActorSheet extends ActorSheet {
         html.find('.item-delete').click(this._deleteItem.bind(this));
 
         html.find('.dice-roll').click(this._diceRoll.bind(this));
-
-        html.find('.gen-bmc').click(this._generateBmc.bind(this));
 
         html.find('.refresh-crew').click(this._refreshCrewSheet.bind(this));
 
@@ -300,36 +298,6 @@ export class FPActorSheet extends ActorSheet {
 
     }
 
-    _generateBmc(event) {
-        event.preventDefault();
-
-        let d = new Dialog({
-            title: "Delete This Item?",
-            content: "<p>This will add 3 new traits to this character. It will not replace existing traits.</p>",
-            buttons: {
-             one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: "Continue",
-              callback: () => { return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject()))); }
-             },
-             two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: "Cancel",
-              callback: () => { return; }
-             }
-            },
-            default: "two",
-            render: html => console.log("Register interactivity in the rendered dialog"),
-            close: html => console.log("This always is logged no matter which option is chosen")
-           });
-
-           d.render(true);
-          
-       // return FPProcGen.generateBMC(this.actor).then(bmc => this.actor.createEmbeddedDocuments("Item", bmc.map(i => i.toObject())));
-
-       // FPProcGen.generateBMC(this.actor).then(bmc => Item.create(bmc, {parent: this.actor, renderSheet:true}));
-    }
-
     _buildCrewData(ownedItems) {
        
         let crewRoster = [];
@@ -419,19 +387,12 @@ export class FPActorSheet extends ActorSheet {
         
     }
 
-    _generateEncounter(e) {
-        e.preventDefault();
-        return ui.notifications.warn("Non functional until tables are prepared");
-
-        
-    }
-
     _handleCampaignTurnStep(e) {
         e.preventDefault();
         let element = e.currentTarget;
         let phase = element.dataset.ctPhase;
         let action = element.dataset.ctAction;
-        const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
+        // const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
         switch(phase) {
             case "flee-invasion": 
                 {
@@ -455,25 +416,25 @@ export class FPActorSheet extends ActorSheet {
                     let template = "systems/fiveparsecs/templates/roll/crewtaskdialog.hbs";
                      let crewTaskData = {
                         actor: this.actor,
-                        crew_names: this.actor.data.data.data.members,
-                        auto: autoGen
+                        crew_names: this.actor.data.data.data?.members,
+                        auto: false
                     }
                     return FPRollUtility.crewTaskDialog(template, crewTaskData); 
                 }
             case "jobs":
                 {
-                    return this.actor.addJob(action, true); // true for now - random job generation
+                    return this.actor.addJob(); // true for now - random job generation
                 }
             case "battles":
                 {
-                    return this.actor.addBattle(action, true); // true - random battle generation
+                    return this.actor.addBattle(); 
                 }
             case "post":
                 {
                     let template = "systems/fiveparsecs/templates/roll/postbattledialog.hbs";
                     let postData = {
                         actor: this.actor,
-                        auto: autoGen
+                        auto: false
                     }
                     return FPRollUtility.postBattle(template, postData);
                 }

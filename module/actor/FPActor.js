@@ -48,88 +48,54 @@ export class FPActor extends Actor {
 
     }
 
-    handleFleeInvasion(action){
+    handleFleeInvasion(){
         let outcome = "";
-
-        
-        switch(action) {
-            case "flee-invasion":
-                {
-                    let r = new Roll("2d6").evaluate({async:false}).result;
-                    if (r < 8) {
-                        outcome = game.i18n.localize("FP.campaign_turn.flee.flee_fail");
-                    } else {
-                        outcome = game.i18n.localize("FP.campaign_turn.flee.flee_success");
-                    }
-                }; break;
-            case "rnd-battle":
-                {
-                    outcome = game.i18n.localize("FP.campaign_turn.flee.flee_either");
-                    this.createBattle("invasion", true);
-                }; break;
-            case "custom-battle":
-                {  
-                    outcome = game.i18n.localize("FP.campaign_turn.flee.flee_either");
-                    this.createBattle("invasion", false);
-                }; break;
+        let r = new Roll("2d6").evaluate({async:false}).result;
+        if (r < 8) {
+            outcome = game.i18n.localize("FP.campaign_turn.flee.flee_fail");
+        } else {
+            outcome = game.i18n.localize("FP.campaign_turn.flee.flee_success");
         }
 
         this.update({'data.campaign_turn.flee_outcome':outcome});
     }
 
-    handleTravel(action) {
+    handleTravel() {
         console.warn("Entered handleTravel");
-        let auto = game.settings.get("fiveparsecs", "autoGenerate");
-        if(auto){
-            FPProcGen.getTravelEvents().then(te => {
-                console.warn("ProcGen result for travel: ", te);
-                this.update({'data.campaign_turn.travel.travel_event':te});
-            });
-
-        } else {
-            new Dialog({
-                title:game.i18n.localize("FP.campaign_turn.travel.event"),
-                content: "<table><tr><th>Travel Event</th><td><input type='text' id='tev' class='fp text-input' style='width:100%' data-dtype='String'/></td></tr></table>",
-                buttons: {
-                    roll: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: game.i18n.localize("FP.ui.general.continue"),
-                    callback: (html) => {
-                    //  console.log("passed html: ", html); 
-                        let tev = html.find('#tev').val();
-                        
-                        return this.update({"data.campaign_turn.travel.travel_event":tev});
-                        }
-                    },
-                    close: {
-                    icon: '<i class="fas fa-times"></i>',
-                    label: game.i18n.localize("FP.ui.general.cancel"),
-                    callback: () => { console.log("Clicked Cancel"); return; }
+     
+        new Dialog({
+            title:game.i18n.localize("FP.campaign_turn.travel.event"),
+            content: "<table><tr><th>Travel Event</th><td><input type='text' id='tev' class='fp text-input' style='width:100%' data-dtype='String'/></td></tr></table>",
+            buttons: {
+                roll: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("FP.ui.general.continue"),
+                callback: (html) => {
+                //  console.log("passed html: ", html); 
+                    let tev = html.find('#tev').val();
+                    
+                    return this.update({"data.campaign_turn.travel.travel_event":tev});
                     }
                 },
-                default: "close"
-            }).render(true);
-        }
+                close: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize("FP.ui.general.cancel"),
+                callback: () => { console.log("Clicked Cancel"); return; }
+                }
+            },
+            default: "close"
+        }).render(true);
+        
     }
 
-    handleArrival(action) {
+    handleArrival() {
         let follow = new Roll("1d6").evaluate({async:false}).result;
         console.warn("Arrival Follow Check result: ", follow);
         if (follow > 5) {
             this.data.data.campaign_turn.arrival.followed = true;
         }
-        switch(action) {
-            case "arrive-rnd-world": {
-                this.createWorld(0);
-            }; break;
-            case "arrive-custom-world":{
-                this.createWorld(1);
-            }; break;
-            case "arrive-known-world":{
-                this.createWorld(2);
-            }; break;
-        }
-
+        this.createWorld();
+       
         this.update({"data.campaign_turn.arrival.followed":true})
     }
 
@@ -187,7 +153,7 @@ export class FPActor extends Actor {
      * @returns notification at this point
      */
     handleCrewTasks(assignments) {
-        let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
+       
         let ctFinalArray = [];
 
         let finalPatronText = game.i18n.localize("FP.campaign_turn.crew_tasks.gen.nofind_default");
@@ -214,160 +180,72 @@ export class FPActor extends Actor {
 
         console.warn("Task Assignments: ", assignments);
 
-        if (autoGen) {
-            FPProcGen.getCrewTaskResults(assignments).then(ctr => {
-                this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctr});
-            });
-        } else {
-            if (assignments.finders.length) {
-                finalPatronText = assignments.finders.join(join) + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
-            }
-            if (assignments.trainers.length) {
-                finalTrainText = assignments.trainers.join(join) + ((assignments.trainOutcome != "" && typeof(assignments.trainOutcome !== "undefined")) ? " "+assignments.trainOucome : stdTrainText);
-            }
-            if (assignments.traders.length) {
-                finalTradeText = assignments.traders.join(join) + ((assignments.tradeOutcome != "" && typeof(assignments.tradeOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdTradeText);
-            }
-            if (assignments.recruiters.length) {
-                finalRecruitText = assignments.recruiters.join(join) + ((assignments.recruitOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdRecruitText);
-            }
-            if (assignments.explorers.length) {
-                finalExploreText = assignments.explorers.join(join) + ((assignments.exploreOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.exploreOutcome : stdExploreText);
-            }
-            if (assignments.trackers.length) {
-                finalTrackText = assignments.trackers.join(join) + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
-            }
-            if (assignments.repairers.length) { 
-                finalRepairText = assignments.repairers.join(join) + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcome : stdRepairText);
-            }
-            if (assignments.decoys.length) {
-                finalDecoyText = assignment.decoys.join(join) + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
-            }
-            ctFinalArray.push(finalPatronText,finalTrainText,finalTradeText,finalRecruitText,finalExploreText,
-                finalTrackText,finalRepairText,finalDecoyText);
-    
-            ctFinalText = ctFinalArray.join("<br/>");
-            this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctFinalText});
-            
+        if (assignments.finders.length) {
+            finalPatronText = assignments.finders.join(join) + ((assignments.findOutcome != "" && typeof(assignments.findOutcome !== "undefined")) ? " "+assignments.findOutcome : stdPatronText);
         }
+        if (assignments.trainers.length) {
+            finalTrainText = assignments.trainers.join(join) + ((assignments.trainOutcome != "" && typeof(assignments.trainOutcome !== "undefined")) ? " "+assignments.trainOucome : stdTrainText);
+        }
+        if (assignments.traders.length) {
+            finalTradeText = assignments.traders.join(join) + ((assignments.tradeOutcome != "" && typeof(assignments.tradeOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdTradeText);
+        }
+        if (assignments.recruiters.length) {
+            finalRecruitText = assignments.recruiters.join(join) + ((assignments.recruitOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.tradeOutcome : stdRecruitText);
+        }
+        if (assignments.explorers.length) {
+            finalExploreText = assignments.explorers.join(join) + ((assignments.exploreOutcome != "" && typeof(assignments.recruitOutcome !== "undefined")) ? " "+assignments.exploreOutcome : stdExploreText);
+        }
+        if (assignments.trackers.length) {
+            finalTrackText = assignments.trackers.join(join) + ((assignments.trackOutcome != "" && typeof(assignments.trackOutcome !== "undefined")) ? " "+assignments.trackOutcome : stdTrackText);
+        }
+        if (assignments.repairers.length) { 
+            finalRepairText = assignments.repairers.join(join) + ((assignments.repairOutcome != "" && typeof(assignments.repairOutcome !== "undefined")) ? " "+assignments.repairOutcome : stdRepairText);
+        }
+        if (assignments.decoys.length) {
+            finalDecoyText = assignment.decoys.join(join) + ((assignments.decoyOutcome != "" && typeof(assignments.decoyOutcome !== "undefined")) ? " "+assignments.decoyOutcome : stdDecoyText);
+        }
+        ctFinalArray.push(finalPatronText,finalTrainText,finalTradeText,finalRecruitText,finalExploreText,
+            finalTrackText,finalRepairText,finalDecoyText);
+
+        ctFinalText = ctFinalArray.join("<br/>");
+        this.update({"data.campaign_turn.crew_tasks.ct_final_result":ctFinalText});
        
     }
 
-    addJob(action, type){
+    addJob(){
 
-        let autoGen = game.settings.get("fiveparsecs", "autoGenerate");
-
-        if(autoGen){
-            FPProcGen.generateJob().then(jobData => {
-                let itemData = {
-                    name:"Patron Job",
-                    type:"patron_job"
-                }
-
-                itemData.data = jobData;
-
-                return Item.create(itemData, {parent:this, renderSheet:false});
-            });
-        } else {
-           let itemData = {
-                name:"Patron Job",
+       let itemData = {
+                name:"New Patron Job",
                 type:"patron_job"
             }
 
             return Item.create(itemData, {parent:this, renderSheet:true});
-        }
-    }
-
-    addBattle(type, random) {
-        const autoGen = game.settings.get("fiveparsecs", "autoGenerate");
-        let rivalCheck = new Roll("1d6").evaluate({async:false}).result;
-        if(autoGen) {
-            if (type === "Rival"){
-                if (rivalCheck < 3) {
-                    this.createBattle("Rival", false); // rival battles should be custom setups
-                } else {
-                    return ui.notifications.warn(game.i18n.localize("FP.campaign_turn.battles.foundbyrival_false"));
-                }
-            } else if (type === "Invasion") {
-                this.createBattle("Invasion", false);
-            } else { 
-                this.createBattle(type, true);
-            } 
-        } else {
-            new Dialog({
-                title:game.i18n.localize("FP.ui.rolldialog.crewsize"),
-                content: "<div class='form-group'><table><tr><th>Crew size for this Battle</th><td><input id='crewsize' type='text' value='5' data-dtype='Number'/></td></tr></table></div>",
-                buttons: {
-                    roll: {
-                     icon: '<i class="fas fa-check"></i>',
-                     label: game.i18n.localize("FP.ui.general.continue"),
-                     callback: (html) => {
-                      //  console.log("passed html: ", html); 
-                      let crewSize = html.find('#crewsize').val();
-                      console.warn("Crewsize: ", crewSize);
-                      this.createBattle(type, random, crewSize);
-                     }
-                    },
-                    close: {
-                     icon: '<i class="fas fa-times"></i>',
-                     label: game.i18n.localize("FP.ui.general.cancel"),
-                     callback: () => { console.log("Clicked Cancel"); return; }
-                    }
-                   },
-                default: "close"
-            }).render(true);
-        }
-
     }
 
     /**
      * 
      * @param {Int} random 0 = random world; 1 = custom world; 2 = return to known world
      */
-    createWorld(random) {
+    createWorld() {
         // Get the active world
         let activeWorldArray = this.items.filter(i => i.type === "world" && i.data.data.active);
 
-        // switch based on random, custom, or known world selection
-        switch(random) {
-            case 0:
-                {
-
-                   /* let itemData = {
-                        name: "Random World #" + new Roll("1d999").evaluate({async:false}).result,
-                        type: "world"
-                    }*/
-
-                    FPProcGen.generateWorld(activeWorldArray).then((worldData) => {
-                        return Item.create(worldData, {parent:this, renderSheet:false});
-                    }); break;
-                }
-            case 1:
-                {
-                    let itemData = {
+        let itemData = {
                         name: "New World",
                         type: "world",
                         data: {
                             active:true
                         }
                     }
-                   console.warn("Custom world data: ", itemData);
-                   if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
-                        let currentWorld = activeWorldArray[0];
-                        console.warn("Current World: ", currentWorld);
-                        currentWorld.update({"data.active":false}).then(() => {
-                            return Item.create(itemData, {parent:this, renderSheet:true});
-                        });
-                    } else {
-                        return Item.create(itemData, {parent:this, renderSheet:true});
-                    }; break;
-                }     
-            case 2:
-                {
-                    // dialog to select existing world here
-                    return ui.notifications.warn("Not yet implemented");
-                }
-            
+        console.warn("Custom world data: ", itemData);
+        if(Array.isArray(activeWorldArray) && activeWorldArray.length > 0) {
+            let currentWorld = activeWorldArray[0];
+            console.warn("Current World: ", currentWorld);
+            currentWorld.update({"data.active":false}).then(() => {
+                return Item.create(itemData, {parent:this, renderSheet:true});
+            });
+        } else {
+            return Item.create(itemData, {parent:this, renderSheet:true});
         }
     }
 
@@ -378,27 +256,14 @@ export class FPActor extends Actor {
      * @param {Boolean} random if true, generates a random battle; if false, opens the Item sheet for battles to custom-create
      * @returns 
      */
-    createBattle(type, random, crewsize){
-        if(random){
-            let itemData = {
-                name: type + " Battle",
-                type: "battle",
-                data: {}
-            }
-
-                // return ui.notifications.warn("Generate Random Battle Here");
-                FPProcGen.generateBattle(type, crewsize).then(battleData => {
-                    itemData.data = battleData;
-                    return Item.create(itemData, {parent:this, renderSheet:false});
-                });
-          
-        } else {
+    addBattle(type, random, crewsize){
+      
             let itemData  = {
-                name: type + " Battle",
+                name: "New Battle",
                 type: "battle"
             }
             return Item.create(itemData, {parent: this, renderSheet:true});
-        }
+      
     }
 
     postBattle(postData) {
