@@ -118,7 +118,7 @@
             "arrival":{
                 "entity":"Arrival",
                 "random":"Generate Random World",
-                "custom":"Create Custom World",
+                "custom":"Create World",
                 "known":"Select a Known World"
             },
             "flee":{
@@ -129,6 +129,7 @@
             },
             "travel":{
                 "entity":"Travel",
+                "create_event":"Add Travel Event",
                 "event":"Travel Event"
             },
             "upkeep":{
@@ -192,6 +193,7 @@
             },
             "battles":{
                 "entity":"Battles",
+                "action":"Create Battle",
                 "check_rival":"Check for Rival Attack",
                 "foundbyrival_false":"No Rivals Found You",
                 "opp":"Opportunity Battle",

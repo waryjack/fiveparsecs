@@ -15,14 +15,15 @@ This is the shell for a FoundryVTT system to play *Five Parsecs from Home*, a so
 
 * Significant progress toward localization is made, but some hardcoded English strings exist.
 * There is no automation of combat - attacks can be rolled by clicking on the relevant dice roll icon or on the icon next to the weapon entry, but there's no automation of range, hit checks, damage checks, or anything like that yet. That is for a future pass.
-* 
+
 ## Roadmap of Sorts
 
 Next up: 
 
 * Cleaning up dialogs, sheets for consistent look and feel (and better layout)
-* Configurable game settings (difficulty, "Wild Galaxy", etc).
 * Localization work.
+* Ability to return to Known Worlds for a campaign turn.
+* Combat automation: targeting, hit resolution, etc.
 
 Done: 
 
@@ -97,6 +98,7 @@ In the "Arrival" section you can generate a random world, a custom world, or (pe
 1. When you create a world, it's added to your list of Known Worlds as well.
 2. If you want to modify a world, click the "edit" icon - the pencil - next to its name.
 3. If you delete the world, it is deleted completely, from both the campaign turn tracker *and* the list of known worlds.
+4. If you create a new world while one is already listed, the new world replaces the existing one, which is moved to "known worlds." 
 
 ### Jobs in the Tracker
 

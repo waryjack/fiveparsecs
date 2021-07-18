@@ -219,7 +219,7 @@
                         <div style="padding:3px; margin-right:12px;">
                             <table class="fp crew-roster">
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top">Gear</span> <a class="item-create" data-type="gear" title="Add Gear"><i class="fas fa-plus-square"></i></a></td>
+                                    <td style="width:10%"><span class="fp sheet-label labels" style="vertical-align:top; color:rgb(56,143,184)">Gear</span> <a class="item-create" style="color:rgb(56, 143, 184)" name="gear" id="gear" title="Add Gear"><i class="fas fa-plus-square"></i></a></td>
                                     <td style="padding-left:3px;">
                                         
                                         {{#each gear as |gear id|}}
@@ -235,13 +235,13 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.notes"}}</span></td>
+                                    <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top; color:rgb(56, 143, 184)">{{localize "FP.gameterm.notes"}}</span></td>
                                     <td data-field="notes" class="inline-edit-notes hw" style="padding-left:3px;" contenteditable>{{data.data.notes}}</td>
                                 </tr>
-                                <tr>
+                                <!--tr>
                                     <td style="width:10%"><span class="fp sheet-label" style="vertical-align:top">{{localize "FP.gameterm.misc"}}</span></td>
                                     <td class="hw"><input type="checkbox" style="vertical-align:middle; bottom:0.5em;" name="data.data.use_bot_injury" {{#if data.data.use_bot_injury}}checked{{/if}}/>{{localize "FP.character.use_bot_injury"}}</td>
-                                </tr>
+                                </tr-->
                             </table>
                         </div>
                    </div>
