@@ -1,3 +1,5 @@
+**Note**: This project is no longer maintained or updated. No further changes, updates, or fixes will be made.
+
 # fiveparsecs
 Foundry System for Five Parsecs from Home
 
