@@ -1,4 +1,4 @@
-**Note**: This project is no longer maintained or updated. No further changes, updates, or fixes will be made.
+**Note**: This project is not regularly maintained; fixes and updates may be veeeeeery slow to happen. Like, months apart.
 
 # fiveparsecs
 Foundry System for Five Parsecs from Home
