@@ -141,9 +141,6 @@ Hooks.on('updateItem', function(actor, item, changed){
 });
 
 
-// should probably become preDeleteOwnedItem, to handle it before
-// the item actually vanishes from the inventory
-
 Hooks.on('deleteItem', function(actor, item){ 
 
 });

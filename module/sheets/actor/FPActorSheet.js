@@ -282,7 +282,8 @@ export class FPActorSheet extends ActorSheet {
            one: {
             icon: '<i class="fas fa-check"></i>',
             label: "Yes",
-            callback: () => { this.actor.deleteOwnedItem(itemId); }
+            callback: () => { let deleted = this.actor.items.get(itemId);
+                              deleted.delete(); }
            },
            two: {
             icon: '<i class="fas fa-times"></i>',
