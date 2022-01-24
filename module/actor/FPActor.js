@@ -116,13 +116,13 @@ export class FPActor extends Actor {
              return ui.notifications.warn("You don't have sufficient credits to cover these expenses");
         } else {
             // Ship Debt
-            bankBal -= debtPmt;
-            currDebt -= debtPmt;
+            bankBal = Math.max(0, bankBal - debtPmt);
+            currDebt = Math.max(0, currDebt - debtPmt);
             (currDebt > 0) ? currDebt++ : currDebt = currDebt;
             // Crew Pay
-            bankBal -= payroll;
+            bankBal = Math.max(0, bankBal - payroll);
             //Repairs
-            bankBal -= repairs;
+            bankBal = Math.max(0, bankBal - repairs);
             let totalHullRepair = repairs + 1;
             currHull = Math.min(currHull + totalHullRepair, maxHull);
             // Medical Treatment
